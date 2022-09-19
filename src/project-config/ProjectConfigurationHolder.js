@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ProjectConfigurationHolder.css'
+import '././ProjectConfigurationHolder.css'
 const logoPic = new URL("./images/backgroundLogo.png",import.meta.url)
 
 function projectConfigurration() {
