@@ -1,0 +1,145 @@
+.config {
+    background-image: url('images/backgroundLogo.jpg');
+    background-size: cover;
+    max-width: 800px;
+    width: 750px;
+    height: 750px;
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+body {
+    background-color: rgb(53, 56, 57);
+  }
+
+.configCreateLocation{
+    position: absolute;
+    top: 50%;
+    margin-top: -250px;
+    margin-left: 500px;
+    align-self: center;
+    /*color: white;*/
+}
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.configLabelProjectname {
+    position: absolute;
+    top: 50%;
+    margin-top: -200px;
+    margin-left: 350px;
+    align-self: center;
+}
+
+.configInputProjectname {
+    position: absolute;
+    top: 53%;
+    margin-top: -200px;
+    margin-left: 350px;
+    width: 400px;
+    align-self: center;
+}
+
+.configLabelLocation {
+    position: absolute;
+    top: 58%;
+    margin-top: -200px;
+    margin-left: 350px;
+    align-self: center;
+}
+
+.configInputLocation {
+    position: absolute;
+    top: 61%;
+    margin-top: -200px;
+    margin-left: 350px;
+    width: 400px;
+    align-self: center;
+}
+
+.continueBottom{
+    position: absolute;
+    top: 70%;
+    margin-top: -200px;
+    margin-left: 400px;
+    width: 90px;
+    align-self: center;
+}
+
+.cancelBottom{
+    position: absolute;
+    top: 70%;
+    margin-top: -200px;
+    margin-left: 550px;
+    width: 90px;
+    align-self: center;
+}
+
+.browseBottom{
+    position: absolute;
+    top: 61%;
+    margin-top: -200px;
+    margin-left: 780px;
+    width: 90px;
+    align-self: center;
+}
+
+.minButton{
+    position: absolute;
+    margin-left: 900px;
+    width: 30px;
+    align-self: center;
+}
+
+.maxButton{
+    position: absolute;
+    margin-left: 930px;
+    width: 30px;
+    align-self: center;
+}
+
+.exitButton{
+    position: absolute;
+    margin-left: 960px;
+    width: 30px;
+    align-self: center;
+}
+
+.configLabelRequired{
+    position: absolute;
+    top: 43%;
+    margin-top: -161px;
+    margin-left: 475px;
+    align-self: center;
+    font-size: "5px";
+    color: red;
+}
+
+/*
+Meant to create a second required 
+label next to Stored location
+*/
+.configSecLabelRequired{
+    position: absolute;
+    top: 43%;
+    margin-top: -115px;
+    margin-left: 475px;
+    align-self: center;
+    font-size: "5px";
+    color: red;
+}
+/* .container{
+    max-width: 800px;
+    width: 750px;
+    height: 750px;
+    display: inline-flexbox;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+} */
