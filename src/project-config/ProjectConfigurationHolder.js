@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
 import '././ProjectConfigurationHolder.css'
-const logoPic = new URL("./images/backgroundLogo.png",import.meta.url)
 
-function projectConfigurration() {
-    return<>
-    <header className="logo-header"></header>
-      <div className="logo-pic"> 
-
-        <img src={logoPic}/>
-      </div>
-      </>
-    
-}
 class ProjectConfigurationHolder extends Component {
 
     constructor(props) {

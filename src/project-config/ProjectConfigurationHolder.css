@@ -1,5 +1,5 @@
 .config {
-    background-image: url('images/backgroundLogo.jpg');
+    background-image: url('./images/backgroundLogo.svg');
     background-size: cover;
     max-width: 800px;
     width: 750px;

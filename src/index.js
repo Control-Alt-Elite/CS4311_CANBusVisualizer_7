@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import ProjectConfigurationHolder from './project-config/ProjectConfigurationHolder';
+import SessionConfigurationHolder from './session-config/SessionConfigurationHolder';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
   <React.StrictMode>
     <ProjectConfigurationHolder/>
+    <SessionConfigurationHolder/>
     
   </React.StrictMode>
 );
