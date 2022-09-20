@@ -9,7 +9,36 @@
     justify-content: center;
     margin: auto;
 }
-
+.configLabel {
+    color: rgb(255, 255, 255);
+    margin-top: 30px;
+    padding-left: 150px;
+    padding-right: 10px;
+    margin-bottom: 200px;
+    align-items: left;
+    font-style: serif;
+    
+  }
+.configTitle {
+    color: rgb(255, 255, 255);
+    margin-top: 5%;
+    margin-bottom: 5%;
+    align-items: center;
+    font-style: serif;
+    font-size:x-large;
+}
+.configInput{
+    background-color: rgb(109, 109, 109);
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 50%;
+    display: flex;
+}
+.topButton{
+    margin-left: 80%;
+    margin-top: 5%;
+}
 body {
     background-color: rgb(53, 56, 57);
   }
@@ -22,93 +51,43 @@ body {
     align-self: center;
     /*color: white;*/
 }
-.form{
-    display: flex;
+form{
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+    width: 650px;
+    height: 650px;
     align-items: center;
     justify-content: center;
     margin: auto;
 }
 
-.configLabelProjectname {
-    position: absolute;
-    top: 50%;
-    margin-top: -200px;
-    margin-left: 350px;
-    align-self: center;
-}
 
-.configInputProjectname {
-    position: absolute;
-    top: 53%;
-    margin-top: -200px;
-    margin-left: 350px;
-    width: 400px;
-    align-self: center;
+.bottomButton{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 123, 0);
+    align-items: center;
+    justify-content: center;
+    display: inline;
+    margin: auto;
+    margin-top: 50%;
+    margin-left: 24%;
+    width: 15%;
 }
-
-.configLabelLocation {
-    position: absolute;
-    top: 58%;
-    margin-top: -200px;
-    margin-left: 350px;
-    align-self: center;
+.browseButton{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 123, 0);
+    display: block;
+    margin-left: 56%;
 }
+.buttonInput{
+    display: block;
+    margin-left: 25%;
 
-.configInputLocation {
-    position: absolute;
-    top: 61%;
-    margin-top: -200px;
-    margin-left: 350px;
-    width: 400px;
-    align-self: center;
 }
-
-.continueBottom{
-    position: absolute;
-    top: 70%;
-    margin-top: -200px;
-    margin-left: 400px;
-    width: 90px;
-    align-self: center;
-}
-
-.cancelBottom{
-    position: absolute;
-    top: 70%;
-    margin-top: -200px;
-    margin-left: 550px;
-    width: 90px;
-    align-self: center;
-}
-
-.browseBottom{
-    position: absolute;
-    top: 61%;
-    margin-top: -200px;
-    margin-left: 780px;
-    width: 90px;
-    align-self: center;
-}
-
-.minButton{
-    position: absolute;
-    margin-left: 900px;
-    width: 30px;
-    align-self: center;
-}
-
-.maxButton{
-    position: absolute;
-    margin-left: 930px;
-    width: 30px;
-    align-self: center;
-}
-
-.exitButton{
-    position: absolute;
-    margin-left: 960px;
-    width: 30px;
-    align-self: center;
+.input{
+    background-color: rgb(109, 109, 109);
+    width: 66%;
 }
 
 .configLabelRequired{
