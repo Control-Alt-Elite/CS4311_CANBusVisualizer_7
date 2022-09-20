@@ -1,0 +1,57 @@
+
+.body{
+  background-image: url("images/backgroundLogo.svg");
+  background-size: cover;
+  max-width: 800px;
+  width: 750px;
+  height: 750px;
+  display: grid;
+  margin: auto;
+  grid-template-areas: 'header header header'
+  'menu main main'
+  'footer footer footer';
+}
+.body>div{
+  text-align: center;
+  align-content: center;
+}
+.title{
+  grid-area: header;
+  align-self: center;
+  margin: auto;
+  background-color: white;
+  border: 10px;
+  border-width: 10%;
+  border-radius: 5px;
+  width: 45%;
+  height: 20%;
+  
+}
+.logo{
+  grid-area: menu;
+  align-self: center;
+  margin: auto;
+  background-color: white;
+  border: 10px;
+  border-width: 10%;
+  border-radius: 5px;
+  width: 20%;
+  height: 5%;
+}
+.canBusButtons{
+  grid-area: main;
+  align-self: center;
+  margin: auto;
+  border: 10px;
+}
+.option{
+  height: 100px;
+  width: 300px;
+  margin-left: 25%;
+  margin-top: 10%;
+  border-radius: 20px;
+}
+.cancel{
+  grid-area: footer;
+  align-self: center;
+}

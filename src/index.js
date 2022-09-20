@@ -4,13 +4,14 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import ProjectConfigurationHolder from './project-config/ProjectConfigurationHolder';
 import SessionConfigurationHolder from './session-config/SessionConfigurationHolder';
-
+import CanBusConfigurationHolder from './can-bus-config/CanBusConfigurationHolder'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
   <React.StrictMode>
-    <ProjectConfigurationHolder/>
-    <SessionConfigurationHolder/>
+    {/* <ProjectConfigurationHolder/>
+    <SessionConfigurationHolder/> */}
+    <CanBusConfigurationHolder/>
     
   </React.StrictMode>
 );
