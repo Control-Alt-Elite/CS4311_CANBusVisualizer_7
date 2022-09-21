@@ -83,23 +83,8 @@ class SessionConfigurationHolder extends Component {
             </div>
             
              <br />
-             <div className='sessionWord'>
+
        
-            
-            <button className='blacklistbutton'></button>
-            
-             <label>Black List</label>       
-            </div>
-       
-             <br />
-             <div className='sessionWord'>
-       
-            
-             <button className='dbcbutton'></button>
-             <label>DBC File</label>       
-            </div>
-       
-        <br />
                     
                 
                 </div>
@@ -110,11 +95,7 @@ class SessionConfigurationHolder extends Component {
                         <input className='configInput' type="text" value={analystInitials} onChange={this.handleAnalystInitials} />
                     </div>
                     <br />
-                    <div>
-                        <label className='configLabel'>Project Name</label><br></br>
-                        <input className='configInput' type="text" value={projectName} onChange={this.handleProjectName} />
-                    </div>
-                    <br />
+
                     <div>
                         <label className='configLabel'>Project Date</label><br></br>
                         <input className='configInput' type="text" value={projectDate} onChange={this.handleProjectDate} />
@@ -135,6 +116,16 @@ class SessionConfigurationHolder extends Component {
                         <input className='configInput' type="text" value={baudRate} onChange={this.handleBaudRate} />
                     </div>
                     <br /> 
+                                        <div>
+                        <label className='configLabel'>Blacklist File</label><br></br>
+                        <input className='configFile' type="file" value={blacklistFileName} onChange={this.handleBlacklist} />
+                    </div>
+                    <br /> 
+                    <div>
+                        <label className='configLabel'>DBC File</label><br></br>
+                        <input className='configFile' type="file" id="my file" value= {dbc_file_name} onChange={this.handleDBCFileName} />
+                    </div>
+                    <br />  
                     
 
                      <form>
