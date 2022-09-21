@@ -28,15 +28,13 @@
   
 }
 .logo{
-  grid-area: menu;
+  background-image: url('images/devcomLogo.jpg');
+  height: 65px;
+  width: 100px;
+  background-size: contain;
+  border-radius: 10px;
   align-self: center;
-  margin: auto;
-  background-color: white;
-  border: 10px;
-  border-width: 10%;
-  border-radius: 5px;
-  width: 20%;
-  height: 5%;
+  margin-left: 60%;
 }
 .canBusButtons{
   grid-area: main;
@@ -54,4 +52,7 @@
 .cancel{
   grid-area: footer;
   align-self: center;
+}
+.cancelButton{
+  background-color: rgb(255, 123, 0);
 }

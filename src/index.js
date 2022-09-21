@@ -9,8 +9,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
   <React.StrictMode>
-    {/* <ProjectConfigurationHolder/>
-    <SessionConfigurationHolder/> */}
+    <ProjectConfigurationHolder/>
+    <SessionConfigurationHolder/>
     <CanBusConfigurationHolder/>
     
   </React.StrictMode>
