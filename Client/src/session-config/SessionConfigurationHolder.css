@@ -83,13 +83,7 @@ form {
   outline: none;
   border: none;
 }
-.submitbutton{
-  color: rgb(0, 0, 0);
-  background-color: rgb(255, 123, 0);
-  align-items: center;
-  display: flex;
-  margin: auto;
-}
+
 .seperator{
   height: 5px;
   width:100%;
@@ -109,8 +103,16 @@ form {
 .sessionWord:hover{
   width: 20%;
   background: transparent;
-  border: 5px solid rgb(0, 0, 0);
+  border: 5px solid rgb(0, 0, 0);  
   
-  
-  
+}
+
+#submit{
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 123, 0);
+  align-items: center;
+  display: flex;
+  margin: auto;
+  height: 4%;
+  width: 10%;
 }

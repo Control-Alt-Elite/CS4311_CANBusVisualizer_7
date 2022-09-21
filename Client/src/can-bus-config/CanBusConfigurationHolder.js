@@ -15,7 +15,7 @@ class CanBusConfigurationHolder extends Component {
                     <div><button className='option'>Can Bus #3</button></div>
                 </div>
                 <div className='cancel'>
-                    <button className='cancelButton'>Cancel</button>
+                    <button id='cancelButton'>Cancel</button>
                 </div>       
             </div>
         

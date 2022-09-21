@@ -58,16 +58,29 @@ class ProjectConfigurationHolder extends Component {
                         <label className='configLabel'style={{color:'red'}}>Required</label>
                         <div className='buttonInput'>
                             <input className='input' type="text" value={storedLocation} onChange={this.handleStoredLocation} />  
-                            <button className= 'browseButton'type='Browse'>Browse</button>
                         </div>
-                        
-                        
+
                     </div>
                     <br />
-                    <div>
-                    <button className= 'bottomButton'type='Continue'>Continue</button>
-                    <button className= 'bottomButton'type='Cancel'>Cancel</button>
-                    </div>
+                    <form>
+                        <div>
+                            
+                                <button id = "continue" value = "Continue"> Continue </button>
+                        
+                        </div>
+                        <br />
+                        <div>
+                        
+                                <button id = "cancel" value = "Cancel"> Cancel </button>
+                            
+                        </div>
+                        <br />
+                        <div>
+                                <button id = "browse" type="file"> Browse </button>
+                        
+                        </div>
+                    </form>
+                    <br />
                     
                 </form>
                 {/* </div>     */}
@@ -82,3 +95,5 @@ class ProjectConfigurationHolder extends Component {
 }
 
 export default ProjectConfigurationHolder;
+
+

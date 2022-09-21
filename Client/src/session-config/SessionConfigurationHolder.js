@@ -137,8 +137,10 @@ class SessionConfigurationHolder extends Component {
                     <br /> 
                     
 
-                     
-                    <button className='submitbutton' type='submit'>Submit</button>
+                     <form>
+                        <button id = "submit" value = "Submit"> Submit </button>
+                     </form>
+                    
                 </form>
             </div>
             

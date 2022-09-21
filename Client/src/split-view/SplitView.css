@@ -2,7 +2,6 @@ body{
   background-color: rgb(52, 52, 52) !important;
 }
 .carLogo{
-  position: absolute;
   width: 1200px;
   height: 650px;
   background-size: 80%;
@@ -18,7 +17,6 @@ body{
 
 #trafficButton{
 	height: 2.1%;
-	position: absolute;
 	top: 10%;
   left: 6%;
 	width: 4.5%;
@@ -26,7 +24,7 @@ body{
 
 #CANButton{
 	height: 2.1%;
-	position: absolute;
+	
 	top: 10%;
   left: 10.5%;
 	width: 4.5%;
@@ -34,7 +32,7 @@ body{
 
 #min{
 	height: 2.1%;
-	position: absolute;
+	
 	top: 10.3%;
   right: 18%;
 	width: 2%;
@@ -42,7 +40,7 @@ body{
 
 #max{
   height: 2.1%;
-	position: absolute;
+	
 	top: 10.3%;
   right: 16%;
 	width: 2%;
@@ -50,14 +48,14 @@ body{
 
 #exit{
   height: 2.1%;
-	position: absolute;
+	
 	top: 10.3%;
   right: 14%;
 	width: 2%;
 }
 
 #fileLeft{
-	position: absolute; 
+	 
   height: 5%;
   top: 12.6%;
   left: 6%;
@@ -67,7 +65,7 @@ body{
 
 
 #view{
-	position: absolute; 
+	 
   height: 5%;
   top: 12.6%;
   left: 9%;
@@ -76,7 +74,7 @@ body{
 }
 
 #packets{
-	position: absolute; 
+	 
   height: 5%;
   top: 12.6%;
   left: 12%;
@@ -85,7 +83,7 @@ body{
 }
 
 #play{
-	position: absolute; 
+	 
   height: 5%;
   top: 12.6%;
   left: 45%;
@@ -94,7 +92,7 @@ body{
 }
 
 #fileRight{
-	position: absolute; 
+	 
   height: 5%;
   top: 12.6%;
   right: 48.5%;
@@ -103,7 +101,7 @@ body{
 }
 
 #edit{
-  position: absolute; 
+   
   height: 5%;
   top: 12.6%;
   right: 45.5%;
@@ -112,7 +110,7 @@ body{
 }
 
 #nodes{
-  position: absolute; 
+   
   height: 5%;
   top: 12.6%;
   right: 42.5%;
@@ -121,7 +119,7 @@ body{
 }
 
 #map{
-  position: absolute; 
+   
   height: 5%;
   top: 12.6%;
   right: 14%;
@@ -130,7 +128,7 @@ body{
 }
 
 #id{
-	position: absolute;
+	
 	height: 5%;
 	top: 17.5%;
 	left: 6%;
@@ -139,7 +137,7 @@ body{
 }
 
 #time{
-	position: absolute;
+	
 	height: 5%;
 	top:17.5%;
 	left: 11%;
@@ -148,7 +146,7 @@ body{
 }
 
 #data{
-	position: absolute;
+	
 	height: 5%;
 	top: 17.5%;
 	left:16%;
@@ -157,16 +155,16 @@ body{
 }
 
 .seperator{
-  position: absolute;
+  
   background-color: rgb(168, 167, 167);
   height: 5%; /*height was 50px*/
   width:80%;
-  top: 12.5%;
+  top: 5%;
   left: 6%;
 }
 
 .name{
-  position: absolute;
+  
   top: 8.7%;
   left: 45%;
   font-size: xx-large;
