@@ -1,14 +1,13 @@
-import './Visualizer.css';
-import ReactLogo from './logo.svg';
+import './SplitView.css';
 
 
-function Visualizer() {
+function SplitView() {
   const handleClick = () => {
     // implementation details
   };
   
   return (
-    <div className="Visualizer">
+    <div className="SplitView">
       <button className='carLogo'></button>
       <div class='seperator'></div>
       <div class= "name">CAN Map Visualizer</div>
@@ -65,4 +64,4 @@ function Visualizer() {
   );
 }
 
-export default Visualizer;
+export default SplitView;

@@ -4,7 +4,8 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import ProjectConfigurationHolder from './project-config/ProjectConfigurationHolder';
 import SessionConfigurationHolder from './session-config/SessionConfigurationHolder';
-import CanBusConfigurationHolder from './can-bus-config/CanBusConfigurationHolder'
+import CanBusConfigurationHolder from './can-bus-config/CanBusConfigurationHolder';
+import SplitView from './split-view/SplitView';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
@@ -12,7 +13,7 @@ root.render(
     <ProjectConfigurationHolder/>
     <SessionConfigurationHolder/>
     <CanBusConfigurationHolder/>
-    
+    <SplitView/>
   </React.StrictMode>
 );
 
