@@ -6,6 +6,7 @@ function SplitView() {
     // implementation details
   };
   
+  
   return (
     <div className="SplitView">
       <button className='carLogo'></button>
