@@ -39,7 +39,7 @@
     margin-left: 80%;
     margin-top: 5%;
 }
-body {
+body{
     background-color: rgb(53, 56, 57);
   }
 
@@ -125,7 +125,7 @@ label next to Stored location
     bottom: 100%;
     margin: auto;
     top: 10%;
-    margin-left: 50%;
+   
 }
 
 #browse{
