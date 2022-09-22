@@ -6,14 +6,12 @@ import ProjectConfigurationHolder from './project-config/ProjectConfigurationHol
 import SessionConfigurationHolder from './session-config/SessionConfigurationHolder';
 import CanBusConfigurationHolder from './can-bus-config/CanBusConfigurationHolder';
 import SplitView from './split-view/SplitView';
+import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
   <React.StrictMode>
-    <ProjectConfigurationHolder/>
-    <SessionConfigurationHolder/>
-    <CanBusConfigurationHolder/>
-    <SplitView/>
+    <App />
   </React.StrictMode>
 );
 
