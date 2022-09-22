@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import '././ProjectConfigurationHolder.css'
+import '././ProjectConfigurationHolder.css';
+import {useNavigate} from "react-router-dom";
+
 
 class ProjectConfigurationHolder extends Component {
 
@@ -32,6 +34,7 @@ class ProjectConfigurationHolder extends Component {
     
     render() {
         const { projectName,storedLocation } = this.state
+
         return (
             
             <div className='config'>
@@ -62,6 +65,8 @@ class ProjectConfigurationHolder extends Component {
                         <div>
                             
                                 <button id = "continue" value = "Continue"> Continue </button>
+                                
+                               
                         
                         </div>
                         <br />
