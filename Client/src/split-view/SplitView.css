@@ -1,175 +1,289 @@
 body{
-  background-color: rgb(52, 52, 52) !important;
+    background-color: rgb(52, 52, 52) !important;
+    /* width: 65%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto; */
 }
-.carLogo{
-  width: 1200px;
-  height: 650px;
-  background-size: 80%;
-  background-color: transparent;
+.Visualizer{
+  background-color:rgb(255,255,255);
+  display: grid;
+  width: 1600px;
+  height: 860px;
+  margin: auto;
+  /* width: 1600px; */
+  grid-template-areas: 'left-header left-header title title title title'
+  'left-menu left-menu left-menu right-menu right-menu right-menu'
+  'info-area info-area info-area main main main'
+  'menu menu menu main main main'
+  'menu menu menu main main main'
+  'menu menu menu main main main';
+}
+
+.top-left-menu{
+  grid-area: left-header;
+  height: 20px;
+}
+.title-split{
+  grid-area: title;
+  height: 20px;
+}
+.top-right-menu{
+  grid-area: right-menu;
+  height: 20px;
+}
+.packet-top{
+  grid-area: left-menu;
+  height: 20px;
+}
+.node-top{
+  grid-area: right-menu;
+  height: 20px;
+}
+.packet-info{
+  grid-area: info-area;
+  height: 20px;
+}
+
+.packet-display{
+  grid-area: menu;
+  height: 800px;
+  width: 800px;
+  background-color:rgb(82, 82, 82);
+}
+.map{
+  grid-area: main;
+  height: 820px;
+  width: 800px;
   background-image: url('./images/Car.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  outline: none;
-  border: none;
-  margin-top: 8.2%;
-  margin-left: 43.8%;
+  background-size:cover;
 }
+  /* .mapBackground{
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 800px;
+    height: 700px;
+    left: 4.07%;
+    background-repeat: no-repeat;
+    outline: black;
+    border: line;
+    margin-top: 12.7%;
+    margin-left: 43.8%;
+  }
+    .packetBackground{
+    background-color: rgb(82, 82, 82);
+    position: absolute;
+    width: 720px;
+    height: 700px;
+    left: -45.75%;
+    background-repeat: no-repeat;
 
-#trafficButton{
-	height: 2.1%;
-	top: 10%;
-  left: 6%;
-	width: 4.5%;
-}
-
-#CANButton{
-	height: 2.1%;
-	
-	top: 10%;
-  left: 10.5%;
-	width: 4.5%;
-}
-
-#min{
-	height: 2.1%;
-	
-	top: 10.3%;
-  right: 18%;
-	width: 2%;
-}
-
-#max{
-  height: 2.1%;
-	
-	top: 10.3%;
-  right: 16%;
-	width: 2%;
-}
-
-#exit{
-  height: 2.1%;
-	
-	top: 10.3%;
-  right: 14%;
-	width: 2%;
-}
-
-#fileLeft{
-	 
-  height: 5%;
-  top: 12.6%;
-  left: 6%;
-  width: 3%;
-  font-size: medium;
-}
-
-
-#view{
-	 
-  height: 5%;
-  top: 12.6%;
-  left: 9%;
-  width: 3%;
-  font-size: medium;
-}
-
-#packets{
-	 
-  height: 5%;
-  top: 12.6%;
-  left: 12%;
-  width: 3%;
-  font-size: medium;
-}
-
-#play{
-	 
-  height: 5%;
-  top: 12.6%;
-  left: 45%;
-  width: 3%;
-  font-size: medium;
-}
-
-#fileRight{
-	 
-  height: 5%;
-  top: 12.6%;
-  right: 48.5%;
-  width: 3%;
-  font-size: medium;
-}
-
-#edit{
-   
-  height: 5%;
-  top: 12.6%;
-  right: 45.5%;
-  width: 3%;
-  font-size: medium;
-}
-
-#nodes{
-   
-  height: 5%;
-  top: 12.6%;
-  right: 42.5%;
-  width: 3%;
-  font-size: medium;
-}
-
-#map{
-   
-  height: 5%;
-  top: 12.6%;
-  right: 14%;
-  width: 3%;
-  font-size: medium;
-}
-
-#id{
-	
-	height: 5%;
-	top: 17.5%;
-	left: 6%;
-	width: 5%;
-	font-size: medium;
-}
-
-#time{
-	
-	height: 5%;
-	top:17.5%;
-	left: 11%;
-	width: 5%;
-	font-size: medium;	
-}
-
-#data{
-	
-	height: 5%;
-	top: 17.5%;
-	left:16%;
-	width: 32.5%;
-	font-size: medium;
-}
-
-.seperator{
+    outline: none;
+    border: line;
+    margin-top: 12.7%;
+    margin-left: 43.8%;
+  }
   
-  background-color: rgb(168, 167, 167);
-  height: 5%; /*height was 50px*/
-  width:80%;
-  top: 5%;
-  left: 6%;
-}
-
-.name{
+  #trafficButton{
+      height: 2.1%;
+      position: absolute;
+      top: 10%;
+    left: 6%;
+      width: 5%;
+      display: flex;
+  }
   
-  top: 8.7%;
-  left: 45%;
-  font-size: xx-large;
-  color: white;
-}
+  #CANButton{
+      height: 2.1%;
+      position: absolute;
+      top: 10%;
+    left: 10.5%;
+      width: 5%;
+      display: flex;
+  }
+  
+  #min{
+      height: 2.1%;
+      position: absolute;
+      top: 10.3%;
+    right: 18%;
+      width: 5%;
+      display: flex;
+  }
+  
+  #max{
+    height: 2.1%;
+      position: absolute;
+      top: 10.3%;
+    right: 16%;
+      width: 5%;
+      display: flex;
+  }
+  
+  #exit{
+    height: 2.1%;
+      position: absolute;
+      top: 10.3%;
+    right: 14%;
+      width: 5%;
+  }
+  
+  #fileLeft{
+     position: absolute; 
+    height: 5%;
+    top: 12.6%;
+    left: 6%;
+    width: 5%;
+    font-size: medium;
+    display: flex;
+  }
+  
+  
+  #view{
+      position: absolute; 
+    height: 5%;
+    top: 12.6%;
+    left: 9%;
+    width: 3%;
+    font-size: medium;
+    display: flex;
+  }
+  
+  #packets{
+      position: absolute; 
+    height: 5%;
+    top: 12.6%;
+    left: 12%;
+    width: 5%;
+    font-size: medium;
+    display: flex;
+  }
+  
+  #play{
+      position: absolute; 
+    height: 5%;
+    top: 12.6%;
+    left: 40%;
+    width: 5%;
+    font-size: medium;
+    display: flex;
+  }
+  
+  #fileRight{
+      position: absolute; 
+    height: 5%;
+    top: 12.6%;
+    right: 48.5%;
+    width: 3%;
+    font-size: medium;
+    display: flex;
+  }
+  
+  #edit{
+    position: absolute; 
+    height: 5%;
+    top: 12.6%;
+    right: 38.5%;
+    width: 3%;
+    font-size: medium;
+    display: flex;
+  }
+  
+  #nodes{
+    position: absolute; 
+    height: 5%;
+    top: 12.6%;
+    right: 42.5%;
+    width: 5%;
+    font-size: medium;
+    display: flex;
+  }
+  
+  #map{
+    position: absolute; 
+    height: 5%;
+    top: 12.6%;
+    right: 14%;
+    width: 3%;
+    font-size: medium;
+    display: flex;
+  }
+  
+  #id{
+      position: absolute;
+      height: 5%;
+      top: 17.5%;
+      left: 6%;
+      width: 5%;
+      font-size: medium;
+      display: flex;
+  }
+  
+  #time{
+      position: absolute;
+      height: 5%;
+      top:17.5%;
+      left: 11%;
+      width: 5%;
+      font-size: medium;	
+      display: flex;
+  }
+  
+  #data{
+      position: absolute;
+      height: 5%;
+      top: 17.5%;
+      left:16%;
+      width: 32%;
+      font-size: medium;
+      display: flex;
+  }
+  
+  .seperator{
+    position: absolute;
+    background-color: rgb(168, 167, 167);
+    height: 10%; /*height was 50px
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width:87%;
+    top: 12.5%;
+    right: 8%;
+    display: flex;
+  }
+  
+  .name{
+    position: absolute;
+    top: 5%;
+    left: 40%;
+    font-size: xx-large;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    margin: auto;
+  }
+  .seperatorLine{
+    position: absolute;
+   
+    background-color: rgb(0, 0, 0);
+    height: 93.5%; /*height was 50px
+    width:0.2%;
+    top: 12.5%;
+    left: 6%;
+    display: flex;
+    left: 48%
 
 
+  }
+  .carBack{
+    background-image: url('./images/Car.svg');
+    width: fit-content;
+    height: fit-content;
 
+  } */
+
+ 

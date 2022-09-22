@@ -4,18 +4,24 @@ import './CanBusConfigurationHolder.css'
 
 class CanBusConfigurationHolder extends Component {
     render() {
-        
+        const handleClick = () => {
+            // implementation details
+          };
         return (
             <div className='body'>
                 <div className='title'><label>Can Bus Menu</label></div>
                 <div className='logo'></div>
                 <div className='canBusButtons'>
-                    <div><button className='option'>Can Bus #1</button></div>
-                    <div><button className='option'>Can Bus #2</button></div>
-                    <div><button className='option'>Can Bus #3</button></div>
+                    <form>
+                        <div><button className='option' onClick={handleClick}>Can Bus #1</button></div>
+                        <div><button className='option'onClick={handleClick}>Can Bus #2</button></div>                    
+                        <div><button className='option'onClick={handleClick}>Can Bus #3</button></div>
+                    </form>
                 </div>
                 <div className='cancel'>
-                    <button id='cancelButton'>Cancel</button>
+                    <form>
+                        <button id='cancelButton'onClick={handleClick}>Cancel</button>
+                    </form>
                 </div>       
             </div>
         
