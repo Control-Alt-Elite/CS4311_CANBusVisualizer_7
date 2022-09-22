@@ -35,11 +35,7 @@ class ProjectConfigurationHolder extends Component {
         return (
             
             <div className='config'>
-                 <div className= 'topButton'>
-                    <button type='Min'>_</button>
-                    <button type='Max'>O</button>
-                    <button type='exit'>X</button>   
-                </div>
+
                 <div className='configTitle'>
                     <label >Create New Project</label>
                 </div>
@@ -59,41 +55,28 @@ class ProjectConfigurationHolder extends Component {
                         <div className='buttonInput'>
                             <input className='input' type="text" value={storedLocation} onChange={this.handleStoredLocation} />  
                         </div>
-
                     </div>
                     <br />
                     <form>
                         <div>
-                            
                                 <button id = "continue" value = "Continue"> Continue </button>
-                        
                         </div>
                         <br />
                         <div>
-                        
-                                <button id = "cancel" value = "Cancel"> Cancel </button>
-                            
+                                <button id = "cancel" value = "Cancel"> Cancel </button>          
                         </div>
                         <br />
                         <div>
-                                <button id = "browse" type="file"> Browse </button>
-                        
+                                <button id = "browse" type="file"> Browse </button>       
                         </div>
                     </form>
-                    <br />
-                    
+                    <br />    
                 </form>
                 {/* </div>     */}
-            </div>
-   
-            
+            </div> 
         )
         
     }
-  
-    
 }
 
 export default ProjectConfigurationHolder;
-
-
