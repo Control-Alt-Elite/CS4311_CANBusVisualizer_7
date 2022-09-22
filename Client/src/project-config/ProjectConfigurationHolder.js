@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '././ProjectConfigurationHolder.css';
-import {useNavigate} from "react-router-dom";
+// import {useNavigate} from "react-router-dom";
+import axios from 'axios';
 
 
 class ProjectConfigurationHolder extends Component {
@@ -26,10 +27,17 @@ class ProjectConfigurationHolder extends Component {
             storedLocation: event.target.value
         })
     }
-
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+      }
     handleSubmit = event => {
-        console.log(`${this.state.projectName} has logged in with connector id: ${this.state.storedLocation}`);
-        event.preventDefault()
+        const {projectName, storedLocation} = this.state;
+        axios.post('http://localhost:3001/project/new', {projectName: projectName,
+        storedLocation: storedLocation})
+        .then((response) => {
+            console.log(response);
+        })
+        event.preventDefault();
     }
     
     render() {
@@ -58,27 +66,20 @@ class ProjectConfigurationHolder extends Component {
                         <div className='buttonInput'>
                             <input className='input' type="text" value={storedLocation} onChange={this.handleStoredLocation} />  
                         </div>
-
                     </div>
+                    <div>
+                           <input id = "continue" value = "Continue" type='submit'/>
+                        </div>
                     <br />
                     <form>
-                        <div>
-                            
-                                <button id = "continue" value = "Continue"> Continue </button>
-                                
-                               
                         
-                        </div>
                         <br />
                         <div>
-                        
                                 <button id = "cancel" value = "Cancel"> Cancel </button>
-                            
                         </div>
                         <br />
                         <div>
                                 <button id = "browse" type="file"> Browse </button>
-                        
                         </div>
                     </form>
                     <br />
