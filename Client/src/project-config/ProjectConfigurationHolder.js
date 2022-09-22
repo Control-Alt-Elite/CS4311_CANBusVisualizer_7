@@ -35,11 +35,7 @@ class ProjectConfigurationHolder extends Component {
         return (
             
             <div className='config'>
-                 <div className= 'topButton'>
-                    <button type='Min'>_</button>
-                    <button type='Max'>O</button>
-                    <button type='exit'>X</button>   
-                </div>
+
                 <div className='configTitle'>
                     <label >Create New Project</label>
                 </div>
@@ -90,10 +86,4 @@ class ProjectConfigurationHolder extends Component {
         )
         
     }
-  
-    
 }
-
-export default ProjectConfigurationHolder;
-
-
