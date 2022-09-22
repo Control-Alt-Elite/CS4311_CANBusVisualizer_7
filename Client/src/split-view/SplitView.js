@@ -13,52 +13,49 @@ function SplitView() {
         <button onClick={handleClick}>
           Traffic
         </button>
-        <button onClick={handleClick}>
+        <button className='canmap'onClick={handleClick}>
           CAN MAP
         </button>
       </div> 
       <div className='title-split'>
         <label>CAN Map Visualizer</label>
       </div>
-      <div className='top-right-menu'>
-
-      </div>
       <div className='packet-top'>
-        <button onClick={handleClick}>
+        <button className = 'grayButton'onClick={handleClick}>
           File
         </button>
-        <button onClick={handleClick}>
+        <button className = 'grayButton'onClick={handleClick}>
           View
         </button>
-        <button onClick={handleClick}>
+        <button className = 'grayButton'onClick={handleClick}>
           Packets
         </button>
-        <button onClick={handleClick}>
+        <button className='traffic grayButton' onClick={handleClick}>
           Play Traffic
         </button>
       </div>
       <div className='node-top'>
-        <button onClick={handleClick}>
+        <button className = 'grayButton'onClick={handleClick}>
           File
         </button>
-        <button onClick={handleClick}>
+        <button className = 'grayButton'onClick={handleClick}>
           Edit
         </button>
-        <button onClick={handleClick}>
+        <button className = 'grayButton'onClick={handleClick}>
           Nodes
         </button>
-        <button onClick={handleClick}>
+        <button className='mapbutton grayButton'onClick={handleClick}>
           Map
         </button>
       </div>
       <div className='packet-info'>
-        <button onClick={handleClick}>
+        <button className = 'idButton'onClick={handleClick}>
           ID
         </button>
-        <button onClick={handleClick}>
+        <button className = 'timeButton'onClick={handleClick}>
           Time 
         </button>
-        <button onClick={handleClick}>
+        <button className='dataButton'onClick={handleClick}>
           Data
         </button>
       </div>
