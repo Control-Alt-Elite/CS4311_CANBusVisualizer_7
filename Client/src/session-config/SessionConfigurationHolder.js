@@ -9,7 +9,6 @@ class SessionConfigurationHolder extends Component {
 
         this.state = {
             analystInitials: '',
-            projectName: '',
             projectDate: '',     
             canConnectorID: '',
             vehicleID: '',
@@ -26,11 +25,7 @@ class SessionConfigurationHolder extends Component {
             analystInitials: event.target.value
         })
     }
-    handleProjectName = (event) => {
-        this.setState({
-            projectName: event.target.value
-        })
-    }    
+ 
     handleProjectDate = (event) => {
         this.setState({
             projectDate: event.target.value
@@ -82,8 +77,7 @@ class SessionConfigurationHolder extends Component {
             <label>Session</label>       
             </div>
             
-             <br />
-
+             <br /> 
        
                     
                 
@@ -116,16 +110,16 @@ class SessionConfigurationHolder extends Component {
                         <input className='configInput' type="text" value={baudRate} onChange={this.handleBaudRate} />
                     </div>
                     <br /> 
-                                        <div>
-                        <label className='configLabel'>Blacklist File</label><br></br>
-                        <input className='configFile' type="file" value={blacklistFileName} onChange={this.handleBlacklist} />
+                    <div>
+                        <label className='configLabel'>Blacklist </label><br></br>
+                        <input className='configInput' type="file" value={blacklistFileName} onChange={this.handleBlackListFileName} />
                     </div>
                     <br /> 
                     <div>
-                        <label className='configLabel'>DBC File</label><br></br>
-                        <input className='configFile' type="file" id="my file" value= {dbc_file_name} onChange={this.handleDBCFileName} />
+                        <label className='configLabel'>DBC </label><br></br>
+                        <input className='configInput' type="file" value={dbc_file_name} onChange={this.handleDBCFileName} />
                     </div>
-                    <br />  
+                    <br /> 
                     
 
                      <form>
