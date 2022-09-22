@@ -8,7 +8,7 @@ class CanBusConfigurationHolder extends Component {
             // implementation details
           };
         return (
-            <div className='body'>
+            <div className='bod'>
                 <div className='title'><label>Can Bus Menu</label></div>
                 <div className='logo'></div>
                 <div className='canBusButtons'>

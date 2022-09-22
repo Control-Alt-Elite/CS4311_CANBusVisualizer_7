@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './SessionConfigurationHolder.css'
 
 
+
 class SessionConfigurationHolder extends Component {
 
     constructor(props) {
