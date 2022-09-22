@@ -79,10 +79,11 @@ class SessionConfigurationHolder extends Component {
             
              <br /> 
        
+        <br />
                     
                 
                 </div>
-                <div className='seperator'></div>
+                <div class='seperator'></div>
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <label className='configLabel'>Analyst Initials</label><br></br>
