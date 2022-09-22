@@ -1,4 +1,8 @@
 .config {
+  background-image: url('./images/backgroundLogo.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+
   background-color: rgb(58, 58, 58);
   width: 65%;
   height: 20%;
@@ -83,7 +87,13 @@ form {
   outline: none;
   border: none;
 }
-
+.submitbutton{
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 123, 0);
+  align-items: center;
+  display: flex;
+  margin: auto;
+}
 .seperator{
   height: 5px;
   width:100%;
@@ -103,16 +113,15 @@ form {
 .sessionWord:hover{
   width: 20%;
   background: transparent;
-  border: 5px solid rgb(0, 0, 0);  
+  border: 5px solid rgb(0, 0, 0);
+  
+  
   
 }
-
-#submit{
-  color: rgb(0, 0, 0);
-  background-color: rgb(255, 123, 0);
+.configFile{ 
   align-items: center;
-  display: flex;
+  justify-content: center;
   margin: auto;
-  height: 4%;
-  width: 10%;
+  width: 50%;
+  display: flex;
 }
