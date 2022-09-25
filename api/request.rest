@@ -15,5 +15,14 @@ Content-Type: application/json
 "black_list_filename": "bl01.dbc"
 }
 
+##
+# POST http://localhost:3001/project/new 
+# Content-Type: application/json
+
+# {
+# "first": "test1",
+# "second": "test2"
+# }
+
 ###
-DELETE http://localhost:3001/project/delete/632a9a6ae1fd4de48b70a229
+DELETE http://localhost:3001/project/delete/632bc371064572b7ccd80ef2

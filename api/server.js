@@ -2,15 +2,25 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+var bodyParser = require('body-parser')
+/*
+app.get     /document       gets all the documents
+app.post    /document       creates a new document
+app.get     /document/:id   gets a single document
+app.delete  /document/:id   deletes a single document
+app.patch   /documents/:id  updates a single document
 
+*/
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.urlencoded({extended: false}))
 
 mongoose.connect('mongodb://127.0.0.1:27017/canbusdb', {
     useNewUrlParser: true,
     useUnifiedTopology: true 
 
-}).then(() => console.log("Connected to the database")).catch(console.error);
+})  .then(() => console.log("Connected to the database"))
+    .catch(console.error);
 
 //Models
 const Project = require('./models/model');
@@ -23,13 +33,8 @@ app.get('/projects', async (req, res) => {
 
 app.post('/project/new', (req, res) => {
 	const project = new Project({
-        analyst_initials: req.body.analyst_initials,
-        CANConnectorID: req.body.CANConnectorID,
-        vehicle_ID: req.body.vehicle_ID,
-        baud_rate: req.body.baud_rate,
-        event_name: req.body.event_name,
-        DBC_filename: req.body.DBC_filename,
-        black_list_filename: req.body.black_list_filename
+        projectName: req.body.projectName,
+        storedLocation: req.body.storedLocation
 	})
 
 	project.save();
@@ -37,12 +42,11 @@ app.post('/project/new', (req, res) => {
 	res.json(project);
 });
 
-/*
 app.delete('/project/delete/:id', async (req, res) => {
 	const result = await Project.findByIdAndDelete(req.params.id);
 
 	res.json({result});
 });
-*/
+
 
 app.listen(3001);
