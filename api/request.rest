@@ -7,9 +7,9 @@ Content-Type: application/json
 
 {
 "analyst_initials": "lm",
-"CANConnectorID": 123,
-"vehicle_ID": 400,
-"baud_rate": 50000,
+"CANConnectorID": "123",
+"vehicle_ID": "400",
+"baud_rate": "50000",
 "event_name": "Assessment_20",
 "DBC_filename": "honda.dbc",
 "black_list_filename": "bl01.dbc"

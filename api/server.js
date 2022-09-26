@@ -24,6 +24,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/canbusdb', {
 
 //Models
 const Project = require('./models/model');
+const Session = require('./models/model')
 
 app.get('/projects', async (req, res) => {
 	const projects = await Project.find();
@@ -32,14 +33,25 @@ app.get('/projects', async (req, res) => {
 });
 
 app.post('/project/new', (req, res) => {
-	const project = new Project({
-        projectName: req.body.projectName,
-        storedLocation: req.body.storedLocation
+	// const project = new Project({
+    //     projectName: req.body.projectName,
+    //     storedLocation: req.body.storedLocation
+	// })
+	const session = new Project({
+        analystInitials: req.body.analystInitials,
+        projectDate: req.body.projectDate,
+		vehicleID: req.body.vehicleID,
+		baudRate: req.body.baudRate,
+		canConnectorID: req.body.canConnectorID,
+		blacklistFileName: req.body.blacklistFileName,
+		dbc_file_name: req.body.dbc_file_name
 	})
 
-	project.save();
+	// project.save();
+	session.save()
 
-	res.json(project);
+	// res.json(project);
+	res.json(session)
 });
 
 app.delete('/project/delete/:id', async (req, res) => {

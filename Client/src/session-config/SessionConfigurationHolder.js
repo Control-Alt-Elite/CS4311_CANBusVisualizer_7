@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './SessionConfigurationHolder.css'
+import axios from 'axios';
 
 
 
@@ -58,13 +59,32 @@ class SessionConfigurationHolder extends Component {
         })
     }      
 
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+      }
     handleSubmit = event => {
-        console.log(`${this.state.analystInitials} has logged in with connector id: ${this.state.canConnectorID}`);
-        event.preventDefault()
+        const {analystInitials,
+            projectDate,
+            vehicleID,
+            baudRate,
+            canConnectorID,
+            blacklistFileName,dbc_file_name} = this.state;
+        axios.post('http://localhost:3001/project/new', {
+            analystInitials: analystInitials,
+            projectDate: projectDate,
+		    vehicleID: vehicleID,
+		    baudRate: baudRate,
+		    canConnectorID: canConnectorID,
+		    blacklistFileName: blacklistFileName,
+		    dbc_file_name: dbc_file_name})
+        .then((response) => {
+            console.log(response);
+        })
+        event.preventDefault();
     }
 
     render() {
-        const { analystInitials,projectName,canConnectorID, projectDate, vehicleID, baudRate, dbc_file_name, blacklistFileName} = this.state
+        const { analystInitials,canConnectorID, projectDate, vehicleID, baudRate, dbc_file_name, blacklistFileName} = this.state
         return (
             
         <div className='config'>   
@@ -80,9 +100,7 @@ class SessionConfigurationHolder extends Component {
             
              <br /> 
        
-        <br />
-                    
-                
+        <br />                
                 </div>
                 <div class='seperator'></div>
                 <form onSubmit={this.handleSubmit}>
@@ -121,12 +139,9 @@ class SessionConfigurationHolder extends Component {
                         <label className='configLabel'>DBC </label><br></br>
                         <input className='configInput' type="file" value={dbc_file_name} onChange={this.handleDBCFileName} />
                     </div>
-                    <br /> 
-                    
+                    <br />  
 
-                     <form>
-                        <button id = "submit" value = "Submit"> Submit </button>
-                     </form>
+                        <input id = "submit" value = "Submit" type='submit' />
                     
                 </form>
             </div>
