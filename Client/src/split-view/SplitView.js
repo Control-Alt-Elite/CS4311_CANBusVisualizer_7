@@ -18,7 +18,7 @@ function SplitView() {
   return (
     <>
     <div className= "screen">
-     <h4>
+     <h4 className='titleName'>
       CAN Map Visualizer
       </h4>
       <ButtonGroup className="TopButtons">
