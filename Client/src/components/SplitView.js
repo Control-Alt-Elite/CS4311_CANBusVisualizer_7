@@ -1,4 +1,4 @@
-import './SplitView.css';
+//import './SplitView.css';
 
 // import ReactLogo from './logo.svg';
 

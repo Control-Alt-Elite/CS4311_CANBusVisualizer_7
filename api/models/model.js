@@ -1,49 +1,40 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const projectSchema = new Schema({
-    projectName: {
+const mySchema = new Schema({
+    analyst_initials: {
         type: String,
-        required: false
+        required: true
     },
-    storedLocation: {
-		type: String,
-		required: false
+    CANConnectorID: {
+		type: Number,
+		required: true
 	},
-});
-const sessionSchema = new Schema({
-    analystInitials: {
+    vehicle_ID: {
+        type: Number,
+        required: true
+    },
+    baud_rate: {
+        type: Number,
+        required: true
+    },
+    event_name: {
         type: String,
-        required: false
+        required: true
     },
-    projectDate: {
-		type: String,
-		required: false
-	},
-    canConnectorID: {
-		type: String,
-		required: false
-	},
-    vehicleID: {
-		type: String,
-		required: false
-	},
-    baudRate: {
-		type: String,
-		required: false
-	},
-    blacklistFileName: {
-		type: String,
-		required: false
-	},
-    dbc_file_name: {
-		type: String,
-		required: false
-	},
+    event_date: {
+        type: Date,
+        default: Date.now()
+    },
+    DBC_filename: {
+        type: String,
+        required: true
+    },
+    black_list_filename: {
+        type: String
+    }
 });
 
-const Project = mongoose.model("Project", projectSchema);
-const Session = mongoose.model("Session", sessionSchema);
+const Project = mongoose.model("Project", mySchema);
 
 module.exports = Project;
-module.exports = Session;

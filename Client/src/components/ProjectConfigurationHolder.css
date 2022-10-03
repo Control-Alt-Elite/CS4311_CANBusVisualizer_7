@@ -1,0 +1,67 @@
+.config {
+    background-image: url('./images/backgroundLogo.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(58, 58, 58);
+    background-size: auto;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+} 
+h3 {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 'x-large';
+	font-weight: 700;   
+}
+form{
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+    width: 650px;
+    height: 650px;
+    justify-content: center;
+    margin: auto;
+}
+.configForm {
+    color:white;
+    margin-top: 30px;
+    padding-left: 150px;
+    padding-right: 10px;
+    margin-bottom: 200px;
+    align-items: center;
+    font-style: serif;
+  }
+.ProjectName{
+    background-color: rgb(109, 109, 109);
+    width: 60%;
+}
+
+.StoredLocation{
+    background-color: rgb(109, 109, 109);
+    width: 60%;
+}
+
+#continue{
+    color: rgb(0, 0, 0);
+    align-items: center;
+    background-color: rgb(255, 123, 0);
+    border-radius: 5px;
+}
+
+#cancel{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 123, 0);
+    border-radius: 5px;
+}
+
+#browse{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 123, 0);
+    border-radius: 5px;
+    margin-left: 20px;
+}
+#browse :hover {
+    background-color: "#283593";
+}
+

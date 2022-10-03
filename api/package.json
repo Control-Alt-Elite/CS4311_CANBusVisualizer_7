@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js"
   },
-  "author": "Team 7",
+  "author": "Lorenzo Martinez",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.0",
@@ -14,11 +14,11 @@
     "dotenv": "^16.0.2",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
-    "mongoose": "^6.6.2",
-    "multer": "^1.4.5-lts.1"
+    "mongoose": "^6.6.1",
+    "multer": "^1.4.5-lts.1",
+    "socketcan": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
-  },
-  "keywords": []
+  }
 }

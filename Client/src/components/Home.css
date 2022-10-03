@@ -1,0 +1,33 @@
+#Title {
+    background-image: url('./images/BG_diag-01.png');
+}
+.contentarea{
+    padding:1rem;
+    width: 100%;
+    position: relative;
+}
+.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+ h1 {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 70px;
+	font-weight: 700;   
+}
+.footer {
+    border-top: 2px solid rgba(64,64,64,var(--tw-bg-opacity));
+}
+
+.bg-black-default {
+    --tw-bg-opacity: 1;
+    background-color: rgba(28,28,28,var(--tw-bg-opacity));
+    text-align: right;
+}
+
+body{
+    background-color: rgb(53, 56, 57);
+}
