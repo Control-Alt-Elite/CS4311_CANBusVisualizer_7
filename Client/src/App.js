@@ -14,6 +14,7 @@ function App(){
         <Route exact path="/main" element={< SplitView/>}></Route>
         <Route exact path="/canbus" element={<CanBusConfigurationHolder />}></Route>
         <Route exact path="/session" element={<SessionConfigurationHolder />}></Route>
+        <Route exact path="/splitview" element={<SplitView />}></Route>
     </Routes>
 </Router>
    );

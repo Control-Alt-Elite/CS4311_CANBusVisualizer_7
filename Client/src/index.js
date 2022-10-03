@@ -2,10 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import ProjectConfigurationHolder from './project-config/ProjectConfigurationHolder';
-import SessionConfigurationHolder from './session-config/SessionConfigurationHolder';
-import CanBusConfigurationHolder from './can-bus-config/CanBusConfigurationHolder';
-import SplitView from './split-view/SplitView';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
