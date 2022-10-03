@@ -14,7 +14,7 @@ function SplitView() {
   const handleClick = () => {
     // implementation details
   };
-  // Comment
+  
   
   return (
     <>
