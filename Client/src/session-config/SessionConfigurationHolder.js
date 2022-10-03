@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './SessionConfigurationHolder.css'
 import axios from 'axios';
-
+import Form from 'react-bootstrap/Form';
 
 
 class SessionConfigurationHolder extends Component {
@@ -10,6 +10,8 @@ class SessionConfigurationHolder extends Component {
         super(props)
 
         this.state = {
+            projectName: '',
+            storedLocation:'',
             analystInitials: '',
             projectDate: '',     
             canConnectorID: '',
@@ -21,7 +23,16 @@ class SessionConfigurationHolder extends Component {
             blacklistFileName: ''
         }
     }
-
+    handleProjectName = (event) => {
+        this.setState({
+            blacklistFileName: event.target.value
+        })
+    }    
+    handleStoredLocation = (event) => {
+        this.setState({
+            blacklistFileName: event.target.value
+        })
+    }      
     handleAnalystInitials = (event) => {
         this.setState({
             analystInitials: event.target.value
@@ -62,14 +73,17 @@ class SessionConfigurationHolder extends Component {
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
       }
+      
     handleSubmit = event => {
-        const {analystInitials,
+        const {projectName,storedLocation,analystInitials,
             projectDate,
             vehicleID,
             baudRate,
             canConnectorID,
             blacklistFileName,dbc_file_name} = this.state;
         axios.post('http://localhost:3001/project/new', {
+            projectName: projectName,
+            storedLocation:storedLocation,
             analystInitials: analystInitials,
             projectDate: projectDate,
 		    vehicleID: vehicleID,
@@ -84,18 +98,18 @@ class SessionConfigurationHolder extends Component {
     }
 
     render() {
-        const { analystInitials,canConnectorID, projectDate, vehicleID, baudRate, dbc_file_name, blacklistFileName} = this.state
+        const { projectName,storedLocation,analystInitials,canConnectorID, projectDate, vehicleID, baudRate, dbc_file_name, blacklistFileName} = this.state
         return (
             
         <div className='config'>   
         <div className ='navigationbar'>
        
-                
+             
         <div className='sessionWord'>
        
             
             <button className='seesionLogoButton'></button>
-            <label>Session</label>       
+            <label className ='sessionStyle'>Configuration </label>       
             </div>
             
              <br /> 
@@ -103,47 +117,57 @@ class SessionConfigurationHolder extends Component {
         <br />                
                 </div>
                 <div class='seperator'></div>
-                <form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.handleSubmit}>
+                    <div>
+                        <label className='configLabel'>Project Name</label><br></br>
+                        <Form.Control className='aStyle' type="text" placeholder="Enter Project Name" value={projectName} onChange={this.handleProjectName} />
+                    </div>
+                    <br />
+                    <div>
+                        <label className='configLabel'>Stored Location</label><br></br>
+                        <Form.Control className='aStyle'type="text" placeholder="Enter Stored Location" value={storedLocation} onChange={this.handleStoredLocation} />
+                    </div>
+                    <br />
                     <div>
                         <label className='configLabel'>Analyst Initials</label><br></br>
-                        <input className='configInput' type="text" value={analystInitials} onChange={this.handleAnalystInitials} />
+                        <Form.Control className='aStyle'type="text" placeholder="Enter Initials" value={analystInitials} onChange={this.handleAnalystInitials} />
                     </div>
                     <br />
 
                     <div>
                         <label className='configLabel'>Project Date</label><br></br>
-                        <input className='configInput' type="text" value={projectDate} onChange={this.handleProjectDate} />
+                        <Form.Control className='aStyle'type="date" placeholder="Enter Initials" value={projectDate} onChange={this.handleProjectDate} />
                     </div>
                     <br />                    
                     <div>
                         <label className='configLabel'>CAN Connector ID</label><br></br>
-                        <input className='configInput' type="text" value={canConnectorID} onChange={this.handleCanConnectorId} />
+                        <Form.Control className='aStyle'type="text" placeholder="Enter Can connector ID" value={canConnectorID} onChange={this.handleCanConnectorId} />
                     </div>
                     <br />
                     <div>
                         <label className='configLabel'>Vehicle ID</label><br></br>
-                        <input className='configInput' type="text" value={vehicleID} onChange={this.handleVehicleId} />
+                        <Form.Control className='aStyle'type="text" placeholder="Enter Vehicle ID" value={vehicleID} onChange={this.handleVehicleId} />
                     </div>
                     <br />
                     <div>
                         <label className='configLabel'>Baud Rate</label><br></br>
-                        <input className='configInput' type="text" value={baudRate} onChange={this.handleBaudRate} />
+                        <Form.Control className='aStyle'type="text" placeholder="Enter Baud Rate" value={baudRate} onChange={this.handleBaudRate} />
                     </div>
                     <br /> 
                     <div>
                         <label className='configLabel'>Blacklist </label><br></br>
-                        <input className='configInput' type="file" value={blacklistFileName} onChange={this.handleBlackListFileName} />
+                        <input className='aStyle' type="file" value={blacklistFileName} onChange={this.handleBlackListFileName} />
                     </div>
                     <br /> 
                     <div>
                         <label className='configLabel'>DBC </label><br></br>
-                        <input className='configInput' type="file" value={dbc_file_name} onChange={this.handleDBCFileName} />
+                        <input class='aStyle' type="file" value={dbc_file_name} onChange={this.handleDBCFileName} />
                     </div>
                     <br />  
 
-                        <input id = "submit" value = "Submit" type='submit' />
+                        <input id = "submit"  className='buttonStyle' value = "Continiue" type='submit' />
                     
-                </form>
+                </Form>
             </div>
             
         )
