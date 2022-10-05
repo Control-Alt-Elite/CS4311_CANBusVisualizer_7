@@ -41,6 +41,9 @@ npx nodemon@latest --version
 2. Use the following command on both terminals:
 ```
 npm start
+
+For linux users, use the following command to start the database:
+sudo service mongod start
 ```
 
 - Using on the "api" folder will connect to the database
