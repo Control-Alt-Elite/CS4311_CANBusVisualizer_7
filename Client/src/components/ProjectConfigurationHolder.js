@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './ProjectConfigurationHolder.css';
 import Transitions from './Transitions';
 import { Text, StyleSheet } from 'react-native';
+import axios from 'axios';
 
 const styles = StyleSheet.create({
     baseText: {
@@ -42,10 +43,15 @@ class ProjectConfigurationHolder extends Component {
     }
 
     handleSubmit = (event) => {
-        console.log(`${this.state.projectName} has logged in with connector id: ${this.state.storedLocation}`);
-        event.preventDefault()
-        let path = '/SessionConfigurationHolder'
-        this.props.history.push(path);
+        const {projectName, storedLocation} = this.state;
+        axios.post('http://localhost:3001/project/new', {projectName: projectName,
+         storedLocation: storedLocation})
+         .then((response) => {
+          console.log(response);
+          })
+        event.preventDefault();
+        console.log(projectName);
+        //this.setState({projectName: '', storedLocation: ''});
     }
 
     handleCancelClick = () => {

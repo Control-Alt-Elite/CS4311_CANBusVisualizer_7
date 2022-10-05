@@ -1,11 +1,12 @@
-import React, { Component, useCallback} from 'react';
-import './SessionConfigurationHolder.css'
+import React, { Component} from 'react';
+import './SessionConfigurationHolder.css';
+import './ProjectConfigurationHolder';
+import Transitions from './Transitions';
+import axios from 'axios';
 
 const getDateTime = () => {
     let tempDate = new Date();
     let date = (tempDate.getMonth()+1) + '-' + tempDate.getDate() + '-' + tempDate.getFullYear();
-    //const currDate = "Current Date= "+ date;
-    //this.setState({ reportStartDate: currDate})
     return date;
   }
 
@@ -65,61 +66,68 @@ class SessionConfigurationHolder extends Component {
         })
     }      
 
-    handleSubmit = event => {
-        console.log(`${this.state.analystInitials} has logged in with connector id: ${this.state.canConnectorID}`);
-        event.preventDefault()
+    handleSubmit = (event) => {
+        const {analystInitials, canConnectorID, projectDate, vehicleID, baudRate, dbc_file_name, blacklistFileName} = this.state;
+        axios.post('http://localhost:3001/project/new', {analystInitials: analystInitials, canConnectorID: canConnectorID,
+        projectDate: projectDate, vehicleID: vehicleID, baudRate: baudRate, dbc_file_name: dbc_file_name,
+        blacklistFileName: blacklistFileName})
+         .then((response) => {
+          console.log(response);
+          })
+        event.preventDefault();
 
     }
 
     render() {
         const { analystInitials, canConnectorID, projectDate, vehicleID, baudRate, dbc_file_name, blacklistFileName} = this.state
-        return (     
-            <div className='config'>
-                <h4 style={{color: 'white'}}>
-                    Session
-                </h4>
-            <form onSubmit={this.handleSubmit}>
-                <div className='configForm'>
-                    <div className='group-1'>
-                        <label for='Initials'>Analyst Initials</label>
-                        <input className='Initials' type="text" value={analystInitials} onChange={this.handleAnalystInitials} />
+        return (
+            <Transitions>
+                <div className='config'>
+                    <h4 style={{color: 'white'}}>
+                        Session
+                    </h4>
+                <form onSubmit={this.handleSubmit}>
+                    <div className='configForm'>
+                        <div className='group-1'>
+                            <label for='Initials'>Analyst Initials</label>
+                            <input className='Initials' type="text" value={analystInitials} onChange={this.handleAnalystInitials} />
+                        </div>
+                        <br></br>
+                        <div className='group-2'>
+                            <label for='Date'>Project Date</label>
+                            <input className='Date' type="text" value={projectDate} onChange={this.handleProjectDate} />
+                        </div>
+                        <br></br>
+                        <div className='group-3'>
+                            <label for='CANID'>CAN Connector ID</label>
+                            <input className='CANID' type="text" value={canConnectorID} onChange={this.handleCanConnectorId} />
+                        </div>
+                        <br></br>
+                        <div className='group-4'>
+                            <label for='VehicleID'>Vehicle ID</label>
+                            <input className='VehicleID' type="text" value={vehicleID} onChange={this.handleVehicleId} />
+                        </div>
+                        <br></br>
+                        <div className='group-5'>
+                            <label for='BaudRate'>Baud Rate</label>
+                            <input className='BaudRate' type="text" value={baudRate} onChange={this.handleBaudRate} />
+                        </div>
+                        <br></br>
+                        <div className='group-6'>
+                            <label for='BlackList'>Blacklist </label>
+                            <input className='BlackList' type="file" value={blacklistFileName} onChange={this.handleBlackListFileName} />
+                        </div>
+                        <br></br>
+                        <div className='group-7'>
+                            <label for='DBCFile'>DBC </label>
+                            <input className='DBCFile' type="file" value={dbc_file_name} onChange={this.handleDBCFileName} />
+                        </div>
+                        <br></br>
+                        <button id = "submit" value = "Submit"> Submit </button>
                     </div>
-                    <br></br>
-                    <div className='group-2'>
-                        <label for='Date'>Project Date</label>
-                        <input className='Date' type="text" value={projectDate} onChange={this.handleProjectDate} />
-                    </div>
-                    <br></br>
-                    <div className='group-3'>
-                        <label for='CANID'>CAN Connector ID</label>
-                        <input className='CANID' type="text" value={canConnectorID} onChange={this.handleCanConnectorId} />
-                    </div>
-                    <br></br>
-                    <div className='group-4'>
-                        <label for='VehicleID'>Vehicle ID</label>
-                        <input className='VehicleID' type="text" value={vehicleID} onChange={this.handleVehicleId} />
-                    </div>
-                    <br></br>
-                    <div className='group-5'>
-                        <label for='BaudRate'>Baud Rate</label>
-                        <input className='BaudRate' type="text" value={baudRate} onChange={this.handleBaudRate} />
-                    </div>
-                    <br></br>
-                    <div className='group-6'>
-                        <label for='BlackList'>Blacklist </label>
-                        <input className='BlackList' type="file" value={blacklistFileName} onChange={this.handleBlackListFileName} />
-                    </div>
-                    <br></br>
-                    <div className='group-7'>
-                        <label for='DBCFile'>DBC </label>
-                        <input className='DBCFile' type="file" value={dbc_file_name} onChange={this.handleDBCFileName} />
-                    </div>
-                    <br></br>
-                    <button id = "submit" value = "Submit"> Submit </button>
+                </form>
                 </div>
-            </form>
-            </div>
-            
+            </Transitions> 
         )
     }
 }

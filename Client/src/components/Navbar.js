@@ -33,8 +33,8 @@ const Navbar = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/Sync">
-                                    Sync
+                                <Link className="nav-link" to="/SplitView">
+                                    Visualizer
                                 </Link>
                             </li>
                         </ul>

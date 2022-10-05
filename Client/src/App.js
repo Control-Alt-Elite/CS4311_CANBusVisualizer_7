@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Sync from './components/Sync';
 import { AnimatePresence } from 'framer-motion';
 import ProjectConfigurationHolder from "./components/ProjectConfigurationHolder";
+
   
 const Animated = () => {
     const location = useLocation();
@@ -21,8 +22,8 @@ const Animated = () => {
                     element={<ProjectConfigurationHolder/>}></Route>
                 <Route exact path="/SessionConfigurationHolder" 
                     element={<SessionConfigurationHolder/>}></Route>
-				<Route exact path="/Sync" 
-                    element={<Sync/>}></Route>
+				<Route exact path="/SplitView" 
+                    element={<SplitView/>}></Route>
             </Routes>
         </AnimatePresence>
     )
