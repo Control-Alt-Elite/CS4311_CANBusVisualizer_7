@@ -1,28 +1,26 @@
 GET http://localhost:3001/projects HTTP/1.1
 
-###Example post data
+###
 
 POST http://localhost:3001/project/new 
 Content-Type: application/json
 
 {
 "analyst_initials": "lm",
-"CANConnectorID": "123",
-"vehicle_ID": "400",
-"baud_rate": "50000",
+"CANConnectorID": 123,
+"vehicle_ID": 400,
+"baud_rate": 50000,
 "event_name": "Assessment_20",
 "DBC_filename": "honda.dbc",
 "black_list_filename": "bl01.dbc"
 }
 
-##
-# POST http://localhost:3001/project/new 
-# Content-Type: application/json
-
-# {
-# "first": "test1",
-# "second": "test2"
-# }
-
 ###
-DELETE http://localhost:3001/project/delete/632bc371064572b7ccd80ef2
+DELETE http://localhost:3001/project/delete/633bbf14fddee52a2d8efa22
+
+
+
+
+
+
+

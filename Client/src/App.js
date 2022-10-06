@@ -1,22 +1,45 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ProjectConfigurationHolder from './project-config/ProjectConfigurationHolder';
-import CanBusConfigurationHolder from './can-bus-config/CanBusConfigurationHolder';
-import SessionConfigurationHolder from './session-config/SessionConfigurationHolder';
-import SplitView from './split-view/SplitView';
+import React from "react"
+import { BrowserRouter as Router, 
+    Route, Routes } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+import SessionConfigurationHolder from "./components/SessionConfigurationHolder";
+import SplitView from "./components/SplitView";
+import Home from './components/Home';
+import Navbar from './components/Navbar';
+import Sync from './components/Sync';
+import { AnimatePresence } from 'framer-motion';
+import ProjectConfigurationHolder from "./components/ProjectConfigurationHolder";
 
-
-function App(){
-   return(
-<Router>
-    <Routes>
-        <Route exact path="/" element={<ProjectConfigurationHolder />}></Route>
-        <Route exact path="/main" element={< SplitView/>}></Route>
-        <Route exact path="/canbus" element={<CanBusConfigurationHolder />}></Route>
-        <Route exact path="/session" element={<SessionConfigurationHolder />}></Route>
-    </Routes>
-</Router>
-   );
+  
+const Animated = () => {
+    const location = useLocation();
+    return (
+        <AnimatePresence exitBeforeEnter >
+            <Routes location={location} 
+                key={location.pathname}>
+                <Route exact path="/" element={<Home/>}></Route>
+                <Route exact path="/ProjectConfigurationHolder" 
+                    element={<ProjectConfigurationHolder/>}></Route>
+                <Route exact path="/SessionConfigurationHolder" 
+                    element={<SessionConfigurationHolder/>}></Route>
+				<Route exact path="/SplitView" 
+                    element={<SplitView/>}></Route>
+            </Routes>
+        </AnimatePresence>
+    )
 }
-
+  
+function App() {
+    return (
+        <div className="App">
+            <>
+                <Router>
+                    <Navbar />
+                    <Animated />
+                </Router>
+            </>
+        </div>
+    );
+}
+  
 export default App;
