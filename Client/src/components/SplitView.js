@@ -7,11 +7,35 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import PacketTable from "./PacketTable";
 import "./SplitView.css";
 import Table from "react-bootstrap/Table";
+import Modal from "react-bootstrap/Modal";
 
+// const handleRowClick = () => {
+//   console.log("Row clicked");
+// };
 
-const handleClick = () => {
-  // implementation details
+// const handleIDClick = () =>{
+//   console.log("ID clicked");
+// };
+
+// const handleTimeClick = () =>{
+//   console.log("Time clicked");
+// };
+
+// const handleDataClick = () =>{
+//   console.log("Data clicked");
+// };
+
+// const handleClose = () => {
+//   // setShow(false);
+// };
+
+// const handleClick = () => {
+//   // implementation details
+// };
+const handleShow = () => {
+  // setShow(true);
 };
+
 
 function SplitView() {
   /*
@@ -26,19 +50,17 @@ channel.addListener("onMessage", function(msg) {
 channel.start(); */
 
 
-  return (
-    <>
-      <div className="screen">
-        <h4 className="titleName">CAN Map Visualizer</h4>
-        <ButtonGroup className="TopButtons">
-          <Button variant="warning">Traffic
-            
-          </Button>
+return (
+  <>
+      {/* <div className="TopButtons">
+        <ButtonGroup>
+          <Button variant="warning">Traffic</Button>
           <Button variant="warning">CAN MAP</Button>
         </ButtonGroup>
+      </div> */}
 
+      <div className="MapDropdowns">
         <Navbar
-          className="MapDropdowns"
           collapseOnSelect
           expand="lg"
           bg="dark"
@@ -46,62 +68,68 @@ channel.start(); */
         >
           <Container>
             <Navbar.Collapse>
-              <Nav className="navigationTopBar">
-                <NavDropdown title="File" id="file-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
+              <div className="navigationTopBar">
+                <Nav>
+                  <NavDropdown title="File" id="file-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">
+                      Another action
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">
+                      Something
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">
+                      Separated link
+                    </NavDropdown.Item>
+                  </NavDropdown>
 
-                <NavDropdown title="Edit" id="view-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
+                  <NavDropdown title="Edit" id="view-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">
+                      Another action
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">
+                      Something
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">
+                      Separated link
+                    </NavDropdown.Item>
+                  </NavDropdown>
 
-                <NavDropdown title="Nodes" id="packets-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
+                  <NavDropdown title="Nodes" id="packets-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">
+                      Another action
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">
+                      Something
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">
+                      Separated Link
+                    </NavDropdown.Item>
+                  </NavDropdown>
 
-                <Nav.Link className="mapButton" href="#home">
-                  Map
-                </Nav.Link>
-              </Nav>
+                  <Nav.Link className="mapButton" href="#home">
+                    Map
+                  </Nav.Link>
+                </Nav>
+              </div>
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <div className="map">
-          <div className="carBack"></div>
-        </div>
+      </div>
 
+
+      <div className="map" >
+        {/* <MapLine  className="mapLine"/> */}
+        <div className="rectangle" />
+      </div>
+
+      <div className="packetDropdowns">
         <Navbar
-          className="packetDropdowns"
           collapseOnSelect
           expand="lg"
           bg="dark"
@@ -109,7 +137,8 @@ channel.start(); */
         >
           <Container>
             <Navbar.Collapse>
-              <Nav className="navigationTopBar">
+              <div className="navigationTopBar">
+              <Nav>
                 <NavDropdown title="File" id="file-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
@@ -139,16 +168,16 @@ channel.start(); */
                 </NavDropdown>
 
                 <NavDropdown title="Packets" id="packets-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.1" onClick = {handleShow}>Replay</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
-                    Another action
+                    Edit
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
+                  {/* <NavDropdown.Item href="#action/3.3">
                     Something
-                  </NavDropdown.Item>
+                  </NavDropdown.Item> */}
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.4">
-                    Separated link
+                    Archive
                   </NavDropdown.Item>
                 </NavDropdown>
 
@@ -156,22 +185,43 @@ channel.start(); */
                   Play Traffic
                 </Nav.Link>
               </Nav>
+              </div>
+              
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <ButtonGroup className="dataPacketButtons">
+      </div>
+
+      {/* <div className="dataPacketButtons">
+        <ButtonGroup>
           <Button variant="warning">ID</Button>
           <Button variant="warning">Time</Button>
           <Button variant="warning">Data</Button>
-        </ButtonGroup>
-
-        {/* TABLE */}
-        <div>
-          <PacketTable />
-        </div>
+        </ButtonGroup>     
+      </div> */}
+      
+      {/* TABLE */}
+      <div className="packetTable">
+        <PacketTable />
       </div>
-    </>
-  );
+
+    {/*  
+    <Modal show = {show} onHide = {handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Edit Packets</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        Edit
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant = "dark" onClick = {handleClose}> 
+        Save 
+        </Button>
+      </Modal.Footer>
+    </Modal>
+    */}
+  </>
+);
 }
 
 export default SplitView;
