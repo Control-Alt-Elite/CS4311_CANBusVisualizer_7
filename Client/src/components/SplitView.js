@@ -50,8 +50,8 @@ channel.addListener("onMessage", function(msg) {
 channel.start(); */
 
 
-return (
-  <>
+  return (
+    <>
       {/* <div className="TopButtons">
         <ButtonGroup>
           <Button variant="warning">Traffic</Button>
@@ -71,50 +71,59 @@ return (
               <div className="navigationTopBar">
                 <Nav>
                   <NavDropdown title="File" id="file-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">
-                      Another action
+                    <NavDropdown.Item href="#action/3.1">
+                      Save Project
+                    </NavDropdown.Item>
+                    {/* <NavDropdown.Item href="#action/3.2">
+                      ???
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.3">
-                      Something
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
+                      Open Saved Packets
+                    </NavDropdown.Item> */}
+                    {/* <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/3.4">
-                      Separated link
-                    </NavDropdown.Item>
+                      Placeholder
+                    </NavDropdown.Item> */}
                   </NavDropdown>
 
                   <NavDropdown title="Edit" id="view-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.1">
+                      Rename Node
+                    </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
-                      Another action
+                      Assign Icon
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.3">
-                      Something
+                      Change Visibility
                     </NavDropdown.Item>
-                    <NavDropdown.Divider />
+                    {/* <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/3.4">
                       Separated link
-                    </NavDropdown.Item>
+                    </NavDropdown.Item> */}
                   </NavDropdown>
 
                   <NavDropdown title="Nodes" id="packets-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.1">
+                      Drag Nodes
+                    </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
-                      Another action
+                      Add Relationship
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.3">
-                      Something
+                      Search Node
                     </NavDropdown.Item>
-                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">
+                      Select All
+                    </NavDropdown.Item>
+                    {/* <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/3.4">
                       Separated Link
-                    </NavDropdown.Item>
+                    </NavDropdown.Item> */}
                   </NavDropdown>
 
-                  <Nav.Link className="mapButton" href="#home">
+                  {/* <Nav.Link className="mapButton" href="#home">
                     Map
-                  </Nav.Link>
+                  </Nav.Link> */}
                 </Nav>
               </div>
             </Navbar.Collapse>
@@ -138,55 +147,67 @@ return (
           <Container>
             <Navbar.Collapse>
               <div className="navigationTopBar">
-              <Nav>
-                <NavDropdown title="File" id="file-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <Nav>
+                  <NavDropdown title="File" id="file-dropdown">
+                    <NavDropdown.Item href="#action/3.1">
+                      Save Project
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">
+                      Open Saved Packets
+                    </NavDropdown.Item>
+                    {/* <NavDropdown.Item href="#action/3.3">
+                      ???
+                    </NavDropdown.Item> */}
+                    {/* <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">
+                      Separated link
+                    </NavDropdown.Item> */}
+                  </NavDropdown>
 
-                <NavDropdown title="View" id="view-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
+                  <NavDropdown title="View" id="view-dropdown">
+                    <NavDropdown.Item href="#action/3.1">
+                      Filter Packets
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">
+                      Sort Packets
+                    </NavDropdown.Item>
+                    {/* <NavDropdown.Item href="#action/3.3">
+                      Sort Packets
+                    </NavDropdown.Item> */}
+                    {/* <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">
+                      ???
+                    </NavDropdown.Item> */}
+                  </NavDropdown>
 
-                <NavDropdown title="Packets" id="packets-dropdown">
-                  <NavDropdown.Item href="#action/3.1" onClick = {handleShow}>Replay</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Edit
-                  </NavDropdown.Item>
-                  {/* <NavDropdown.Item href="#action/3.3">
+                  <NavDropdown title="Packets" id="packets-dropdown">
+                    <NavDropdown.Item href="#action/3.1" onClick={handleShow}>
+                      Edit Packets
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">
+                      Replay Packets
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">
+                      Save Packets
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.4">
+                      Annotate Packets
+                    </NavDropdown.Item>
+                    {/* <NavDropdown.Item href="#action/3.3">
                     Something
                   </NavDropdown.Item> */}
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Archive
-                  </NavDropdown.Item>
-                </NavDropdown>
+                    {/* <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">
+                      Archive
+                    </NavDropdown.Item> */}
+                  </NavDropdown>
 
-                <Nav.Link className="playTrafficButton" href="#home">
-                  Play Traffic
-                </Nav.Link>
-              </Nav>
+                  <Nav.Link className="playTrafficButton" href="#home">
+                    Play Traffic
+                  </Nav.Link>
+                </Nav>
               </div>
-              
+
             </Navbar.Collapse>
           </Container>
         </Navbar>
@@ -199,13 +220,13 @@ return (
           <Button variant="warning">Data</Button>
         </ButtonGroup>     
       </div> */}
-      
+
       {/* TABLE */}
       <div className="packetTable">
         <PacketTable />
       </div>
 
-    {/*  
+      {/*  
     <Modal show = {show} onHide = {handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Edit Packets</Modal.Title>
@@ -220,8 +241,8 @@ return (
       </Modal.Footer>
     </Modal>
     */}
-  </>
-);
+    </>
+  );
 }
 
 export default SplitView;
