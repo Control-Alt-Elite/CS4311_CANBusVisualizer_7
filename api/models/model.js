@@ -1,40 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const mySchema = new Schema({
-    analyst_initials: {
+const projectSchema = new Schema({
+    _id: Schema.Types.ObjectId,
+    projectName: {
         type: String,
-        required: true
+        required: true,
     },
-    CANConnectorID: {
-		type: Number,
+    storedLocation: {
+		type: String,
 		required: true
 	},
-    vehicle_ID: {
-        type: Number,
-        required: true
-    },
-    baud_rate: {
-        type: Number,
-        required: true
-    },
-    event_name: {
-        type: String,
-        required: true
-    },
-    event_date: {
-        type: Date,
-        default: Date.now()
-    },
-    DBC_filename: {
-        type: String,
-        required: true
-    },
-    black_list_filename: {
-        type: String
-    }
-});
+    sessions: [{type:Schema.Types.ObjectId, ref: "Session"}]
+})
 
-const Project = mongoose.model("Project", mySchema);
+// Virtual for project's URL
+projectSchema.virtual("url").get(function () {
+    // We don't use an arrow function as we'll need the this object
+    return `/projects/new/${this._id}`;
+  });
 
+  //Export model
+const Project = mongoose.model("Project", projectSchema)
 module.exports = Project;

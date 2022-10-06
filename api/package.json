@@ -2,9 +2,9 @@
   "name": "canbusvisualizer-api",
   "version": "1.0.0",
   "description": "Software to visualize and manage all components within a CAN Network",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon -e js,ejs"
   },
   "author": "Lorenzo Martinez",
   "license": "ISC",
