@@ -11,7 +11,7 @@ const Home = () => {
                     <div className='logo'> <img src={devcomlogo} alt="logo"/> 
                         <br/>
                         <h1 
-                            style={{ color: 'blue' }}>
+                            style={{ color: 'yellow' }}>
                             CAN Bus Visualizer
                         </h1>
                     </div>

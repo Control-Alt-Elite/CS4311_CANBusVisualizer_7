@@ -23,11 +23,6 @@ const Navbar = () => {
                                     aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/ProjectConfigurationHolder">
-                                    Create Project
-                                </Link>
-                            </li>
-                            <li className="nav-item">
                                 <Link className="nav-link" to="/SessionConfigurationHolder">
                                     Session
                                 </Link>
