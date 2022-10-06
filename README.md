@@ -22,15 +22,14 @@ use the following commands:
 ```
 npm init -y
 npx create-react-app
-npm install axios react react-dom react-router-dom react-scripts web-vitals
-npm install react-bootstrap bootstrap
+npm install axios react react-dom react-router-dom react-scripts web-vitals react-bootstrap bootstrap framer-motion
 ```
 ## Back-End Setup
 1. Using the command line, navigate to the "api" folder.
 Use the following commands:
 ```
 npm init -y
-npm install body-parser cors dotenv ejs express mongoose multer nodemon
+npm install body-parser cors dotenv ejs express mongoose multer nodemon socketcan
 ```
 2. Double check if you have the latest version of nodemon with this command and update if needed
 ```
