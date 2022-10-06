@@ -21,7 +21,7 @@ dbc.load(filePath)
 //Decoding with candump and cantools
 var spawn = require('child_process').spawn;
 //We can use candump filters e.g. 'candump vcan0,9803FEFE:1fffffff' (extended version 29-bits) or 201:7ff (11-bit)
-var child = spawn('candump', ['vcan0,9803FEFE:1fffffff | python3 -m cantools decode ./dbc-files/j1939.dbc'], {shell: true});
+//var child = spawn('candump', ['vcan0,9803FEFE:1fffffff | python3 -m cantools decode ./dbc-files/j1939.dbc'], {shell: true});
 
 //Decoding using a kcd file
 // Parse database
@@ -47,12 +47,35 @@ app.get('/', async (req,res) => {
 });*/
 
 // Method to Sending data to browser
-app.get('/', (req,res) => {
-  child.stdout.on('data',function (data) {
-    res.send(`${data}`);
-    res.end();
-  });
+app.get('/', function(req,res) {
+  res.writeHead(200, { "Content-Type": "text/event-stream",
+                         "Cache-control": "no-cache" });
+  var child = spawn('candump', ['vcan0,9803FEFE:1fffffff | python3 -m cantools decode ./dbc-files/j1939.dbc'], {shell: true});
+  str = '';
+  child.stdout.on('data', function (data) {
+    str += data.toString();
+    // just so we can see the server is doing something
+    console.log("data");
+    // Flush out line by line.
+    var lines = str.split("\n");
+    for(var i in lines) {
+        if(i == lines.length - 1) {
+            str = lines[i];
+        } else{
+            // Note: The double-newline is *required*
+            res.write('data: ' + lines[i] + "\n\n");
+        }
+    }
 });
+child.on('close', function (code) {
+  res.end(str);
+});
+
+child.stderr.on('data', function (data) {
+  res.end('stderr: ' + data);
+});
+});
+
 
 //Models
 const Project = require('./models/model');
@@ -198,10 +221,11 @@ function dumpPacket(msg) {
 channel.addListener("onMessage", dumpPacket);
 */
 
+/*
 // Reading packets from candump
 child.stdout.on('data',function (data) {
     console.log(`${data}`);
-  });
+  });*/
 /*  
   child.stderr.on('data', (data) => {
     console.error(`stderr: ${data}`);
@@ -209,5 +233,4 @@ child.stdout.on('data',function (data) {
 
   child.on('close', (code) => {
     console.log(`child process exited with code ${code}`);
-  });
-*/
+  });*/
