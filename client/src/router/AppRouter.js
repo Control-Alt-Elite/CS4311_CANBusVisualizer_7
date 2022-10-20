@@ -4,7 +4,7 @@ import { BrowserRouter as Router,
 import { useLocation } from 'react-router-dom';
 import Home from "../components/home-screen/Home";
 import Navbar from "../components/nav-bar/Navbar";
-import ProjectConfigurationHolder from "../components/ProjectConfigurationHolder";
+// import ProjectConfigurationHolder from "../components/project-config/ProjectConfigurationHolder";
 import ProjectInfoHolder from "../components/project-config/ProjectInfoHolder";
 import OpenProject from "../components/OpenProject"
 import SplitView from "../components/split-view/SplitView"
@@ -23,7 +23,7 @@ function Animated() {
                 key={location.pathname}>
                 <Route exact path="/" element={<Home />}></Route>
                 <Route exact path="/Home"
-                    element={<ProjectConfigurationHolder />}></Route>
+                    element={<Home />}></Route>
                 <Route exact path="/ProjectInfoHolder"
                     element={<ProjectInfoHolder />}></Route>
                 <Route exact path="/OpenProject"

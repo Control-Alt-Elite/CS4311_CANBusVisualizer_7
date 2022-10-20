@@ -1,6 +1,9 @@
 #Title {
     background-image: url('./images/BG_diag-01.png');
 }
+html{
+    background-color: rgb(58, 58, 58);
+}
 .contentarea{
     padding:8rem;
     width: 100%;

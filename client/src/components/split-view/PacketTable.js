@@ -2,7 +2,7 @@ import React from "react";
 // import "./PacketTable.css";
 import Table from "react-bootstrap/Table";
 //import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 const handleRowClick = () => {
   console.log("Row clicked");
