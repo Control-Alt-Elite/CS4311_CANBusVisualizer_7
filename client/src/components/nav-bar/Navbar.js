@@ -36,7 +36,7 @@ const Navbar = () => {
                                 </Link>
                             </li>
                             <li className="nav-item p-2 bd-highlight">
-                                <Link className="nav-link" to="/AboutUs">
+                                <Link className="nav-link" to="/SplitView">
                                     Visualizer
                                 </Link>
                             </li>

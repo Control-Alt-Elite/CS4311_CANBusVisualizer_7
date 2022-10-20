@@ -7,10 +7,11 @@ import Navbar from "../components/nav-bar/Navbar";
 import ProjectConfigurationHolder from "../components/ProjectConfigurationHolder";
 import ProjectInfoHolder from "../components/ProjectInfoHolder";
 import OpenProject from "../components/OpenProject"
+import SplitView from "../components/split-view/SplitView"
 import Sync from "../components/Sync";
 import ArchiveProject from "../components/ArchiveProject";
 import AboutUs from "../components/AboutUs";
-import TrafficDisplayer from "../components/TrafficDisplayer";
+import TrafficDisplayer from "../components//TrafficDisplayer";
 import { AnimatePresence } from 'framer-motion';
 
 
@@ -31,6 +32,8 @@ function Animated() {
                     element={<Sync />}></Route>
                 <Route exact path="/ArchiveProject"
                     element={<ArchiveProject />}></Route>
+                <Route exact path="/SplitView"
+                    element={<SplitView />}></Route>
                 <Route exact path="/AboutUs"
                     element={<AboutUs />}></Route>
                 <Route exact path="/TrafficDisplayer"
