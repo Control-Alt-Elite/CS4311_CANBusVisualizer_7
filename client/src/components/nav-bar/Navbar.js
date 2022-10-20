@@ -40,16 +40,16 @@ const Navbar = () => {
                                     Visualizer
                                 </Link>
                             </li>
-                            {/* <li className="nav-item ms-auto p-2 bd-highlight">
-                                <Link className="nav-link" to="/TrafficDisplayer">
-                                    TrafficDisplayer
-                                </Link>
-                            </li> */}
                             <li className="nav-item ms-auto p-2 bd-highlight">
+                                <Link className="nav-link" to="/TrafficDisplayer">
+                                    Traffic Displayer
+                                </Link>
+                            </li>
+                            {/* <li className="nav-item ms-auto p-2 bd-highlight">
                                 <Link className="nav-link" to="/AboutUs">
                                     About Us
                                 </Link>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>
