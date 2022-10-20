@@ -2,48 +2,42 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const sessionSchema = new Schema({
-    analyst_initials: {
+    eventName: {
         type: String,
         required: true
     },
-    CANConnectorID: {
+    eventDate: {
+        type: Date,
+        required: true
+    },
+    analystInitials: {
+        type: String,
+        required: true
+    },
+    canConnectorID: {
 		type: Number,
 		required: true
 	},
-    vehicle_ID: {
+    vehicleID: {
         type: Number,
         required: true
     },
-    baud_rate: {
+    baudRate: {
         type: Number,
         required: true
     },
-    event_name: {
+    dbcFileName: {
         type: String,
         required: true
     },
-    event_date: {
-        type: Date,
-        default: Date.now()
-    },
-    DBC_filename: {
-        type: String,
-        required: true
-    },
-    black_list_filename: {
+    blacklistFileName: {
         type: String
     },
-    project: {
-        type: Schema.Types.ObjectId, ref: "Project", required: true
+    sessionRef: {
+        type: Schema.Types.ObjectId, ref: "Project"
     },
 });
 
-/* Virtual for session's URL
-sessionSchema.virtual("url").get(function () {
-    // We don't use an arrow function as we'll need the this object
-    return `/projects/session/${this._id}`;
-  });
-*/
 //Export Model
 const Session = mongoose.model("Session", sessionSchema);
 module.exports = Session;
