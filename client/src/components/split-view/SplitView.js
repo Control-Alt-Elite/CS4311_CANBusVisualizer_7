@@ -3,11 +3,15 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import NavDropdown from "react-bootstrap/NavDropdown";
 // import Modal from "react-bootstrap/Modal";
-import PacketTable from "./PacketTable";
 import MapDisplayer from "./MapDisplayer";
-import { ReactDiagram } from "gojs-react";
+import Table from 'react-bootstrap/Table';
 
+import { ReactDiagram } from "gojs-react";
 import "./SplitView.css";
+
+import React, { useState, useEffect } from 'react';
+const url = 'http://localhost:3001/packets';
+
 
 const handleShow = () => {
   // setShow(true);
@@ -19,19 +23,18 @@ const handleShow = () => {
 // }
 
 <MapDisplayer />;
-
 function SplitView() {
-  /*
-  // Listening packets 
-  // Log any message in Terminal
-  channel.addListener("onMessage", function(msg) { 
-  console.log("Message");
-  console.log("Id: " + msg.id);
-  var data = [...msg.data]
-  console.log("Data: " + data);
-  });
-  channel.start(); 
-  */
+    const [data, setData] = useState([]);
+
+        // This works perfectly, but we will have to change it for a handler
+    useEffect(() => {
+        const eventSource = new EventSource(url);
+        eventSource.onmessage = (e) => {
+        console.log(e.data);
+        const parsedData = JSON.parse(e.data);
+        setData((data) => [...data,parsedData])
+        }
+    }, []);
 
   return (
     <>
@@ -168,9 +171,25 @@ function SplitView() {
           </Navbar>
         </div>
 
-        <div className="packetTable">
-          <PacketTable />
-        </div>
+        {/* TABLE */}
+      <div className="packetTable">
+        <Table overflow-auto striped bordered hover variant="dark">
+                  <thead>
+                    <tr>
+                      <th>Raw Data</th>
+                      <th>Decoded</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.map(({raw,decoded}, index) => (
+                    <tr>
+                      <td>{raw}</td>
+                      <td>{decoded}</td>
+                    </tr>
+                    ))}
+                  </tbody>
+        </Table>
+      </div>
       </div>
     </>
   );

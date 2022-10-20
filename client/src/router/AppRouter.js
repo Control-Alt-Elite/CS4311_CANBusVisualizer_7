@@ -2,16 +2,16 @@ import React from "react"
 import { BrowserRouter as Router, 
     Route, Routes } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
-import Home from "../components/Home";
-import Navbar from "../components/Navbar";
-import ProjectConfigurationHolder from "../components/ProjectConfigurationHolder";
-import ProjectInfoHolder from "../components/ProjectInfoHolder";
+import Home from "../components/home-screen/Home";
+import Navbar from "../components/nav-bar/Navbar";
+// import ProjectConfigurationHolder from "../components/project-config/ProjectConfigurationHolder";
+import ProjectInfoHolder from "../components/project-config/ProjectInfoHolder";
 import OpenProject from "../components/OpenProject"
+import SplitView from "../components/split-view/SplitView"
 import Sync from "../components/Sync";
 import ArchiveProject from "../components/ArchiveProject";
 import AboutUs from "../components/AboutUs";
-import TrafficDisplayer from "../components/TrafficDisplayer";
-import SplitView from "../components/SplitView";
+import TrafficDisplayer from "../components//TrafficDisplayer";
 import { AnimatePresence } from 'framer-motion';
 
 
@@ -22,8 +22,8 @@ function Animated() {
             <Routes location={location}
                 key={location.pathname}>
                 <Route exact path="/" element={<Home />}></Route>
-                <Route exact path="/ProjectConfigurationHolder"
-                    element={<ProjectConfigurationHolder />}></Route>
+                <Route exact path="/Home"
+                    element={<Home />}></Route>
                 <Route exact path="/ProjectInfoHolder"
                     element={<ProjectInfoHolder />}></Route>
                 <Route exact path="/OpenProject"
@@ -32,12 +32,12 @@ function Animated() {
                     element={<Sync />}></Route>
                 <Route exact path="/ArchiveProject"
                     element={<ArchiveProject />}></Route>
+                <Route exact path="/SplitView"
+                    element={<SplitView />}></Route>
                 <Route exact path="/AboutUs"
                     element={<AboutUs />}></Route>
                 <Route exact path="/TrafficDisplayer"
                     element={<TrafficDisplayer />}></Route>
-                <Route exact path="/SplitView"
-                    element={<SplitView />}></Route>
             </Routes>
         </AnimatePresence>
     );
