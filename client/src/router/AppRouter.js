@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Home from "../components/home-screen/Home";
 import Navbar from "../components/nav-bar/Navbar";
 import ProjectConfigurationHolder from "../components/ProjectConfigurationHolder";
-import ProjectInfoHolder from "../components/ProjectInfoHolder";
+import ProjectInfoHolder from "../components/project-config/ProjectInfoHolder";
 import OpenProject from "../components/OpenProject"
 import SplitView from "../components/split-view/SplitView"
 import Sync from "../components/Sync";
@@ -22,7 +22,7 @@ function Animated() {
             <Routes location={location}
                 key={location.pathname}>
                 <Route exact path="/" element={<Home />}></Route>
-                <Route exact path="/ProjectConfigurationHolder"
+                <Route exact path="/Home"
                     element={<ProjectConfigurationHolder />}></Route>
                 <Route exact path="/ProjectInfoHolder"
                     element={<ProjectInfoHolder />}></Route>

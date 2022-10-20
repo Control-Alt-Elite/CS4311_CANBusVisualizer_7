@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ProjectInfoHolder.css'
-import Transitions from './Transitions';
+import Transitions from '../Transitions';
 import axios from 'axios';
 import { Text, StyleSheet } from 'react-native';
 import {Link} from 'react-router-dom';
