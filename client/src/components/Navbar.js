@@ -37,14 +37,14 @@ const Navbar = () => {
                             </li>
                             <li className="nav-item p-2 bd-highlight">
                                 <Link className="nav-link" to="/AboutUs">
-                                    CAN Bus Manager
+                                    Visualizer
                                 </Link>
                             </li>
-                            <li className="nav-item ms-auto p-2 bd-highlight">
+                            {/* <li className="nav-item ms-auto p-2 bd-highlight">
                                 <Link className="nav-link" to="/TrafficDisplayer">
                                     TrafficDisplayer
                                 </Link>
-                            </li>
+                            </li> */}
                             <li className="nav-item ms-auto p-2 bd-highlight">
                                 <Link className="nav-link" to="/AboutUs">
                                     About Us

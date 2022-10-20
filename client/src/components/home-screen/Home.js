@@ -1,5 +1,5 @@
 import React from 'react'
-import Transitions from './Transitions'
+import Transitions from '../Transitions'
 import './Home.css'
 import devcomlogo from "./images/devcomlogo.png"
   
