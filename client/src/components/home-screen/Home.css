@@ -2,9 +2,10 @@
     background-image: url('./images/BG_diag-01.png');
 }
 .contentarea{
-    padding:1rem;
+    padding:8rem;
     width: 100%;
     position: relative;
+    background-color: rgb(58, 58, 58);
 }
 .logo {
     display: flex;
@@ -40,7 +41,3 @@ a:hover {
     color: darkgoldenrod;
 }
 
-body{
-    background-color: rgb(58, 58, 58);
-    overflow: hidden;
-}
