@@ -3,7 +3,7 @@ import { BrowserRouter as Router,
     Route, Routes } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import Home from "../components/home-screen/Home";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/nav-bar/Navbar";
 import ProjectConfigurationHolder from "../components/ProjectConfigurationHolder";
 import ProjectInfoHolder from "../components/ProjectInfoHolder";
 import OpenProject from "../components/OpenProject"
