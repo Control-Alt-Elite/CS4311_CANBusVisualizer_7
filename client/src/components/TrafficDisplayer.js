@@ -5,7 +5,7 @@ import Transitions from './Transitions';
 import Table from 'react-bootstrap/Table';
 
 
-
+const array=[]
 export default function OpenProject (props) {
 
   const url = 'http://localhost:3001/packets';
@@ -45,7 +45,7 @@ export default function OpenProject (props) {
 
   useEffect(() => {
     const eventSource = new EventSource(url);
-    eventSource.onmessage = (e) => setGetResult(e.data);
+    eventSource.onmessage = (e) =>setGetResult(<tr><td>{e.data}</td></tr>);
   }, []);
 
 

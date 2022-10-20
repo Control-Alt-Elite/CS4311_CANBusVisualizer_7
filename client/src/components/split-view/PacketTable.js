@@ -40,7 +40,7 @@ const PacketTable = () => {
   
     const renderPackets = (packets, index) => {
       return (
-        <tr key = {index} class id= 'clickable-row' onClick = {handleRowClick}>
+        <tr key = {index} className= 'clickable-row' onClick = {handleRowClick}>
           <td>{packets.id}</td>
           <td>{packets.time}</td>
           <td>{packets.data}</td>
