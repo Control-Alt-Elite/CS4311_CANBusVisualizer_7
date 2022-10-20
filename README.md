@@ -22,7 +22,7 @@ use the following commands:
 ```
 npm init -y
 npx create-react-app
-npm install axios react react-dom react-router-dom react-scripts web-vitals react-bootstrap bootstrap framer-motion
+npm install axios react react-dom react-router-dom react-scripts web-vitals react-bootstrap bootstrap framer-motion react-native-web gojs-react styled-components
 ```
 ## Back-End Setup
 1. Using the command line, navigate to the "api" folder.
