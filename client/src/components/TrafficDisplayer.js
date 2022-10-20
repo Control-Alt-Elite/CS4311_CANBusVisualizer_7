@@ -1,53 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import './OpenProject.css'
 import Transitions from './Transitions';
-//import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 
 
-const array=[]
+
 export default function OpenProject (props) {
 
   const url = 'http://localhost:3001/packets';
-  const [getResult, setGetResult] = useState(null);
-  //const source = new EventSource(url);
-  //const eventList = document.querySelector('ul');
+  const [data, setData] = useState([]);
+  //const [getResult, setGetResult] = useState(null);
+ 
 
-  //source.onmessage = e => console.log(e.data);
 /*
   //Get packets from server
   function getPackets(){
-
     const eventSource = new EventSource(url);
     eventSource.onmessage = (e) => seGetResult(e.data);
     return () => {
-      eventSource.close();
+      eventSource.close();     //
     };
-
   }
+*/
 
-  source.onmessage = (e) => {
-    const newElement = document.createElement("li");
-  
-    newElement.textContent = `${e.data}`;
-    eventList.appendChild(newElement);
-  };
-
-
-// This works perfectly on cliente console
-  useEffect(() => {
-    const eventSource = new EventSource(`${url}`);
-    eventSource.onmessage = (e) => console.log(e.data);
-    return () => {
-      eventSource.close();
-    };
-  }, []);*/
-
+// This works perfectly, but we will have to change it for a handler
   useEffect(() => {
     const eventSource = new EventSource(url);
-    eventSource.onmessage = (e) =>setGetResult(<tr><td>{e.data}</td></tr>);
+    eventSource.onmessage = (e) => {
+      console.log(e.data);
+      const parsedData = JSON.parse(e.data);
+      setData((data) => [...data,parsedData])
+    }
   }, []);
-
+  
 
   return (
     <Transitions>
@@ -68,15 +53,21 @@ export default function OpenProject (props) {
                 <button id="fetch">Fetch</button>                     
                 <button id="clear" >Clear</button>
               </div>
-              <div className="Table">
-                <Table striped bordered hover variant="dark">
+              <div className="alert alert-secondary mt-2" role="alert">
+                <Table overflow-auto striped bordered hover variant="dark">
                   <thead>
                     <tr>
                       <th>Raw Data</th>
+                      <th>Decoded</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {getResult}
+                    {data.map(({raw,decoded}, index) => (
+                    <tr>
+                      <td>{raw}</td>
+                      <td>{decoded}</td>
+                    </tr>
+                    ))}
                   </tbody>
                 </Table>
               </div>
