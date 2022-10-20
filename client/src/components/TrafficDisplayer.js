@@ -1,28 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './OpenProject.css'
 import Transitions from './Transitions';
-import axios from 'axios';
+//import axios from 'axios';
+import Table from 'react-bootstrap/Table';
+
 
 
 export default function OpenProject (props) {
 
   const url = 'http://localhost:3001/packets';
   const [getResult, setGetResult] = useState(null);
+  //const source = new EventSource(url);
+  //const eventList = document.querySelector('ul');
 
-  //Format project information
-  function formatResponse(res) {
-    return JSON.stringify(res, null, " ");
-  }
-
+  //source.onmessage = e => console.log(e.data);
+/*
   //Get packets from server
-  async function getPackets(){
-    try{
-      const response = await axios.get(url)
-        setGetResult(formatResponse(response.text));
-    } catch(err) {
-      setGetResult(formatResponse(err.response?.data || err));
-    }
+  function getPackets(){
+
+    const eventSource = new EventSource(url);
+    eventSource.onmessage = (e) => seGetResult(e.data);
+    return () => {
+      eventSource.close();
+    };
+
   }
+
+  source.onmessage = (e) => {
+    const newElement = document.createElement("li");
+  
+    newElement.textContent = `${e.data}`;
+    eventList.appendChild(newElement);
+  };
+
+
+// This works perfectly on cliente console
+  useEffect(() => {
+    const eventSource = new EventSource(`${url}`);
+    eventSource.onmessage = (e) => console.log(e.data);
+    return () => {
+      eventSource.close();
+    };
+  }, []);*/
+
+  useEffect(() => {
+    const eventSource = new EventSource(url);
+    eventSource.onmessage = (e) => setGetResult(e.data);
+  }, []);
+
 
   return (
     <Transitions>
@@ -32,7 +57,7 @@ export default function OpenProject (props) {
         </div>
         <div className="card">
             <div className ="card-header">
-              <button id="all" onClick={getPackets}>Start Traffic</button>
+              <button id="all">Start Traffic</button>
             </div>
             <div className="card-body">
               <div className="input-group">
@@ -43,7 +68,18 @@ export default function OpenProject (props) {
                 <button id="fetch">Fetch</button>                     
                 <button id="clear" >Clear</button>
               </div>
-              { getResult && <div className="alert alert-secondary mt-2" role="alert"><pre>{getResult}</pre></div> }
+              <div className="Table">
+                <Table striped bordered hover variant="dark">
+                  <thead>
+                    <tr>
+                      <th>Raw Data</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {getResult}
+                  </tbody>
+                </Table>
+              </div>
               <br></br>
             </div>
         </div>
