@@ -4,10 +4,17 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const packets = require("./modules/CANUtils");
-//var can = require('socketcan');
-//var channel = can.createRawChannel("vcan0", true);
+const rawFile = require("./modules/DataSaver");
 global.globalProjectName = ''; //To temporarily save project name
-var spawn = require('child_process').spawn;
+var can = require('socketcan');
+var channel = can.createRawChannel("vcan0", true);
+
+channel.start();
+//Sending packets
+app.get('/packets', packets);
+
+//Writing raw packets to file
+channel.addListener("onMessage", rawFile.DataSaver);
 
 app.use(express.json());
 app.use(cors());
@@ -18,9 +25,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/candb', {
     useUnifiedTopology: true 
 
 }).then(() => console.log("Connected to database")).catch(console.error);
-
-//Sending packets
-app.get('/packets', packets);
 
 //Database Models
 const Project = require('./models/project_model');
