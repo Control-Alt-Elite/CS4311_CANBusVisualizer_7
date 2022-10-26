@@ -14,9 +14,9 @@ const Navbar = () => {
                         CAN Bus Visualizer
                     </a>
                     <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav d-flex bd-highlight">
+                    <ul className="navbar-nav d-flex bd-highlight">
                             <li className="nav-item p-2 bd-highlight">
-                                <Link className="nav-link" to="/ProjectInfoHolder">
+                                <Link className="nav-link" to="/ProjectConfigurationHolder">
                                     Create Project
                                 </Link>
                             </li>
@@ -37,19 +37,24 @@ const Navbar = () => {
                             </li>
                             <li className="nav-item p-2 bd-highlight">
                                 <Link className="nav-link" to="/SplitView">
-                                    Visualizer
+                                    CAN Map Visualizer
                                 </Link>
                             </li>
-                            {/* <li className="nav-item ms-auto p-2 bd-highlight">
+                            <li className="nav-item p-2 bd-highlight">
+                                <Link className="nav-link" to="/CANBusManager">
+                                    CAN Bus Manager
+                                </Link>
+                            </li>
+                            <li className="nav-item p-2 bd-highlight">
                                 <Link className="nav-link" to="/TrafficDisplayer">
                                     Traffic Displayer
                                 </Link>
-                            </li> */}
-                            {/* <li className="nav-item ms-auto p-2 bd-highlight">
+                            </li>
+                            <li className="nav-item ms-auto p-2 bd-highlight">
                                 <Link className="nav-link" to="/AboutUs">
                                     About Us
                                 </Link>
-                            </li> */}
+                            </li>
                         </ul>
                     </div>
                 </div>
