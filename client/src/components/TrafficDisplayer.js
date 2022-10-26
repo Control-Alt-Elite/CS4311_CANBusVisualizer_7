@@ -54,7 +54,7 @@ export default function OpenProject (props) {
                 <button id="clear" >Clear</button>
               </div>
               <div className="alert alert-secondary mt-2" role="alert">
-                <Table overflow-auto striped bordered hover variant="dark">
+                <Table overflow-auto="true" striped bordered hover variant="dark">
                   <thead>
                     <tr>
                       <th>Raw Data</th>
