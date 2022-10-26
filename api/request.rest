@@ -1,26 +1,21 @@
 GET http://localhost:3001/projects HTTP/1.1
 
 ###
+GET http://localhost:3001/project/session HTTP/1.1
 
-POST http://localhost:3001/project/new 
+###
+GET http://localhost:3001/project/new HTTP/1.1
+
+###
+POST http://localhost:3001/project/new
 Content-Type: application/json
 
 {
-"analyst_initials": "lm",
-"CANConnectorID": 123,
-"vehicle_ID": 400,
-"baud_rate": 50000,
-"event_name": "Assessment_20",
-"DBC_filename": "honda.dbc",
-"black_list_filename": "bl01.dbc"
+"projectName": "Project 1",
+"storedLocation": "/home/kali"
 }
 
 ###
-DELETE http://localhost:3001/project/delete/633bbf14fddee52a2d8efa22
-
-
-
-
-
-
-
+DELETE http://localhost:3001/project/delete-project/634c731b938045b0bf01b3f0
+###
+DELETE http://localhost:3001/project/delete-session/634bd2b3859dae316bcf05d0
