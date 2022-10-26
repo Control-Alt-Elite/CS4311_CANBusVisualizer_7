@@ -7,7 +7,8 @@ const emitSSE= (res, id, raw, decoded) =>{
   }
 
 module.exports = (req,res) => {
-    res.writeHead(200, { "Content-Type": "text/event-stream",
+    res.writeHead(200, { "Access-Control-Allow-Origin": "*",
+                         "Content-Type": "text/event-stream",
                          "Cache-control": "no-cache",
                          'Connection': 'keep-alive'});
     //We can use candump filters e.g. 'candump vcan0,9803FEFE:1ffffff' (extended version 29-bits) or 201:7ff (11-bit)
