@@ -2,15 +2,19 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import NavDropdown from "react-bootstrap/NavDropdown";
-// import Modal from "react-bootstrap/Modal";
+import {Modal} from "react-bootstrap";
 import PacketTable from "./PacketTable";
 import MapDisplayer from "./MapDisplayer";
 import { ReactDiagram } from "gojs-react";
 
 import "./SplitView.css";
 
-const handleShow = () => {
+const handleClose = () => {
   // setShow(true);
+};
+
+const handleShow = () => {
+  // show={true};
 };
 
 //Notify when map is updated
@@ -145,7 +149,7 @@ function SplitView() {
                     </NavDropdown>
 
                     <NavDropdown title="Packets" id="packets-dropdown">
-                      <NavDropdown.Item href="#action/3.1" onClick={handleShow}>
+                      <NavDropdown.Item href="#Modal" data-toggle="Modal" onClick={handleShow} >
                         Edit Packets
                       </NavDropdown.Item>
                       <NavDropdown.Item href="#action/3.2">
@@ -172,6 +176,30 @@ function SplitView() {
         <div className="packetTable">
           <PacketTable />
         </div>
+
+        <Modal
+        show = {false}
+        onHide={handleClose}
+        backdrop="static"
+        className = "modal-box"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title> Edit Packets </Modal.Title>
+          </Modal.Header>
+ 
+          <Modal.Body>
+            Packet editing
+          </Modal.Body>
+ 
+          <Modal.Footer>
+            <button variant = "dark" onClick = {handleClose}>
+              Save
+            </button>
+           
+          </Modal.Footer>
+          </Modal>
+ 
+
       </div>
     </>
   );
