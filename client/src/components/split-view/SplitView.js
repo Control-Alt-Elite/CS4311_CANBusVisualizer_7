@@ -1,23 +1,19 @@
 import { ReactDiagram } from "gojs-react";
 import React, { useEffect, useState } from 'react';
-import { Modal } from "react-bootstrap";
+// import { Modal } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Table from 'react-bootstrap/Table';
 import MapDisplayer from "./MapDisplayer";
+import EditBlacklist from "./modals/EditBlacklist";
 import PacketTable from "./PacketTable";
+import MapNav from "./ribbons/MapRibbon/MapNav";
+
 import "./SplitView.css";
 const url = 'http://localhost:3001/packets';
 
-const handleClose = () => {
-  // setShow(true);
-};
-
-const handleShow = () => {
-  // show={true};
-};
 
 //Notify when map is updated
 // function handleModelChange(changes) {
@@ -25,8 +21,8 @@ const handleShow = () => {
 // }
 
 
-<MapDisplayer />;
 
+{/* <MapNav/> */}
 function SplitView() {
   const [data, setData] = useState([]);
 
@@ -53,7 +49,7 @@ function SplitView() {
 
   return (
     <>
-
+    {/* <EditBlacklist/> */}
       {/* MAP DROPDOWNS */}
       <div className="mapNodeAndDrop">
         <div className="MapDropdowns">
@@ -78,6 +74,10 @@ function SplitView() {
                       <NavDropdown.Item href="#action/3.3">
                         Change Visibility
                       </NavDropdown.Item>
+                      <EditBlacklist/>
+                      {/* <NavDropdown.Item href="#action/3.4">
+                        Modify Off-limits
+                      </NavDropdown.Item> */}
                     </NavDropdown>
 
                     <NavDropdown title="Nodes" id="packets-dropdown">
@@ -162,7 +162,7 @@ function SplitView() {
                     </NavDropdown>
 
                     <NavDropdown title="Packets" id="packets-dropdown">
-                      <NavDropdown.Item href="#Modal" data-toggle="Modal" onClick={handleShow} >
+                      <NavDropdown.Item href="#Modal" data-toggle="Modal" >
                         Edit Packets
                       </NavDropdown.Item>
                       <NavDropdown.Item href="#action/3.2">
@@ -206,7 +206,7 @@ function SplitView() {
         </Table>
       </div>
 
-        <Modal
+        {/* <Modal
         show = {false}
         onHide={handleClose}
         backdrop="static"
@@ -226,7 +226,7 @@ function SplitView() {
             </button>
           </Modal.Footer>
           </Modal>
- 
+  */}
 
       </div>
     </>

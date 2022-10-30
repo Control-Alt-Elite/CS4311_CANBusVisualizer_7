@@ -1,3 +1,4 @@
+// import "go-dubug.js";
 import * as go from "gojs";
 import "./MapDisplayer.css";
 
@@ -43,6 +44,14 @@ function MapDisplayer() {
     }
   });
 
+  //  // Show the diagram's model in JSON format that the user may edit
+  //  function save() {
+  //   document.getElementById("mySavedModel").value = diagram.model.toJson();
+  //   diagram.isModified = false;
+  // }
+  // function load() {
+  //   diagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
+  // }
 
   // define a simple Node template ORIGINAL
   diagram.nodeTemplate = $(
@@ -160,7 +169,8 @@ function MapDisplayer() {
     )
   );
 
-  //   load();
+  
+    // load();
 
   //   all pallete stuff breaks code
   // const palette = $(go.Palette, "myPaletteDiv", {
