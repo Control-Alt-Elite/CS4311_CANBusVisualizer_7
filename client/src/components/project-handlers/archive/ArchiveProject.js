@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import './OpenProject.css'
-import Transitions from './Transitions';
 import axios from 'axios';
-import { Text, StyleSheet } from 'react-native';
-import {Link} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text } from 'react-native';
+import { Link } from 'react-router-dom';
+import Transitions from '../../Transitions';
+import '../open/OpenProject.css';
 
 const styles = StyleSheet.create({
     baseText: {

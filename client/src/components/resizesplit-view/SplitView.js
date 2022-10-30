@@ -6,10 +6,12 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Table from 'react-bootstrap/Table';
+import Split from 'react-split';
 import MapDisplayer from "./MapDisplayer";
 import PacketTable from "./PacketTable";
 import "./SplitView.css";
 const url = 'http://localhost:3001/packets';
+
 
 const handleClose = () => {
   // setShow(true);
@@ -102,6 +104,8 @@ function SplitView() {
         </div>
 
         {/* MAP REGION */}
+
+        
         <div>
           <ReactDiagram
             divClassName="diagram-component"
