@@ -1,5 +1,5 @@
 .config {
-    background-image: url('./images/backgroundLogo.png') ;
+    background-image: url('../images/backgroundLogo.png') ;
     background-size: 30px;
     background-repeat: no-repeat;
     background-color: rgb(58, 58, 58);

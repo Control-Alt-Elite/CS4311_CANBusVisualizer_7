@@ -16,7 +16,7 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav d-flex bd-highlight">
                             <li className="nav-item p-2 bd-highlight">
-                                <Link className="nav-link" to="/ProjectConfigurationHolder">
+                                <Link className="nav-link" to="/CreateProject">
                                     Create Project
                                 </Link>
                             </li>
@@ -50,11 +50,11 @@ const Navbar = () => {
                                     Traffic Displayer
                                 </Link>
                             </li>
-                            <li className="nav-item ms-auto p-2 bd-highlight">
+                            {/* <li className="nav-item ms-auto p-2 bd-highlight">
                                 <Link className="nav-link" to="/AboutUs">
                                     About Us
                                 </Link>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>

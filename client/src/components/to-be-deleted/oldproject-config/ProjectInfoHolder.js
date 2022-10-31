@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import './ProjectInfoHolder.css'
-import Transitions from './Transitions';
 import axios from 'axios';
-import { Text, StyleSheet } from 'react-native';
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import { StyleSheet, Text } from 'react-native';
+import { Link } from 'react-router-dom';
+import Transitions from '../../Transitions';
+import './ProjectInfoHolder.css';
 
 const styles = StyleSheet.create({
     baseText: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
       }
   });
 
-
+// TODO: FILE IS USED
 export default function ProjectInfoHolder (props) {
         
     //Declare new state variables
