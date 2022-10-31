@@ -45,11 +45,6 @@ const Navbar = () => {
                                     CAN Bus Manager
                                 </Link>
                             </li>
-                            <li className="nav-item p-2 bd-highlight">
-                                <Link className="nav-link" to="/TrafficDisplayer">
-                                    Traffic Displayer
-                                </Link>
-                            </li>
                             <li className="nav-item ms-auto p-2 bd-highlight">
                                 <Link className="nav-link" to="/AboutUs">
                                     About Us

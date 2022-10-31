@@ -4,17 +4,16 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const packets = require("./modules/CANUtils");
-const rawFile = require("./modules/DataSaver");
+//const decodedFile = require("./modules/DataSaver");
 global.globalProjectName = ''; //To temporarily save project name
-var can = require('socketcan');
-var channel = can.createRawChannel("vcan0", true);
 
-channel.start();
+
+
 //Sending packets
 app.get('/packets', packets);
 
 //Writing raw packets to file
-channel.addListener("onMessage", rawFile.DataSaver);
+//channel.addListener("onMessage", decodedFile.DataSaver());
 
 app.use(express.json());
 app.use(cors());
