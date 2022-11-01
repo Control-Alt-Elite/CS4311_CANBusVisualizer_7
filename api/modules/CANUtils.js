@@ -3,7 +3,9 @@ var spawn = require('child_process').spawn;
 
 const emitSSE= (res, index, time, can, id, dt1, dt2, dt3, dt4, dt5, dt6, dt7,dt8, decoded) =>{
     res.write('id: ' + index + '\n');
-    res.write(`data: {"time": "${time}", "can": "${can}", "id": "${id}", "dt1": "${dt1}", "dt2": "${dt2}", "dt3": "${dt3}", "dt4": "${dt4}", "dt5": "${dt5}", "dt6": "${dt6}", "dt7": "${dt7}", "dt8": "${dt8}", "decoded": "${decoded}"}`);
+    res.write(`data: {"time": "${time}", "can": "${can}", "id": "${id}", "dt1": "${dt1}", "dt2": "${dt2}", "dt3": "${dt3}", "dt4": "${dt4}", "dt5": "${dt5}", "dt6": "${dt6}", "dt7": "${dt7}", "dt8": "${dt8}"}`);
+    res.write("\n");
+    res.write(`decoded: {"Source": "${decoded[0]}","message": "${decoded[1]}"}`);
     res.write("\n\n");
   }
 
@@ -28,13 +30,14 @@ module.exports = (req,res) => {
         str = data.toString() + '\n';
         var lines = str.split("\n");
 
-        for(var i in lines) {
+        for(let i = 0;i < lines.length-2;i++) {
             packet ='';
             packet = lines[i].split("::");
             raw = packet[0].trim().replace(/\s+/g, '*');
             frame = '';
             frame = raw.split("*");
-            emitSSE(res, i, frame[0], frame[1], frame[2], frame[4], frame[5], frame[6], frame[7], frame[8], frame[9], frame[10], frame[11], packet[1]);   
+            decoded = packet[1].trim().replace('(','*').replace(')','*').split("*")
+            emitSSE(res, i, frame[0], frame[1], frame[2], frame[4], frame[5], frame[6], frame[7], frame[8], frame[9], frame[10], frame[11], decoded);   
         }
         
     });
