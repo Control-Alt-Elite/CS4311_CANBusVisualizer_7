@@ -74,6 +74,7 @@ export default function OpenProject (props) {
     
   return (
     <Transitions>
+      <div className='config'>
       <div id="app" className="container">
         <div className='header'> 
           <h3 className='text'>Open Existing Project</h3>
@@ -91,17 +92,18 @@ export default function OpenProject (props) {
                 <button id="fetch" onClick={getDataByProjectName}>Fetch</button>                     
                 <button id="clear" onClick={clearGetOutput}>Clear</button>
               </div>
-              { getResult && <div className="alert alert-secondary mt-2" role="alert"><pre>{getResult}</pre></div> }
+              { getResult && <div className="alert alert-secondary mt-2" role="alert">{getResult}</div> }
               <br></br>
               {isShown &&(
               <div className='Buttons'>
-                <button id = "continue"> Confirm </button> 
+                <button id = "continue"> Confirm </button>
                   <Link to="/">
                     <button id = "cancel"> Cancel </button>  
                   </Link>
               </div>)}
             </div>
         </div>
+      </div>
       </div>
     </Transitions>
   )

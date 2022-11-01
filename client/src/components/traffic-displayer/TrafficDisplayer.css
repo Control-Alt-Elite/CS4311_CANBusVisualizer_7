@@ -1,9 +1,9 @@
-#app {
+.container {
     background-image: url('./images/backgroundLogo.png');
     background-repeat: no-repeat;
     margin-top: 0%;
     margin-bottom: 0%;
-    width: 660px;
+    width: 1400px;
     height: 662px;
     max-width: 700px;
     background-color: rgb(58,58,58);
@@ -59,39 +59,26 @@
     font-size: 18;
     height: 30px;
 }
-#select{
-    background-color: rgb(109, 109, 109);
-    width: 50%;
-    height: 30px;
-    border-radius: 5px;
+
+.nav-item :hover {
+    font-weight: bolder;
+    font-family: serif;
 }
-#fetch{
-    font-family: Serif;
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 253, 3);
-    border-radius: 5px;
-    margin-left: 30px;
-}
+
 #all{
     font-family: Serif;
     color: white;
     background-color: #0275d8;
     border-radius: 5px;
 }
-#clear{
-    font-family: Serif;
-    color: rgb(0, 0, 0);;
-    background-color: #f0ad4e;
-    border-radius: 5px;
-    margin-left: 30px;
-}
-.Buttons{
-    text-align: right;
-}
+
 .alert{
+    position: absolute;
+    margin-left: 0px;
+    align-self:auto;
     color: white;
     background-color: rgb(109, 109, 109);
-    width: auto;
+    width: 1200px;
     height: 440px;
     overflow-y: auto;
     max-height: 440px;

@@ -21,12 +21,11 @@ const styles = StyleSheet.create({
 export default function OpenProject (props) {
         
     //Declare new state variables
-    const [projectName, setProjectName] = useState([]);
+    // const [projectName, setProjectName] = useState([]); //In case we need it
 
     const handleSubmit = (event) => {
         // prevents the submit button from refreshing the page
         event.preventDefault();
-        console.log('Hola Mundo')
     };
     
     return (
