@@ -115,7 +115,7 @@ export default function OpenProject (props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map(({time,can,id,dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8,decoded}, index) => (
+                    {data.map(({time,can,id,dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8,source,message}, index) => (
                     <tr key={index}>
                       <td width='170'>{time}</td>
                       <td width='90'>{can}</td>
@@ -128,7 +128,7 @@ export default function OpenProject (props) {
                       <td width='40'>{dt6}</td>
                       <td width='40'>{dt7}</td>
                       <td width='40'>{dt8}</td>
-                      <td>{decoded}</td>
+                      <td>{source}</td>
                     </tr>
                     ))}
                   </tbody>

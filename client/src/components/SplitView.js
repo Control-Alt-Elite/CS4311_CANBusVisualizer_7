@@ -38,7 +38,8 @@ function SplitView() {
   function handlePlayTraffic () {
     const eventSource = new EventSource(url);
     eventSource.onmessage = (e) => {
-      console.log(e.data);
+      console.log(e.decoded);
+  
       const parsedData = JSON.parse(e.data);
       setData((data) => [...data,parsedData]);
     }
