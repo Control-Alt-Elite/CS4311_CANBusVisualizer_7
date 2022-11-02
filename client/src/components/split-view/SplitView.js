@@ -132,9 +132,7 @@ function SplitView() {
             ]}
           />
         </div>
-
       </div>
-
       {/* PACKET REGION */}
       <div className="packetTableAndDrop">
         <div className="packetDropdowns">
