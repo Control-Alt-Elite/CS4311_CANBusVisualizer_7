@@ -16,6 +16,19 @@
 .data{
   width: 50%;
 }
+
+.searchButton{
+  background-color: #76707c !important;
+  border-color: rgb(40, 77, 241);
+  border-width: 3.5px;
+  
+}
+
+.searchInput{
+  margin-left: auto;
+  background-color: rgb(109, 109, 109);
+}
+
 /* Packet Ribbon Items */
 .navigationBottomBar{
   left: 0;

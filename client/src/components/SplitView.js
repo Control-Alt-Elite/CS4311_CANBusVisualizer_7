@@ -1,6 +1,9 @@
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
 import {Modal} from "react-bootstrap";
 import MapDisplayer from "./split-view/MapDisplayer";
 import { ReactDiagram } from "gojs-react";
@@ -97,7 +100,10 @@ function SplitView() {
                         Select All
                       </NavDropdown.Item>
                     </NavDropdown>
+                    <input className = "searchInput"/>
+                    <Button className = 'searchButton' variant="dark">Search</Button>
                   </Nav>
+                  
                 </div>
               </Navbar.Collapse>
           </Navbar>
@@ -191,11 +197,16 @@ function SplitView() {
                       Stop
                     </NavDropdown.Item>
                     </NavDropdown>
+
+                    <input className = "searchInput"/>
+                    <Button className = 'searchButton' variant="dark">Search</Button>
+
                   </Nav>
                 </div>
               </Navbar.Collapse>
           </Navbar>
         </div>
+
          {/* TABLE */}
         <div className="rawTable">
           <Table striped bordered hover responsive variant = "dark" className="tTable">
