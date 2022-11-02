@@ -1,8 +1,8 @@
 import { AnimatePresence } from "framer-motion";
 import React from "react";
 import {
-  BrowserRouter as Router,
-  Route, Routes, useLocation
+    BrowserRouter as Router,
+    Route, Routes, useLocation
 } from "react-router-dom";
 import Home from "../components/home-screen/Home";
 import Navbar from "../components/nav-bar/Navbar";
@@ -24,7 +24,7 @@ function Animated() {
                 <Route exact path="/" element={<Home />}></Route>
                 <Route exact path="/ProjectConfigurationHolder"
                     element={<ProjectConfigurationHolder />}></Route>
-                <Route exact path="/ProjectInfoHolder"
+                <Route exact path="/CreateProject"
                     element={<ProjectInfoHolder />}></Route>
                 <Route exact path="/OpenProject"
                     element={<OpenProject />}></Route>
