@@ -176,12 +176,12 @@ export default function ProjectInfoHolder(props) {
               {" "}
               Continue{" "}
             </button>
-            <Link to="/">
+            {/* <Link to="/">
               <button id="cancel" value="Cancel">
                 {" "}
                 Cancel{" "}
               </button>
-            </Link>
+            </Link> */}
           </div>
         </form>
       </div>
