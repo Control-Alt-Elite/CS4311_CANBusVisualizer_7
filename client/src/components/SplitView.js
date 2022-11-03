@@ -227,17 +227,17 @@ function SplitView() {
           <tbody>
             {data.map(({time,can,id,dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8,Source,message}, index) => (
               <tr key={index} className= 'clickable-row' onClick = {() => handleMessage({Source},{message})}>
-                <td width='170'>{time}</td>
-                <td width='90'>{can}</td>
-                <td width='100'>{id}</td>
-                <td width='40'>{dt1}</td>
-                <td width='40'>{dt2}</td>
-                <td width='40'>{dt3}</td>
-                <td width='40'>{dt4}</td>
-                <td width='40'>{dt5}</td>
-                <td width='40'>{dt6}</td>
-                <td width='40'>{dt7}</td>
-                <td width='40'>{dt8}</td>
+                <td width='155'>{time}</td>
+                <td width='80'>{can}</td>
+                <td width='85'>{id}</td>
+                <td width='80'>{dt1}</td>
+                <td width='80'>{dt2}</td>
+                <td width='80'>{dt3}</td>
+                <td width='80'>{dt4}</td>
+                <td width='80'>{dt5}</td>
+                <td width='80'>{dt6}</td>
+                <td width='80'>{dt7}</td>
+                <td width='65'>{dt8}</td>
               </tr>
             ))}
           </tbody>
