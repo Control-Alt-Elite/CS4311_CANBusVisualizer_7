@@ -8,6 +8,10 @@ import { ReactDiagram } from "gojs-react";
 import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import "./SplitView.css";
+import AssignIcon from "./split-view/modals/AssignIcon"
+import ChangeVisibility from "./split-view/modals/ChangeVisibility";
+import EditBlacklist from "./split-view/modals/EditBlacklist";
+import RenameNode from "./split-view/modals/RenameNode";
 const url = 'http://localhost:3001/packets';
 const eventSource = new EventSource(url);
 
@@ -75,15 +79,10 @@ function SplitView() {
                       </NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Edit" id="view-dropdown">
-                      <NavDropdown.Item href="#action/Rename">
-                        Rename Node
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">
-                        Assign Icon
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.3">
-                        Change Visibility
-                      </NavDropdown.Item>
+                      <RenameNode/>
+                      <AssignIcon/>
+                      <ChangeVisibility/>
+                      <EditBlacklist/>
                     </NavDropdown>
                     <NavDropdown title="Nodes" id="packets-dropdown">
                       <NavDropdown.Item href="#action/3.1">
