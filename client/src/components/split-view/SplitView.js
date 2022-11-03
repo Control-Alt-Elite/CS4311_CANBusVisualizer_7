@@ -10,6 +10,10 @@ import { ReactDiagram } from "gojs-react";
 import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import "./SplitView.css";
+import AssignIcon from "./modals/AssignIcon";
+import ChangeVisibility from "./modals/ChangeVisibility";
+import EditBlacklist from "./modals/EditBlacklist";
+import RenameNode from "./modals/RenameNode";
 
 <MapDisplayer />;
 
@@ -75,15 +79,19 @@ function SplitView() {
                       </NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Edit" id="view-dropdown">
-                      <NavDropdown.Item href="#action/Rename">
+                      {/* <NavDropdown.Item href="#action/Rename">
                         Rename Node
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">
+                      </NavDropdown.Item> */}
+                      <RenameNode/>
+                      {/* <NavDropdown.Item href="#action/3.2">
                         Assign Icon
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.3">
+                      </NavDropdown.Item> */}
+                      <AssignIcon/>
+                      {/* <NavDropdown.Item href="#action/3.3">
                         Change Visibility
-                      </NavDropdown.Item>
+                      </NavDropdown.Item> */}
+                      <ChangeVisibility/>
+                      <EditBlacklist/>
                     </NavDropdown>
                     <NavDropdown title="Nodes" id="packets-dropdown">
                       <NavDropdown.Item href="#action/3.1">
