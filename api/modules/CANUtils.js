@@ -27,10 +27,12 @@ module.exports = (req,res) => {
         str = ''
         str = data.toString() + '\n';
         var lines = str.split("\n");
-
-        for(let i = 0;i < lines.length-2;i++) {
+        var clines = lines.filter(element => {
+            return element !== '';
+          });
+        for(var i in clines) {
             packet ='';
-            packet = lines[i].split("::");
+            packet = clines[i].split("::");
             raw = packet[0].trim().replace(/\s+/g, '*');
             frame = '';
             frame = raw.split("*");
