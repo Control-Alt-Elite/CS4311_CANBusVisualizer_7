@@ -3,7 +3,7 @@ var spawn = require('child_process').spawn;
 
 const emitSSE= (res, index, time, can, id, dt1, dt2, dt3, dt4, dt5, dt6, dt7,dt8, decoded) =>{
     res.write('id: ' + index + '\n');
-    res.write(`data: {"time": "${time}", "can": "${can}", "id": "${id}", "dt1": "${dt1}", "dt2": "${dt2}", "dt3": "${dt3}", "dt4": "${dt4}", "dt5": "${dt5}", "dt6": "${dt6}", "dt7": "${dt7}", "dt8": "${dt8}", "Source": "${decoded[0]}","message": "${decoded[1]}"}`);
+    res.write(`data: {"time": "${time}", "can": "${can}", "id": "${id}", "dt1": "${dt1}", "dt2": "${dt2}", "dt3": "${dt3}", "dt4": "${dt4}", "dt5": "${dt5}", "dt6": "${dt6}", "dt7": "${dt7}", "dt8": "${dt8}", "ECU": "${decoded[0]}","Values": "${decoded[1]}"}`);
     res.write("\n\n");
   }
 
