@@ -91,5 +91,6 @@ th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child
 .alert{
   color: white;
   background-color: rgb(109, 109, 109);
-  height: 270px;
+  height: fit-content;
+  max-width: fit-content;
 }

@@ -27,11 +27,10 @@ function SplitView() {
     // show={true};
   };
   
-  const handleMessage = (msg) => {
-    const parsedMessage = {
-      Message: msg.decoded,
-    };
-    setMessage(JSON.stringify(parsedMessage));
+  const handleMessage = (src,msg) => {
+    var packetSource = JSON.stringify(src)
+    var packetData = JSON.stringify(msg).replace(/,/g,',\n')
+    setMessage(packetSource+"\n"+packetData);
   };
   
   const handleIDClick = () =>{
@@ -41,7 +40,7 @@ function SplitView() {
   function handlePlayTraffic () {
     const eventSource = new EventSource(url);
     eventSource.onmessage = (e) => {
-      console.log(e.decoded);
+      console.log(e.data);
   
       const parsedData = JSON.parse(e.data);
       setData((data) => [...data,parsedData]);
@@ -226,8 +225,8 @@ function SplitView() {
             </tr>
           </thead>
           <tbody>
-            {data.map(({time,can,id,dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8, decoded}, index) => (
-              <tr key={index} className= 'clickable-row' onClick = {() => handleMessage({decoded})}>
+            {data.map(({time,can,id,dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8,Source,message}, index) => (
+              <tr key={index} className= 'clickable-row' onClick = {() => handleMessage({Source},{message})}>
                 <td width='170'>{time}</td>
                 <td width='90'>{can}</td>
                 <td width='100'>{id}</td>
