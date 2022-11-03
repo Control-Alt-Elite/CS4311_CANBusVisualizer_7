@@ -224,7 +224,7 @@ function SplitView() {
             </tr>
           </thead>
           <tbody>
-            {data.map(({time,can,id,dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8,Source,message}, index) => (
+            {data.map(({time,can,id,dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8,ECU,Values}, index) => (
               <tr key={index} className= 'clickable-row' onClick = {() => handleMessage({ECU},{Values})}>
                 <td width='155'>{time}</td>
                 <td width='80'>{can}</td>
