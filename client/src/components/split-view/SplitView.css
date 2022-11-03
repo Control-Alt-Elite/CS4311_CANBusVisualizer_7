@@ -16,6 +16,19 @@
 .data{
   width: 50%;
 }
+
+.searchButton{
+  background-color: #76707c !important;
+  border-color: rgb(40, 77, 241);
+  border-width: 3.5px;
+  
+}
+
+.searchInput{
+  margin-left: auto;
+  background-color: rgb(109, 109, 109);
+}
+
 /* Packet Ribbon Items */
 .navigationBottomBar{
   left: 0;
@@ -78,5 +91,6 @@ th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child
 .alert{
   color: white;
   background-color: rgb(109, 109, 109);
-  height: 270px;
+  height: fit-content;
+  max-width: fit-content;
 }
