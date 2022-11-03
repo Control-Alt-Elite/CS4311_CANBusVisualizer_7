@@ -57,7 +57,7 @@ thead{
 
 tbody {
   display:block;
-  max-height: 250px;
+  max-height: 315px;
   overflow-y:auto;
 }
 th{
@@ -66,7 +66,7 @@ th{
   color: black;
 }
 td{
-  font-size: 14px;
+  font-size: 12px;
 }
 
 /* Default Header Color */
@@ -91,6 +91,6 @@ th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child
 .alert{
   color: white;
   background-color: rgb(109, 109, 109);
-  height: fit-content;
+  height: 230px;
   max-width: fit-content;
 }
