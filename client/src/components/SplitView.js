@@ -8,12 +8,13 @@ import { ReactDiagram } from "gojs-react";
 import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import "./SplitView.css";
+const url = 'http://localhost:3001/packets';
+const eventSource = new EventSource(url);
 
 <MapDisplayer />;
 
 function SplitView() {
 
-  const url = 'http://localhost:3001/packets';
   const [data, setData] = useState([]);
   const [message, setMessage] = useState('');
 
@@ -36,10 +37,8 @@ function SplitView() {
   };
 
   function handlePlayTraffic () {
-    const eventSource = new EventSource(url);
     eventSource.onmessage = (e) => {
       console.log(e.data);
-  
       const parsedData = JSON.parse(e.data);
       setData((data) => [...data,parsedData]);
     }
@@ -48,10 +47,13 @@ function SplitView() {
     };
   }
 
-
   function handleStopTraffic () {
-    console.log("Stoping traffic")
-  }
+      eventSource.close(); 
+      console.log("Connection closed");
+      return () => {
+        eventSource.close(); 
+      };
+  };
 
   return (
     <>
@@ -224,7 +226,7 @@ function SplitView() {
           </thead>
           <tbody>
             {data.map(({time,can,id,dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8,Source,message}, index) => (
-              <tr key={index} className= 'clickable-row' onClick = {() => handleMessage({Source},{message})}>
+              <tr key={index} className= 'clickable-row' onClick = {() => handleMessage({ECU},{Values})}>
                 <td width='155'>{time}</td>
                 <td width='80'>{can}</td>
                 <td width='85'>{id}</td>
