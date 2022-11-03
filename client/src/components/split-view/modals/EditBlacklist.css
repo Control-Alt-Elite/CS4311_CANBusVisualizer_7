@@ -47,3 +47,10 @@
 .modal-footer{
   background-color:  rgb(52,52,52);
 }
+.saveButton{
+  background-color: rgb(0, 162, 232);
+  
+}
+.tbody, .thead{
+  width: 100%;
+}

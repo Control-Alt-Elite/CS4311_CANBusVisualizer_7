@@ -138,7 +138,7 @@ function EditBlacklist() {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="Warning">Save</Button>
+          <Button className = "saveButton" variant="Warning">Save</Button>
 
         </Modal.Footer>
       </Modal>
