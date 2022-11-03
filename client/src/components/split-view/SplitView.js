@@ -7,7 +7,10 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Table from 'react-bootstrap/Table';
 import MapDisplayer from "./MapDisplayer";
+import ChangeVisibility from "./modals/ChangeVisibility";
 import EditBlacklist from "./modals/EditBlacklist";
+import AssignIcon from "./modals/AssignIcon";
+import RenameNode from "./modals/RenameNode";
 import PacketTable from "./PacketTable";
 import MapNav from "./ribbons/MapRibbon/MapNav";
 
@@ -65,15 +68,18 @@ function SplitView() {
                     </NavDropdown>
 
                     <NavDropdown title="Edit" id="view-dropdown">
-                      <NavDropdown.Item href="#action/Rename">
+                      <RenameNode/>
+                      {/* <NavDropdown.Item href="#action/Rename">
                         Rename Node
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">
+                      </NavDropdown.Item> */}
+                      <AssignIcon/>
+                      {/* <NavDropdown.Item href="#action/3.2">
                         Assign Icon
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.3">
+                      </NavDropdown.Item> */}
+                      <ChangeVisibility/>
+                      {/* <NavDropdown.Item href="#action/3.3">
                         Change Visibility
-                      </NavDropdown.Item>
+                      </NavDropdown.Item> */}
                       <EditBlacklist/>
                       {/* <NavDropdown.Item href="#action/3.4">
                         Modify Off-limits

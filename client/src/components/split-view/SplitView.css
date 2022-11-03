@@ -124,27 +124,19 @@ td{
 */
 
 tr:hover td{
-  background-color: green;
+  background-color: gray;
 }
 
-/* Changes the color of the Header of the modal */
+/* Changes the color of the Header of the modal 
 .modal-header{
   background-color: rgb(255, 202, 44);
 }
-
+*/
 /* Changes the color of the body of the modal */
+/*
 .modal-body {
   background-color:  white;
   border-color: black;
-  /* border-width: 5px; */
+  
 }
-
-/* Changes the color of the Footer of the Modal */
-.modal-footer{
-  background-color:  white;
-}
-
-/*  */
-.modal-content{
-
-}
+*/
