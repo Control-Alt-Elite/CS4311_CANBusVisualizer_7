@@ -17,7 +17,7 @@ it can be viewed on the shell
 
 
 ## Front-End Setup
-1. Open your command line/terminal and navigate to the "Client" folder using the command line.
+1. Open your command line/terminal and navigate to the "client" folder using the command line.
 use the following commands:
 ```
 npm init -y
@@ -36,7 +36,7 @@ npm install body-parser cors dotenv ejs express mongoose multer nodemon socketca
 npx nodemon@latest --version
 ```
 # Usage Instructions
-1. Open two terminals and navigate to the "api" and "Client" folders respectively.
+1. Open two terminals and navigate to the "api" and "client" folders respectively.
 2. Use the following command on both terminals:
 ```
 npm start
@@ -46,7 +46,7 @@ sudo service mongod start
 ```
 
 - Using on the "api" folder will connect to the database
-- Using on the "Client" folder will open the site
+- Using on the "client" folder will open the site
 
 
 **Now everything is all set for normal use.**
