@@ -20,18 +20,18 @@ export default function OpenProject (props) {
     const [buttonText, setButtonText] = useState("Start Traffic");
     const [checked, setChecked] = useState(false);
 
-  function handleClick () {
-      checked ?  setButtonText("Start Traffic") : setButtonText("Stop Traffic");
-      const eventSource = new EventSource(url);
-      eventSource.onmessage = (e) => {
-        console.log(e.data);
-        const parsedData = JSON.parse(e.data);
-        setData((data) => [...data,parsedData])
-      }
+    function handleClick () {
+        checked ?  setButtonText("Start Traffic") : setButtonText("Stop Traffic");
+        const eventSource = new EventSource(url);
+        eventSource.onmessage = (e) => {
+          console.log(e.data);
+          const parsedData = JSON.parse(e.data);
+          setData((data) => [...data,parsedData])
+        }
       return () => {
         eventSource.close(); 
       };
-  }
+    }
 
     return (
       <ToggleButton
@@ -115,7 +115,7 @@ export default function OpenProject (props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map(({time,can,id,dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8,source,message}, index) => (
+                    {data.map(({time,can,id,dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8,decoded}, index) => (
                     <tr key={index}>
                       <td width='170'>{time}</td>
                       <td width='90'>{can}</td>
@@ -128,7 +128,7 @@ export default function OpenProject (props) {
                       <td width='40'>{dt6}</td>
                       <td width='40'>{dt7}</td>
                       <td width='40'>{dt8}</td>
-                      <td>{source}</td>
+                      <td>{decoded}</td>
                     </tr>
                     ))}
                   </tbody>

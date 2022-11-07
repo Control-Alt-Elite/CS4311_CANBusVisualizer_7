@@ -43,9 +43,9 @@ export default function OpenProject (props) {
                     </div>    
                     <br></br>
                     <div>
-                        <button id = "continue" value = "Create" type = "submit" > Continue </button> 
+                        <button className="continue" value = "Create" type = "submit" > Continue </button> 
                             <Link to="/">
-                                <button id = "cancel" value = "Cancel" > Cancel </button>  
+                                <button className = "cancel" value = "Cancel" > Cancel </button>  
                             </Link>
                     </div>
                 </form>

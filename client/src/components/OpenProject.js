@@ -96,9 +96,9 @@ export default function OpenProject (props) {
               <br></br>
               {isShown &&(
               <div className='Buttons'>
-                <button id = "continue"> Confirm </button>
+                <button className= "continue"> Confirm </button>
                   <Link to="/">
-                    <button id = "cancel"> Cancel </button>  
+                    <button className="cancel"> Cancel </button>  
                   </Link>
               </div>)}
             </div>
