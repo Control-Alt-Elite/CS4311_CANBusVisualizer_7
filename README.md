@@ -35,6 +35,10 @@ npm install body-parser cors dotenv ejs express mongoose multer nodemon socketca
 ```
 npx nodemon@latest --version
 ```
+3. Make sure to install python cantools for decoding packets - using pip.
+```
+python3 -m pip install cantools
+```
 ### DataSynchronizer set-up
 In order to use rsync, we must first set it up on the system.
 1. Navigate to /api folder (backend)
@@ -50,19 +54,34 @@ sudo systemctl start rsync.service
 
 We must also enable ssh service for our machines:
 1. run `sudo apt install ssh`
+2. In this same folder, run 
+```
+sudo systemctl enable ssh.service 
+sudo systemctl start ssh.service 
+sudo systemctl enable ssh.socket 
+sudo systemctl start ssh.socket 
+``` 
+2. Check if service is enabled: `systemctl | grep rsync`     
 
 # Usage Instructions
 1. Open two terminals and navigate to the "api" and "Client" folders respectively.
 2. Use the following command on both terminals:
 ```
 npm start
+```
 
 For linux users, use the following command to start the database:
+```
 sudo service mongod start
 ```
 
+
 - Using on the "api" folder will connect to the database
 - Using on the "Client" folder will open the site
+
+To simulate virtual CAN (For testing):
+- run `sudo ./simulation.sh` on base directory
+- on a separate terminal, run `cangen vcan0 -e -L 8 -g 1000 -v`
 
 
 **Now everything is all set for normal use.**

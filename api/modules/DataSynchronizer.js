@@ -4,8 +4,8 @@ var Rsync = require('rsync');
 var rsync = new Rsync()
   .shell('ssh')
   .flags('az')
-  .source('~/Test/')
-  .destination('kali@127.0.1.1:~/Test2/');
+  .source('packets/decoded.pcap')
+  .destination('kali@127.0.1.1:~/Packets/');
 
   // TODO: Update source and destination
  
