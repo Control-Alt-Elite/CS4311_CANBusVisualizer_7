@@ -1,0 +1,113 @@
+.config {
+    background-image: url('../images/backgroundLogo.png') ;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-color: rgb(58, 58, 58);
+    background-position: center;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position-y: 76px;
+    align-items: center;
+    justify-content: center;
+}
+.header {
+    text-align: center;
+}
+.text {
+    color:white;
+    display: inline-block;
+    padding: 0 20px;
+    font-family: Serif;
+	font-size: x-large;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #fffd03;
+    position: relative; top: 4px;
+}
+form{
+    color: white;
+    padding-top: 40px;
+    padding-left: 180px;
+    width: 650px;
+    height: 650px;
+    max-width: 700px;
+    font-style: serif;
+    margin: auto;
+}
+
+#cancel{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 253, 3);
+    border-radius: 5px;
+    position: absolute;
+    top:65%;
+    left: 40%;
+    padding: 5px 20px;
+}
+
+.mb-2{
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    position: static;
+    font-size:large;
+    margin-bottom:40px;
+
+}
+.progressbar{
+	overflow: hidden;
+	width: 350px;
+	height: 35px;
+    border: 2px solid black;
+	border-radius: 5px;
+	background-color: #eee;
+    position: absolute;
+    left: 38%;
+    top: 54%
+      
+
+}
+
+.progressPercent{
+	font-weight: 600;
+	font-family:'Franklin Gothic Medium';
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	color: #eee;
+	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+.sync-button{
+    background-color: hsl(61, 100%, 50%);
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    padding: 5px 20px;
+    position: absolute;
+    top:65%;
+    left: 55%;
+}
+.ip{
+    color: rgb(255, 251, 0);
+    position: absolute;
+    padding: 20px 50px;
+    top:80%;
+    left: 80%;
+}
+.ip-input{
+    top:80%;
+    left: 80%; 
+}
+
+
+  .title-required{
+      color: red;
+  }
+.form-grouprow{
+    width: 150%;
+  
+}
+.textBoxE{
+  background-color: #555;
+  border-radius: 10px;
+
+  
+}

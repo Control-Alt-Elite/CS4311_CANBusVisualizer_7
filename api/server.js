@@ -4,17 +4,15 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const packets = require("./modules/CANUtils");
-const dataSync = require("./modules/DataSynchronizer");
+
 //const decodedFile = require("./modules/DataSaver");
 global.globalProjectName = ''; //To temporarily save project name
 
-
+// Environment sync variable 
+process.env.SYNC = null;
 
 //Sending packets
 app.get('/packets', packets);
-
-// Syncing files via rsync
-app.get('/Sync', dataSync);
 
 //Writing raw packets to file
 //channel.addListener("onMessage", decodedFile.DataSaver());
@@ -81,6 +79,21 @@ app.post('/project/session', async (req, res) => {
   await project.save();
 	res.json(session);
 });
+
+// Sync project files
+//Saving Session to database (Used by ProjectInfoHolder.js)
+app.post('/Sync', async (req, res) => {
+	var sync = {
+		username: req.body.username,
+		password: req.body.password,
+		receiverIp: req.body.receiverIp,
+		senderFilePath: req.body.senderFilePath,
+		receiverFilePath: req.body.receiverFilePath
+	}
+	const dataSync = require("./modules/DataSynchronizer")(sync, req, res);
+	res.json(dataSync);
+});
+
 
 /*
 /** Do not delete, uncomment or modify these functions. **/

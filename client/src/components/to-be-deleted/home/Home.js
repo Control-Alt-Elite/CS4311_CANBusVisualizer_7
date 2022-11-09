@@ -1,7 +1,7 @@
 import React from 'react'
-import Transitions from './Transitions'
+import Transitions from '../../Transitions'
+import devcomlogo from "../images/devcomlogo.png"
 import './Home.css'
-import devcomlogo from "./images/devcomlogo.png"
   
 const Home = () => {
     return (

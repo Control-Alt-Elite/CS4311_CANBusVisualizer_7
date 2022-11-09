@@ -1,5 +1,5 @@
-.container {
-    background-image: url('./images/backgroundLogo.png');
+#app {
+    background-image: url('../../images/backgroundLogo.png');
     background-repeat: no-repeat;
     margin-top: 0%;
     margin-bottom: 0%;

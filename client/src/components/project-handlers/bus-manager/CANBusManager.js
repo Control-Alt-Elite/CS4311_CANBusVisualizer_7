@@ -1,7 +1,7 @@
-import React from 'react'
-import Transitions from './Transitions'
-import './CANBusManager.css'
-import {Link} from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Transitions from '../../Transitions';
+import './CANBusManager.css';
 
 export default function CANBusManager() {
     return (

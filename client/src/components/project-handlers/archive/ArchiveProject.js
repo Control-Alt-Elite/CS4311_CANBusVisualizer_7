@@ -1,7 +1,9 @@
-import './OpenProject.css'
-import Transitions from './Transitions';
-import { Text, StyleSheet } from 'react-native';
-import {Link} from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text } from 'react-native';
+import { Link } from 'react-router-dom';
+import Transitions from '../../Transitions';
+import '../open/OpenProject.css';
 
 const styles = StyleSheet.create({
     baseText: {
@@ -44,9 +46,9 @@ export default function OpenProject (props) {
                     <br></br>
                     <div>
                         <button id = "continue" value = "Create" type = "submit" > Continue </button> 
-                            <Link to="/">
+                            {/* <Link to="/">
                                 <button id = "cancel" value = "Cancel" > Cancel </button>  
-                            </Link>
+                            </Link> */}
                     </div>
                 </form>
             </div>     
