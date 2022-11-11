@@ -5,14 +5,24 @@ const cors = require('cors');
 const app = express();
 const packets = require("./modules/CANUtils");
 const dataSync = require("./modules/DataSynchronizer");
-//const decodedFile = require("./modules/DataSaver");
-global.globalProjectName = ''; //To temporarily save project name
+const logs = require("./modules/Player");
+global.globalProjectName = ''; //To temporarily save project name 
 
 //Sending packets
 app.get('/packets', packets);
 
 // Syncing files via rsync
 app.get('/Sync', dataSync);
+
+//Playing packets
+const replay = function (req, res, next) {
+	logs.Player();
+	next()
+  }
+app.use(replay);
+app.get('/player', (req, res) => {
+	res.send('Playing packets!')
+});
 
 //Writing raw packets to file
 //channel.addListener("onMessage", decodedFile.DataSaver());

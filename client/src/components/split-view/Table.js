@@ -4,7 +4,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import React, { useState, useMemo } from 'react';
 import { useTable, useGlobalFilter, useSortBy } from 'react-table'
 import Table from 'react-bootstrap/Table';
-import {COLUMNS} from './Columns'
+import {COLUMNS} from './Columns';
 import "./Table.css"
 import { GlobalFilter } from './GlobalFilter';
 const url = 'http://localhost:3001/packets';
@@ -12,39 +12,72 @@ const eventSource = new EventSource(url);
 
 export default function CANTable() {    
 
-    const [message, setMessage] = useState('');
-    const [info, setInfo] = useState([]);
+  const [message, setMessage] = useState([]);
+  const [info, setInfo] = useState([]);
 
-    const handleMessage = (ecu, values) => {
-        const parsedMessage = {
-            ECU: ecu,
-            Values: values
-          };
-        setMessage(JSON.stringify(parsedMessage, null,2));
-    };
-
-    function handlePlayTraffic () {
-        eventSource.onmessage = (e) => {
-          //console.log(e.data);
-          const parsedData = JSON.parse(e.data);
-          setInfo((data) => [...data,parsedData]);
-        }
-        return () => {
-          eventSource.close(); 
-        };
+  const handleMessage = (ecu, values) => {
+    setMessage([]);
+    var signal='';
+    var valueUnit = null;
+    var value='';
+    var unit='';
+    var signalValue = null;
+    var datos = values.replace('{','').replace('}','').split(", ");
+    for(var i in datos){
+      signalValue = datos[i].split(": ");
+      signal = signalValue[0];
+      valueUnit = signalValue[1].split(" ");
+      value = valueUnit[0];
+      unit = valueUnit[1];
+      
+      const parsedMessage = {
+      Signal: signal,
+      Value: value,
+      Unit: unit,
       };
     
-      function handleStopTraffic () {
-          eventSource.close(); 
-          console.log("Connection closed");
-          return () => {
-            eventSource.close(); 
-          };
-      };
+      setMessage((infodata) => [...infodata, parsedMessage]);
+    };
+  };
 
-    const data = useMemo(() => [...info], [info]);
-    const columns = useMemo(() => COLUMNS, []);
+  function handlePlayTraffic () {
+    eventSource.onmessage = (e) => {
+    //console.log(e.data);
+    const parsedData = JSON.parse(e.data);
+    //console.log(parsedData);
+    setInfo((data) => [...data,parsedData]);
+    }
+    return () => {
+      eventSource.close(); 
+    };
+  };
+    
+  function handleStopTraffic () {
+    eventSource.close(); 
+    console.log("Connection closed");
+    return () => {
+    eventSource.close(); 
+    };
+  };
 
+  const data = useMemo(() => [...info], [info]);
+  const columns = useMemo(() => COLUMNS, []);
+
+  const updateMyData = (rowIndex, columnId, value) => {
+    // We also turn on the flag to not reset the page
+    setInfo(old =>
+      old.map((row, index) => {
+        if (index === rowIndex) {
+          return {
+            ...old[rowIndex],
+            [columnId]: value,
+          }
+        }
+        return row
+      })
+    )
+  }
+    
     // State and functions returned from useTable to build the UI
     const {
       getTableProps,
@@ -57,12 +90,13 @@ export default function CANTable() {
     } = useTable({
         columns,
         data,
+        updateMyData,
         initialState: {
             hiddenColumns: ["values"],
         },
     }, useGlobalFilter, useSortBy);
 
-    // Render the UI for your table
+    // Render the UI for the table
     return (
         <>
           {/* TABLE MENU */}
@@ -125,7 +159,7 @@ export default function CANTable() {
           </Navbar>
         </div>
           {/* TABLE*/}
-          <Table striped bordered hover responsive variant = "dark" {...getTableProps()}>
+          <Table className="rawTable" striped bordered hover responsive variant = "dark" {...getTableProps()}>
               <thead>
               {headerGroups.map(headerGroup => (
                   <tr {...headerGroup.getHeaderGroupProps()}>
@@ -142,7 +176,7 @@ export default function CANTable() {
               {rows.map((row, i) => {
                   prepareRow(row)
                   return (
-                  <tr key={i} onClick = {() => handleMessage(row.original.ecu, row.original.values)} {...row.getRowProps()}>
+                  <tr key={i} className="rawrow" onClick = {() => handleMessage(row.original.ecu, row.original.values)} {...row.getRowProps()}>
                       <td width='40'>{i+1}</td>
                       {row.cells.map(cell => {
                       return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
@@ -152,7 +186,24 @@ export default function CANTable() {
               })}
               </tbody>
           </Table>
-      { message && <div className="alert alert-primary" role="alert"><pre><p>{message}</p></pre></div> }
+          <Table className="decodedTable" striped bordered hover responsive variant = "dark">
+            <thead>
+              <tr>
+                <th>Signal</th>
+                <th>Values</th>
+                <th>Unit</th>
+              </tr>
+            </thead>
+            <tbody>
+            {message.map(({Signal, Value, Unit}, idx) => (
+              <tr key={idx} className= 'signals'>
+                <td>{Signal}</td>
+                <td>{Value}</td>
+                <td>{Unit}</td>
+              </tr>
+              ))}
+            </tbody>
+          </Table>
     </>
     )
   }

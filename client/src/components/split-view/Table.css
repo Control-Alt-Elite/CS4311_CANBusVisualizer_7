@@ -22,64 +22,64 @@ tbody {
 }
 
 /* Table Header General Settings*/
-th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12), th:nth-child(13){
-    background-color: rgb(255, 253, 3);
-    color: black;
+.rawTable th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12), th:nth-child(13){
+    background-color: rgb(40, 77, 241);
+    color: whitesmoke;
     font-size: 14px;
 }
   
 /* Customized Header Settings */
-th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12), th:nth-child(13){
+.rawTable th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12), th:nth-child(13){
     text-align: center;
     width: 70px;
 }
-th:nth-child(2){
+.rawTable th:nth-child(2){
     width: 136px;
 }
 
-th:nth-child(3) {
+.rawTable th:nth-child(3) {
     width: 76px;
 }
-th:nth-child(4){
+.rawTable th:nth-child(4){
     width: 76px;
 }
 
-th:nth-child(1){
+.rawTable th:nth-child(1){
     width: 40px;
 }
   
 /* Default Row Settings */
-td:nth-child(5), td:nth-child(6), td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-child(11),td:nth-child(12){
+.rawTable td:nth-child(5), td:nth-child(6), td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-child(11),td:nth-child(12){
     text-align: center;
     width: 70px;
     color: white;
     font-size: 12px;
 }
-td:nth-child(2){
+.rawTable td:nth-child(2){
     width: 136px;
     color: white;
     font-size: 12px;
 }
 
-td:nth-child(3) {
+.rawTable td:nth-child(3) {
     text-align: center;
     width: 76px;
     color: white;
     font-size: 12px;
 }
-td:nth-child(4){
+.rawTable td:nth-child(4){
     width: 76px;
     color: white;
     font-size: 12px;
 }
 
-td:nth-child(1){
+.rawTable td:nth-child(1){
     width: 40px;
     color: white;
     font-size: 12px;
 }
 
-td:nth-child(13){
+.rawTable td:nth-child(13){
     text-align: center;
     width: 55px;
     color: white;
@@ -87,11 +87,71 @@ td:nth-child(13){
 }
   
 /* Hover color. Only affects the entire header right now. */
-.table-hover, thead, tr:hover th{
-    background-color: rgb(255, 202, 44);
+.table-hover,table.rawTable tr:hover th{
+  background-color: #262546;
 }
 
-/* Alert Box */  
+.edit{
+    text-align: center;
+    width: 30px;
+    background-color: transparent;
+    color: white;
+    font-size: 12px;
+    border-color: transparent;
+}
+
+/* Decoded Message Table */
+table.decodedTable tbody {
+    display:block;
+    height: 230px;
+    max-height: 230px;
+    overflow-y:auto;
+    background-color: #212529; /*#343a40*/
+}
+
+table.decodedTable th:nth-child(1), th:nth-child(2), th:nth-child(3){
+    background-color: rgb(40, 77, 241);
+    color: whitesmoke;
+    font-size: 14px;
+}
+
+table.decodedTable th:nth-child(1){
+    text-align: center;
+    width: 230px;
+}
+
+table.decodedTable th:nth-child(2) {
+    width: 640px;
+}
+table.decodedTable th:nth-child(3){
+    width: 85px;
+}
+
+/* Default Row Settings */
+table.decodedTable td:nth-child(1){
+    text-align: center;
+    width: 230px;
+    color: white;
+    font-size: 12px;
+}
+table.decodedTable td:nth-child(2){
+    width: 640px;
+    color: white;
+    font-size: 12px;
+}
+table.decodedTable td:nth-child(3) {
+    text-align: left;
+    width: 70px;
+    color: white;
+    font-size: 12px;
+}
+
+/* Hover color */
+.table-hover,table.decodedTable tr:hover th{
+    background-color: #262546;
+  }
+
+/* Alert Box 
 .alert{
     color: white;
     background-color: rgb(109, 109, 109);
@@ -100,3 +160,4 @@ td:nth-child(13){
     overflow-y: auto;
     max-height: 230px;
 }
+*/
