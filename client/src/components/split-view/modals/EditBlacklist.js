@@ -89,7 +89,7 @@ function EditBlacklist() {
         <tbody>
           <tr>
             <td>200</td>
-            <td>Air Conditioning</td>
+            <td>Engine</td>
             <td>Desc</td>
             
           </tr>
@@ -100,20 +100,20 @@ function EditBlacklist() {
             
           </tr>
           <tr>
-            <td>200</td>
+            <td>24</td>
             <td>Air Conditioning</td>
             <td>Desc</td>
             
           </tr>
           <tr>
-            <td>58</td>
-            <td>Transmission</td>
+            <td>71</td>
+            <td>Battery</td>
             <td>Desc</td>
             
           </tr>
           <tr>
-            <td>200</td>
-            <td>Air Conditioning</td>
+            <td>193</td>
+            <td>Suspension</td>
             <td>Desc</td>
             
           </tr>
