@@ -2,18 +2,21 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import React, { useState, useMemo } from 'react';
-import { useTable, useGlobalFilter, useSortBy } from 'react-table'
+import { useTable, useGlobalFilter, useSortBy } from 'react-table';
 import Table from 'react-bootstrap/Table';
 import {COLUMNS} from './Columns';
 import "./Table.css"
 import { GlobalFilter } from './GlobalFilter';
-const url = 'http://localhost:3001/packets';
-const eventSource = new EventSource(url);
+const url1 = 'http://localhost:3001/packets';
+const url2 = 'http://localhost:3001/logs';
+const eventSource = new EventSource(url1);  //BUG: This event start when page is loaded, then two candump child processes are created and running at the same time
 
-export default function CANTable() {    
 
+export default function CANTable() {    // The next function causes 4 renders, needs performance improvement
+  
   const [message, setMessage] = useState([]);
   const [info, setInfo] = useState([]);
+  //const [listening, setListening] = useState(true);
 
   const handleMessage = (ecu, values) => {
     setMessage([]);
@@ -40,25 +43,68 @@ export default function CANTable() {
     };
   };
 
+  async function handleSavePackets () {
+    console.log("Saving packets...");
+    const fileData = JSON.stringify(info);
+    const blob = new Blob([fileData], {type:"text/plain"});
+    try {
+    const options = {
+      types: [
+        {
+          accept: {
+            //None
+          },
+        },
+      ],
+    };
+    const handle = await window.showSaveFilePicker(options);
+    const writable = await handle.createWritable();
+    await writable.write(blob);
+    await writable.close();
+    return handle;
+    } catch (err) {
+      console.error(err.name, err.message)
+    }
+  }
+
   function handlePlayTraffic () {
+    //Reset table values
+    setInfo([]);
+    setMessage([]);
     eventSource.onmessage = (e) => {
-    //console.log(e.data);
-    const parsedData = JSON.parse(e.data);
-    //console.log(parsedData);
-    setInfo((data) => [...data,parsedData]);
+      const parsedData = JSON.parse(e.data);
+      setInfo((data) => [...data,parsedData]);
     }
     return () => {
       eventSource.close(); 
     };
   };
-    
+  
   function handleStopTraffic () {
     eventSource.close(); 
     console.log("Connection closed");
     return () => {
-    eventSource.close(); 
+      eventSource.close(); 
     };
   };
+
+  function handleReplayPackets(){
+    //Reset table values
+    setInfo([]);
+    setMessage([]);
+    const eventSource2 = new EventSource(url2);
+    eventSource2.addEventListener('message', function(e) {
+      const parsedData = JSON.parse(e.data);
+      setInfo((data) => [...data,parsedData]);
+    });
+    eventSource2.addEventListener('close', function(e) {
+      eventSource2.close();
+      console.log("canplayer connection closed");
+    });
+    return () => {
+      eventSource2.close(); 
+    };
+  }
 
   const data = useMemo(() => [...info], [info]);
   const columns = useMemo(() => COLUMNS, []);
@@ -134,10 +180,10 @@ export default function CANTable() {
                       <NavDropdown.Item href="#Modal" data-toggle="Modal">
                         Edit Packets
                       </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">
+                      <NavDropdown.Item onClick={handleReplayPackets}>
                         Replay Packets
                       </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.3">
+                      <NavDropdown.Item onClick={handleSavePackets}>
                         Save Packets
                       </NavDropdown.Item>
                       <NavDropdown.Item href="#action/3.4">

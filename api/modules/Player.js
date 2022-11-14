@@ -1,6 +1,6 @@
 var spawn = require('child_process').spawn;
 
-function Player() {
+const Player = () => {
     //We can use candump filters e.g. 'candump vcan0,9803FEFE:1ffffff' (extended version 29-bits) or 201:7ff (11-bit)
     var child = spawn('canplayer',['-I log-files/candump.log vcan0=vcan0 -v'], {shell: true, detached: true});
     child.unref();
@@ -12,14 +12,21 @@ function Player() {
     child.stderr.on('data', function (data) {
         console.error(`stderr: ${data}`);
     });
-    
-    child.on('exit', (code) => {
-        console.log(`child process exited with code ${code}`);
+
+    child.on('exit', () => {
+        console.log(`Done.`);
     });
-    
+
     child.on('close', (code) => {
-        console.log(`child process closed with code ${code}`);
+        console.log(`canplayer process closed with code ${code} \n`);
     });
 }
 
-module.exports = {Player};
+//Run Player and send answer to parent
+process.on('message', (message) => {
+    if (message == 'START') {
+      Player();
+      let message = "Playing Packets...";
+      process.send(message);
+    } 
+});

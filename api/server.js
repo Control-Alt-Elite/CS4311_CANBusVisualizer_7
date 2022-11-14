@@ -3,7 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+const router = express.Router();
 const packets = require("./modules/CANUtils");
+const logfile = require("./modules/DumpPlayPckt")
 const dataSync = require("./modules/DataSynchronizer");
 const logs = require("./modules/Player");
 global.globalProjectName = ''; //To temporarily save project name 
@@ -14,15 +16,9 @@ app.get('/packets', packets);
 // Syncing files via rsync
 app.get('/Sync', dataSync);
 
-//Playing packets
-const replay = function (req, res, next) {
-	logs.Player();
-	next()
-  }
-app.use(replay);
-app.get('/player', (req, res) => {
-	res.send('Playing packets!')
-});
+//Listen for replied packets
+app.get('/logs', logfile);
+
 
 //Writing raw packets to file
 //channel.addListener("onMessage", decodedFile.DataSaver());
