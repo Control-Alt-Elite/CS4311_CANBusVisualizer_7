@@ -38,7 +38,7 @@ export default function ProjectInfoHolder (props) {
             canConnectorID: canConnectorID, vehicleID: vehicleID, baudRate: baudRate, dbcFileName: dbcFileName, blacklistFileName: blacklistFileName};
         axios.post('http://localhost:3001/project/session', data)
             .then((response) => {
-            window.location.replace('/Sync')
+            window.location.replace('/SplitView')
         })
     };
     

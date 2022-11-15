@@ -7,10 +7,10 @@ import Table from 'react-bootstrap/Table';
 import {COLUMNS} from './Columns';
 import "./Table.css"
 import { GlobalFilter } from './GlobalFilter';
+import Editor from "./modals/Editor";
 const url1 = 'http://localhost:3001/packets';
 const url2 = 'http://localhost:3001/logs';
 const eventSource = new EventSource(url1);  //BUG: This event start when page is loaded, then two candump child processes are created and running at the same time
-
 
 export default function CANTable() {    // The next function causes 4 renders, needs performance improvement
   
@@ -191,12 +191,15 @@ export default function CANTable() {    // The next function causes 4 renders, n
                       </NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Play Traffic">
-                    <NavDropdown.Item onClick = {handlePlayTraffic}>
-                      Start
-                    </NavDropdown.Item>
-                    <NavDropdown.Item onClick = {handleStopTraffic}>
-                      Stop
-                    </NavDropdown.Item>
+                      <NavDropdown.Item onClick = {handlePlayTraffic}>
+                        Start
+                      </NavDropdown.Item>
+                      <NavDropdown.Item onClick = {handleStopTraffic}>
+                        Stop
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                    <NavDropdown title="Analyst Tools (Beta)">
+                      <Editor/>                  
                     </NavDropdown>
                     <GlobalFilter globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter}/> 
                   </Nav>

@@ -2,7 +2,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from 'react-bootstrap/Button';
-import {Modal} from "react-bootstrap";
 import MapDisplayer from "./split-view/MapDisplayer";
 import { ReactDiagram } from "gojs-react";
 import CANTable from "./split-view/Table"
@@ -15,10 +14,6 @@ import RenameNode from "./split-view/modals/RenameNode";
 <MapDisplayer />;
 
 function SplitView() {
-  
-  const handleClose = () => {
-    // setShow(true);
-  };
 
   return (
     <>
@@ -105,26 +100,6 @@ function SplitView() {
         </div>
       </div>
     </div>
-    <Modal
-        show = {false}
-        onHide={handleClose}
-        backdrop="static"
-        className = "modal-box"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title> Edit Packets </Modal.Title>
-          </Modal.Header>
- 
-          <Modal.Body>
-            Packet editing
-          </Modal.Body>
- 
-          <Modal.Footer>
-            <button variant = "dark" onClick = {handleClose}>
-              Save
-            </button>         
-          </Modal.Footer>
-      </Modal>
     </>
   );
 }
