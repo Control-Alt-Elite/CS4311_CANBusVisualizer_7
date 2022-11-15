@@ -45,8 +45,11 @@ export default function CANTable() {    // The next function causes 4 renders, n
 
   async function handleSavePackets () {
     console.log("Saving packets...");
-    const fileData = JSON.stringify(info);
-    const blob = new Blob([fileData], {type:"text/plain"});
+    var packet = ''
+    info.map((x,y)=>{
+      packet+=x.time+" "+x.can+" "+x.id+"#"+x.dt1+x.dt2+x.dt3+x.dt4+x.dt5+x.dt6+x.dt7+x.dt8+"\n"
+    })
+    const blob = new Blob([packet], {type:"text/plain"});
     try {
     const options = {
       types: [
