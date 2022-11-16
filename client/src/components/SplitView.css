@@ -39,3 +39,9 @@
 .modal-footer{
     background-color:  white;
   }
+
+/* Button controls */
+.btn-primary-outline {
+  background-color: transparent;
+  border-color: #ccc;
+}

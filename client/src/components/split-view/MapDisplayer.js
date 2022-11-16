@@ -6,15 +6,9 @@ function MapDisplayer() {
   const $ = go.GraphObject.make; // defines demplate for map
 
   const diagram = $(go.Diagram, { //Setting params for methods that will be used in the map
-    
-
     "undoManager.isEnabled": true, // must be set to allow for model change listening
-
-    
     "linkingTool.direction": go.LinkingTool.Either, //not sure what this does yet
-
-    "clickCreatingTool.archetypeNodeData": {
-      //Allows double clicking to create node
+    "clickCreatingTool.archetypeNodeData": { //Allows double clicking to create node 
       text: "Node",
       color: "#CDCDCD",
     },
@@ -30,78 +24,8 @@ function MapDisplayer() {
     }),
   });
 
-  //USEFUL BUT UNNECESSARY, does not break code
-  // when the document is modified, add a "*" to the title and enable the "Save" button
-  diagram.addDiagramListener("Modified", (e) => {
-    var button = document.getElementById("saveModel");
-    if (button) button.disabled = !diagram.isModified;
-    var idx = document.title.indexOf("*");
-    if (diagram.isModified) {
-      if (idx < 0) document.title += "*";
-    } else {
-      if (idx >= 0) document.title = document.title.slice(0, idx);
-    }
-  });
-
-
-  // define a simple Node template ORIGINAL
-  diagram.nodeTemplate = $(
-    go.Node, "Auto", // the Shape will go around the TextBlock
-    new go.Binding("location", "location", go.Point.parse).makeTwoWay( go.Point.stringify),
-    $( go.Shape, "RoundedRectangle",
-      { name: "SHAPE", fill: "#CDCDCD", strokeWidth: 0, fromLinkable: true,},
-      new go.Binding("fill", "color") // Shape.fill is bound to Node.data.color
-    ),
-    $(go.TextBlock,
-      { margin: 8, editable: true }, // some room around the text
-      new go.Binding("text").makeTwoWay()
-    )
-  );
-  //NEW NODE SPECIFICATIONS
-  diagram.nodeTemplateMap.add( "Consumer",
-    $(go.Node,"Spot", {
-        locationSpot: go.Spot.Center,
-        locationObjectName: "BODY",
-        selectionObjectName: "BODY",
-      },
-      new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
-      $(go.Picture, "./images/pc.png", {
-        name: "BODY",
-        width: 50,
-        height: 40,
-        margin: 2,
-        portId: "",
-        fromLinkable: true,
-        cursor: "pointer",
-        fromSpot: go.Spot.TopBottomSides,
-        toSpot: go.Spot.TopBottomSides,
-      }),
-      $(go.TextBlock, {
-          // alignment: go.Spot.Right,
-          // alignmentFocus: go.Spot.Left,
-          editable: true,
-        },
-        new go.Binding("text").makeTwoWay()
-      )
-    )
-  );
-
-  //HANDLES ALL LINKING
-  diagram.linkTemplate = $(
-    BarLink, // subclass defined below
-    {
-      routing: go.Link.Orthogonal,
-      relinkableFrom: true,
-      relinkableTo: true,
-      toPortChanged: (link, oldport, newport) => {
-        if (newport instanceof go.Shape) link.path.stroke = newport.fill;
-      },
-    },
-    $(go.Shape, { strokeWidth: 2 })
-  );
-
-  //BUS LINE
-  diagram.nodeTemplateMap.add("HBar",
+    //BUS LINE
+    diagram.nodeTemplateMap.add("HBar",
     $(go.Node, "Spot",
       new go.Binding("location", "location", go.Point.parse).makeTwoWay(
         go.Point.stringify
@@ -158,7 +82,138 @@ function MapDisplayer() {
       new go.Binding("text").makeTwoWay()
       )
     )
+    );
+    
+    // define a simple Node template ORIGINAL
+    diagram.nodeTemplate = $(
+      go.Node, "Auto", // the Shape will go around the TextBlock
+      new go.Binding("location", "location", go.Point.parse).makeTwoWay( go.Point.stringify),
+      $( go.Shape, "RoundedRectangle",
+        { name: "SHAPE", fill: "#CDCDCD", strokeWidth: 0, fromLinkable: true,},
+        new go.Binding("fill", "color") // Shape.fill is bound to Node.data.color
+      ),
+      $(go.TextBlock,
+        { margin: 8, editable: true }, // some room around the text
+        new go.Binding("text").makeTwoWay()
+      )
+    );
+    
+  // //NEW NODE SPECIFICATIONS
+  // diagram.nodeTemplateMap.add( "Consumer",
+  // $(go.Node,"Spot", {
+  //     locationSpot: go.Spot.Center,
+  //     locationObjectName: "BODY",
+  //     selectionObjectName: "BODY",
+  //   },
+  //   new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
+  //   $(go.Picture, "./images/pc.png", {
+  //     name: "BODY",
+  //     width: 50,
+  //     height: 40,
+  //     margin: 2,
+  //     portId: "",
+  //     fromLinkable: true,
+  //     cursor: "pointer",
+  //     fromSpot: go.Spot.TopBottomSides,
+  //     toSpot: go.Spot.TopBottomSides,
+  //   }),
+  //   $(go.TextBlock, {
+  //       // alignment: go.Spot.Right,
+  //       // alignmentFocus: go.Spot.Left,
+  //       editable: true,
+  //     },
+  //     new go.Binding("text").makeTwoWay()
+  //   )
+  // )
+  // );
+  
+  //HANDLES ALL LINKING
+  diagram.linkTemplate = $(
+    BarLink, // subclass defined below
+    {
+      routing: go.Link.Orthogonal,
+      relinkableFrom: true,
+      relinkableTo: true,
+      toPortChanged: (link, oldport, newport) => {
+        if (newport instanceof go.Shape) link.path.stroke = newport.fill;
+      },
+    },
+    $(go.Shape, { strokeWidth: 2 })
   );
+
+  //DEFINE NODES AND LINKS
+  diagram.model = new go.GraphLinksModel(//Should use JSON
+    [
+      {key: 0,text: "",category: "HBar",location: "100 100",size: "500 4",fill: "#C4C4C4",},
+      {key: 1,text: "Suspension",category: "Generator",location: "250 -50"},
+      {key: 2,text: "ABS", location: "150 10" },
+      {key: 3,text: "Engine", category: "Generator", location: "500 30" },
+      {key: 5,text: "Air Conditioner",category: "Generator",location: "400 260"},
+      {key: 6,text: "Window", category: "Generator", location: "200 250" },
+      {key: 7,text: "Battery", category: "Generator", location: "310 180" },
+      {key: 8,text: "Outside Mirror",category: "Generator",location: "380 -40"},
+    ],
+    //Should also use JSON
+    [
+      {"from":1,"to":0},
+      {"from":2,"to":0},
+      {"from":3,"to":0},
+      {"from":4,"to":0},
+      {"from":5,"to":0},
+      {"from":6,"to":0},
+      {"from":7,"to":0},
+      {"from":8,"to":0},      
+      {"from":1,"to":2, "fill": "#C4C4C4"},
+    ]
+  );
+  document.querySelector('[id="exportDiagram"]').addEventListener("click", makeBlob);
+  
+  // USEFUL BUT UNNECESSARY, does not break code
+  // when the document is modified, add a "*" to the title and enable the "Save" button
+  diagram.addDiagramListener("Modified", (e) => {
+    var button = document.getElementById("saveModel");
+    if (button) button.disabled = !diagram.isModified;
+    var idx = document.title.indexOf("*");
+    if (diagram.isModified) {
+      if (idx < 0) document.title += "*";
+    } else {
+      if (idx >= 0) document.title = document.title.slice(0, idx);
+    }
+  });
+  
+  // Generate data for Network Diagram
+  function myCallback(blob) {
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let currentDate = `${day}-${month}-${year}`;
+    var url = window.URL.createObjectURL(blob);
+    var filename = currentDate+"-diagram";
+    var a = document.createElement("a");
+    a.style = "display: none";
+    a.href = url;
+    a.download = filename;
+  
+    // IE 11
+    if (window.navigator.msSaveBlob !== undefined) {
+      window.navigator.msSaveBlob(blob, filename);
+      return;
+    }
+  
+    document.body.appendChild(a);
+    requestAnimationFrame(() => {
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    });
+  }
+  // Create Network Diagram
+  function makeBlob() {
+    var blob = diagram.makeImageData({ background: "", type: "image/png", returnType: "blob", callback: myCallback });
+  }
+  window.addEventListener('DOMContentLoaded', MapDisplayer);
+
 
   //   load();
 
@@ -189,6 +244,9 @@ function MapDisplayer() {
 
   return diagram;
 }
+
+
+
 export default MapDisplayer;
 
 // A custom Link class that routes directly to the closest horizontal point of an "HBar" node.
