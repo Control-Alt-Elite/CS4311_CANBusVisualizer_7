@@ -3,8 +3,7 @@ import "./MapDisplayer.css";
 
 // add gojs stuff here
 function MapDisplayer() {
-  const $ = go.GraphObject.make; // defines demplate for map
-
+  const $ = go.GraphObject.make; // defines template for map
   const diagram = $(go.Diagram, { //Setting params for methods that will be used in the map
     "undoManager.isEnabled": true, // must be set to allow for model change listening
     "linkingTool.direction": go.LinkingTool.Either, //not sure what this does yet
@@ -166,6 +165,7 @@ function MapDisplayer() {
       {"from":1,"to":2, "fill": "#C4C4C4"},
     ]
   );
+  //Locates the button that will handle exporting 
   document.querySelector('[id="exportDiagram"]').addEventListener("click", makeBlob);
   
   // USEFUL BUT UNNECESSARY, does not break code
