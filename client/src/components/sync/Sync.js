@@ -37,7 +37,7 @@ export default function Sync() {
       await axios.post('http://localhost:3001/Sync', data)
           .then((response) => {
             setPostResponse(response);
-            console.log(response);
+            console.log(response.data);
         }).finally (() => {
           setPostResponse('Unable to sync');
         }

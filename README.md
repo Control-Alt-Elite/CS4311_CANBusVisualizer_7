@@ -63,6 +63,9 @@ sudo systemctl start ssh.socket
 ``` 
 2. Check if service is enabled: `systemctl | grep rsync`     
 
+For password authentication between ssh, we will be using sshpass. 
+1. ```$ sudo apt install sshpass```
+
 # Usage Instructions
 1. Open two terminals and navigate to the "api" and "Client" folders respectively.
 2. Use the following command on both terminals:
