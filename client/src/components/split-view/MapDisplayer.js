@@ -166,10 +166,9 @@ function MapDisplayer() {
   //Locates the button that will handle exporting node attributes
   document.querySelector('[id="SaveButton"]').addEventListener("click", save);
   // Locates the button that will handle exporting network map
-  document.querySelector('[id="LoadButton"]').addEventListener("click", load);
   document.querySelector('[id="exportDiagram"]').addEventListener("click", makeBlob);
-  
   //Locates the button that will handle importing node attributes
+//   document.querySelector('[id="LoadButton"]').addEventListener("click", load);
  
 
   // USEFUL BUT UNNECESSARY, does not break code
