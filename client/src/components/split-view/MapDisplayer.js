@@ -4,10 +4,12 @@ import "./MapDisplayer.css";
 // add gojs stuff here
 function MapDisplayer() {
   const $ = go.GraphObject.make; // defines template for map
-  const diagram = $(go.Diagram, { //Setting params for methods that will be used in the map
+  const diagram = $(go.Diagram, {
+    //Setting params for methods that will be used in the map
     "undoManager.isEnabled": true, // must be set to allow for model change listening
     "linkingTool.direction": go.LinkingTool.Either, //not sure what this does yet
-    "clickCreatingTool.archetypeNodeData": { //Allows double clicking to create node 
+    "clickCreatingTool.archetypeNodeData": {
+      //Allows double clicking to create node
       text: "Node",
       color: "#CDCDCD",
     },
@@ -23,9 +25,12 @@ function MapDisplayer() {
     }),
   });
 
-    //BUS LINE
-    diagram.nodeTemplateMap.add("HBar",
-    $(go.Node, "Spot",
+  //BUS LINE
+  diagram.nodeTemplateMap.add(
+    "HBar",
+    $(
+      go.Node,
+      "Spot",
       new go.Binding("location", "location", go.Point.parse).makeTwoWay(
         go.Point.stringify
       ),
@@ -56,47 +61,61 @@ function MapDisplayer() {
           })
         ),
       },
-      $(go.Shape, "Rectangle",{
-        name: "SHAPE",
-        fill: "black",
-        stroke: null,
-        strokeWidth: 0, //selection rectangle
-        width: 4,
-        height: 4,
-        //ONLY VISUAL REPRESENTATIONS, THE NODES WILL NOT ALIGN IN THE CENTER IF YOU DO NOT DRAG THE BUS 'HANDLE'
-        minSize: new go.Size(100, 4), //rectangle min sizes (horizontal, vertical)
-        maxSize: new go.Size(Infinity, 4), //rectangle max sizes (horizontal, vertical)
-      }, 
-      new go.Binding("desiredSize", "size", go.Size.parse).makeTwoWay(go.Size.stringify),
-      new go.Binding("fill"),{ 
-          portId: "", 
-          toLinkable: true 
+      $(
+        go.Shape,
+        "Rectangle",
+        {
+          name: "SHAPE",
+          fill: "black",
+          stroke: null,
+          strokeWidth: 0, //selection rectangle
+          width: 4,
+          height: 4,
+          //ONLY VISUAL REPRESENTATIONS, THE NODES WILL NOT ALIGN IN THE CENTER IF YOU DO NOT DRAG THE BUS 'HANDLE'
+          minSize: new go.Size(100, 4), //rectangle min sizes (horizontal, vertical)
+          maxSize: new go.Size(Infinity, 4), //rectangle max sizes (horizontal, vertical)
+        },
+        new go.Binding("desiredSize", "size", go.Size.parse).makeTwoWay(
+          go.Size.stringify
+        ),
+        new go.Binding("fill"),
+        {
+          portId: "",
+          toLinkable: true,
         }
       ),
-      $(go.TextBlock,{
+      $(
+        go.TextBlock,
+        {
           alignment: go.Spot.Right,
           alignmentFocus: go.Spot.Left,
           editable: true,
         },
-      new go.Binding("text").makeTwoWay()
-      )
-    )
-    );
-    
-    // define a simple Node template ORIGINAL
-    diagram.nodeTemplate = $(
-      go.Node, "Auto", // the Shape will go around the TextBlock
-      new go.Binding("location", "location", go.Point.parse).makeTwoWay( go.Point.stringify),
-      $( go.Shape, "RoundedRectangle",
-        { name: "SHAPE", fill: "#CDCDCD", strokeWidth: 0, fromLinkable: true,},
-        new go.Binding("fill", "color") // Shape.fill is bound to Node.data.color
-      ),
-      $(go.TextBlock,
-        { margin: 8, editable: true }, // some room around the text
         new go.Binding("text").makeTwoWay()
       )
-    );
-    
+    )
+  );
+
+  // define a simple Node template ORIGINAL
+  diagram.nodeTemplate = $(
+    go.Node,
+    "Auto", // the Shape will go around the TextBlock
+    new go.Binding("location", "location", go.Point.parse).makeTwoWay(
+      go.Point.stringify
+    ),
+    $(
+      go.Shape,
+      "RoundedRectangle",
+      { name: "SHAPE", fill: "#CDCDCD", strokeWidth: 0, fromLinkable: true },
+      new go.Binding("fill", "color") // Shape.fill is bound to Node.data.color
+    ),
+    $(
+      go.TextBlock,
+      { margin: 8, editable: true }, // some room around the text
+      new go.Binding("text").makeTwoWay()
+    )
+  );
+
   // //NEW NODE SPECIFICATIONS
   // diagram.nodeTemplateMap.add( "Consumer",
   // $(go.Node,"Spot", {
@@ -125,7 +144,7 @@ function MapDisplayer() {
   //   )
   // )
   // );
-  
+
   //HANDLES ALL LINKING
   diagram.linkTemplate = $(
     BarLink, // subclass defined below
@@ -141,37 +160,61 @@ function MapDisplayer() {
   );
 
   //DEFINE NODES AND LINKS
-  diagram.model = new go.GraphLinksModel(//Should use JSON
+  diagram.model = new go.GraphLinksModel( //Should use JSON
     [
-      {key: 0,text: "",category: "HBar",location: "100 100",size: "500 4",fill: "#C4C4C4",},
-      {key: 1,text: "Suspension",category: "Generator",location: "250 -50"},
-      {key: 2,text: "ABS", location: "150 10" },
-      {key: 3,text: "Engine", category: "Generator", location: "500 30" },
-      {key: 5,text: "Air Conditioner",category: "Generator",location: "400 260"},
-      {key: 6,text: "Window", category: "Generator", location: "200 250" },
-      {key: 7,text: "Battery", category: "Generator", location: "310 180" },
-      {key: 8,text: "Outside Mirror",category: "Generator",location: "380 -40"},
+      {
+        key: 0,
+        text: "",
+        category: "HBar",
+        location: "100 100",
+        size: "500 4",
+        fill: "#C4C4C4",
+      },
+      {
+        key: 1,
+        text: "Suspension",
+        category: "Generator",
+        location: "250 -50",
+      },
+      { key: 2, text: "ABS", location: "150 10" },
+      { key: 3, text: "Engine", category: "Generator", location: "500 30" },
+      {
+        key: 5,
+        text: "Air Conditioner",
+        category: "Generator",
+        location: "400 260",
+      },
+      { key: 6, text: "Window", category: "Generator", location: "200 250" },
+      { key: 7, text: "Battery", category: "Generator", location: "310 180" },
+      {
+        key: 8,
+        text: "Outside Mirror",
+        category: "Generator",
+        location: "380 -40",
+      },
     ],
     //Should also use JSON
     [
-      {"from":1,"to":0},
-      {"from":2,"to":0},
-      {"from":3,"to":0},
-      {"from":4,"to":0},
-      {"from":5,"to":0},
-      {"from":6,"to":0},
-      {"from":7,"to":0},
-      {"from":8,"to":0},      
-      {"from":1,"to":2, "fill": "#C4C4C4"},
+      { from: 1, to: 0 },
+      { from: 2, to: 0 },
+      { from: 3, to: 0 },
+      { from: 4, to: 0 },
+      { from: 5, to: 0 },
+      { from: 6, to: 0 },
+      { from: 7, to: 0 },
+      { from: 8, to: 0 },
+      { from: 1, to: 2, fill: "#C4C4C4" },
     ]
   );
-  //Locates the button that will handle exporting 
+  //Locates the button that will handle exporting
   document.querySelector('[id="SaveButton"]').addEventListener("click", save);
-  //Locates the button that will handle exporting 
+  //Locates the button that will handle exporting
   document.querySelector('[id="LoadButton"]').addEventListener("click", load);
-  //Locates the button that will handle exporting 
-  document.querySelector('[id="exportDiagram"]').addEventListener("click", makeBlob);
-  
+  //Locates the button that will handle exporting
+  document
+    .querySelector('[id="exportDiagram"]')
+    .addEventListener("click", makeBlob);
+
   // USEFUL BUT UNNECESSARY, does not break code
   // when the document is modified, add a "*" to the title and enable the "Save" button
   diagram.addDiagramListener("Modified", (e) => {
@@ -184,49 +227,63 @@ function MapDisplayer() {
       if (idx >= 0) document.title = document.title.slice(0, idx);
     }
   });
-  
-  //download
-//   function download(content, fileName, contentType) {
-//     var a = document.createElement("a");
-//     var file = new Blob([content], {type: contentType});
-//     a.href = URL.createObjectURL(file);
-//     a.download = fileName;
-//     a.click();
-// }
-// download(jsonData, 'json.txt', 'text/plain');
 
+  //download
 
   //Export Node Attributes
+  // function save() {
+  //     document.getElementById("mySavedModel").value = diagram.model.toJson();
+  //     diagram.isModified = false;
+  // }
+  //Export JSON to file
   function save() {
-    document.getElementById("mySavedModel").value = diagram.model.toJson();
     diagram.isModified = false;
+    
+    var currentDate = getTime();
+    var content = diagram.model.toJson();
+    var fileName = currentDate + "NetworkDiagram.json";
+    var a = document.createElement("a");
+    var file = new Blob([content], { type: "text/json" });
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
   }
   //Load node attributes
   function load() {
-    diagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
+    diagram.model = go.Model.fromJson(
+      document.getElementById("mySavedModel").value
+    );
   }
 
+  function getTime() {
+    const dateObj = new Date();
+    let day = dateObj.getDate();
+    let month = dateObj.getMonth() + 1;
+    let year = dateObj.getFullYear();
+    let time = dateObj.getTime();
+
+    var currentDate = `${day}-${month}-${year}-${time}`;
+
+    return currentDate;
+  }
 
   // Generate data for Network Diagram
-  function myCallback(blob) {
-    const date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    let currentDate = `${day}-${month}-${year}`;
+  function imageCallback(blob) {
     var url = window.URL.createObjectURL(blob);
-    var filename = currentDate+"-diagram";
+    var currentDate = getTime();
+    var filename = currentDate + "NetworkDiagram" + ".json";
+
     var a = document.createElement("a");
     a.style = "display: none";
     a.href = url;
     a.download = filename;
-  
+
     // IE 11
     if (window.navigator.msSaveBlob !== undefined) {
       window.navigator.msSaveBlob(blob, filename);
       return;
     }
-  
+
     document.body.appendChild(a);
     requestAnimationFrame(() => {
       a.click();
@@ -234,11 +291,17 @@ function MapDisplayer() {
       document.body.removeChild(a);
     });
   }
+
   // Create Network Diagram
   function makeBlob() {
-    var blob = diagram.makeImageData({ background: "", type: "image/png", returnType: "blob", callback: myCallback });
+    var blob = diagram.makeImageData({
+      background: "",
+      type: "image/png",
+      returnType: "blob",
+      callback: imageCallback,
+    });
   }
-  window.addEventListener('DOMContentLoaded', MapDisplayer);
+  window.addEventListener("DOMContentLoaded", MapDisplayer);
 
   return diagram;
 }

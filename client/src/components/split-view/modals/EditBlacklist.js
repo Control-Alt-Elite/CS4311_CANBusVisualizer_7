@@ -25,7 +25,7 @@ function EditBlacklist() {
 
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modify Blacklist</Modal.Title>
+          <Modal.Title>Modify Off-Limit</Modal.Title>
         </Modal.Header>
 
         <Modal.Body className="show-grid">
