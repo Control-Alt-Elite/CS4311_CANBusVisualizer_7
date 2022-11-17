@@ -11,6 +11,7 @@ import EditBlacklist from "./split-view/modals/EditBlacklist";
 import RenameNode from "./split-view/modals/RenameNode";
 import CANTable from "./split-view/Table";
 import "./SplitView.css";
+import Flags from "./split-view/modals/Flags";
 
 <MapDisplayer />;
 
@@ -40,6 +41,7 @@ function SplitView() {
                       <AssignIcon />
                       <ChangeVisibility />
                       <EditBlacklist />
+                      <Flags/>
                     </NavDropdown>
                     <NavDropdown title="Nodes" id="nodes-dropdown">
                       <NavDropdown.Item href="#action/3.1">
