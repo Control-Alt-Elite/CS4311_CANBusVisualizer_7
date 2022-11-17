@@ -8,10 +8,10 @@ import MapDisplayer from "./split-view/MapDisplayer";
 import AssignIcon from "./split-view/modals/AssignIcon";
 import ChangeVisibility from "./split-view/modals/ChangeVisibility";
 import EditBlacklist from "./split-view/modals/EditBlacklist";
+import Flags from "./split-view/modals/Flags";
 import RenameNode from "./split-view/modals/RenameNode";
 import CANTable from "./split-view/Table";
 import "./SplitView.css";
-import Flags from "./split-view/modals/Flags";
 
 <MapDisplayer />;
 
@@ -57,10 +57,8 @@ function SplitView() {
                         Select All
                       </NavDropdown.Item>
                     </NavDropdown>
-                    <input className="searchInput" />
-                    <Button className="searchButton" variant="dark">
-                      Search
-                    </Button>
+                    <input className="searchInput" placeholder='Search Nodes...'></input>
+                    {/* <Button className="searchButton" variant="dark">Search</Button> */}
                   </Nav>
                 </div>
               </Navbar.Collapse>
