@@ -1,5 +1,5 @@
 import { ReactDiagram } from "gojs-react";
-import { Container, Dropdown, DropdownButton } from "react-bootstrap";
+import { ButtonGroup, Container, Dropdown, DropdownButton } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -21,7 +21,6 @@ function SplitView() {
         {/* GRAPHICS REGION */}
         <div className="graphics">
           {/* MAP MENU */}
-
           <div className="MapDropdowns">
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
               <Navbar.Collapse>
@@ -99,15 +98,27 @@ function SplitView() {
               // ]}
             />
           </div>
-          <Button id="exportDiagram">Export Node Network Diagram</Button>
-          <br></br>
-          <button id="SaveButton" disabled="">
-            Save
-          </button>
-          <button id="LoadButton">Load</button>
-          <br></br>
-          <br></br>
-          <textarea id="mySavedModel">{}</textarea>
+          <Navbar expand="lg" bg="dark" variant="dark">
+          <Nav>
+            <div className = "export-flex-container">
+              
+              <div className = "mapButtons">
+                <div className = "diagramButton">
+                  <Button id="exportDiagram">Export Network Diagram</Button>
+                </div>
+                <div className = "nodeAttrButton">
+                  <Button id="SaveButton" className = "save-btn" disabled="">Export Node Attributes</Button>
+                  <Button id="LoadButton" className = "import-btn">Import Node Attributes</Button>
+                </div>
+              </div>
+              
+            </div>
+          </Nav>
+          </Navbar>
+        
+          {/* <textarea id="mySavedModel">{}</textarea> */}
+       
+       
         </div>
         {/** DATA REGION **/}
         <div className="data">

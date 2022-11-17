@@ -27,13 +27,7 @@ function MapDisplayer() {
 
   //BUS LINE
   diagram.nodeTemplateMap.add(
-    "HBar",
-    $(
-      go.Node,
-      "Spot",
-      new go.Binding("location", "location", go.Point.parse).makeTwoWay(
-        go.Point.stringify
-      ),
+    "HBar",$(go.Node,"Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
       {
         layerName: "Background",
         // special resizing: just at the ends
@@ -45,19 +39,11 @@ function MapDisplayer() {
           $(go.Placeholder),
           $(go.Shape, {
             // when line is selected, this is the left resize handle button that displays
-            alignment: go.Spot.Left,
-            cursor: "col-resize",
-            desiredSize: new go.Size(6, 6),
-            fill: "lightblue",
-            stroke: "dodgerblue",
+            alignment: go.Spot.Left, cursor: "col-resize", desiredSize: new go.Size(6, 6), fill: "lightblue", stroke: "dodgerblue",
           }),
           $(go.Shape, {
             // when line is selected, this is the right resize handle button that displays
-            alignment: go.Spot.Right,
-            cursor: "col-resize",
-            desiredSize: new go.Size(6, 6),
-            fill: "lightblue",
-            stroke: "dodgerblue",
+            alignment: go.Spot.Right, cursor: "col-resize", desiredSize: new go.Size(6, 6), fill: "lightblue", stroke: "dodgerblue",
           })
         ),
       },
@@ -79,10 +65,7 @@ function MapDisplayer() {
           go.Size.stringify
         ),
         new go.Binding("fill"),
-        {
-          portId: "",
-          toLinkable: true,
-        }
+        { portId: "", toLinkable: true }
       ),
       $(
         go.TextBlock,
@@ -98,20 +81,15 @@ function MapDisplayer() {
 
   // define a simple Node template ORIGINAL
   diagram.nodeTemplate = $(
-    go.Node,
-    "Auto", // the Shape will go around the TextBlock
-    new go.Binding("location", "location", go.Point.parse).makeTwoWay(
-      go.Point.stringify
-    ),
+    go.Node, "Auto", // the Shape will go around the TextBlock
+    new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
     $(
-      go.Shape,
-      "RoundedRectangle",
+      go.Shape, "RoundedRectangle",
       { name: "SHAPE", fill: "#CDCDCD", strokeWidth: 0, fromLinkable: true },
       new go.Binding("fill", "color") // Shape.fill is bound to Node.data.color
     ),
     $(
-      go.TextBlock,
-      { margin: 8, editable: true }, // some room around the text
+      go.TextBlock, { margin: 8, editable: true }, // some room around the text
       new go.Binding("text").makeTwoWay()
     )
   );
@@ -162,36 +140,14 @@ function MapDisplayer() {
   //DEFINE NODES AND LINKS
   diagram.model = new go.GraphLinksModel( //Should use JSON
     [
-      {
-        key: 0,
-        text: "",
-        category: "HBar",
-        location: "100 100",
-        size: "500 4",
-        fill: "#C4C4C4",
-      },
-      {
-        key: 1,
-        text: "Suspension",
-        category: "Generator",
-        location: "250 -50",
-      },
+      { key: 0, text: "", category: "HBar", location: "100 100", size: "500 4", fill: "#C4C4C4" },
+      { key: 1, text: "Suspension", category: "Generator", location: "250 -50" },
       { key: 2, text: "ABS", location: "150 10" },
       { key: 3, text: "Engine", category: "Generator", location: "500 30" },
-      {
-        key: 5,
-        text: "Air Conditioner",
-        category: "Generator",
-        location: "400 260",
-      },
+      { key: 5, text: "Air Conditioner", category: "Generator", location: "400 260",},
       { key: 6, text: "Window", category: "Generator", location: "200 250" },
       { key: 7, text: "Battery", category: "Generator", location: "310 180" },
-      {
-        key: 8,
-        text: "Outside Mirror",
-        category: "Generator",
-        location: "380 -40",
-      },
+      { key: 8, text: "Outside Mirror", category: "Generator", location: "380 -40",},
     ],
     //Should also use JSON
     [
@@ -206,14 +162,15 @@ function MapDisplayer() {
       { from: 1, to: 2, fill: "#C4C4C4" },
     ]
   );
-  //Locates the button that will handle exporting
+  
+  //Locates the button that will handle exporting node attributes
   document.querySelector('[id="SaveButton"]').addEventListener("click", save);
-  //Locates the button that will handle exporting
-  document.querySelector('[id="LoadButton"]').addEventListener("click", load);
-  //Locates the button that will handle exporting
-  document
-    .querySelector('[id="exportDiagram"]')
-    .addEventListener("click", makeBlob);
+  // Locates the button that will handle exporting network map
+  document.querySelector('[id="exportDiagram"]').addEventListener("click", makeBlob);
+  
+  //Locates the button that will handle importing node attributes
+  // document.querySelector('[id="LoadButton"]').addEventListener("click", load);
+ 
 
   // USEFUL BUT UNNECESSARY, does not break code
   // when the document is modified, add a "*" to the title and enable the "Save" button
@@ -243,12 +200,12 @@ function MapDisplayer() {
     var content = diagram.model.toJson();
     var fileName = currentDate + "NetworkDiagram.json";
     var a = document.createElement("a");
-    var file = new Blob([content], { type: "text/json" });
+    var file = new Blob([content], { type: "text/json/" });
     a.href = URL.createObjectURL(file);
     a.download = fileName;
     a.click();
   }
-  //Load node attributes
+
   function load() {
     diagram.model = go.Model.fromJson(
       document.getElementById("mySavedModel").value
@@ -271,7 +228,7 @@ function MapDisplayer() {
   function imageCallback(blob) {
     var url = window.URL.createObjectURL(blob);
     var currentDate = getTime();
-    var filename = currentDate + "NetworkDiagram" + ".json";
+    var filename = currentDate + "NetworkDiagram";
 
     var a = document.createElement("a");
     a.style = "display: none";
@@ -291,18 +248,12 @@ function MapDisplayer() {
       document.body.removeChild(a);
     });
   }
-
   // Create Network Diagram
   function makeBlob() {
-    var blob = diagram.makeImageData({
-      background: "",
-      type: "image/png",
-      returnType: "blob",
-      callback: imageCallback,
-    });
+    var blob = diagram.makeImageData({ background: "", type: "image/png", returnType: "blob", callback: imageCallback});
   }
+  
   window.addEventListener("DOMContentLoaded", MapDisplayer);
-
   return diagram;
 }
 
@@ -324,42 +275,18 @@ class BarLink extends go.Link {
 
   getLinkPoint(node, port, spot, from, ortho, othernode, otherport) {
     if (!from && node.category === "HBar") {
-      var op = super.getLinkPoint(
-        othernode,
-        otherport,
-        this.computeSpot(!from),
-        !from,
-        ortho,
-        node,
-        port
-      );
+      var op = super.getLinkPoint( othernode, otherport, this.computeSpot(!from), !from, ortho, node, port);
       var r = port.getDocumentBounds();
       var y = op.y > r.centerY ? r.bottom : r.top;
       if (op.x < r.left) return new go.Point(r.left, y);
       if (op.x > r.right) return new go.Point(r.right, y);
       return new go.Point(op.x, y);
     } else {
-      return super.getLinkPoint(
-        node,
-        port,
-        spot,
-        from,
-        ortho,
-        othernode,
-        otherport
-      );
+      return super.getLinkPoint( node, port, spot, from, ortho, othernode, otherport);
     }
   }
 
-  getLinkDirection(
-    node,
-    port,
-    linkpoint,
-    spot,
-    from,
-    ortho,
-    othernode,
-    otherport
+  getLinkDirection( node, port, linkpoint, spot, from, ortho, othernode, otherport
   ) {
     if (node.category === "HBar" || othernode.category === "HBar") {
       var p = port.getDocumentPoint(go.Spot.Center);
@@ -367,15 +294,7 @@ class BarLink extends go.Link {
       var below = op.y > p.y;
       return below ? 90 : 270;
     } else {
-      return super.getLinkDirection(
-        node,
-        port,
-        linkpoint,
-        spot,
-        from,
-        ortho,
-        othernode,
-        otherport
+      return super.getLinkDirection( node, port, linkpoint, spot, from, ortho, othernode, otherport
       );
     }
   }
