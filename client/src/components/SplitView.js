@@ -1,6 +1,6 @@
 import { ReactDiagram } from "gojs-react";
-import { Container, Dropdown, DropdownButton } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+import { Container, Dropdown, DropdownButton } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -15,7 +15,6 @@ import "./SplitView.css";
 <MapDisplayer />;
 
 function SplitView() {
-
   return (
     <>
       <div className="Visualizer">
@@ -71,9 +70,11 @@ function SplitView() {
 
           <div>
             {/* <Button id="blobButton" >Export Node Network Diagram(Not Working)</Button> */}
+
             <ReactDiagram
               divClassName="diagram-component"
               initDiagram={MapDisplayer}
+
               // nodeDataArray={[
 
               //   {"key":0,"text":"","category":"HBar","location":"100 100","size":"500 4","fill":"#C4C4C4"},
@@ -99,6 +100,14 @@ function SplitView() {
             />
           </div>
           <Button id="exportDiagram">Export Node Network Diagram</Button>
+          <br></br>
+          <button id="SaveButton" disabled="">
+            Save
+          </button>
+          <button id="LoadButton">Load</button>
+          <br></br>
+          <br></br>
+          <textarea id="mySavedModel">{}</textarea>
         </div>
         {/** DATA REGION **/}
         <div className="data">

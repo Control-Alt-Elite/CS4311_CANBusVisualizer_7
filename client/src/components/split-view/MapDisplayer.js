@@ -166,12 +166,16 @@ function MapDisplayer() {
     ]
   );
   //Locates the button that will handle exporting 
+  document.querySelector('[id="SaveButton"]').addEventListener("click", save);
+  //Locates the button that will handle exporting 
+  document.querySelector('[id="LoadButton"]').addEventListener("click", load);
+  //Locates the button that will handle exporting 
   document.querySelector('[id="exportDiagram"]').addEventListener("click", makeBlob);
   
   // USEFUL BUT UNNECESSARY, does not break code
   // when the document is modified, add a "*" to the title and enable the "Save" button
   diagram.addDiagramListener("Modified", (e) => {
-    var button = document.getElementById("saveModel");
+    var button = document.getElementById("SaveButton");
     if (button) button.disabled = !diagram.isModified;
     var idx = document.title.indexOf("*");
     if (diagram.isModified) {
@@ -181,6 +185,28 @@ function MapDisplayer() {
     }
   });
   
+  //download
+//   function download(content, fileName, contentType) {
+//     var a = document.createElement("a");
+//     var file = new Blob([content], {type: contentType});
+//     a.href = URL.createObjectURL(file);
+//     a.download = fileName;
+//     a.click();
+// }
+// download(jsonData, 'json.txt', 'text/plain');
+
+
+  //Export Node Attributes
+  function save() {
+    document.getElementById("mySavedModel").value = diagram.model.toJson();
+    diagram.isModified = false;
+  }
+  //Load node attributes
+  function load() {
+    diagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
+  }
+
+
   // Generate data for Network Diagram
   function myCallback(blob) {
     const date = new Date();
@@ -213,34 +239,6 @@ function MapDisplayer() {
     var blob = diagram.makeImageData({ background: "", type: "image/png", returnType: "blob", callback: myCallback });
   }
   window.addEventListener('DOMContentLoaded', MapDisplayer);
-
-
-  //   load();
-
-  //   all pallete stuff breaks code
-  // const palette = $(go.Palette, "myPaletteDiv", {
-  //   nodeTemplateMap: diagram.nodeTemplateMap,
-  //   layout: $(go.GridLayout, {
-  //     cellSize: new go.Size(2, 2),
-  //     isViewportSized: true,
-  //   }),
-  // });
-
-  //   palette.model.nodeDataArray = [
-  //     { text: "Generator", category: "Generator" },
-  //     { text: "Consumer", category: "Consumer" },
-  //     { text: "Connector", category: "Connector" },
-  //     { text: "Bar", category: "HBar", size: "100 4" },
-  //   ];
-
-  //   remove cursors on all ports in the Palette
-  //   make TextBlocks invisible, to reduce size of Nodes
-  //   palette.nodes.each((node) => {
-  //     node.ports.each((port) => (port.cursor = ""));
-  //     node.elements.each((tb) => {
-  //       if (tb instanceof go.TextBlock) tb.visible = false;
-  //     });
-  //   });
 
   return diagram;
 }
@@ -319,17 +317,3 @@ class BarLink extends go.Link {
     }
   }
 }
-
-// Following functions are useful for system persistence, currently do not work
-// save a model to and load a model from JSON text, displayed below the Diagram
-
-// function save() {
-//   document.getElementById("mySavedModel").value = diagram.model.toJson();
-//   diagram.isModified = false;
-// }
-
-// function load() {
-//   diagram.model = go.Model.fromJson(
-//     document.getElementById("mySavedModel").value
-//   );
-// }
