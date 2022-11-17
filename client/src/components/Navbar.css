@@ -1,0 +1,10 @@
+.navbar-brand{
+  font-weight: bolder;
+  font-family: Serif;
+  font-size: 19.5px;
+}
+
+.nav-item :hover {
+    font-weight: bolder;
+    font-family: serif;
+}

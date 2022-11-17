@@ -1,0 +1,61 @@
+.Visualizer{
+  display: flex;
+  height: 740px;
+}
+/* Map Dropdowns */
+.graphics{
+  width: 50%;
+}
+
+.searchButton{
+  background-color: #76707c !important;
+  border-color: rgb(40, 77, 241);
+  border-width: 3.5px;
+  
+}
+
+.searchInput{
+  margin-left: auto;
+  background-color: rgb(109, 109, 109);
+}
+
+/* Map Ribbon Items*/
+.navigationTopBar{
+  left: 0;
+  width: 100%;
+  border: solid 2px #646464;
+}
+
+/* Changes the color of the Header of the modal */
+.modal-header{
+  background-color: rgb(255, 202, 44);
+}
+/* Changes the color of the body of the modal */
+.modal-body {
+  background-color:  white;
+  border-color: black;
+}
+/* Changes the color of the Footer of the Modal */
+.modal-footer{
+    background-color:  white;
+  }
+
+/* Button controls */
+.btn-primary-outline {
+  background-color: transparent;
+  border-color: #ccc;
+}
+
+
+.mapButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.custom-btn{
+  
+  background-color: blueviolet !important;
+  border: #fff !important;
+}
+
+
