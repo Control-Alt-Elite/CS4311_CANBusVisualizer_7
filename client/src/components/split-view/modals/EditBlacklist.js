@@ -1,12 +1,8 @@
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import Form from 'react-bootstrap/Form';
 import Modal from "react-bootstrap/Modal";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import Table from "react-bootstrap/Table";
 
 import './EditBlacklist.css';
@@ -29,7 +25,7 @@ function EditBlacklist() {
 
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modify Blacklist</Modal.Title>
+          <Modal.Title>Modify Off-Limit</Modal.Title>
         </Modal.Header>
 
         <Modal.Body className="show-grid">
@@ -89,7 +85,7 @@ function EditBlacklist() {
         <tbody>
           <tr>
             <td>200</td>
-            <td>Engine</td>
+            <td>Air Conditioning</td>
             <td>Desc</td>
             
           </tr>
@@ -100,20 +96,20 @@ function EditBlacklist() {
             
           </tr>
           <tr>
-            <td>24</td>
+            <td>200</td>
             <td>Air Conditioning</td>
             <td>Desc</td>
             
           </tr>
           <tr>
-            <td>71</td>
-            <td>Battery</td>
+            <td>58</td>
+            <td>Transmission</td>
             <td>Desc</td>
             
           </tr>
           <tr>
-            <td>193</td>
-            <td>Suspension</td>
+            <td>200</td>
+            <td>Air Conditioning</td>
             <td>Desc</td>
             
           </tr>
@@ -138,7 +134,7 @@ function EditBlacklist() {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button className = "saveButton" variant="Warning">Save</Button>
+          <Button variant="Warning">Save</Button>
 
         </Modal.Footer>
       </Modal>

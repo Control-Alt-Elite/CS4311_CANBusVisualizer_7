@@ -1,0 +1,12 @@
+.searchInput{
+    margin-left: auto;
+    margin-bottom: 2px;
+    margin-right: 2px;
+    background-color: rgb(109, 98, 98);
+    color: white;
+}
+  
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(189, 180, 180);
+    opacity: 1; /* Firefox */
+}

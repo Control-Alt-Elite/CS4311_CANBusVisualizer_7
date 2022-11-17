@@ -38,7 +38,7 @@ export default function ProjectInfoHolder (props) {
             canConnectorID: canConnectorID, vehicleID: vehicleID, baudRate: baudRate, dbcFileName: dbcFileName, blacklistFileName: blacklistFileName};
         axios.post('http://localhost:3001/project/session', data)
             .then((response) => {
-            window.location.replace('/Sync')
+            window.location.replace('/SplitView')
         })
     };
     
@@ -101,9 +101,9 @@ export default function ProjectInfoHolder (props) {
                      </div>
                     <br></br>
                     <div>
-                        <button id = "continue" value = "Create" type = "submit" > Continue </button> 
+                        <button className="continue" value = "Create" type = "submit" > Continue </button> 
                             <Link to="/">
-                                <button id = "cancel" value = "Cancel" > Cancel </button>  
+                                <button className="cancel" value = "Cancel" > Cancel </button>  
                             </Link>
                     </div>
                 </form>

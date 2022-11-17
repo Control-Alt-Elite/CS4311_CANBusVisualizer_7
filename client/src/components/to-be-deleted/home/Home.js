@@ -18,7 +18,7 @@ const Home = () => {
                 <footer className='footer bg-black-default '>
                     <div id="footer-div" className="flex flex-col md:flex-row gap-8 justify-between p-6 max-min-width">
                         <div id="footer-accessibility" className="flex-1 flex flex-col items-center md:items-end socials text-white font-bold mb-0 justify-center text-right">
-                        <a href={"https://github.com/Control-Alt-Elite/CAN-Bus-Visualizer/tree/lorenzoBranch2"} target={'_blank'} rel="noopener noreferrer">© 2022 Software Engineering: Design and Implementation. Team 7 <br/></a>
+                        <a href={"https://github.com/Control-Alt-Elite/CAN-Bus-Visualizer/tree/backendFixes"} target={'_blank'} rel="noopener noreferrer">© 2022 Software Engineering: Design and Implementation. Team 7 <br/></a>
                         </div>
                     </div>
                 </footer>

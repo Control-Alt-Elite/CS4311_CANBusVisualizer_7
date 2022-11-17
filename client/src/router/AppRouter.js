@@ -10,7 +10,7 @@ import ArchiveProject from "../components/project-handlers/archive/ArchiveProjec
 import CANBusManager from "../components/project-handlers/bus-manager/CANBusManager";
 import OpenProject from "../components/project-handlers/open/OpenProject";
 import { default as ProjectConfigurationHolder, default as ProjectInfoHolder } from "../components/project-handlers/project-config/ProjectInfoHolder";
-import SplitView from "../components/split-view/SplitView";
+import SplitView from "../components/SplitView";
 import Sync from "../components/sync/Sync";
 import AboutUs from "../components/to-be-deleted/about-us/AboutUs";
 import TrafficDisplayer from "../components/traffic-displayer/TrafficDisplayer";

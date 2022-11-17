@@ -16,14 +16,14 @@ export default function OpenProject(props) {
     const [buttonText, setButtonText] = useState("Start Traffic");
     const [checked, setChecked] = useState(false);
 
-    function handleClick() {
-      checked ? setButtonText("Start Traffic") : setButtonText("Stop Traffic");
-      const eventSource = new EventSource(url);
-      eventSource.onmessage = (e) => {
-        console.log(e.data);
-        const parsedData = JSON.parse(e.data);
-        setData((data) => [...data, parsedData]);
-      };
+      function handleClick() {
+        checked ? setButtonText("Start Traffic") : setButtonText("Stop Traffic");
+        const eventSource = new EventSource(url);
+        eventSource.onmessage = (e) => {
+          console.log(e.data);
+          const parsedData = JSON.parse(e.data);
+          setData((data) => [...data, parsedData]);
+        };
       return () => {
         eventSource.close();
       };

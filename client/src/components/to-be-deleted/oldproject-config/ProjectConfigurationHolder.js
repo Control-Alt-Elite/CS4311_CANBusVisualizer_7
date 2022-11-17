@@ -63,9 +63,9 @@ export default function ProjectConfiguration (props) {
                 </div>
                 <br></br>
                 <div>
-                    <button id = "continue" value = "Continue" type = "submit" > Continue </button> 
+                    <button className="continue" value = "Continue" type = "submit" > Continue </button> 
                     <Link to="/">
-                        <button id = "cancel" value = "Cancel" > Cancel </button>  
+                        <button className="cancel" value = "Cancel" > Cancel </button>  
                     </Link>
                 </div>
             </form>

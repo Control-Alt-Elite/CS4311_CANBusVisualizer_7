@@ -34,7 +34,7 @@
 }
 
 .modal-header{
-  background-color: rgb(255, 193, 7);
+  background-color: rgb(40, 77, 241);
 
 }
 
@@ -46,11 +46,4 @@
 /* Changes the color of the Footer of the Modal */
 .modal-footer{
   background-color:  rgb(52,52,52);
-}
-.saveButton{
-  background-color: rgb(0, 162, 232);
-  
-}
-.tbody, .thead{
-  width: 100%;
 }
