@@ -198,9 +198,9 @@ function MapDisplayer() {
     
     var currentDate = getTime();
     var content = diagram.model.toJson();
-    var fileName = currentDate + "NetworkDiagram.json";
+    var fileName = "NodeAttributes" + currentDate + ".json";
     var a = document.createElement("a");
-    var file = new Blob([content], { type: "text/json/" });
+    var file = new Blob([content], { type: "text/json" });
     a.href = URL.createObjectURL(file);
     a.download = fileName;
     a.click();
@@ -217,9 +217,12 @@ function MapDisplayer() {
     let day = dateObj.getDate();
     let month = dateObj.getMonth() + 1;
     let year = dateObj.getFullYear();
-    let time = dateObj.getTime();
 
-    var currentDate = `${day}-${month}-${year}-${time}`;
+    let hour = dateObj.getHours();
+    let mins = dateObj.getMinutes();
+    let seconds = dateObj.getSeconds();
+    
+    var currentDate = `${day}-${month}-${year}_${hour}${mins}${seconds}`;
 
     return currentDate;
   }
@@ -228,7 +231,7 @@ function MapDisplayer() {
   function imageCallback(blob) {
     var url = window.URL.createObjectURL(blob);
     var currentDate = getTime();
-    var filename = currentDate + "NetworkDiagram";
+    var filename = "NetworkDiagram" + currentDate;
 
     var a = document.createElement("a");
     a.style = "display: none";
