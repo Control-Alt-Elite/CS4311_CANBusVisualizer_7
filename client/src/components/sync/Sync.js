@@ -66,7 +66,7 @@ export default function Sync() {
             <h3 className="text">Sync</h3>
           </div>
           <div>
-		    <div className="progressbar">
+		    {/* <div className="progressbar">
 			  <div style={{
 				  height: "100%",
 				  width: `${filled}%`,
@@ -74,7 +74,7 @@ export default function Sync() {
 				  transition:"width 0.5s"
 			  }}></div>
 			  <span className="progressPercent">{ filled }%</span>
-		  </div>
+		  </div> */}
       <Link to="/">
          <button id = "cancel" value = "Cancel" > Cancel </button>  
             </Link>
