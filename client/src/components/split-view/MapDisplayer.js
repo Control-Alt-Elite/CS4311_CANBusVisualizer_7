@@ -255,6 +255,34 @@ function MapDisplayer() {
   function makeBlob() {
     var blob = diagram.makeImageData({ background: "", type: "image/png", returnType: "blob", callback: imageCallback});
   }
+
+// TODO context menu for nodes
+      // diagram.nodeTemplate.contextMenu =
+      //   $("ContextMenu",
+      //     $("ContextMenuButton",
+      //       $(go.TextBlock, "Copy"),
+      //       { click: (e, obj) => e.diagram.commandHandler.copySelection() }),
+      //     $("ContextMenuButton",
+      //       $(go.TextBlock, "Delete"),
+      //       { click: (e, obj) => e.diagram.commandHandler.deleteSelection() }),
+      //     $("ContextMenuButton",
+      //       $(go.TextBlock, "Undo"),
+      //       { click: (e, obj) => e.diagram.commandHandler.undo() }),
+      //     $("ContextMenuButton",
+      //       $(go.TextBlock, "Redo"),
+      //       { click: (e, obj) => e.diagram.commandHandler.redo() }),
+         
+      //   );
+    // Context Menu for the map
+    diagram.contextMenu =
+    $("ContextMenu",
+      $("ContextMenuButton",
+        $(go.TextBlock, "Save"),
+        { click: (e, obj) => save() }),
+      $("ContextMenuButton",
+        $(go.TextBlock, "Load"),
+        { click: (e, obj) => load() })
+    );
   
   window.addEventListener("DOMContentLoaded", MapDisplayer);
   return diagram;
