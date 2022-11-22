@@ -16,7 +16,7 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav d-flex bd-highlight">
                             <li className="nav-item p-2 bd-highlight">
-                                <Link className="nav-link" to="/CreateProject">
+                                <Link className="nav-link" to="/ProjectInfoHolder">
                                     Create Project
                                 </Link>
                             </li>

@@ -57,10 +57,8 @@ function SplitView() {
                         Select All
                       </NavDropdown.Item>
                     </NavDropdown>
-                    <input className="searchInput" />
-                    <Button className="searchButton" variant="dark">
-                      Search
-                    </Button>
+                    <input className="searchInput" placeholder='Search Nodes...'></input>
+                    {/* <Button className="searchButton" variant="dark">Search</Button> */}
                   </Nav>
                 </div>
               </Navbar.Collapse>

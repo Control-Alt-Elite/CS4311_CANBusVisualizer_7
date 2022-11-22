@@ -7,7 +7,7 @@ const Navbar = () => {
     return (
         <>
             <nav className="navbar navbar-expand-lg 
-                navbar-light bg-light">
+                navbar-dark bg-dark">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/" >
                     <img src={logo} alt="" width={30} height={30} className="d-inline-block align-top "/>
@@ -16,7 +16,7 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav d-flex bd-highlight">
                             <li className="nav-item p-2 bd-highlight">
-                                <Link className="nav-link" to="/ProjectConfigurationHolder">
+                                <Link className="nav-link" to="/ProjectInfoHolder">
                                     Create Project
                                 </Link>
                             </li>

@@ -4,7 +4,12 @@
   font-size: 19.5px;
 }
 
+.nav-item{
+
+}
 .nav-item :hover {
-    font-weight: bolder;
-    font-family: serif;
+    /* font-weight: bolder; */
+    /* font-family: serif; */
+    color: #063970;
+    box-shadow: inset 0 0 0 1px radial-gradient(circle, rgba(30,186,251,1) 5%, rgba(91,113,167,1) 50%, rgba(60,62,201,1) 84%); /* <-- 10px spread radius */
 }
