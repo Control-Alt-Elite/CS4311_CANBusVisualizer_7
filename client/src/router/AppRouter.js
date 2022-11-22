@@ -7,7 +7,7 @@ import {
 import Home from "../components/home-screen/Home";
 import Navbar from "../components/nav-bar/Navbar";
 import ArchiveProject from "../components/project-handlers/archive/ArchiveProject";
-import CANBusManager from "../components/project-handlers/bus-manager/CANBusManager";
+import CANBusManager from "../components/project-handlers/can-bus-manager/CANBusManager";
 import OpenProject from "../components/project-handlers/open/OpenProject";
 import { default as ProjectConfigurationHolder, default as ProjectInfoHolder } from "../components/project-handlers/project-config/ProjectInfoHolder";
 import SplitView from "../components/SplitView";

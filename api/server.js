@@ -3,12 +3,20 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const router = express.Router();
 const packets = require("./modules/CANUtils");
 const logfile = require("./modules/DumpPlayPckt")
 const dataSync = require("./modules/DataSynchronizer");
 const logs = require("./modules/Player");
-global.globalProjectName = ''; //To temporarily save project name 
+const vcanconfig = require("./vcanconfig");
+const canconfig = require("./canconfig");
+global.globalProjectName = ''; //To temporarily save project name
+const file_Name = '';
+
+app.use(express.json());
+app.use(cors());
+
+//Initialize Virtual CAN Bus
+//iconfig.initializeCAN('vcan0');
 
 //Sending packets
 app.get('/packets', packets);
@@ -19,12 +27,34 @@ app.get('/Sync', dataSync);
 //Listen for replied packets
 app.get('/logs', logfile);
 
+//Connecting to virtual can bus interface
+app.get('/vcan', (req,res) => {
+	const device = req.query.CAN;
+	vcanconfig.initializeVirtualCAN(device);
+	res.send("Success");
+});
+
+//Connecting to real can bus interface
+app.get('/can', (req,res) => {
+	const device = req.query.CAN;
+	const rate = req.query.rate;
+	canconfig.initializeCAN(device, rate);
+	res.send("Success");
+});
 
 //Writing raw packets to file
 //channel.addListener("onMessage", decodedFile.DataSaver());
 
-app.use(express.json());
-app.use(cors());
+//Connecting to can bus interface
+//app.use('/can', iconfig.initializeCAN())
+/*
+app.get('/can', (req,res) => {
+	const device = req.body.CAN;
+	console.log(device + " hola");
+	//const dev = 'vcan0'
+	iconfig.initializeCAN();
+	res.send("Success");
+});*/
 
 // Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/candb', {
@@ -36,6 +66,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/candb', {
 //Database Models
 const Project = require('./models/project_model');
 const Session = require('./models/session_model');
+const File = require('./models/file_model');
 
 //Get all projects from database
 app.get('/projects', async (req, res) => {
@@ -84,6 +115,23 @@ app.post('/project/session', async (req, res) => {
   project.sessions.push(savedSession._id);
   await project.save();
 	res.json(session);
+});
+
+/* Saving file name used by canplayer in Player.js to the database */
+//Get all files names from database
+app.get('/project/file', async (req, res) => {
+	const fileName = await File.find();
+	res.json(fileName);
+}); 
+
+//Saving file name to database (Used by Table.js)
+app.post('/project/file', async (req, res) => {
+	const fileName = new File({ 
+    fileName: req.body.fileName,
+	})
+	console.log(fileName)
+	await fileName.save();
+	res.json(fileName);
 });
 
 /*
@@ -142,6 +190,12 @@ app.delete('/project/delete-project/:id', async (req, res) => {
 //Delete specific session by id
 app.delete('/project/delete-session/:id', async (req, res) => {
 	const result = await Session.findByIdAndDelete(req.params.id);
+	res.json({result});
+});
+
+//Delete all filenames
+app.delete('/project/delete-file', async (req, res) => {
+	const result = await File.deleteMany({});
 	res.json({result});
 });
 
