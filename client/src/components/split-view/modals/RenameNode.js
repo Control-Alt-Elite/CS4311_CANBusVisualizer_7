@@ -4,8 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
 import Modal from "react-bootstrap/Modal";
 import NavDropdown from "react-bootstrap/NavDropdown";
-
-import './ChangeVisibility.css';
+import './RenameNode.css'
 
 function RenameNode() {
   const [show, setShow] = useState(false);
@@ -49,9 +48,12 @@ function RenameNode() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="warning" onClick={handleClose}>
+          <Button variant= "primary" onClick={handleClose}>
             Save Changes
           </Button>
+          {/* <Button variant="primary" onClick={handleClose}>
+            
+          </Button> */}
         </Modal.Footer>
       </Modal>
     </>

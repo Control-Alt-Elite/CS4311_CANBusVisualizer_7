@@ -69,57 +69,43 @@ function EditBlacklist() {
 
           
         </Container>
-         */
+  */}
         
-        <Table striped bordered hover>
-        
-        <thead>
+        <Table>
+       
           {/* Table Header */}
           <tr>
             <th>Node ID</th>
             <th>Name</th>
             <th>Description</th>
-            
           </tr>
-        </thead>
-        <tbody>
           <tr>
             <td>200</td>
             <td>Air Conditioning</td>
             <td>Desc</td>
-            
+          </tr>
+          <tr >
+            <td>58</td>
+            <td>Transmission</td>
+            <td>Desc</td>
+          </tr>
+          <tr>
+            <td>200</td>
+            <td>Air Conditioning</td>
+            <td>Desc</td>
           </tr>
           <tr>
             <td>58</td>
             <td>Transmission</td>
-            <td>Desc</td>
-            
+            <td>Desc</td>     
           </tr>
           <tr>
             <td>200</td>
             <td>Air Conditioning</td>
             <td>Desc</td>
-            
-          </tr>
-          <tr>
-            <td>58</td>
-            <td>Transmission</td>
-            <td>Desc</td>
-            
-          </tr>
-          <tr>
-            <td>200</td>
-            <td>Air Conditioning</td>
-            <td>Desc</td>
-            
-          </tr>
-         
-          
-
-          
-        </tbody>
+          </tr>  
+       
       </Table>
-         }
          <Button id = "add-entry" variant = "success" class = "btn btn-success "  >
             Add Entry
           </Button>
@@ -134,7 +120,7 @@ function EditBlacklist() {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="Warning">Save</Button>
+          <Button variant="primary">Save</Button>
 
         </Modal.Footer>
       </Modal>

@@ -10,7 +10,7 @@ import Row from 'react-bootstrap/Row';
 import Table from "react-bootstrap/Table";
 import ColorPicker from "./ColorPicker.js";
  
-import './ChangeVisibility.css';
+import './Flags.css';
  
 function Flags() {
   const [show, setShow] = useState(false);
