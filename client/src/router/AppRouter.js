@@ -22,8 +22,8 @@ function Animated() {
             <Routes location={location}
                 key={location.pathname}>
                 <Route exact path="/" element={<Home />}></Route>
-                <Route exact path="/ProjectConfigurationHolder"
-                    element={<ProjectConfigurationHolder />}></Route>
+                <Route exact path="/ProjectInfoHolder"
+                    element={<ProjectInfoHolder />}></Route>
                 <Route exact path="/CreateProject"
                     element={<ProjectInfoHolder />}></Route>
                 <Route exact path="/OpenProject"

@@ -1,19 +1,19 @@
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import { ReactDiagram } from "gojs-react";
+import React, { useState } from 'react';
+import { Modal } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
-import {Modal} from "react-bootstrap";
-import MapDisplayer from "./MapDisplayer";
-import { ReactDiagram } from "gojs-react";
-import React, { useState } from 'react';
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import Table from 'react-bootstrap/Table';
-import "./SplitView.css";
-import AssignIcon from "./modals/AssignIcon";
+import AssignIcon from "../modals/AssignIcon";
+import EditBlacklist from "../modals/EditBlacklist";
+import MapDisplayer from "./MapDisplayer";
 import ChangeVisibility from "./modals/ChangeVisibility";
-import EditBlacklist from "./modals/EditBlacklist";
 import RenameNode from "./modals/RenameNode";
+import "./SplitView.css";
 
 <MapDisplayer />;
 
