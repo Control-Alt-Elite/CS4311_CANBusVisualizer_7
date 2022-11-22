@@ -3,6 +3,7 @@ import Transitions from './Transitions';
 import { Text, StyleSheet } from 'react-native';
 import {Link} from 'react-router-dom';
 import React, { useState } from "react";
+import axios from 'axios';
 
 const styles = StyleSheet.create({
     baseText: {
@@ -24,8 +25,19 @@ export default function OpenProject (props) {
     const [projectFileName, setProjectFileName] = useState("");
 
     const handleSubmit = (event) => {
-        // prevents the submit button from refreshing the page
-        event.preventDefault();
+         // prevents the submit button from refreshing the page
+         event.preventDefault();
+        //attempt to pass file to backend 
+        const data = {
+          projectFileName: projectFileName
+          
+        }
+        axios
+        .post("http://localhost:3001/project/archive", data)
+        .then((response) => {
+          window.location.replace("/ArchiveProject");
+        });
+       
     };
     // const handleSubmit = (event) => {
     //     // prevents the submit button from refreshing the page
@@ -62,7 +74,8 @@ export default function OpenProject (props) {
                     <div>
                         <input className= 'TextBox' 
                         type="file" 
-                        value={fileName}
+                        value={projectFileName}
+                        accept=".txt"
                         onChange={(event) => setProjectFileName(event.target.value)}
                         required
                         />
