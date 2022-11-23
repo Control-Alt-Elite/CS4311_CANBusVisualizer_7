@@ -1,51 +1,72 @@
+import { ReactDiagram } from "gojs-react";
+import React, { useState } from 'react';
+import { Modal } from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import {Modal} from "react-bootstrap";
-import PacketTable from "./PacketTable";
+import Table from 'react-bootstrap/Table';
+import AssignIcon from "../modals/AssignIcon";
+import EditBlacklist from "../modals/EditBlacklist";
 import MapDisplayer from "./MapDisplayer";
-import { ReactDiagram } from "gojs-react";
-
+import ChangeVisibility from "./modals/ChangeVisibility";
+import RenameNode from "./modals/RenameNode";
 import "./SplitView.css";
-
-const handleClose = () => {
-  // setShow(true);
-};
-
-const handleShow = () => {
-  // show={true};
-};
-
-//Notify when map is updated
-// function handleModelChange(changes) {
-//   alert("GoJS model changed!");
-// }
-
 
 <MapDisplayer />;
 
 function SplitView() {
-  /*
-  // Listening packets 
-  // Log any message in Terminal
-  channel.addListener("onMessage", function(msg) { 
-  console.log("Message");
-  console.log("Id: " + msg.id);
-  var data = [...msg.data]
-  console.log("Data: " + data);
-  });
-  channel.start(); 
-  */
+
+  const url = 'http://localhost:3001/packets';
+  const [data, setData] = useState([]);
+  const [message, setMessage] = useState('');
+
+  const handleClose = () => {
+    // setShow(true);
+  };
+  
+  const handleShow = () => {
+    // show={true};
+  };
+  
+  const handleMessage = (src,msg) => {
+    var packetSource = JSON.stringify(src)
+    var packetData = JSON.stringify(msg).replace(/,/g,',\n')
+    setMessage(packetSource+"\n"+packetData);
+  };
+  
+  const handleIDClick = () =>{
+    console.log("ID clicked");
+  };
+
+  function handlePlayTraffic () {
+    const eventSource = new EventSource(url);
+    eventSource.onmessage = (e) => {
+      console.log(e.data);
+  
+      const parsedData = JSON.parse(e.data);
+      setData((data) => [...data,parsedData]);
+    }
+    return () => {
+      eventSource.close(); 
+    };
+  }
+
+
+  function handleStopTraffic () {
+    console.log("Stoping traffic")
+  }
 
   return (
     <>
-
-      {/* MAP DROPDOWNS */}
-      <div className="mapNodeAndDrop">
+    <div className="Visualizer">
+       {/* GRAPHICS REGION */}
+      <div className="graphics">
+        {/* MAP MENU */}
         <div className="MapDropdowns">
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
               <Navbar.Collapse>
                 <div className="navigationTopBar">
                   <Nav>
@@ -53,20 +74,25 @@ function SplitView() {
                       <NavDropdown.Item href="#action/3.1">
                         Save Project
                       </NavDropdown.Item>
+                      <NavDropdown.Item href="/">
+                        Close Session
+                      </NavDropdown.Item>
                     </NavDropdown>
-
                     <NavDropdown title="Edit" id="view-dropdown">
-                      <NavDropdown.Item href="#action/Rename">
+                      {/* <NavDropdown.Item href="#action/Rename">
                         Rename Node
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">
+                      </NavDropdown.Item> */}
+                      <RenameNode/>
+                      {/* <NavDropdown.Item href="#action/3.2">
                         Assign Icon
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.3">
+                      </NavDropdown.Item> */}
+                      <AssignIcon/>
+                      {/* <NavDropdown.Item href="#action/3.3">
                         Change Visibility
-                      </NavDropdown.Item>
+                      </NavDropdown.Item> */}
+                      <ChangeVisibility/>
+                      <EditBlacklist/>
                     </NavDropdown>
-
                     <NavDropdown title="Nodes" id="packets-dropdown">
                       <NavDropdown.Item href="#action/3.1">
                         Drag Nodes
@@ -81,14 +107,16 @@ function SplitView() {
                         Select All
                       </NavDropdown.Item>
                     </NavDropdown>
+                    <input className = "searchInput"/>
+                    <Button className = 'searchButton' variant="dark">Search</Button>
                   </Nav>
+                  
                 </div>
               </Navbar.Collapse>
-            </Container>
           </Navbar>
         </div>
 
-        {/* MAP REGION */}
+        {/* MAP DIAGRAM */}
         <div>
           <ReactDiagram
             divClassName="diagram-component"
@@ -119,14 +147,13 @@ function SplitView() {
             ]}
           />
         </div>
-
       </div>
 
-      {/* PACKET REGION */}
-      <div className="packetTableAndDrop">
+      {/** DATA REGION **/}
+      <div className="data">
+         {/* TABLE MENU */}
         <div className="packetDropdowns">
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
               <Navbar.Collapse>
                 <div className="navigationBottomBar">
                   <Nav>
@@ -138,16 +165,23 @@ function SplitView() {
                         Open Saved Packets
                       </NavDropdown.Item>
                     </NavDropdown>
-
                     <NavDropdown title="View" id="view-dropdown">
                       <NavDropdown.Item href="#action/3.1">
                         Filter Packets
+                        <ul>
+                          <NavDropdown.Item href="#action3">Node</NavDropdown.Item>
+                        </ul>
                       </NavDropdown.Item>
                       <NavDropdown.Item href="#action/3.2">
                         Sort Packets
+                        <ul>
+                          <NavDropdown.Item href="#action3">Most Recent</NavDropdown.Item>
+                          <NavDropdown.Item href="#action3">Oldest</NavDropdown.Item>
+                          <NavDropdown.Item href="#action3">Highest ID</NavDropdown.Item>
+                          <NavDropdown.Item href="#action3">Smallest ID</NavDropdown.Item>
+                        </ul>
                       </NavDropdown.Item>
                     </NavDropdown>
-
                     <NavDropdown title="Packets" id="packets-dropdown">
                       <NavDropdown.Item href="#Modal" data-toggle="Modal" onClick={handleShow} >
                         Edit Packets
@@ -162,22 +196,67 @@ function SplitView() {
                         Annotate Packets
                       </NavDropdown.Item>
                     </NavDropdown>
+                    <NavDropdown title="Play Traffic">
+                    <NavDropdown.Item onClick = {handlePlayTraffic}>
+                      Start
+                    </NavDropdown.Item>
+                    <NavDropdown.Item onClick = {handleStopTraffic}>
+                      Stop
+                    </NavDropdown.Item>
+                    </NavDropdown>
 
-                    <Nav.Link className="playTrafficButton" href="#home">
-                      Play Traffic
-                    </Nav.Link>
+                    <input type="search" id="mySearch" onkeypress="if (event.keyCode === 13) searchDiagram()"></input>
+                    <button onclick="searchDiagram()">Search</button>
+                    <input className = "searchInput"/>
+                    <Button className = 'searchButton' variant="dark">Search</Button>
+
                   </Nav>
                 </div>
               </Navbar.Collapse>
-            </Container>
           </Navbar>
         </div>
 
-        <div className="packetTable">
-          <PacketTable />
+         {/* TABLE */}
+        <div className="rawTable">
+          <Table striped bordered hover responsive variant = "dark" className="tTable">
+          <thead>
+            <tr>
+              <th width='155'>Time</th>
+              <th width='80'>Interface</th>
+              <th className = 'clickable-id' onClick = {handleIDClick} width='85'>ID</th>
+              <th width='80'>00</th>
+              <th width='80'>01</th>
+              <th width='80'>02</th>
+              <th width='80'>03</th>
+              <th width='80'>04</th>
+              <th width='80'>05</th>
+              <th width='80'>06</th>
+              <th width='80'>07</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map(({time,can,id,dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8,ECU,Values}, index) => (
+              <tr key={index} className= 'clickable-row' onClick = {() => handleMessage({ECU},{Values})}>
+                <td width='170'>{time}</td>
+                <td width='90'>{can}</td>
+                <td width='100'>{id}</td>
+                <td width='40'>{dt1}</td>
+                <td width='40'>{dt2}</td>
+                <td width='40'>{dt3}</td>
+                <td width='40'>{dt4}</td>
+                <td width='40'>{dt5}</td>
+                <td width='40'>{dt6}</td>
+                <td width='40'>{dt7}</td>
+                <td width='40'>{dt8}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
         </div>
-
-        <Modal
+        { message && <div className="alert alert-primary" role="alert"><pre><p>{message}</p></pre></div> }
+      </div>
+    </div>
+    <Modal
         show = {false}
         onHide={handleClose}
         backdrop="static"
@@ -194,13 +273,9 @@ function SplitView() {
           <Modal.Footer>
             <button variant = "dark" onClick = {handleClose}>
               Save
-            </button>
-           
+            </button>         
           </Modal.Footer>
-          </Modal>
- 
-
-      </div>
+      </Modal>
     </>
   );
 }

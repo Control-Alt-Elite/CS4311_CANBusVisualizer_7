@@ -1,5 +1,4 @@
 import { ReactDiagram } from "gojs-react";
-import { ButtonGroup, Container, Dropdown, DropdownButton } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -57,8 +56,11 @@ function SplitView() {
                         Select All
                       </NavDropdown.Item>
                     </NavDropdown>
-                    <input className="searchInput" placeholder='Search Nodes...'></input>
-                    {/* <Button className="searchButton" variant="dark">Search</Button> */}
+                    <input id="nodeSearchBar"className = "searchInput" type="search"  variant="dark" onkeypress="if (event.keyCode === 13) searchDiagram()"></input>
+                    <Button id = "nodeSearchButton" className="searchButton" variant="dark" onclick="searchDiagram()">Search</Button>
+                    {/* <button id = "nodeSearchButton" className="searchButton" variant="dark" onclick="searchDiagram()">Search Node</button> */}
+                    {/* <input className = "searchInput"/> */}
+                    {/* <Button className = 'searchButton' variant="dark">Search</Button> */}
                   </Nav>
                 </div>
               </Navbar.Collapse>
