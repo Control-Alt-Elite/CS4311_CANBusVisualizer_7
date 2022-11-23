@@ -205,6 +205,8 @@ function SplitView() {
                     </NavDropdown.Item>
                     </NavDropdown>
 
+                    <input type="search" id="mySearch" onkeypress="if (event.keyCode === 13) searchDiagram()"></input>
+                    <button onclick="searchDiagram()">Search</button>
                     <input className = "searchInput"/>
                     <Button className = 'searchButton' variant="dark">Search</Button>
 

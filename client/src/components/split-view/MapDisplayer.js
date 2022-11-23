@@ -88,9 +88,9 @@ function MapDisplayer() {
         portId: "", cursor: "pointer",  // the Shape is the port, not the whole Node
         // allow all kinds of links from and to this port
         fromLinkable: true, fromLinkableSelfNode: false, fromLinkableDuplicates: true,
-        toLinkable: true, toLinkableSelfNode: true, toLinkableDuplicates: true
+        toLinkable: true, toLinkableSelfNode: true, toLinkableDuplicates: true,
       },
-      new go.Binding("fill", "color")),
+      new go.Binding("fill", "isHighlighted", highlight => highlight ? "#2378DA" : "#ffffff").ofObject()),
     $(go.TextBlock,
       {
         font: "bold 14px sans-serif",
@@ -103,7 +103,7 @@ function MapDisplayer() {
     { // this tooltip Adornment is shared by all nodes
       toolTip:
         $("ToolTip",
-          $(go.TextBlock, { margin: 4 },  // the tooltip shows the result of calling nodeInfo(data)
+          $(go.TextBlock, { margin: 5 },  // the tooltip shows the result of calling nodeInfo(data)
             new go.Binding("text", "", nodeInfo))
         ),
       // this context menu Adornment is shared by all nodes
@@ -218,8 +218,12 @@ function MapDisplayer() {
   // Locates the button that will handle exporting network map
   document.querySelector('[id="exportDiagram"]').addEventListener("click", makeBlob);
   //Locates the button that will handle importing node attributes
-//   document.querySelector('[id="LoadButton"]').addEventListener("click", load);
- 
+      document.querySelector('[id="nodeSearchButton"]').addEventListener("click", searchDiagram);
+      document.querySelector('[id="nodeSearchBar"]').addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            searchDiagram();
+          }
+        });
 
   // USEFUL BUT UNNECESSARY, does not break code
   // when the document is modified, add a "*" to the title and enable the "Save" button
@@ -398,6 +402,36 @@ function MapDisplayer() {
          o => o.diagram.commandHandler.canUngroupSelection())
      );
   
+
+     function searchDiagram() {  // called by button
+      var input = document.getElementById("nodeSearchBar");
+
+      if (!input) return;
+      diagram.focus();
+
+      diagram.startTransaction("highlight search");
+
+      if (input.value) {
+        // search four different data properties for the string, any of which may match for success
+        // create a case insensitive RegExp from what the user typed
+        var safe = input.value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        var regex = new RegExp(safe, "i");
+        var results = diagram.findNodesByExample(
+          { key: regex },
+          { text: regex },
+          { category: regex },
+          // { headOf: regex }
+          );
+        diagram.highlightCollection(results);
+        // try to center the diagram at the first node that was found
+        if (results.count > 0) diagram.centerRect(results.first().actualBounds);
+      } else {  // empty string only clears highlighteds collection
+        diagram.clearHighlighteds();
+      }
+
+      diagram.commitTransaction("highlight search");
+    }
+
   window.addEventListener("DOMContentLoaded", MapDisplayer);
   return diagram;
 }
