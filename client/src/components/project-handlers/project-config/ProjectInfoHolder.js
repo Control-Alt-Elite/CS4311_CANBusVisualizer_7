@@ -19,16 +19,16 @@ const styles = StyleSheet.create({
 
 export default function ProjectInfoHolder(props) {
   //Declare new state variables
-  const [projectName, setProjectName] = useState("");
-  const [storedLocation, setStoredLocation] = useState("");
+  const [eventName, setEventName] = useState("");
+  const [eventDate, setEventDate] = useState(null);
   const [analystInitials, setAnalystInitials] = useState("");
   const [canConnectorID, setCANConnectorID] = useState("");
   const [vehicleID, setVehicleID] = useState("");
   const [baudRate, setBaudRate] = useState(null);
-  const [eventName, setEventName] = useState("");
-  const [eventDate, setEventDate] = useState(null);
   const [dbcFileName, setDBCFileName] = useState("");
   const [blacklistFileName, setBlacklistFileName] = useState("");
+  // const [projectName, setProjectName] = useState("");
+  // const [storedLocation, setStoredLocation] = useState("");
 
   const handleSubmit = (event) => {
     // prevents the submit button from refreshing the page
@@ -56,35 +56,13 @@ export default function ProjectInfoHolder(props) {
         <div className="header">
           <h3 className="text">Session Configuration</h3>
         </div>
-        <form onSubmit={handleSubmit}>
-          <Text style={styles.baseText}>
-            Project Name
-            <Text style={styles.innerText}> ! [Required] </Text>
-          </Text>
-          <div>
-            <input
-              className="TextBox"
-              type="text"
-              value={projectName}
-              required
-              onChange={(event) => setProjectName(event.target.value)}
-            />
-          </div>
-          <Text style={styles.baseText}>
-            Stored Location
-            <Text style={styles.innerText}> ! [Required] </Text>
-          </Text>
-          <div>
-            <input
-              className="TextBox"
-              type="text"
-              value={storedLocation}
-              required
-              onChange={(event) => setStoredLocation(event.target.value)}
-            />
-          </div>
 
-          {/* <Text style={styles.baseText}>Event Name</Text>
+        <form onSubmit={handleSubmit}>
+          {/* Event Name */}
+          <Text style={styles.baseText}>
+            Event Name
+            <Text style={styles.innerText}> ! [Required] </Text>
+          </Text>
           <div>
             <input
               className="TextBox"
@@ -93,63 +71,93 @@ export default function ProjectInfoHolder(props) {
               required
               onChange={(event) => setEventName(event.target.value)}
             />
-          </div> */}
+          </div>
+
+          {/* Event Date */}
           <Text style={styles.baseText}>Event Date</Text>
           <div>
             <input
               className="TextBox"
               type="Date"
               value={eventDate}
-              required
               onChange={(event) => setEventDate(event.target.value)}
             />
           </div>
+
+          {/* Analyst Initials */}
           <Text style={styles.baseText}>Analyst Initials</Text>
           <div>
             <input
               className="TextBox"
               type="text"
               value={analystInitials}
-              required
+              // required
               onChange={(event) =>
                 setAnalystInitials(event.target.value.toUpperCase())
               }
             />
           </div>
-          <Text style={styles.baseText}>CAN Connector ID</Text>
+
+          {/* CAN Connector ID */}
+          <Text style={styles.baseText}>
+            CAN Connector ID
+            {/* <Text style={styles.innerText}> ! [Required] </Text> */}
+          </Text>
           <div>
             <input
               className="TextBox"
               type="text"
               value={canConnectorID}
-              required
+              // required
               onChange={(event) => setCANConnectorID(event.target.value)}
             />
           </div>
+
+          {/* Vehicle ID Number */}
           <Text style={styles.baseText}>Vehicle ID</Text>
           <div>
             <input
               className="TextBox"
               type="text"
               value={vehicleID}
-              required
+              // required
               onChange={(event) => setVehicleID(event.target.value)}
             />
           </div>
+
+          {/* Baud Rate */}
           <Text style={styles.baseText}>Baud Rate</Text>
           <div>
             <input
               className="TextBox"
               type="text"
               value={baudRate}
-              required
+              // required
               onChange={(event) => setBaudRate(event.target.value)}
             />
           </div>
+
+          {/* DBC File */}
+          <Text style={styles.baseText}>
+            DBC File
+            {/* <Text style={styles.innerText}> ! [Required] </Text> */}
+          </Text>
+          <div>
+            <input
+              className="TextBox"
+              type="file"
+              value={dbcFileName}
+              // required
+              accept=".dbc, .kcd"
+              onChange={(event) => setDBCFileName(event.target.value)}
+            />
+          </div>
+
+          {/* Blacklist File */}
           <Text style={styles.baseText}>
             {" "}
             Blacklist File
-            <Text style={styles.innerText}> * [Optional] </Text>
+            {/* <Text style={styles.innerText}> * [Optional] </Text> */}
           </Text>
           <div>
             <input
@@ -160,16 +168,7 @@ export default function ProjectInfoHolder(props) {
               onChange={(event) => setBlacklistFileName(event.target.value)}
             />
           </div>
-          <Text style={styles.baseText}>DBC File</Text>
-          <div>
-            <input
-              className="TextBox"
-              type="file"
-              value={dbcFileName}
-              accept=".dbc, .kcd"
-              onChange={(event) => setDBCFileName(event.target.value)}
-            />
-          </div>
+
           <br></br>
           <div>
             <button id="continue" value="Create" type="submit">
