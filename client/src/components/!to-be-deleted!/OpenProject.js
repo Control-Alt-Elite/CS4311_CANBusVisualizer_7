@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
-import './OpenProject.css'
-import Transitions from './Transitions';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './OpenProject.css';
+import Transitions from './Transitions';
 
 export default function OpenProject (props) {
 

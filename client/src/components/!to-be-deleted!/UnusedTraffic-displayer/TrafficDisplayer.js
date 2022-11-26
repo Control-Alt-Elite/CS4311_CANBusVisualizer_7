@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
+import Transitions from "../../Transitions";
 import "../project-handlers/open/OpenProject.css";
-import Transitions from "../Transitions";
 
 export default function OpenProject(props) {
   const url = "http://localhost:3001/packets";

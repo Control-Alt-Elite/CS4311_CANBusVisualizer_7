@@ -1,19 +1,16 @@
 import { AnimatePresence } from "framer-motion";
 import React from "react";
-import {
-    BrowserRouter as Router,
-    Route, Routes, useLocation
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import Home from "../components/home-screen/Home";
 import Navbar from "../components/nav-bar/Navbar";
-import ArchiveProject from "../components/project-handlers/archive/ArchiveProject";
+import ArchiveProject from "../components/project-handlers/archive-project/ArchiveProject";
 import CANBusManager from "../components/project-handlers/can-bus-manager/CANBusManager";
-import OpenProject from "../components/project-handlers/open/OpenProject";
-import { default as ProjectConfigurationHolder, default as ProjectInfoHolder } from "../components/project-handlers/project-config/ProjectInfoHolder";
-import SplitView from "../components/SplitView";
+import ProjectInfoHolder from "../components/project-handlers/create-project/ProjectInfoHolder";
+import OpenProject from "../components/project-handlers/open-project/OpenProject";
+import SplitView from "../components/split-view/SplitView";
 import Sync from "../components/sync/Sync";
-import AboutUs from "../components/to-be-deleted/about-us/AboutUs";
-import TrafficDisplayer from "../components/traffic-displayer/TrafficDisplayer";
+// import AboutUs from "../components/to-be-deleted/about-us/AboutUs";
+// import TrafficDisplayer from "../components/traffic-displayer/TrafficDisplayer";
  
 function Animated() {
     const location = useLocation();
@@ -34,10 +31,10 @@ function Animated() {
                     element={<ArchiveProject />}></Route>
                 <Route exact path="/SplitView"
                     element={<SplitView />}></Route>
-                <Route exact path="/AboutUs"
-                    element={<AboutUs />}></Route>
                 <Route exact path="/CANBusManager"
                     element={<CANBusManager />}></Route>
+                {/* <Route exact path="/AboutUs"
+                    element={<AboutUs />}></Route> */}
             </Routes>
         </AnimatePresence>
     );

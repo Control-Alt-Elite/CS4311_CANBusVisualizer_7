@@ -1,7 +1,7 @@
-import './OpenProject.css'
-import Transitions from './Transitions';
-import { Text, StyleSheet } from 'react-native';
-import {Link} from 'react-router-dom';
+import { StyleSheet, Text } from 'react-native';
+import { Link } from 'react-router-dom';
+import Transitions from '../../Transitions';
+import './ArchiveProject.css';
 
 const styles = StyleSheet.create({
     baseText: {

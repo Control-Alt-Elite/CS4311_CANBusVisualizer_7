@@ -4,9 +4,9 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Table from 'react-bootstrap/Table';
 import { useGlobalFilter, useSortBy, useTable } from 'react-table';
+import Editor from "../modals/Editor";
 import { COLUMNS } from './Columns';
 import { GlobalFilter } from './GlobalFilter';
-import Editor from "./modals/Editor";
 import "./Table.css";
 const url1 = 'http://localhost:3001/packets';
 const url2 = 'http://localhost:3001/logs';
@@ -154,7 +154,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
               <Navbar.Collapse>
                 <div className="navigationBottomBar">
                   <Nav>
-                    <NavDropdown title="File" id="file-dropdown">
+                    <NavDropdown title="File" id="file-dropdown" menuVariant = "dark">
                       <NavDropdown.Item>
                         Save Project
                       </NavDropdown.Item>
@@ -162,14 +162,14 @@ export default function CANTable() {    // The next function causes 4 renders, n
                         Open Saved Packets
                       </NavDropdown.Item>
                     </NavDropdown>
-                    <NavDropdown title="View" id="view-dropdown">
+                    <NavDropdown title="View" id="view-dropdown" menuVariant = "dark">
                       <NavDropdown.Item href="#action/3.1">
                         Filter Packets
                         <ul>
                           <NavDropdown.Item href="#action3">Node</NavDropdown.Item>
                         </ul>
                       </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">
+                      <NavDropdown.Item href="#action/3.2" menuVariant = "dark">
                         Sort Packets
                         <ul>
                           <NavDropdown.Item href="#action3">Most Recent</NavDropdown.Item>
@@ -179,7 +179,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
                         </ul>
                       </NavDropdown.Item>
                     </NavDropdown>
-                    <NavDropdown title="Packets" id="packets-dropdown">
+                    <NavDropdown title="Packets" id="packets-dropdown" menuVariant = "dark">
                       <NavDropdown.Item href="#Modal" data-toggle="Modal">
                         Edit Packets
                       </NavDropdown.Item>
@@ -193,7 +193,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
                         Annotate Packets
                       </NavDropdown.Item>
                     </NavDropdown>
-                    <NavDropdown title="Play Traffic">
+                    <NavDropdown title="Play Traffic" menuVariant = "dark">
                       <NavDropdown.Item onClick = {handlePlayTraffic}>
                         Start
                       </NavDropdown.Item>
@@ -201,7 +201,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
                         Stop
                       </NavDropdown.Item>
                     </NavDropdown>
-                    <NavDropdown title="Analyst Tools (Beta)">
+                    <NavDropdown title="Analyst Tools (Beta)" menuVariant = "dark">
                       <Editor/>                  
                     </NavDropdown>
                     <GlobalFilter globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter}/> 

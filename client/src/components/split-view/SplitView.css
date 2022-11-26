@@ -6,21 +6,11 @@
 .graphics{
   width: 50%;
 }
-/* Map Ribbon Items*/
-.navigationTopBar{
-  left: 0;
-  width: 100%;
-  border: solid 2px #646464;
-}
-/* Packet Dropdowns */
-.data{
-  width: 50%;
-}
 
 .searchButton{
   background-color: #76707c !important;
-  border-color: rgb(40, 77, 241);
-  border-width: 3.5px;
+  /* border-color: #0d6efd; */
+  /* border-width: 3.5px; */
   
 }
 
@@ -29,69 +19,45 @@
   background-color: rgb(109, 109, 109);
 }
 
-/* Packet Ribbon Items */
-.navigationBottomBar{
+/* Map Ribbon Items*/
+.navigationTopBar{
   left: 0;
   width: 100%;
   border: solid 2px #646464;
 }
+
 /* Changes the color of the Header of the modal */
 .modal-header{
   background-color: rgb(255, 202, 44);
 }
 /* Changes the color of the body of the modal */
-/*
 .modal-body {
   background-color:  white;
   border-color: black;
-  
 }
 /* Changes the color of the Footer of the Modal */
 .modal-footer{
     background-color:  white;
   }
 
-/* Table Settings*/
-thead{
-  display: block
+/* Button controls */
+.btn-primary-outline {
+  background-color: transparent;
+  border-color: #ccc;
 }
 
-tbody {
-  display:block;
-  max-height: 250px;
-  overflow-y:auto;
+
+.mapButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
-th{
-  font-size: 14px;
-  background-color: rgb(255, 253, 3);
-  color: black;
-}
-td{
-  font-size: 14px;
+.custom-btn{
+  
+  background-color: blueviolet !important;
+  border: #fff !important;
 }
 
-/* Default Header Color */
-th:nth-child(2),th:nth-child(4), th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11){
-  text-align: center;
-}
-
-td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6), td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-child(11){
-  text-align: center;
-}
-
-/* Hover color. Only affects the entire header right now. Need to highlight individual header sections */
-.table-hover, thead, tr:hover th, .table-hover, td:hover td {
-  background-color: rgb(255, 202, 44);
-}
-
-/* Table Settings*/
-th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12){
-  background-color: rgb(255, 253, 3);
-  color: black;
-}
-.alert{
-  color: white;
-  background-color: rgb(109, 109, 109);
-  height: fit-content;
-  max-width: fit-content;
-}
+/* .Visualizer{
+  border-style: 10px solid grey;
+} */
