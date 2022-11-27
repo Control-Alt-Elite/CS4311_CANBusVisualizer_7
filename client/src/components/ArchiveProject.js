@@ -20,28 +20,12 @@ const styles = StyleSheet.create({
 
 const ArchiveProject =()=> {
         
-    //Declare new state variables
-    // const [projectName, setProjectName] = useState([]); //In case we need it
-    // event.preventDefault();
-    // const data = {projectName: projectName, storedLocation: storedLocation}
-    // axios.post('http://localhost:3001/project/new', data)
-    //     .then((response) => {
-    //     window.location.replace('/ProjectInfoHolder')
-    // });
-    // console.log(projectName);
+  
     const [projectFileName, setProjectFileName] = useState("");
-    // const handleChange = (e)=>{
-    //     setForm({form,[e.target.name]:e.target.value})
-    // }
-
-    
-
+   
     const handleSubmit = async (event) => {
          // prevents the submit button from refreshing the page
         event.preventDefault();
-        //attempt to pass file to backend 
-        // alert("in handle submit");
-        
         
         const data = {
             projectFileName: projectFileName
@@ -54,26 +38,7 @@ const ArchiveProject =()=> {
         });
        
     };
-    // const handleSubmit = (event) => {
-    //     // prevents the submit button from refreshing the page
-    //     event.preventDefault();
-    //     const data = {
-    //       eventName: eventName,
-    //       eventDate: eventDate,
-    //       analystInitials: analystInitials,
-    //       canConnectorID: canConnectorID,
-    //       vehicleID: vehicleID,
-    //       baudRate: baudRate,
-    //       dbcFileName: dbcFileName,
-    //       blacklistFileName: blacklistFileName,
-    //     };
-    //     axios
-    //       .post("http://localhost:3001/project/session", data)
-    //       .then((response) => {
-    //         window.location.replace("/Sync");
-    //       });
-    //   };
-    
+  
     return (
         <Transitions>
             <div className='config'>   
@@ -117,15 +82,7 @@ const ArchiveProject =()=> {
         </Transitions>   
 
     )
-    // <div>
-    //         <input
-    //           className="TextBox"
-    //           type="file"
-    //           value={blacklistFileName}
-    //           accept=".dbc"
-    //           onChange={(event) => setBlacklistFileName(event.target.value)}
-    //         />
-    //       </div>
+  
 }
 export default ArchiveProject;
 
