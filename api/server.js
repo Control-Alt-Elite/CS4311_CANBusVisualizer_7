@@ -6,7 +6,8 @@ const app = express();
 const router = express.Router();
 const packets = require("./modules/CANUtils");
 const logfile = require("./modules/DumpPlayPckt")
-const dataSync = require("./modules/DataSynchronizer");
+//const dataSync = require("./modules/DataSynchronizer");
+const archive = require("./modules/Archive");
 const logs = require("./modules/Player");
 global.globalProjectName = ''; //To temporarily save project name 
 
@@ -14,10 +15,13 @@ global.globalProjectName = ''; //To temporarily save project name
 app.get('/packets', packets);
 
 // Syncing files via rsync
-app.get('/Sync', dataSync);
+//app.get('/Sync', dataSync);
 
 //Listen for replied packets
 app.get('/logs', logfile);
+
+//For archive project
+app.get('/archive',archive)
 
 
 //Writing raw packets to file
@@ -58,6 +62,7 @@ app.post('/project/new', async (req, res) => {
     projectName: req.body.projectName,
     storedLocation: req.body.storedLocation
 	})
+
   	globalProjectName = project.projectName;
 	await project.save();
 	res.json(project);
@@ -144,6 +149,24 @@ app.delete('/project/delete-session/:id', async (req, res) => {
 	const result = await Session.findByIdAndDelete(req.params.id);
 	res.json({result});
 });
+//end pt for archive
+app.post('/project/archive', async (req, res) => {
+	
+	
+	try{
+		
+		const {projectFileName} = await req.body;
+		console.log("in post endpt",projectFileName);
+		archive(projectFileName)
+		res.json({projectFileName});
+
+	}
+	catch(error){
+		console.log(error);
+	}
+	
+});
+
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
 
