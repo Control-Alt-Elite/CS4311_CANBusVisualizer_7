@@ -18,18 +18,33 @@ const styles = StyleSheet.create({
   });
 
 
-export default function OpenProject (props) {
+const ArchiveProject =()=> {
         
     //Declare new state variables
     // const [projectName, setProjectName] = useState([]); //In case we need it
+    // event.preventDefault();
+    // const data = {projectName: projectName, storedLocation: storedLocation}
+    // axios.post('http://localhost:3001/project/new', data)
+    //     .then((response) => {
+    //     window.location.replace('/ProjectInfoHolder')
+    // });
+    // console.log(projectName);
     const [projectFileName, setProjectFileName] = useState("");
+    // const handleChange = (e)=>{
+    //     setForm({form,[e.target.name]:e.target.value})
+    // }
 
-    const handleSubmit = (event) => {
+    
+
+    const handleSubmit = async (event) => {
          // prevents the submit button from refreshing the page
-         event.preventDefault();
+        event.preventDefault();
         //attempt to pass file to backend 
+        // alert("in handle submit");
+        
+        
         const data = {
-          projectFileName: projectFileName
+            projectFileName: projectFileName
           
         }
         axios
@@ -73,19 +88,29 @@ export default function OpenProject (props) {
                     </Text>
                     <div>
                         <input className= 'TextBox' 
-                        type="file" 
+                        type="text" 
                         value={projectFileName}
-                        accept=".txt"
+                        // accept=".txt"
                         onChange={(event) => setProjectFileName(event.target.value)}
                         required
                         />
                     </div>    
                     <br></br>
                     <div>
-                        <button className="continue" value = "Create" type = "submit" > Continue </button> 
-                            <Link to="/">
+                        <button className="continue" 
+                        onClick={handleSubmit} 
+                        value = "Create" 
+                        type = "submit" > Continue
+                         </button> 
+                            {/* <Link to="/">
                                 <button className = "cancel" value = "Cancel" > Cancel </button>  
-                            </Link>
+                            </Link> */}
+                            <Link to="/">
+              <button className="cancel" value="Cancel">
+                {" "}
+                Cancel{" "}
+              </button>
+            </Link>
                     </div>
                 </form>
             </div>     
@@ -102,4 +127,5 @@ export default function OpenProject (props) {
     //         />
     //       </div>
 }
+export default ArchiveProject;
 
