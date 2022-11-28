@@ -11,6 +11,7 @@ const canconfig = require("./canconfig");
 const startcangen = require("./modules/Cangen");
 const startcangen11 = require("./modules/Cangen11");
 const killprocesses = require("./modules/KillProcess");
+const archive = require("./modules/Archive");
 global.globalProjectName = ''; //To temporarily save project name
 let pid = '';
 
@@ -25,6 +26,9 @@ app.get('/Sync', dataSync);
 
 //Listen for replied packets
 app.get('/logs', logfile);
+
+//For archive project
+app.get('/archive',archive)
 
 //Connecting to virtual can bus interface 29-bit
 app.get('/vcan', (req,res) => {
@@ -123,6 +127,23 @@ app.post('/project/session', async (req, res) => {
 	res.json(session);
 });
 
+//end pt for archive
+app.post('/project/archive', async (req, res) => {
+	
+	try{
+		
+		const {projectFileName} = await req.body;
+		console.log("in post endpt",projectFileName);
+		archive(projectFileName)
+		res.json({projectFileName});
+
+	}
+	catch(error){
+		console.log(error);
+	}
+	
+});
+
 /* Saving file name used by canplayer in Player.js to the database */
 //Get all files names from database
 /*
@@ -131,7 +152,7 @@ app.get('/project/file', async (req, res) => {
 	res.json(fileName);
 }); 
 */
-//Saving file name to database (Used by Table.js)
+//Getting the file name from database (Used by Table.js)
 app.get('/file', (req, res) => {
 	const rec = req.query.fileName;
 	console.log(rec);

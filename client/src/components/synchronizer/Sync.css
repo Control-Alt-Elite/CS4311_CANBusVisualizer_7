@@ -96,17 +96,15 @@
     left: 80%; 
 }
 
-
-  .title-required{
+.title-required{
       color: red;
-  }
+}
+
 .form-grouprow{
     width: 150%;
-  
 }
+
 .textBoxE{
   background-color: #555;
-  border-radius: 10px;
-
-  
+  border-radius: 10px;  
 }
