@@ -19,6 +19,18 @@ export default function CANTable() {    // The next function causes 4 renders, n
   const [info, setInfo] = useState([]);
   const [disable, setDisable] = useState(true);
   const [fileName, setFileName] = useState('');
+  
+  function saveTemp() {
+    localStorage.removeItem("packetInfo")
+    localStorage.setItem("packetInfo",JSON.stringify(info))
+    console.log(JSON.stringify(info))
+  }
+  function retrieveTemp() {
+    const packet = JSON.parse(localStorage.getItem("packetInfo"))
+    console.log(JSON.stringify(packet))
+    setInfo(packet)
+    
+  }
 
   const handleMessage = (ecu, values) => {
     setMessage([]);
