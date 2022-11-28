@@ -42,7 +42,7 @@ function ChangeVisibility() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="warning" onClick={handleClose}>
             Save Changes
           </Button>
         </Modal.Footer>

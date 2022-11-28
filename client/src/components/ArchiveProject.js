@@ -34,7 +34,7 @@ export default function OpenProject (props) {
                         Archive Project
                     </h4>              
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form className='ProjectForm' onSubmit={handleSubmit}>
                     <Text style={styles.baseText}>
                         Select Project
                     </Text>

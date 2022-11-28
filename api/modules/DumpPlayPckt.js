@@ -1,6 +1,6 @@
 var fs = require('fs');
 var spawn = require('child_process').spawn;
-const { fork } = require('child_process');
+const player = require("./Player")
 
 function emitSSE(res, index, time, can, id, dt1, dt2, dt3, dt4, dt5, dt6, dt7, dt8, ecu, values) {
     res.write('id:' + index + '\n');
@@ -9,41 +9,28 @@ function emitSSE(res, index, time, can, id, dt1, dt2, dt3, dt4, dt5, dt6, dt7, d
 }
 
   module.exports = (req,res) => {
-    //Kill all running previous child/sub-processes if any
-    var cleanExit = function() { process.exit() };
-    process.on('SIGINT', cleanExit); // catch ctrl-c
-    process.on('SIGTERM', cleanExit);
-    console.log("Killing zombies processes");
-
     res.writeHead(200, {"Access-Control-Allow-Origin": "*",
                         "Content-Type": "text/event-stream",
                         "Cache-control": "no-cache",
                         "Connection": "keep-alive"});
     //We can use candump filters e.g. 'candump vcan0,9803FEFE:1ffffff' (extended version 29-bits) or 201:7ff (11-bit)
-    var child = spawn('candump -t a -T 40000', ['vcan0 | python3 -m cantools decode --single-line dbc-files/client-j1939.dbc'], {shell: true, detached: true});
+    var child = spawn('candump',['-t', 'a', '-T', '4000','vcan0'], {detached: true});
     child.unref();
-    console.log("candump running...");
-    var writeStream = fs.createWriteStream('./log-files/playdecoded.pcap',{flags: 'w'});
+    var scriptchild = spawn('python3', ['-m', 'cantools','decode', '--single-line', 'dbc-files/client-j1939.dbc'], {detached: true});
+    scriptchild.unref();
+
+    child.stdout.on('data', function (data) {
+        scriptchild.stdin.write(data);
+    });
+
+    var writeStream = fs.createWriteStream('./packets/replayeddecoded.pcap',{flags: 'w'});
     counter = 0;
 
-    //Initializing child Player to replay packets
-    let signal = 'START'
-    const grandchild = fork(__dirname + '/Player');
-
-    grandchild.on('message', (message) => {
-        console.log(message);
-    });
-  
-    grandchild.send(signal);
-    
-    //Writing to file
-    child.stdout.on('data', function (data) {
-        writeStream.write(data); //This works perfectly to write the stream on a file
-        writeStream.end();
-    });
+    //Initializing player function to replay packets
+    player.player();
     
     //Format string and send it to /logs page
-    child.stdout.on('data', function (data) {
+    scriptchild.stdout.on('data', function (data) {
         str = ''
         str = data.toString() + '\n';
         var lines = str.split("\n");
@@ -63,13 +50,13 @@ function emitSSE(res, index, time, can, id, dt1, dt2, dt3, dt4, dt5, dt6, dt7, d
             emitSSE(res, counter, frame[0], frame[1], frame[2], frame[4], frame[5], frame[6], frame[7], frame[8], frame[9], frame[10], frame[11], decode[0], values);   
         }
     });
-    
-    /*
-    // Reading packets from candump (terminal output)
-    child.stdout.on('data',function (data) {
-        console.log(`${data}`);
+
+    //Writing to file
+    scriptchild.stdout.on('data', function (data) {
+        writeStream.write(data); //This works perfectly to write the stream on a file
+        writeStream.end();
     });
-    */
+
     child.stderr.on('data', function (data) {
         console.error(`stderr:  ${data}`);
     });
@@ -78,14 +65,23 @@ function emitSSE(res, index, time, can, id, dt1, dt2, dt3, dt4, dt5, dt6, dt7, d
         console.error(`error: ${error.message}`);
       });
 
-    child.on('exit', () => {
+    scriptchild.on('exit', () => {
         res.write('event: close\n');
         res.write('data: finished');
         res.write('\n\n');
-        console.log(`candump terminated after 40 secs without any packets reception`);
+        console.log(`candump terminated`);
       });
 
     child.on('close', () => {
-        console.log(`Decode Replay packets process finished`);
+        console.log(`candump process finished`);
+        scriptchild.stdin.end();
+    });
+
+    scriptchild.stderr.on('data', function (data) {
+        console.error(`python stderr:  ${data}`);
+    });
+
+    scriptchild.on('close', () => {
+        console.log(`Decode Replayed Packets process finished`);
     });
 }

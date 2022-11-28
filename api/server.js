@@ -3,12 +3,19 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const router = express.Router();
 const packets = require("./modules/CANUtils");
 const logfile = require("./modules/DumpPlayPckt")
 const dataSync = require("./modules/DataSynchronizer");
-const logs = require("./modules/Player");
-global.globalProjectName = ''; //To temporarily save project name 
+const vcanconfig = require("./vcanconfig");
+const canconfig = require("./canconfig");
+const startcangen = require("./modules/Cangen");
+const startcangen11 = require("./modules/Cangen11");
+const killprocesses = require("./modules/KillProcess");
+global.globalProjectName = ''; //To temporarily save project name
+let pid = '';
+
+app.use(express.json());
+app.use(cors());
 
 //Sending packets
 app.get('/packets', packets);
@@ -19,12 +26,41 @@ app.get('/Sync', dataSync);
 //Listen for replied packets
 app.get('/logs', logfile);
 
+//Connecting to virtual can bus interface 29-bit
+app.get('/vcan', (req,res) => {
+	const device = req.query.CAN;
+	vcanconfig.initializeVirtualCAN(device);
+	pid = startcangen.cangen(device);
+	res.send("Virtual CAN Bus 29-bits initialized");
+});
+
+//Connecting to virtual can bus interface 11-bit
+app.get('/vcan11', (req,res) => {
+	const device = req.query.CAN;
+	vcanconfig.initializeVirtualCAN(device);
+	pid = startcangen11.cangen11(device);
+	res.send("Virtual CAN Bus 11-bits initialized");
+});
+
+//Connecting to real can bus interface
+app.get('/can', (req,res) => {
+	const device = req.query.CAN;
+	const rate = req.query.rate;
+	canconfig.initializeCAN(device, rate);
+	res.send("CAN Bus initialized");
+});
+
+/* Manage subprocess */
+//Kill process
+app.get('/kill', (req,res) => {
+	const receive = req.query.message;
+	console.log(receive);
+	killprocesses.killProcess(pid);
+	res.send("Process killed");
+});
 
 //Writing raw packets to file
 //channel.addListener("onMessage", decodedFile.DataSaver());
-
-app.use(express.json());
-app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/candb', {
@@ -36,6 +72,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/candb', {
 //Database Models
 const Project = require('./models/project_model');
 const Session = require('./models/session_model');
+const File = require('./models/file_model');
 
 //Get all projects from database
 app.get('/projects', async (req, res) => {
@@ -50,7 +87,7 @@ app.get('/project/new', async (req, res) => {
 	res.json(project);
 }); 
 
-/* Savin Project/Session to database using a global variable*/
+/* Saving Project/Session to database using a global variable*/
 //Saving Project to datase (Used by ProjectConfigurationHolder.js)
 app.post('/project/new', async (req, res) => {
 	const project = new Project({ 
@@ -84,6 +121,21 @@ app.post('/project/session', async (req, res) => {
   project.sessions.push(savedSession._id);
   await project.save();
 	res.json(session);
+});
+
+/* Saving file name used by canplayer in Player.js to the database */
+//Get all files names from database
+/*
+app.get('/project/file', async (req, res) => {
+	const fileName = await File.find();
+	res.json(fileName);
+}); 
+*/
+//Saving file name to database (Used by Table.js)
+app.get('/file', (req, res) => {
+	const rec = req.query.fileName;
+	console.log(rec);
+	res.json(rec);
 });
 
 /*
@@ -142,6 +194,12 @@ app.delete('/project/delete-project/:id', async (req, res) => {
 //Delete specific session by id
 app.delete('/project/delete-session/:id', async (req, res) => {
 	const result = await Session.findByIdAndDelete(req.params.id);
+	res.json({result});
+});
+
+//Delete all filenames
+app.delete('/project/delete-file', async (req, res) => {
+	const result = await File.deleteMany({});
 	res.json({result});
 });
 

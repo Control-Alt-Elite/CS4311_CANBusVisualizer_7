@@ -43,7 +43,7 @@ export default function ProjectConfiguration (props) {
                 </h2>
             </div>
             <br></br>
-            <form onSubmit={handleSubmit}> 
+            <form className='ProjectForm' onSubmit={handleSubmit}> 
                 <Text style={styles.baseText}>
                     Project Name
                         <Text style={styles.innerText}>  ! [Required] </Text>

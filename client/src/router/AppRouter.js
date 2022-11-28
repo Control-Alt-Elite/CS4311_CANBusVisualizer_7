@@ -1,19 +1,18 @@
-import { AnimatePresence } from 'framer-motion';
 import React from "react";
-import {
-    BrowserRouter as Router,
-    Route, Routes, useLocation
-} from "react-router-dom";
-import AboutUs from "../components/AboutUs";
-import ArchiveProject from "../components/ArchiveProject";
-import CANBusManager from "../components/CANBusManager";
+import { BrowserRouter as Router, 
+    Route, Routes } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import Home from "../components/Home";
 import Navbar from "../components/Navbar";
-import OpenProject from "../components/OpenProject";
 import ProjectConfigurationHolder from "../components/ProjectConfigurationHolder";
 import ProjectInfoHolder from "../components/ProjectInfoHolder";
-import SplitView from "../components/SplitView";
-import Sync from "../components/Sync";
+import OpenProject from "../components/OpenProject"
+import Sync from "../components/synchronizer/Sync";
+import ArchiveProject from "../components/ArchiveProject";
+import AboutUs from "../components/AboutUs";
+import SplitView from "../components/split-view/SplitView";
+import CANBusManager from "../components/can-bus-manager/CANBusManager";
+import { AnimatePresence } from 'framer-motion';
 
 function Animated() {
     const location = useLocation();

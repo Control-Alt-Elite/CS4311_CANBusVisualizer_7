@@ -12,7 +12,7 @@ function Editor() {
 
   return (
     <>
-      <NavDropdown.Item href="#action/3.3" onClick={handleShow}>CAN DBC Editor</NavDropdown.Item>
+      <NavDropdown.Item href="#action/3.3" onClick={handleShow}>CAN DBC Editor - Beta Version - Requieres Internet Connection</NavDropdown.Item>
       <Modal id="dragable_modal" dialogAs={DraggableModalDialog} show={show} onHide={handleClose} size = "xl">
         <Modal.Header closeButton>
           <Modal.Title>CAN DBC Editor</Modal.Title>

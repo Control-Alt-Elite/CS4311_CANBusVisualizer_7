@@ -1,9 +1,28 @@
 var spawn = require('child_process').spawn;
+const axios = require('axios');
+const { execFile } = require('node:child_process');
 
-const Player = () => {
+function player(){
+    /*
+    //Format project information
+    function formatResponse(res) {
+        var value = JSON.parse(res);
+        return value['fileName'];
+    }
+    
+    //Get all files names from database
+    async function getAllFileNames() {
+        try {
+        const res = await axios.get('http://localhost:3001/project/file'); //Necesito corregir esta parte
+        console.log(res.data);
+        }catch (err) {
+            console.error("Error Parsing Data");
+        }
+    };
+    getAllFileNames(); */
+
     //We can use candump filters e.g. 'candump vcan0,9803FEFE:1ffffff' (extended version 29-bits) or 201:7ff (11-bit)
-    var child = spawn('canplayer',['-I log-files/candump.log vcan0=vcan0 -v'], {shell: true, detached: true});
-    child.unref();
+    var child = execFile('canplayer',['-I', 'log-files/test.log', 'vcan0=vcan0', '-v']);
 
     child.stdout.on('data', function (data) {
         console.log(`${data}`);
@@ -22,11 +41,4 @@ const Player = () => {
     });
 }
 
-//Run Player and send answer to parent
-process.on('message', (message) => {
-    if (message == 'START') {
-      Player();
-      let message = "Playing Packets...";
-      process.send(message);
-    } 
-});
+module.exports = {player}

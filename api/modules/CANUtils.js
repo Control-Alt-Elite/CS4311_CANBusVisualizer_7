@@ -13,19 +13,19 @@ module.exports = (req,res) => {
                         "Cache-control": "no-cache",
                         "Connection": "keep-alive"});
     //We can use candump filters e.g. 'candump vcan0,9803FEFE:1ffffff' (extended version 29-bits) or 201:7ff (11-bit)
-    var child = spawn('candump -t a -T 40000', ['vcan0 | python3 -m cantools decode --single-line dbc-files/client-j1939.dbc'], {shell: true, detached: true});
+    var child = spawn('candump',['-t', 'a', '-T', '40000','vcan0'], {detached: true});
     child.unref();
-    console.log("candump event 1 running...");
+    var scriptchild = spawn('python3', ['-m', 'cantools','decode', '--single-line', 'dbc-files/client-j1939.dbc'], {detached: true});
+    scriptchild.unref();
+
+    child.stdout.on('data', function (data) {
+        scriptchild.stdin.write(data);
+    });
+
     var writeStream = fs.createWriteStream('./packets/decoded.pcap',{flags: 'a'});
     counter = 0;
-    
-    //Writing to file
-    child.stdout.on('data', function (data) {
-        writeStream.write(data); //This works perfectly to write the stream on a file
-        writeStream.end();
-    });
-    
-    child.stdout.on('data', function (data) {
+       
+    scriptchild.stdout.on('data', function (data) {
         str = ''
         str = data.toString() + '\n';
         var lines = str.split("\n");
@@ -45,6 +45,12 @@ module.exports = (req,res) => {
             emitSSE(res, counter, frame[0], frame[1], frame[2], frame[4], frame[5], frame[6], frame[7], frame[8], frame[9], frame[10], frame[11], decode[0], values);   
         }
     });
+
+    //Writing to file
+    scriptchild.stdout.on('data', function (data) {
+        writeStream.write(data); //This works perfectly to write the stream on a file
+        writeStream.end();
+    });
     
     /*
     // Reading packets from candump (terminal output)
@@ -52,8 +58,9 @@ module.exports = (req,res) => {
         console.log(`${data}`);
     });
     */
+
     child.stderr.on('data', function (data) {
-        console.error(`stderr:  ${data}`);
+        console.error(`candump stderr:  ${data}`);
     });
 
     child.on('exit', () => {
@@ -61,6 +68,15 @@ module.exports = (req,res) => {
       });
 
     child.on('close', () => {
+        console.log(`candump process finished`);
+        scriptchild.stdin.end();
+    });
+
+    scriptchild.stderr.on('data', function (data) {
+        console.error(`python stderr:  ${data}`);
+    });
+
+    scriptchild.on('close', () => {
         console.log(`Decode Play Packets process finished`);
     });
     

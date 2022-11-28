@@ -1,22 +1,24 @@
-import React, { useMemo, useState } from 'react';
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import React, { useState, useMemo } from 'react';
+import axios from 'axios';
+import { useTable, useGlobalFilter, useSortBy } from 'react-table';
 import Table from 'react-bootstrap/Table';
-import { useGlobalFilter, useSortBy, useTable } from 'react-table';
-import { COLUMNS } from './Columns';
+import {COLUMNS} from './Columns';
+import "./Table.css"
 import { GlobalFilter } from './GlobalFilter';
-import Editor from "./modals/Editor";
-import "./Table.css";
 const url1 = 'http://localhost:3001/packets';
 const url2 = 'http://localhost:3001/logs';
-const eventSource = new EventSource(url1);  //BUG: This event start when page is loaded, then two candump child processes are created and running at the same time
+const url3 = 'http://localhost:3001/kill';
+let eventSource;  
 
 export default function CANTable() {    // The next function causes 4 renders, needs performance improvement
   
   const [message, setMessage] = useState([]);
   const [info, setInfo] = useState([]);
-  //const [listening, setListening] = useState(true);
+  const [disable, setDisable] = useState(true);
+  const [fileName, setFileName] = useState('');
 
   const handleMessage = (ecu, values) => {
     setMessage([]);
@@ -44,26 +46,30 @@ export default function CANTable() {    // The next function causes 4 renders, n
   };
 
   async function handleSavePackets () {
-    console.log("Saving packets...");
     var packet = ''
-    info.map((x,y)=>{
-      packet+=x.time+" "+x.can+" "+x.id+"#"+x.dt1+x.dt2+x.dt3+x.dt4+x.dt5+x.dt6+x.dt7+x.dt8+"\n"
-    })
+    info.map((x,y)=> (
+      packet+=x.time+" "+x.can+" "+x.id+"#"+x.dt1+x.dt2+x.dt3+x.dt4+x.dt5+x.dt6+x.dt7+x.dt8+"\n"))
     const blob = new Blob([packet], {type:"text/plain"});
     try {
     const options = {
+      suggestedName:'test.log',
       types: [
         {
+          description: 'Log files',
           accept: {
-            //None
+            'text/plain': ['.log'],
           },
         },
       ],
+      excludeAcceptAllOption: true,
     };
     const handle = await window.showSaveFilePicker(options);
+    setFileName(handle.name);
+    setDisable(false);
     const writable = await handle.createWritable();
     await writable.write(blob);
     await writable.close();
+    console.log("Packets file saved.");
     return handle;
     } catch (err) {
       console.error(err.name, err.message)
@@ -71,6 +77,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
   }
 
   function handlePlayTraffic () {
+    eventSource= new EventSource(url1)
     //Reset table values
     setInfo([]);
     setMessage([]);
@@ -78,23 +85,31 @@ export default function CANTable() {    // The next function causes 4 renders, n
       const parsedData = JSON.parse(e.data);
       setInfo((data) => [...data,parsedData]);
     }
-    return () => {
-      eventSource.close(); 
-    };
   };
   
   function handleStopTraffic () {
     eventSource.close(); 
     console.log("Connection closed");
-    return () => {
-      eventSource.close(); 
-    };
   };
 
   function handleReplayPackets(){
     //Reset table values
     setInfo([]);
     setMessage([]);
+
+    // prevents the submit button from refreshing the page
+    //event.preventDefault();
+
+    //Terminate cangen first
+    const dato = {params: {message: 'Kill process!'}};
+    axios.get(url3, dato).then((response) => {
+      console.log(response.data);
+    });
+
+    //const data = {params: {fileName: fileName}};  (TODO)
+    //axios.post('http://localhost:3001/file', data);
+    console.log(fileName)
+
     const eventSource2 = new EventSource(url2);
     eventSource2.addEventListener('message', function(e) {
       const parsedData = JSON.parse(e.data);
@@ -158,24 +173,24 @@ export default function CANTable() {    // The next function causes 4 renders, n
                       <NavDropdown.Item>
                         Save Project
                       </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">
+                      <NavDropdown.Item>
                         Open Saved Packets
                       </NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="View" id="view-dropdown">
-                      <NavDropdown.Item href="#action/3.1">
+                      <NavDropdown.Item>
                         Filter Packets
                         <ul>
-                          <NavDropdown.Item href="#action3">Node</NavDropdown.Item>
+                          <NavDropdown.Item>Node</NavDropdown.Item>
                         </ul>
                       </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">
+                      <NavDropdown.Item>
                         Sort Packets
                         <ul>
-                          <NavDropdown.Item href="#action3">Most Recent</NavDropdown.Item>
-                          <NavDropdown.Item href="#action3">Oldest</NavDropdown.Item>
-                          <NavDropdown.Item href="#action3">Highest ID</NavDropdown.Item>
-                          <NavDropdown.Item href="#action3">Smallest ID</NavDropdown.Item>
+                          <NavDropdown.Item>Most Recent</NavDropdown.Item>
+                          <NavDropdown.Item>Oldest</NavDropdown.Item>
+                          <NavDropdown.Item>Highest ID</NavDropdown.Item>
+                          <NavDropdown.Item>Smallest ID</NavDropdown.Item>
                         </ul>
                       </NavDropdown.Item>
                     </NavDropdown>
@@ -183,13 +198,13 @@ export default function CANTable() {    // The next function causes 4 renders, n
                       <NavDropdown.Item href="#Modal" data-toggle="Modal">
                         Edit Packets
                       </NavDropdown.Item>
-                      <NavDropdown.Item onClick={handleReplayPackets}>
+                      <NavDropdown.Item disabled={disable} onClick={handleReplayPackets}>
                         Replay Packets
                       </NavDropdown.Item>
                       <NavDropdown.Item onClick={handleSavePackets}>
                         Save Packets
                       </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.4">
+                      <NavDropdown.Item>
                         Annotate Packets
                       </NavDropdown.Item>
                     </NavDropdown>
@@ -201,10 +216,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
                         Stop
                       </NavDropdown.Item>
                     </NavDropdown>
-                    <NavDropdown title="Analyst Tools (Beta)">
-                      <Editor/>                  
-                    </NavDropdown>
-                    <GlobalFilter globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter}/> 
+                    <GlobalFilter globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter}/>
                   </Nav>
                 </div>
               </Navbar.Collapse>
