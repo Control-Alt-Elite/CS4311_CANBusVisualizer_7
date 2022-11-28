@@ -11,6 +11,7 @@
   background-color: #76707c !important;
   border-color: rgb(40, 77, 241);
   border-width: 3.5px;
+  height: 40px;
   
 }
 
@@ -39,3 +40,20 @@
 .modal-footer{
     background-color:  white;
   }
+
+  /* Button controls */
+.btn-primary-outline {
+  background-color: transparent;
+  border-color: #ccc;
+}
+
+.mapButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.custom-btn{
+  
+  background-color: blueviolet !important;
+  border: #fff !important;
+}

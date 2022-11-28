@@ -1,16 +1,11 @@
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import Form from 'react-bootstrap/Form';
 import Modal from "react-bootstrap/Modal";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Table from "react-bootstrap/Table";
 import ColorPicker from "./ColorPicker.js";
  
-import './ChangeVisibility.css';
+import './Flags.css';
  
 function Flags() {
   const [show, setShow] = useState(false);
@@ -45,38 +40,7 @@ function Flags() {
                     <p>Scanned</p>
                     <p>Custom Flags</p>
             {/* </select> */}
-          {/* </Form>  */}
-          {/*
-        <Table striped bordered hover>
-        <tbody>
-        <tr>
-            <td colSpan={3}>Create Custom Flag</td>
-          </tr>
-          <tr>
-            <td colSpan={3}>Alive</td>
-          </tr>  
-          <tr>
-            <td colSpan={3}>DoSed</td>
-          </tr>
-          <tr>
-            <td colSpan={3}>Enumerated</td>
-          </tr>  
-          <tr>
-            <td colSpan={3}>Notes</td>
-          </tr>
-          <tr>
-            <td colSpan={3}>Off Limits</td>
-          </tr>
-          <tr>
-            <td colSpan={3}>Scanned</td>
-          </tr>
-          <tr>
-            <td colSpan={3}>Custom Flags</td>
-          </tr>
-        </tbody>
-      </Table>
-       */}
-         
+          {/* </Form>  */}    
       </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

@@ -1,8 +1,9 @@
 /* App.css */
 .diagram-component {
   width: 100%;
-  height: 600px;
+  height: 550px;
   border: solid 2px #646464;
-  background-color: #262546;
+  /*background-color: #262546;*/
+  background-color: #212529; /*#343a40*/
   resize: both;
 }

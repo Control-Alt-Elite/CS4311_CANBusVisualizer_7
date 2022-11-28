@@ -4,14 +4,6 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-// import ColorPicker from "./ColorPicker.js";
- 
-// class Component extends React.Component {
- 
-//   render() {
-//     return <SketchPicker />;
-//   }
-// }
 function ColorPicker() {
     const [show, setShow] = useState(false);
   

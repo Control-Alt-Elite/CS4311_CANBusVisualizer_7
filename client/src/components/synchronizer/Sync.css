@@ -23,7 +23,8 @@
     border-bottom: 2px solid #fffd03;
     position: relative; top: 4px;
 }
-form{
+
+.SyncForm{
     color: white;
     padding-top: 40px;
     padding-left: 180px;
@@ -54,16 +55,14 @@ form{
 }
 .progressbar{
 	overflow: hidden;
-	width: 350px;
+	width: 370px;
 	height: 35px;
     border: 2px solid black;
 	border-radius: 5px;
 	background-color: #eee;
     position: absolute;
-    left: 38%;
+    left: 40%;
     top: 54%
-      
-
 }
 
 .progressPercent{
