@@ -55,8 +55,8 @@ function SplitView() {
                         Select All
                       </NavDropdown.Item>
                     </NavDropdown>
-                    <input id="nodeSearchBar"className = "searchInput" type="search"  variant="dark" onkeypress="if (event.keyCode === 13) searchDiagram()"></input>
-                    <Button id = "nodeSearchButton" className="searchButton" variant="dark" onclick="searchDiagram()">Search</Button>
+                    <input id="nodeSearchBar"className = "searchInput" type="search"  variant="dark"></input>
+                    <Button id = "nodeSearchButton" className="searchButton" variant="dark">Search</Button>
                     {/* <button id = "nodeSearchButton" className="searchButton" variant="dark" onclick="searchDiagram()">Search Node</button> */}
                     {/* <input className = "searchInput"/> */}
                     {/* <Button className = 'searchButton' variant="dark">Search</Button> */}

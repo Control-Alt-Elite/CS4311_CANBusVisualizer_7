@@ -11,10 +11,9 @@ const SelectVirtualCAN = () => {
     const handleSubmit = (event) => {
          // prevents the submit button from refreshing the page
          event.preventDefault();
-         console.log(CAN);
          const data = {params: {CAN: CAN}};
          axios.get('http://localhost:3001/vcan', data).then((response) => {
-              console.log(response);
+              console.log(JSON.stringify(response.data));
           })
      };
 
@@ -27,8 +26,8 @@ const SelectVirtualCAN = () => {
             <Form.Group controlId="custom-select">
                 <Form.Label>Select Virtual CAN Bus (Testing Purposes Only)</Form.Label>
                 <Form.Control as="select" className="rounded-0 shadow" onChange={handleChange} value={CAN}>
-                    <option value={'vcan0'}>Virtual CAN Bus #1</option>
-                    <option value={'vcan1'}>Virtual CAN Bus #2</option>
+                    <option value={'vcan0'}>Virtual CAN Bus #1 (29-bit Extended Format)</option>
+                    <option value={'vcan1'}>Virtual CAN Bus #2 (11-bit Standard Format)</option>
                 </Form.Control>
             </Form.Group>
             <br></br><br></br>

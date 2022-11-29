@@ -1,7 +1,9 @@
-import { StyleSheet, Text } from 'react-native';
-import { Link } from 'react-router-dom';
-import Transitions from '../../Transitions';
-import './ArchiveProject.css';
+import './ArchiveProject.css'
+import Transitions from '/home/kali/CS4311_CANBusVisualizer_7/client/src/components/Transitions';
+import { Text, StyleSheet } from 'react-native';
+import {Link} from 'react-router-dom';
+import React, { useState } from "react";
+import axios from 'axios';
 
 const styles = StyleSheet.create({
     baseText: {
@@ -15,17 +17,24 @@ const styles = StyleSheet.create({
       }
   });
 
-
-export default function OpenProject (props) {
+const ArchiveProject =()=> {
         
-    //Declare new state variables
-    // const [projectName, setProjectName] = useState([]); //In case we need it
-
-    const handleSubmit = (event) => {
-        // prevents the submit button from refreshing the page
-        event.preventDefault();
+    const [projectFileName, setProjectFileName] = useState("");
+   
+    const handleSubmit = async (event) => {
+         // prevents the submit button from refreshing the page
+        event.preventDefault();        
+        const data = {
+            projectFileName: projectFileName
+          
+        }
+        axios
+        .post("http://localhost:3001/project/archive", data)
+        .then((response) => {
+          window.location.replace("/ArchiveProject");
+        });
     };
-    
+  
     return (
         <Transitions>
             <div className='config'>   
@@ -34,23 +43,35 @@ export default function OpenProject (props) {
                         Archive Project
                     </h4>              
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form className='ProjectForm' onSubmit={handleSubmit}>
                     <Text style={styles.baseText}>
                         Select Project
                     </Text>
                     <div>
-                        <input className= 'TextBox' type="file" required/>
+                        <input className= 'TextBox' 
+                        type="text" 
+                        value={projectFileName}
+                        // accept=".txt"
+                        onChange={(event) => setProjectFileName(event.target.value)}
+                        required
+                        />
                     </div>    
                     <br></br>
                     <div>
-                        <button className="continue" value = "Create" type = "submit" > Continue </button> 
-                            <Link to="/">
-                                <button className = "cancel" value = "Cancel" > Cancel </button>  
-                            </Link>
+                        <button className="continue" 
+                        onClick={handleSubmit} 
+                        value = "Create" 
+                        type = "submit" > Continue
+                        </button> 
+                        <Link to="/">
+                            <button className = "cancel" value = "Cancel" > Cancel </button>  
+                        </Link>
                     </div>
                 </form>
             </div>     
-        </Transitions>       
-    )
-}
+        </Transitions>   
 
+    )
+  
+}
+export default ArchiveProject;

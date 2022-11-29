@@ -151,13 +151,6 @@ table.decodedTable td:nth-child(3) {
     background-color: #262546;
   }
 
-/* Alert Box 
-.alert{
-    color: white;
-    background-color: rgb(109, 109, 109);
-    width: auto;
-    height: 230px;
-    overflow-y: auto;
-    max-height: 230px;
+body{
+    background-color: rgb(58, 58, 58);
 }
-*/

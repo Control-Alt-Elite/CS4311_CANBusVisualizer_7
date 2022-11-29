@@ -1,5 +1,5 @@
 import React from 'react'
-import Transitions from '../../Transitions';
+import Transitions from '/home/kali/CS4311_CANBusVisualizer_7/client/src/components/Transitions';
 import './CANBusManager.css'
 import { Row, Col, Tabs, Tab } from "react-bootstrap";
 import SelectVirtualCAN from './SelectVirtualCANBus';

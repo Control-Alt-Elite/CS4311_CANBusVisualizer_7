@@ -6,17 +6,17 @@ const app = express();
 const packets = require("./modules/CANUtils");
 const logfile = require("./modules/DumpPlayPckt")
 const dataSync = require("./modules/DataSynchronizer");
-const logs = require("./modules/Player");
 const vcanconfig = require("./vcanconfig");
 const canconfig = require("./canconfig");
+const startcangen = require("./modules/Cangen");
+const startcangen11 = require("./modules/Cangen11");
+const killprocesses = require("./modules/KillProcess");
+const archive = require("./modules/Archive");
 global.globalProjectName = ''; //To temporarily save project name
-const file_Name = '';
+let pid = '';
 
 app.use(express.json());
 app.use(cors());
-
-//Initialize Virtual CAN Bus
-//iconfig.initializeCAN('vcan0');
 
 //Sending packets
 app.get('/packets', packets);
@@ -27,11 +27,23 @@ app.get('/Sync', dataSync);
 //Listen for replied packets
 app.get('/logs', logfile);
 
-//Connecting to virtual can bus interface
+//For archive project
+app.get('/archive',archive)
+
+//Connecting to virtual can bus interface 29-bit
 app.get('/vcan', (req,res) => {
 	const device = req.query.CAN;
 	vcanconfig.initializeVirtualCAN(device);
-	res.send("Success");
+	pid = startcangen.cangen(device);
+	res.send("Virtual CAN Bus 29-bits initialized");
+});
+
+//Connecting to virtual can bus interface 11-bit
+app.get('/vcan11', (req,res) => {
+	const device = req.query.CAN;
+	vcanconfig.initializeVirtualCAN(device);
+	pid = startcangen11.cangen11(device);
+	res.send("Virtual CAN Bus 11-bits initialized");
 });
 
 //Connecting to real can bus interface
@@ -39,22 +51,20 @@ app.get('/can', (req,res) => {
 	const device = req.query.CAN;
 	const rate = req.query.rate;
 	canconfig.initializeCAN(device, rate);
-	res.send("Success");
+	res.send("CAN Bus initialized");
+});
+
+/* Manage subprocess */
+//Kill process
+app.get('/kill', (req,res) => {
+	const receive = req.query.message;
+	console.log(receive);
+	killprocesses.killProcess(pid);
+	res.send("Process killed");
 });
 
 //Writing raw packets to file
 //channel.addListener("onMessage", decodedFile.DataSaver());
-
-//Connecting to can bus interface
-//app.use('/can', iconfig.initializeCAN())
-/*
-app.get('/can', (req,res) => {
-	const device = req.body.CAN;
-	console.log(device + " hola");
-	//const dev = 'vcan0'
-	iconfig.initializeCAN();
-	res.send("Success");
-});*/
 
 // Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/candb', {
@@ -81,7 +91,7 @@ app.get('/project/new', async (req, res) => {
 	res.json(project);
 }); 
 
-/* Savin Project/Session to database using a global variable*/
+/* Saving Project/Session to database using a global variable*/
 //Saving Project to datase (Used by ProjectConfigurationHolder.js)
 app.post('/project/new', async (req, res) => {
 	const project = new Project({ 
@@ -117,21 +127,36 @@ app.post('/project/session', async (req, res) => {
 	res.json(session);
 });
 
+//end pt for archive
+app.post('/project/archive', async (req, res) => {
+	
+	try{
+		
+		const {projectFileName} = await req.body;
+		console.log("in post endpt",projectFileName);
+		archive(projectFileName)
+		res.json({projectFileName});
+
+	}
+	catch(error){
+		console.log(error);
+	}
+	
+});
+
 /* Saving file name used by canplayer in Player.js to the database */
 //Get all files names from database
+/*
 app.get('/project/file', async (req, res) => {
 	const fileName = await File.find();
 	res.json(fileName);
 }); 
-
-//Saving file name to database (Used by Table.js)
-app.post('/project/file', async (req, res) => {
-	const fileName = new File({ 
-    fileName: req.body.fileName,
-	})
-	console.log(fileName)
-	await fileName.save();
-	res.json(fileName);
+*/
+//Getting the file name from database (Used by Table.js)
+app.get('/file', (req, res) => {
+	const rec = req.query.fileName;
+	console.log(rec);
+	res.json(rec);
 });
 
 /*

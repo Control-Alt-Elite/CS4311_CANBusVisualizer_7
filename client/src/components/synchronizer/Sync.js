@@ -7,7 +7,17 @@ import { Link } from 'react-router-dom';
 
 
 export default function Sync() {
+  //Declare new state variables
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [senderFilePath, setSenderFilePath] = useState('/home/kali/');
+  const [receiverFilePath, setReceiverFilePath] = useState('/home/kali/Sync');
+  const [receiverIp, setReceiverIP] = useState('');
   const [ip, setIP] = useState('');
+
+
+  // Response from Sync API
+  const [postResponse, setPostResponse] = useState('');
 
   //creating function to load ip address from the API
   const getData = async () => {
@@ -15,6 +25,22 @@ export default function Sync() {
     console.log(res.data);
     setIP(res.data.IPv4)
   }
+
+  const handleSync = async (event) => {
+      // prevents the submit button from refreshing the page
+      event.preventDefault();
+      const data = {username: username, password: password, receiverIp: receiverIp, 
+        senderFilePath: senderFilePath, receiverFilePath: receiverFilePath}
+
+      await axios.post('http://localhost:3001/Sync', data)
+          .then((response) => {
+            setPostResponse(response);
+            console.log(response.data);
+        }).finally (() => {
+          setPostResponse('Unable to sync');
+        }
+      );
+  };
   
   useEffect( () => {
     //passing getData method to the lifecycle method
@@ -29,6 +55,7 @@ export default function Sync() {
 			setTimeout(() => setFilled(prev => prev += 2), 50)
 		}
 	},[filled, isRunning])
+
   return (
   
       <Transitions>
@@ -37,19 +64,13 @@ export default function Sync() {
             <h3 className="text">Sync</h3>
           </div>
           <div>
-		    <div className="progressbar">
-			  <div style={{
-				  height: "100%",
-				  width: `${filled}%`,
-				  backgroundColor: "#808080",
-				  transition:"width 0.5s"
-			  }}></div>
-			  <span className="progressPercent">{ filled }%</span>
-		  </div>
       <Link to="/">
          <button id = "cancel" value = "Cancel" > Cancel </button>  
             </Link>
-              <button className="sync-button" onClick={() => {setIsRunning(true)}}>Sync</button> 
+              <button className="sync-button" onClick={handleSync/*() => {
+                setIsRunning(true);
+                handleSync();
+              }*/}>Sync</button> 
      
       </div>
       <div className="ip">
@@ -57,10 +78,10 @@ export default function Sync() {
       <h4>{ip}</h4>
     </div>
 
-          <form>
+          <form className='SyncForm'>
           <div className="form-grouprow">
 
-            <label className=''>Username
+            <label className=''>Root Username
             <br/>
             
                 <span className='title-required'>(Required)</span>
@@ -70,7 +91,8 @@ export default function Sync() {
                   name="Username"
                   placeholder="Username"
                   required
-                  
+                  onChange={event => {setUsername(event.target.value)}}
+                  value = {username}
                 />
             </label>
             </div>
@@ -80,10 +102,12 @@ export default function Sync() {
                 <span className='title-required'>(Required)</span>
                 <input
                   className='textBoxE'
-                  type="text" id="password"
-                  name="Password"
+                  type="password" id="password"
+                  name="password"
                   placeholder="Password"
                   required
+                  onChange={event => {setPassword(event.target.value)}}
+                  value = {password}
                   
                 />
                 
@@ -100,25 +124,39 @@ export default function Sync() {
                   name="ip-address"
                   placeholder="IP Address"
                   required
-               
+                  onChange={event => {setReceiverIP(event.target.value)}}
                 />
             </label>
             </div>
             <div className="form-grouprow">
-            <label className=''> Location Stored
+            <label className=''> Sender Location Stored
             <br/>
                 <span className='title-required'>(Required)</span>
                 <input
                   className='textBoxE'
                   type="text" id="locationStored"
                   name="Location Stored"
-                  placeholder="Location Stored"
+                  placeholder="Sender Location Stored"
                   required
-                  
+                  onChange={event => {setSenderFilePath(event.target.value)}}
                 />
             </label>
             </div>
-      
+            
+            <div className="form-grouprow">
+            <label className=''> Receiver Location to store
+            <br/>
+                <span className='title-required'>(Required)</span>
+                <input
+                  className='textBoxE'
+                  type="text" id="locationStored"
+                  name="Location Stored"
+                  placeholder="Receiver Location To Store"
+                  required
+                  onChange={event => {setReceiverFilePath(event.target.value)}}
+                />
+            </label>
+            </div>
             <div className="ip-input">    
            
             
@@ -127,8 +165,6 @@ export default function Sync() {
         
           </form>
         </div>
-      </Transitions>
-    
+      </Transitions> 
   )
-  
 }

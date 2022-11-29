@@ -8,7 +8,7 @@ import CANBusManager from "../components/project-handlers/can-bus-manager/CANBus
 import ProjectInfoHolder from "../components/project-handlers/create-project/ProjectInfoHolder";
 import OpenProject from "../components/project-handlers/open-project/OpenProject";
 import SplitView from "../components/split-view/SplitView";
-import Sync from "../components/sync/Sync";
+import Sync from "../components/synchronizer/Sync";
 // import AboutUs from "../components/to-be-deleted/about-us/AboutUs";
 // import TrafficDisplayer from "../components/traffic-displayer/TrafficDisplayer";
  
