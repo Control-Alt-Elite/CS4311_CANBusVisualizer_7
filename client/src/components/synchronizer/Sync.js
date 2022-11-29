@@ -78,7 +78,7 @@ export default function Sync() {
       <h4>{ip}</h4>
     </div>
 
-          <form>
+          <form className='SyncForm'>
           <div className="form-grouprow">
 
             <label className=''>Sender Root Username
