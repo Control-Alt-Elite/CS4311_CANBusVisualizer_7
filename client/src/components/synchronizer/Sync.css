@@ -23,8 +23,7 @@
     border-bottom: 2px solid #fffd03;
     position: relative; top: 4px;
 }
-
-.SyncForm{
+form{
     color: white;
     padding-top: 40px;
     padding-left: 180px;
@@ -55,14 +54,16 @@
 }
 .progressbar{
 	overflow: hidden;
-	width: 370px;
+	width: 350px;
 	height: 35px;
     border: 2px solid black;
 	border-radius: 5px;
 	background-color: #eee;
     position: absolute;
-    left: 40%;
+    left: 38%;
     top: 54%
+      
+
 }
 
 .progressPercent{
@@ -96,15 +97,17 @@
     left: 80%; 
 }
 
-.title-required{
-      color: red;
-}
 
+  .title-required{
+      color: red;
+  }
 .form-grouprow{
     width: 150%;
+  
 }
-
 .textBoxE{
   background-color: #555;
-  border-radius: 10px;  
+  border-radius: 10px;
+
+  
 }

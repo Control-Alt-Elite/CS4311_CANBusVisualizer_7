@@ -5,7 +5,6 @@ const cors = require('cors');
 const app = express();
 const packets = require("./modules/CANUtils");
 const logfile = require("./modules/DumpPlayPckt")
-const dataSync = require("./modules/DataSynchronizer");
 const vcanconfig = require("./vcanconfig");
 const canconfig = require("./canconfig");
 const startcangen = require("./modules/Cangen");
@@ -20,9 +19,6 @@ app.use(cors());
 
 //Sending packets
 app.get('/packets', packets);
-
-// Syncing files via rsync
-app.get('/Sync', dataSync);
 
 //Listen for replied packets
 app.get('/logs', logfile);
@@ -142,6 +138,20 @@ app.post('/project/archive', async (req, res) => {
 		console.log(error);
 	}
 	
+});
+
+// Sync project files
+//Saving Session to database (Used by ProjectInfoHolder.js)
+app.post('/Sync', async (req, res) => {
+	var sync = {
+		username: req.body.username,
+		password: req.body.password,
+		receiverIp: req.body.receiverIp,
+		senderFilePath: req.body.senderFilePath,
+		receiverFilePath: req.body.receiverFilePath
+	}
+	const dataSync = require("./modules/DataSynchronizer")(sync, req, res);
+	res.json(dataSync);
 });
 
 /* Saving file name used by canplayer in Player.js to the database */
