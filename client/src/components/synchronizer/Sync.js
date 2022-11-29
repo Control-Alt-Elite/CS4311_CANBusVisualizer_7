@@ -4,8 +4,6 @@ import "./Sync.css";
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 
-
-
 export default function Sync() {
   //Declare new state variables
   const [username, setUsername] = useState('');
@@ -83,7 +81,7 @@ export default function Sync() {
           <form>
           <div className="form-grouprow">
 
-            <label className=''>Root Username
+            <label className=''>Sender Root Username
             <br/>
             
                 <span className='title-required'>(Required)</span>
@@ -99,7 +97,7 @@ export default function Sync() {
             </label>
             </div>
             <div className="form-grouprow">
-            <label className=''>Password
+            <label className=''>Sender Root Password
             <br/>
                 <span className='title-required'>(Required)</span>
                 <input
@@ -117,7 +115,7 @@ export default function Sync() {
            
             </div>
             <div className="form-grouprow">
-            <label className=''> IP Address
+            <label className=''> Receiver IP Address
             <br/>
                 <span className='title-required'>(Required)</span>
                 <input
