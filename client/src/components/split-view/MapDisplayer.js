@@ -469,6 +469,12 @@ function MapDisplayer() {
     }),
     $("ContextMenuButton", $(go.TextBlock, "Load"), {
       click: (e, obj) => load(),
+    }),
+    $("ContextMenuButton", $(go.TextBlock, "Zoom in"), {
+      click: (e, obj) => load(),
+    }),
+    $("ContextMenuButton", $(go.TextBlock, "Zoom out"), {
+      click: (e, obj) => load(),
     })
   );
 
