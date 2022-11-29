@@ -1,9 +1,9 @@
-import React from 'react'
-import Transitions from '/home/kali/CS4311_CANBusVisualizer_7/client/src/components/Transitions';
-import './CANBusManager.css'
-import { Row, Col, Tabs, Tab } from "react-bootstrap";
-import SelectVirtualCAN from './SelectVirtualCANBus';
+import React from 'react';
+import { Col, Row, Tab, Tabs } from "react-bootstrap";
+import Transitions from '../../Transitions';
+import './CANBusManager.css';
 import SelectCAN from "./SelectCANBus";
+import SelectVirtualCAN from './SelectVirtualCANBus';
 
 export default function CANBusManager() {
     return (

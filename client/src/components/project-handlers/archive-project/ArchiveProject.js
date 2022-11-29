@@ -1,9 +1,9 @@
-import './ArchiveProject.css'
-import Transitions from '/home/kali/CS4311_CANBusVisualizer_7/client/src/components/Transitions';
-import { Text, StyleSheet } from 'react-native';
-import {Link} from 'react-router-dom';
-import React, { useState } from "react";
 import axios from 'axios';
+import React, { useState } from "react";
+import { StyleSheet, Text } from 'react-native';
+import { Link } from 'react-router-dom';
+import Transitions from '../../Transitions';
+import './ArchiveProject.css';
 
 const styles = StyleSheet.create({
     baseText: {
