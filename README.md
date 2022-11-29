@@ -35,6 +35,33 @@ npm install body-parser cors dotenv ejs express mongoose multer nodemon socketca
 ```
 npx nodemon@latest --version
 ```
+### DataSynchronizer set-up
+In order to use rsync, we must first set it up on the system.
+1. Navigate to /api folder (backend)
+2. run `npm install rsync`
+
+We must also enable rsync service for our machines:
+1. In this same folder, run 
+```
+sudo systemctl enable rsync.service 
+sudo systemctl start rsync.service 
+``` 
+2. Check if service is enabled: `systemctl | grep rsync`      
+
+We must also enable ssh service for our machines:
+1. run `sudo apt install ssh`
+2. In this same folder, run 
+```
+sudo systemctl enable ssh.service 
+sudo systemctl start ssh.service 
+sudo systemctl enable ssh.socket 
+sudo systemctl start ssh.socket 
+``` 
+2. Check if service is enabled: `systemctl | grep rsync`     
+
+For password authentication between ssh, we will be using sshpass. 
+1. ```$ sudo apt install sshpass```
+
 # Usage Instructions
 1. Open two terminals and navigate to the "api" and "client" folders respectively.
 2. Use the following command on both terminals:

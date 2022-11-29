@@ -26,6 +26,8 @@ export default function Sync() {
     setIP(res.data.IPv4)
   }
 
+  
+  
   const handleSync = async (event) => {
       // prevents the submit button from refreshing the page
       event.preventDefault();
@@ -64,15 +66,6 @@ export default function Sync() {
             <h3 className="text">Sync</h3>
           </div>
           <div>
-		    {/* <div className="progressbar">
-			  <div style={{
-				  height: "100%",
-				  width: `${filled}%`,
-				  backgroundColor: "#808080",
-				  transition:"width 0.5s"
-			  }}></div>
-			  <span className="progressPercent">{ filled }%</span>
-		  </div> */}
       <Link to="/">
          <button id = "cancel" value = "Cancel" > Cancel </button>  
             </Link>
@@ -87,7 +80,7 @@ export default function Sync() {
       <h4>{ip}</h4>
     </div>
 
-          <form className='SyncForm'>
+          <form>
           <div className="form-grouprow">
 
             <label className=''>Root Username
