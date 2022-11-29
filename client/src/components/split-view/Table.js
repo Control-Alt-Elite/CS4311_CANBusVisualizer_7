@@ -8,13 +8,24 @@ import Table from 'react-bootstrap/Table';
 import {COLUMNS} from './Columns';
 import "./Table.css"
 import { GlobalFilter } from './GlobalFilter';
+import { useEffect } from "react";
 const url1 = 'http://localhost:3001/packets';
 const url2 = 'http://localhost:3001/logs';
 const url3 = 'http://localhost:3001/kill';
 let eventSource;  
 
 export default function CANTable() {    // The next function causes 4 renders, needs performance improvement
-  
+  useEffect(() => { 
+    console.log("logging this here")
+    const packet = localStorage.getItem("packetInfo")
+    if(packet){
+      const savedPackets = JSON.parse(packet)
+      setInfo(savedPackets)
+    }else{
+      console.log("no info found")
+    }
+    
+  }, [])
   const [message, setMessage] = useState([]);
   const [info, setInfo] = useState([]);
   const [disable, setDisable] = useState(true);
@@ -23,13 +34,6 @@ export default function CANTable() {    // The next function causes 4 renders, n
   function saveTemp() {
     localStorage.removeItem("packetInfo")
     localStorage.setItem("packetInfo",JSON.stringify(info))
-    console.log(JSON.stringify(info))
-  }
-  function retrieveTemp() {
-    const packet = JSON.parse(localStorage.getItem("packetInfo"))
-    console.log(JSON.stringify(packet))
-    setInfo(packet)
-    
   }
 
   const handleMessage = (ecu, values) => {
@@ -86,6 +90,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
     } catch (err) {
       console.error(err.name, err.message)
     }
+    saveTemp()
   }
 
   function handlePlayTraffic () {
@@ -102,6 +107,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
   function handleStopTraffic () {
     eventSource.close(); 
     console.log("Connection closed");
+    saveTemp()
   };
 
   function handleReplayPackets(){
@@ -134,6 +140,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
     return () => {
       eventSource2.close(); 
     };
+    saveTemp()
   }
 
   const data = useMemo(() => [...info], [info]);
@@ -152,6 +159,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
         return row
       })
     )
+    saveTemp()
   }
     
     // State and functions returned from useTable to build the UI

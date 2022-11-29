@@ -22,7 +22,7 @@ function player(){
     getAllFileNames(); */
 
     //We can use candump filters e.g. 'candump vcan0,9803FEFE:1ffffff' (extended version 29-bits) or 201:7ff (11-bit)
-    var child = execFile('canplayer',['-I', 'log-files/test.log', 'vcan0=vcan0', '-v']);
+    var child = execFile('canplayer',['-I', 'log-files/test1.log', 'vcan0=vcan0', '-v']);
 
     child.stdout.on('data', function (data) {
         console.log(`${data}`);
