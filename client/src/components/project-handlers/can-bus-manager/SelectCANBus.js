@@ -7,7 +7,7 @@ import "./SelectCANBus.css";
 
 function SelectCAN() {
      const [CAN, setCAN] = useState('can0');
-     const [rate, setRate] = useState('12500')
+     const [rate, setRate] = useState('125000')
 
      const handleSubmit = (event) => {
           // prevents the submit button from refreshing the page
@@ -16,20 +16,20 @@ function SelectCAN() {
           console.log(rate);
           const data = {params: {CAN: CAN, rate: rate}};
           axios.get('http://localhost:3001/can', data).then((response) => {
-               console.log(response);
+               console.log(response.data);
            });
       };
 
-     function handleChange(evt) {
-          setCAN(evt.target.value);
+     function handleChange(event) {
+          setCAN(event.target.value);
      }
 
-     function handleChangeCheck(evt) {
-          setRate(evt.target.value);
+     function handleChangeCheck(event) {
+          setRate(event.target.value);
         }
 
      return (
-          <Form className='canbus-form' onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
                <Form.Group controlId="custom-select">
                     <Form.Label>Select CAN Bus</Form.Label>
                     <Form.Control as="select" className="rounded-0 shadow" onChange={handleChange} value={CAN.CAN}>
@@ -51,7 +51,7 @@ function SelectCAN() {
                               name="radios"
                               id="formHorizontalRadios1"
                               value='125000'
-                              checked={rate.radios === '12500'}
+                              checked={rate === '125000'}
                               onChange={handleChangeCheck}
                          />
                          <Form.Check
@@ -60,7 +60,7 @@ function SelectCAN() {
                               name="radios"
                               id="formHorizontalRadios2"
                               value='250000'
-                              checked={rate.radios === '25000'}
+                              checked={rate === '250000'}
                               onChange={handleChangeCheck}
                          />
                          <Form.Check
@@ -69,7 +69,7 @@ function SelectCAN() {
                               name="radios"
                               id="formHorizontalRadios3"
                               value='500000'
-                              checked={rate.radios === '500000'}
+                              checked={rate === '500000'}
                               onChange={handleChangeCheck}
                          />
                          <Form.Check
@@ -78,7 +78,7 @@ function SelectCAN() {
                               name="radios"
                               id="formHorizontalRadios3"
                               value='1000000'
-                              checked={rate.radios === '1000000'}
+                              checked={rate === '1000000'}
                               onChange={handleChangeCheck}
                          />
                     </Col>

@@ -22,3 +22,14 @@
     border-bottom: 2px solid #fffd03;
     position: relative; top: 4px;
 }
+.ProjectForm {
+    color: white;
+    font-family: Serif;
+    padding-top: 40px;
+    padding-left: 180px;
+    align-items: center;
+    width: 650px;
+    height: 650px;
+    max-width: 700px;
+    margin: auto;
+}

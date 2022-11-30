@@ -1,7 +1,7 @@
 var spawn = require('child_process').spawn;
 
-function cangen(device){
-    var child = spawn('cangen',[device, '-e', '-L', '8', '-g', '1000'], {detached: true});
+function cangen11(device){
+    var child = spawn('cangen',[device, '-I', 'r', '-L', '8', '-g', '1000'], {detached: true});
     child.unref();
 
     child.stdout.on('data', function (data) {
@@ -25,4 +25,4 @@ function cangen(device){
 
 }
 
-module.exports = {cangen}
+module.exports = {cangen11}

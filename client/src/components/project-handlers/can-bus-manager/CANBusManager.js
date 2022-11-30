@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
+import { Col, Row, Tab, Tabs } from "react-bootstrap";
 import Transitions from '../../Transitions';
-import './CANBusManager.css'
-import { Row, Col, Tabs, Tab } from "react-bootstrap";
-import SelectVirtualCAN from './SelectVirtualCANBus';
+import './CANBusManager.css';
 import SelectCAN from "./SelectCANBus";
+import SelectVirtualCAN from './SelectVirtualCANBus';
 
 export default function CANBusManager() {
     return (
