@@ -74,29 +74,6 @@ function SplitView() {
             <ReactDiagram
               divClassName="diagram-component"
               initDiagram={MapDisplayer}
-
-              // nodeDataArray={[
-
-              //   {"key":0,"text":"","category":"HBar","location":"100 100","size":"500 4","fill":"#C4C4C4"},
-              //   {"key":1,"text":"Suspension","category":"Generator","location":"250 -50"},
-              //   {"key":2,"text":"ABS","location":"150 10"},
-              //   {"key":3,"text":"Engine","category":"Generator","location":"500 30"},
-              //   {"key":5,"text":"Air Conditioner","category":"Generator","location":"400 260"},
-              //   {"key":6,"text":"Window","category":"Generator","location":"200 250"},
-              //   {"key":7,"text":"Battery","category":"Generator","location":"310 180"},
-              //   {"key":8,"text":"Outside Mirror","category":"Generator","location":"380 -40"},
-              // ]}
-              // linkDataArray={[
-              //   {"from":1,"to":0},
-              //   {"from":2,"to":0},
-              //   {"from":3,"to":0},
-              //   {"from":4,"to":0},
-              //   {"from":5,"to":0},
-              //   {"from":6,"to":0},
-              //   {"from":7,"to":0},
-              //   {"from":8,"to":0},
-              //   {"from":1,"to":2, "fill": "#C4C4C4"},
-              // ]}
             />
           </div>
           <Navbar expand="lg" bg="dark" variant="dark">
