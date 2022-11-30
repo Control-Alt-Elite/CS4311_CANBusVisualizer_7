@@ -1,22 +1,23 @@
 import * as go from "gojs";
 import "./MapDisplayer.css";
+import { useLocation } from "react-router-dom";
 
 
 //This will render the GOJS map
 function MapDisplayer() {
-  const $ = go.GraphObject.make; 
-  const diagram = $(go.Diagram, 
+  const $ = go.GraphObject.make;
+  const diagram = $(go.Diagram,
     {
-    //This section effectively allows extensions to be added to the canvas
-    "undoManager.isEnabled": true, // must be set to allow for model change listening
-    "linkingTool.direction": go.LinkingTool.Either,
-    "clickCreatingTool.archetypeNodeData": {text: "Node", color: "#CDCDCD"}, //Allows double clicking to create node
-    "commandHandler.archetypeGroupData": {text: "Group", isGroup: true, color: "blue"},
+      //This section effectively allows extensions to be added to the canvas
+      "undoManager.isEnabled": true, // must be set to allow for model change listening
+      "linkingTool.direction": go.LinkingTool.Either,
+      "clickCreatingTool.archetypeNodeData": { text: "Node", color: "#CDCDCD" }, //Allows double clicking to create node
+      "commandHandler.archetypeGroupData": { text: "Group", isGroup: true, color: "blue" },
 
-    model: new go.GraphLinksModel({ // IMPORTANT! Necessary otherwise nodes will not display
-      linkKeyProperty: "key",
-    }),
-  });
+      model: new go.GraphLinksModel({ // IMPORTANT! Necessary otherwise nodes will not display
+        linkKeyProperty: "key",
+      }),
+    });
 
   // Dont think this does anything
   // diagram.linkTemplate = $(go.Link,
@@ -77,17 +78,17 @@ function MapDisplayer() {
   //     { name: "SHAPE", fill: "#CDCDCD", strokeWidth: 0, fromLinkable: true },
   //     new go.Binding("fill", "color") // Shape.fill is bound to Node.data.color
   //   ),
-    
+
   //   $(go.TextBlock, { margin: 8, editable: true }, // some room around the text
   //     new go
   //     .Binding("text").makeTwoWay()
   //   )
   // );
-  
+
   //WORKING TEMPLATES-----------------------------------------------!!!!!!!!!!
   //BUS LINE
   diagram.nodeTemplateMap.add(
-    "HBar",$(go.Node,"Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
+    "HBar", $(go.Node, "Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
       {
         layerName: "Background",
         // special resizing: just at the ends
@@ -140,66 +141,66 @@ function MapDisplayer() {
   );
   //DEFINE CONTEXT MENU
   var partContextMenu = $(
-      "ContextMenu",
-      makeButton("Properties", (e, obj) => {
-        // OBJ is this Button
-        var contextmenu = obj.part; // the Button is in the context menu Adornment
-        var part = contextmenu.adornedPart; // the adornedPart is the Part that the context menu adorns
-        // now can do something with PART, or with its data, or with the Adornment (the context menu)
-        if (part instanceof go.Link) alert(linkInfo(part.data));
-        else if (part instanceof go.Group) alert(groupInfo(contextmenu));
-        else alert(nodeInfo(part.data));
-      }),
-      makeButton(
-        "Cut",
-        (e, obj) => e.diagram.commandHandler.cutSelection(),
-        (o) => o.diagram.commandHandler.canCutSelection()
-      ),
-      makeButton(
-        "Copy",
-        (e, obj) => e.diagram.commandHandler.copySelection(),
-        (o) => o.diagram.commandHandler.canCopySelection()
-      ),
-      makeButton(
-        "Paste",
-        (e, obj) =>
-          e.diagram.commandHandler.pasteSelection(
-            e.diagram.toolManager.contextMenuTool.mouseDownPoint
-          ),
-        (o) =>
-          o.diagram.commandHandler.canPasteSelection(
-            o.diagram.toolManager.contextMenuTool.mouseDownPoint
-          )
-      ),
-      makeButton(
-        "Delete",
-        (e, obj) => e.diagram.commandHandler.deleteSelection(),
-        (o) => o.diagram.commandHandler.canDeleteSelection()
-      ),
-      makeButton(
-        "Undo",
-        (e, obj) => e.diagram.commandHandler.undo(),
-        (o) => o.diagram.commandHandler.canUndo()
-      ),
-      makeButton(
-        "Redo",
-        (e, obj) => e.diagram.commandHandler.redo(),
-        (o) => o.diagram.commandHandler.canRedo()
-      ),
-      makeButton(
-        "Group",
-        (e, obj) => e.diagram.commandHandler.groupSelection(),
-        (o) => o.diagram.commandHandler.canGroupSelection()
-      ),
-      makeButton(
-        "Ungroup",
-        (e, obj) => e.diagram.commandHandler.ungroupSelection(),
-        (o) => o.diagram.commandHandler.canUngroupSelection()
-      )
+    "ContextMenu",
+    makeButton("Properties", (e, obj) => {
+      // OBJ is this Button
+      var contextmenu = obj.part; // the Button is in the context menu Adornment
+      var part = contextmenu.adornedPart; // the adornedPart is the Part that the context menu adorns
+      // now can do something with PART, or with its data, or with the Adornment (the context menu)
+      if (part instanceof go.Link) alert(linkInfo(part.data));
+      else if (part instanceof go.Group) alert(groupInfo(contextmenu));
+      else alert(nodeInfo(part.data));
+    }),
+    makeButton(
+      "Cut",
+      (e, obj) => e.diagram.commandHandler.cutSelection(),
+      (o) => o.diagram.commandHandler.canCutSelection()
+    ),
+    makeButton(
+      "Copy",
+      (e, obj) => e.diagram.commandHandler.copySelection(),
+      (o) => o.diagram.commandHandler.canCopySelection()
+    ),
+    makeButton(
+      "Paste",
+      (e, obj) =>
+        e.diagram.commandHandler.pasteSelection(
+          e.diagram.toolManager.contextMenuTool.mouseDownPoint
+        ),
+      (o) =>
+        o.diagram.commandHandler.canPasteSelection(
+          o.diagram.toolManager.contextMenuTool.mouseDownPoint
+        )
+    ),
+    makeButton(
+      "Delete",
+      (e, obj) => e.diagram.commandHandler.deleteSelection(),
+      (o) => o.diagram.commandHandler.canDeleteSelection()
+    ),
+    makeButton(
+      "Undo",
+      (e, obj) => e.diagram.commandHandler.undo(),
+      (o) => o.diagram.commandHandler.canUndo()
+    ),
+    makeButton(
+      "Redo",
+      (e, obj) => e.diagram.commandHandler.redo(),
+      (o) => o.diagram.commandHandler.canRedo()
+    ),
+    makeButton(
+      "Group",
+      (e, obj) => e.diagram.commandHandler.groupSelection(),
+      (o) => o.diagram.commandHandler.canGroupSelection()
+    ),
+    makeButton(
+      "Ungroup",
+      (e, obj) => e.diagram.commandHandler.ungroupSelection(),
+      (o) => o.diagram.commandHandler.canUngroupSelection()
+    )
   );
   //CONTAINS SEARCH
   diagram.nodeTemplate = $(
-    go.Node,"Auto",
+    go.Node, "Auto",
     { locationSpot: go.Spot.Center },
     $(go.Shape, "RoundedRectangle",
       {
@@ -260,30 +261,30 @@ function MapDisplayer() {
   //DEFINE NODES AND LINKS
   //Should use JSON
   var nodeDataArray = [
-    { key: 0, text: "", category: "HBar", location: "100 100", size: "500 4", fill: "#C4C4C4",},
-    { key: 1, text: "Suspension", category: "Generator", location: "250 -50" },
-    { key: 2, text: "ABS", location: "150 10" },
-    { key: 3, text: "Engine", category: "Generator", location: "500 30" },
-    { key: 5, text: "Air Conditioner", category: "Generator", location: "400 260"},
-    { key: 6, text: "Window", category: "Generator", location: "200 250" },
-    { key: 7, text: "Battery", category: "Generator", location: "310 180" },
-    { key: 8, text: "Outside Mirror", category: "Generator", location: "380 -40",
-    },
+    { key: 0, text: "", category: "HBar", location: "100 100", size: "500 4", fill: "#C4C4C4", },
+    // { key: 1, text: "Suspension", category: "Generator", location: "250 -50" },
+    // { key: 2, text: "ABS", location: "150 10" },
+    // { key: 3, text: "Engine", category: "Generator", location: "500 30" },
+    // { key: 5, text: "Air Conditioner", category: "Generator", location: "400 260"},
+    // { key: 6, text: "Window", category: "Generator", location: "200 250" },
+    // { key: 7, text: "Battery", category: "Generator", location: "310 180" },
+    // { key: 8, text: "Outside Mirror", category: "Generator", location: "380 -40",
+    // },
   ];
 
   //Should also use JSON
   var linkDataArray = [
-    { from: 1, to: 0 },
-    { from: 2, to: 0 },
-    { from: 3, to: 0 },
-    { from: 4, to: 0 },
-    { from: 5, to: 0 },
-    { from: 6, to: 0 },
-    { from: 7, to: 0 },
-    { from: 8, to: 0 },
-    { from: 1, to: 2, fill: "#C4C4C4" },
+    // { from: 1, to: 0 },
+    // { from: 2, to: 0 },
+    // { from: 3, to: 0 },
+    // { from: 4, to: 0 },
+    // { from: 5, to: 0 },
+    // { from: 6, to: 0 },
+    // { from: 7, to: 0 },
+    // { from: 8, to: 0 },
+    // { from: 1, to: 2, fill: "#C4C4C4" },
   ];
-
+  
   //USES BOTH ARRAYS ABOVE TO GENERATE MAP
   diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 
@@ -296,10 +297,10 @@ function MapDisplayer() {
   //Locates the elements on the page that will handle searching nodes
   document.querySelector('[id="nodeSearchButton"]').addEventListener("click", searchDiagram);
   document.querySelector('[id="nodeSearchBar"]').addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-        searchDiagram();
-      }
-    });
+    if (event.key === "Enter") {
+      searchDiagram();
+    }
+  });
 
   // TODO Discuss removal... USEFUL BUT UNNECESSARY
   // when the document is modified, add a "*" to the title and enable the "Save" button
@@ -313,6 +314,29 @@ function MapDisplayer() {
       if (idx >= 0) document.title = document.title.slice(0, idx);
     }
   });
+
+   // ------------------------------- Dynamic Nodes --------------------------
+   const url1 = 'http://localhost:3001/packets';
+
+   var eventSource = new EventSource(url1)
+   eventSource.onmessage = (e) => {
+     const parsedData = JSON.parse(e.data);
+     // Check if node exists in the map
+     const isFound = diagram.model.findNodeDataForKey(`${parsedData.id}`);
+
+     console.log(`${parsedData.id}: isFound -> ${isFound}`);
+     // If node not found, add to the model
+     if(isFound == null){
+      console.log(`Adding node data`);
+       diagram.model.addNodeData(
+        {key: parsedData.id, text: `${parsedData.id}`, category: "Category", location: "0 0"},
+        );
+        diagram.model.addLinkData(
+          {from: parsedData.id, to: 0}
+        );
+     }
+   }
+
 
   //-------------------------------------vvvv ALL FUNCTIONS USED FOR THE MAP ARE DEFINED BELOW vvvv --------------------------------------------
 
@@ -403,8 +427,8 @@ function MapDisplayer() {
       // don't bother with binding GraphObject.visible if there's no predicate
       visiblePredicate
         ? new go.Binding("visible", "", (o, e) =>
-            o.diagram ? visiblePredicate(o, e) : false
-          ).ofObject()
+          o.diagram ? visiblePredicate(o, e) : false
+        ).ofObject()
         : {}
     );
   }
@@ -525,18 +549,18 @@ class BarLink extends go.Link {
 
   getLinkPoint(node, port, spot, from, ortho, othernode, otherport) {
     if (!from && node.category === "HBar") {
-      var op = super.getLinkPoint( othernode, otherport, this.computeSpot(!from), !from, ortho, node, port);
+      var op = super.getLinkPoint(othernode, otherport, this.computeSpot(!from), !from, ortho, node, port);
       var r = port.getDocumentBounds();
       var y = op.y > r.centerY ? r.bottom : r.top;
       if (op.x < r.left) return new go.Point(r.left, y);
       if (op.x > r.right) return new go.Point(r.right, y);
       return new go.Point(op.x, y);
     } else {
-      return super.getLinkPoint( node, port, spot, from, ortho, othernode, otherport);
+      return super.getLinkPoint(node, port, spot, from, ortho, othernode, otherport);
     }
   }
 
-  getLinkDirection( node, port, linkpoint, spot, from, ortho, othernode, otherport
+  getLinkDirection(node, port, linkpoint, spot, from, ortho, othernode, otherport
   ) {
     if (node.category === "HBar" || othernode.category === "HBar") {
       var p = port.getDocumentPoint(go.Spot.Center);
@@ -544,7 +568,7 @@ class BarLink extends go.Link {
       var below = op.y > p.y;
       return below ? 90 : 270;
     } else {
-      return super.getLinkDirection( node, port, linkpoint, spot, from, ortho, othernode, otherport
+      return super.getLinkDirection(node, port, linkpoint, spot, from, ortho, othernode, otherport
       );
     }
   }
