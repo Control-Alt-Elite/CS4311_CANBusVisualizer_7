@@ -1,5 +1,6 @@
 import * as go from "gojs";
 import "./MapDisplayer.css";
+import blacklist from "./blacklist.csv";
 
 //This will render the GOJS map
 function MapDisplayer() {
@@ -349,6 +350,7 @@ function MapDisplayer() {
       {
         fill: "#CDCDCD", // the default fill, if there is no data bound value
         cursor: "pointer", // the Shape is the port, not the whole Node
+        name: "SHAPE",
       },
       new go.Binding("fill", "color"),
       new go.Binding("fill", "isHighlighted", (highlight) => highlight ? "#2378DA" : "#CDCDCD").ofObject(),
@@ -472,9 +474,24 @@ function MapDisplayer() {
   document.querySelector('[id="playtraffic"]').addEventListener("click", createLiveNodes);
   document.querySelector('[id="stoptraffic"]').addEventListener("click", stopLiveNodes);
 
-
   // ------------------------------ DYNAMIC NODE FUNCTIONS --------------------------
+  function readBlacklist() {
+    var blackListMap = [];
+    fetch(blacklist).then(r => r.text()).then(text => {
+      var nodes = text.split("\n");
+      nodes.shift();//remove header line
+
+      nodes.forEach((node) => {
+        var data = node.split(',');
+        blackListMap.push({ id: data[0], ecu: data[1] });
+      });
+    });
+    return blackListMap;
+  }
+
   function createLiveNodes() {
+    var blacklistedNodes = readBlacklist();
+
     if (!playing) {
       playing = true; // set state of live nodes
 
@@ -490,12 +507,26 @@ function MapDisplayer() {
         // If node not found, add to the model
         if (isFound == null && !parsedData.ecu.includes('unpack requires')) {
           console.log(`Adding node data`);
+
+          // Check if current message node is part of blacklist
+          var isBlacklisted = blacklistedNodes.filter(function (o) {
+            return o.hasOwnProperty(parsedData.id);
+          }).length > 0;
+
+          // Add node data to map and links
           diagram.model.addNodeData(
-            { key: parsedData.id, text: `${parsedData.ecu}`, category: "Category", location: "0 0" },
+            { key: parsedData.id, text: `${parsedData.ecu}`, location: "0 0" },
           );
           diagram.model.addLinkData(
             { from: parsedData.id, to: 0 }
           );
+        }
+
+        // if node is black listed, change color
+        if(isBlacklisted){// TODO CHANGE THIS TO ACTUALLY CHANGE THE COLOR
+          const node = diagram.findNodeForKey(parsedData.id);
+          const shape = node.findObject("SHAPE");
+          shape.fill = "red";
         }
       }
     }
