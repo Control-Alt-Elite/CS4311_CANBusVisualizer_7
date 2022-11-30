@@ -358,6 +358,20 @@ function MapDisplayer() {
 
     return currentDate;
   }
+  //TODO: Function for zooming in 
+  function zoomIn(){
+    if(diagram.commandHandler.canIncreaseZoom()){
+      diagram.commandHandler.increaseZoom(1.2);
+    }
+    
+  }
+  //TODO: test zoom out
+  function zoomOut(){
+    if(diagram.commandHandler.canDecreaseZoom()){
+      diagram.commandHandler.decreaseZoom(.5);
+    }
+    
+  }
 
   // Generate data for Network Diagram
   function imageCallback(blob) {
@@ -471,10 +485,10 @@ function MapDisplayer() {
       click: (e, obj) => load(),
     }),
     $("ContextMenuButton", $(go.TextBlock, "Zoom in"), {
-      click: (e, obj) => load(),
+      click: (e, obj) => zoomIn(),
     }),
     $("ContextMenuButton", $(go.TextBlock, "Zoom out"), {
-      click: (e, obj) => load(),
+      click: (e, obj) => zoomOut(),
     })
   );
 
