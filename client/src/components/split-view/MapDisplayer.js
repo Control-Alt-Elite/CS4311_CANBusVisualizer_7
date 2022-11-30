@@ -317,6 +317,8 @@ function MapDisplayer() {
 
    // ------------------------------- Dynamic Nodes --------------------------
    const url1 = 'http://localhost:3001/packets';
+   var string = "";
+   string.includes()
 
    var eventSource = new EventSource(url1)
    eventSource.onmessage = (e) => {
@@ -324,12 +326,11 @@ function MapDisplayer() {
      // Check if node exists in the map
      const isFound = diagram.model.findNodeDataForKey(`${parsedData.id}`);
 
-     console.log(`${parsedData.id}: isFound -> ${isFound}`);
      // If node not found, add to the model
-     if(isFound == null){
+     if(isFound == null && !parsedData.ecu.includes('unpack requires')){
       console.log(`Adding node data`);
        diagram.model.addNodeData(
-        {key: parsedData.id, text: `${parsedData.id}`, category: "Category", location: "0 0"},
+        {key: parsedData.id, text: `${parsedData.ecu}`, category: "Category", location: "0 0"},
         );
         diagram.model.addLinkData(
           {from: parsedData.id, to: 0}
