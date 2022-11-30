@@ -57,7 +57,7 @@ export default function ProjectInfoHolder(props) {
           <h3 className="text">Session Configuration</h3>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form className='ProjectForm' onSubmit={handleSubmit}>
           {/* Event Name */}
           <Text style={styles.baseText}>
             Event Name

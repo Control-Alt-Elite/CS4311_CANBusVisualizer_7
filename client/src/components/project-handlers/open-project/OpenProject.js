@@ -88,7 +88,7 @@ export default function OpenProject (props) {
                 <div className="input-group-prepend">
                   <span className="input-group-text" id="">Select Project</span>
                 </div>
-                <input id="select" className="form-control" type="text" ref={get_ProjectName}  required/>
+                <input id="select" type="text" ref={get_ProjectName}  required/>
                 <button id="fetch" onClick={getDataByProjectName}>Fetch</button>                     
                 <button id="clear" onClick={clearGetOutput}>Clear</button>
               </div>

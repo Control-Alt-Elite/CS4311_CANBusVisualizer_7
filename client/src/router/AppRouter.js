@@ -10,7 +10,6 @@ import OpenProject from "../components/project-handlers/open-project/OpenProject
 import SplitView from "../components/split-view/SplitView";
 import Sync from "../components/synchronizer/Sync";
 // import AboutUs from "../components/to-be-deleted/about-us/AboutUs";
-// import TrafficDisplayer from "../components/traffic-displayer/TrafficDisplayer";
  
 function Animated() {
     const location = useLocation();

@@ -17,72 +17,6 @@ function MapDisplayer() {
       }),
     });
 
-  // Dont think this does anything
-  // diagram.linkTemplate = $(go.Link,
-  //   { toShortLength: 3, relinkableFrom: true, relinkableTo: true }, // allow the user to relink existing links
-  //   $(go.Shape, { strokeWidth: 2 }, new go.Binding("stroke", "color")),
-  //   $(
-  //     go.Shape,
-  //     { toArrow: "Standard", stroke: null },
-  //     new go.Binding("fill", "color")
-  //   ),
-  //   {
-  //     // this tooltip Adornment is shared by all links
-  //     toolTip: $(
-  //       "ToolTip",
-  //       $(
-  //         go.TextBlock,
-  //         { margin: 4 }, // the tooltip shows the result of calling linkInfo(data)
-  //         new go.Binding("text", "", linkInfo)
-  //       )
-  //     ),
-  //     // the same context menu Adornment is shared by all links
-  //     contextMenu: partContextMenu,
-  //   }
-  // );
-
-  // // TODO merge the following two node templates with the "search" compatible node template
-  // // Node specifications for icons
-  // diagram.nodeTemplateMap.add( "Consumer", $(go.Node,"Spot", {
-  //     locationSpot: go.Spot.Center,
-  //     locationObjectName: "BODY",
-  //     selectionObjectName: "BODY",
-  //   },
-  //   new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
-  //   $(go.Picture, "./images/pc.png", {
-  //     name: "BODY",
-  //     width: 50,
-  //     height: 40,
-  //     margin: 2,
-  //     portId: "",
-  //     fromLinkable: true,
-  //     cursor: "pointer",
-  //     fromSpot: go.Spot.TopBottomSides,
-  //     toSpot: go.Spot.TopBottomSides,
-  //   }),
-  //   $(go.TextBlock, {
-  //       // alignment: go.Spot.Right,
-  //       // alignmentFocus: go.Spot.Left,
-  //       editable: true,
-  //     },
-  //     new go.Binding("text").makeTwoWay()
-  //   )
-  // )
-  // );
-  // //define a simple Node template ORIGINAL
-  // diagram.nodeTemplate = $(go.Node, "Auto", // the Shape will go around the TextBlock
-  //   new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
-  //   $(go.Shape, "RoundedRectangle",
-  //     { name: "SHAPE", fill: "#CDCDCD", strokeWidth: 0, fromLinkable: true },
-  //     new go.Binding("fill", "color") // Shape.fill is bound to Node.data.color
-  //   ),
-
-  //   $(go.TextBlock, { margin: 8, editable: true }, // some room around the text
-  //     new go
-  //     .Binding("text").makeTwoWay()
-  //   )
-  // );
-
   //WORKING TEMPLATES-----------------------------------------------!!!!!!!!!!
   //BUS LINE
   diagram.nodeTemplateMap.add(
@@ -401,6 +335,20 @@ function MapDisplayer() {
     return currentDate;
   }
 
+  function zoomIn(){
+    if(diagram.commandHandler.canIncreaseZoom()){
+      diagram.commandHandler.increaseZoom(1.2);
+    }
+    
+  }
+  //TODO: test zoom out
+  function zoomOut(){
+    if(diagram.commandHandler.canDecreaseZoom()){
+      diagram.commandHandler.decreaseZoom(.5);
+    }
+    
+  }
+
   // Generate data for Network Diagram
   function imageCallback(blob) {
     var url = window.URL.createObjectURL(blob);
@@ -511,6 +459,12 @@ function MapDisplayer() {
     }),
     $("ContextMenuButton", $(go.TextBlock, "Load"), {
       click: (e, obj) => load(),
+    }),
+    $("ContextMenuButton", $(go.TextBlock, "Zoom in"), {
+      click: (e, obj) => zoomIn(),
+    }),
+    $("ContextMenuButton", $(go.TextBlock, "Zoom out"), {
+      click: (e, obj) => zoomOut(),
     })
   );
 
