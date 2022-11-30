@@ -1,7 +1,5 @@
 import * as go from "gojs";
 import "./MapDisplayer.css";
-import { useLocation } from "react-router-dom";
-
 
 //This will render the GOJS map
 function MapDisplayer() {
@@ -284,7 +282,7 @@ function MapDisplayer() {
     // { from: 8, to: 0 },
     // { from: 1, to: 2, fill: "#C4C4C4" },
   ];
-  
+
   //USES BOTH ARRAYS ABOVE TO GENERATE MAP
   diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 
@@ -315,29 +313,48 @@ function MapDisplayer() {
     }
   });
 
-   // ------------------------------- Dynamic Nodes --------------------------
-   const url1 = 'http://localhost:3001/packets';
-   var string = "";
-   string.includes()
+  // ------------------------------- Dynamic Nodes --------------------------
+  let eventSource;
+  var playing = false;
+  document.querySelector('[id="playtraffic"]').addEventListener("click", createLiveNodes);
+  document.querySelector('[id="stoptraffic"]').addEventListener("click", stopLiveNodes);
 
-   var eventSource = new EventSource(url1)
-   eventSource.onmessage = (e) => {
-     const parsedData = JSON.parse(e.data);
-     // Check if node exists in the map
-     const isFound = diagram.model.findNodeDataForKey(`${parsedData.id}`);
 
-     // If node not found, add to the model
-     if(isFound == null && !parsedData.ecu.includes('unpack requires')){
-      console.log(`Adding node data`);
-       diagram.model.addNodeData(
-        {key: parsedData.id, text: `${parsedData.ecu}`, category: "Category", location: "0 0"},
-        );
-        diagram.model.addLinkData(
-          {from: parsedData.id, to: 0}
-        );
-     }
-   }
+  // ------------------------------ DYNAMIC NODE FUNCTIONS --------------------------
+  function createLiveNodes() {
+    if (!playing) {
+      playing = true; // set state of live nodes
 
+      console.log('Starting live nodes');
+      const url1 = 'http://localhost:3001/packets';
+
+      eventSource = new EventSource(url1)
+      eventSource.onmessage = (e) => {
+        const parsedData = JSON.parse(e.data);
+        // Check if node exists in the map
+        const isFound = diagram.model.findNodeDataForKey(`${parsedData.id}`);
+
+        // If node not found, add to the model
+        if (isFound == null && !parsedData.ecu.includes('unpack requires')) {
+          console.log(`Adding node data`);
+          diagram.model.addNodeData(
+            { key: parsedData.id, text: `${parsedData.ecu}`, category: "Category", location: "0 0" },
+          );
+          diagram.model.addLinkData(
+            { from: parsedData.id, to: 0 }
+          );
+        }
+      }
+    }
+  }
+
+  function stopLiveNodes() {
+    if (playing) {
+      eventSource.close();
+      playing = false; // set statue for live nodes
+      console.log('Closing live nodes');
+    }
+  }
 
   //-------------------------------------vvvv ALL FUNCTIONS USED FOR THE MAP ARE DEFINED BELOW vvvv --------------------------------------------
 
