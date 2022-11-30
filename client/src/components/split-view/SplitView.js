@@ -12,62 +12,43 @@ import CANTable from "./table/Table";
 
 function SplitView() {
   return (
-      <div className="Visualizer">
-        {/* GRAPHICS REGION */}
-        <div className="graphics">
-          {/* MAP MENU */}
-          <div className="MapDropdowns">
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-              <Navbar.Collapse>
-                <div className="MapRibbon">
-                  <MapRibbon/>
-                </div>
-              </Navbar.Collapse>
-            </Navbar>
-          </div>
+    <div className="VisualizerPage">
+      {/* MAP REGION */}
+      <div className="MapSection">
+        {/* Map Ribbon*/}
+        <MapRibbon />
 
-          {/* MAP DIAGRAM */}
-
-          <div className = "MapSection">
-            {/* <Button id="blobButton" >Export Node Network Diagram(Not Working)</Button> */}
-
-            <ReactDiagram
-              divClassName="diagram-component"
-              initDiagram={MapDisplayer}
-
-              //Node Data array can go here
-            />
-          </div>
-          <Navbar expand="lg" bg="dark" variant="dark">
-          <Nav>
-            <div className = "export-flex-container">
-              
-              <div className = "mapButtons">
-                <div className = "diagramButton">
-                  <Button id="exportDiagram">Export Network Diagram</Button>
-                </div>
-                <div className = "nodeAttrButton">
-                  <Button id="SaveButton" className = "save-btn" disabled="">Export Node Attributes</Button>
-                  <Button id="LoadButton" className = "import-btn">Import Node Attributes</Button>
-                </div>
-              </div>
-              
-            </div>
-          </Nav>
-          </Navbar>
-        
-          {/* <textarea id="mySavedModel">{}</textarea> */}
-       
-       
+        {/* Map Diagarm*/}
+        <div className="CANMap">
+          <ReactDiagram
+            divClassName="diagram-component"
+            initDiagram={MapDisplayer}
+            //Node Data and Link Data arrays can go here instead of being in MapDisplayer
+          />
         </div>
-        {/** DATA REGION **/}
-        <div className="PacketSection">
-          {/* TABLE */}
-          <div className="rawTable">
-            <CANTable />
+        {/* Export Buttons */}
+        <Navbar expand="lg" bg="dark" variant="dark">
+          <div className="diagramButton">
+            <Button id="exportDiagram">Export Network Diagram</Button>
           </div>
-        </div>
+          <div className="nodeAttrButton">
+            <Button id="SaveButton" className="save-btn" disabled="">
+              Export Node Attributes
+            </Button>
+            <Button id="LoadButton" className="import-btn">
+              Import Node Attributes
+            </Button>
+          </div>
+        </Navbar>
+
+        {/* <textarea id="mySavedModel">{}</textarea> */}
       </div>
+
+      {/** PACKETS REGION **/}
+      <div className="PacketTable">
+        <CANTable />
+      </div>
+    </div>
   );
 }
 

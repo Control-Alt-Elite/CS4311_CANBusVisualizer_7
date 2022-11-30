@@ -22,64 +22,64 @@ tbody {
 }
 
 /* Table Header General Settings*/
-.rawTable th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12), th:nth-child(13){
+.PacketTable th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12), th:nth-child(13){
     background-color: rgb(40, 77, 241);
     color: whitesmoke;
     font-size: 14px;
 }
   
 /* Customized Header Settings */
-.rawTable th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12), th:nth-child(13){
+.PacketTable th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12), th:nth-child(13){
     text-align: center;
     width: 70px;
 }
-.rawTable th:nth-child(2){
+.PacketTable th:nth-child(2){
     width: 136px;
 }
 
-.rawTable th:nth-child(3) {
+.PacketTable th:nth-child(3) {
     width: 76px;
 }
-.rawTable th:nth-child(4){
+.PacketTable th:nth-child(4){
     width: 76px;
 }
 
-.rawTable th:nth-child(1){
+.PacketTable th:nth-child(1){
     width: 40px;
 }
   
 /* Default Row Settings */
-.rawTable td:nth-child(5), td:nth-child(6), td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-child(11),td:nth-child(12){
+.PacketTable td:nth-child(5), td:nth-child(6), td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-child(11),td:nth-child(12){
     text-align: center;
     width: 70px;
     color: white;
     font-size: 12px;
 }
-.rawTable td:nth-child(2){
+.PacketTable td:nth-child(2){
     width: 136px;
     color: white;
     font-size: 12px;
 }
 
-.rawTable td:nth-child(3) {
+.PacketTable td:nth-child(3) {
     text-align: center;
     width: 76px;
     color: white;
     font-size: 12px;
 }
-.rawTable td:nth-child(4){
+.PacketTable td:nth-child(4){
     width: 76px;
     color: white;
     font-size: 12px;
 }
 
-.rawTable td:nth-child(1){
+.PacketTable td:nth-child(1){
     width: 40px;
     color: white;
     font-size: 12px;
 }
 
-.rawTable td:nth-child(13){
+.PacketTable td:nth-child(13){
     text-align: center;
     width: 55px;
     color: white;
@@ -87,7 +87,7 @@ tbody {
 }
   
 /* Hover color. Only affects the entire header right now. */
-.table-hover,table.rawTable tr:hover th{
+.table-hover,table.PacketTable tr:hover th{
   background-color: #262546;
 }
 

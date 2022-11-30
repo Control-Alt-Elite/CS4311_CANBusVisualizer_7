@@ -1,20 +1,16 @@
-.Visualizer{
+.VisualizerPage{
   display: flex;
   height: 740px;
 }
-/* .MapSection{
-  resize:horizontal;
-  overflow: scroll;
-}
-.TableSection{
-  resize:horizontal;
-  overflow: scroll;
-} */
-/* Map Dropdowns */
-.graphics{
+.MapSection{
   width: 50%;
+  /* resize:horizontal;
+  overflow: scroll; */
 }
-
+/* .TableSection{
+  resize:horizontal;
+  overflow: scroll;
+} */ */
 
 .mapButtons{
   display: flex;
