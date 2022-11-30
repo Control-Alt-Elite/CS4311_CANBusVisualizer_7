@@ -1,21 +1,20 @@
 import * as go from "gojs";
 import "./MapDisplayer.css";
 
-
 //This will render the GOJS map
 function MapDisplayer() {
-  const $ = go.GraphObject.make; 
-  const diagram = $(go.Diagram, 
+  const $ = go.GraphObject.make;
+  const diagram = $(go.Diagram,
     {
     //This section effectively allows extensions to be added to the canvas
     "undoManager.isEnabled": true, // must be set to allow for model change listening
     "clickCreatingTool.archetypeNodeData": {text: "Node", color: "#CDCDCD"}, //Allows double clicking to create node
     "commandHandler.archetypeGroupData": {text: "Group", isGroup: true, color: "blue"},
 
-    model: new go.GraphLinksModel({ // IMPORTANT! Necessary otherwise nodes will not display
-      linkKeyProperty: "key",
-    }),
-  });
+      model: new go.GraphLinksModel({ // IMPORTANT! Necessary otherwise nodes will not display
+        linkKeyProperty: "key",
+      }),
+    });
 
   
   // Dont think this does anything
@@ -209,7 +208,7 @@ function MapDisplayer() {
   
   //BUS LINE
   diagram.nodeTemplateMap.add(
-    "HBar",$(go.Node,"Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
+    "HBar", $(go.Node, "Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
       {
         layerName: "Background",
         // special resizing: just at the ends
@@ -413,31 +412,28 @@ function MapDisplayer() {
   // GOJS MAY NOT ALLOW LOCAL IMAGES
   // CURRENTLY USING ONLINE IMAGE
   var nodeDataArray = [
-    { key: 0, text: "", category: "HBar", location: "100 100", size: "500 4", fill: "#C4C4C4",},
-    
-    { key: 4, text: ":)", location: "120 140", visible: true, img:"https://cdn.7tv.app/emote/60aecb385174a619dbc175be/2x.webp"},
-    { key: 1, text: "Suspension", location: "250 -50", visible: true, img: "../images/pc.png" },
-    { key: 2, text: "ABS", location: "150 10" },
-    { key: 3, text: "Engine", location: "500 30" },
-    { key: 5, text: "Air Conditioner", location: "400 260"},
-    { key: 6, text: "Window", location: "200 250" },
-    { key: 7, text: "Battery", location: "310 180" },
-    { key: 8, text: "Outside Mirror", location: "380 -40"},
-    { key: 9, name: "Luke Warm", "pic" : "node_car-cpu.png", location: "500 -40"},
+    { key: 0, text: "", category: "HBar", location: "100 100", size: "500 4", fill: "#C4C4C4", },
+    // { key: 1, text: "Suspension", category: "Generator", location: "250 -50" },
+    // { key: 2, text: "ABS", location: "150 10" },
+    // { key: 3, text: "Engine", category: "Generator", location: "500 30" },
+    // { key: 5, text: "Air Conditioner", category: "Generator", location: "400 260"},
+    // { key: 6, text: "Window", category: "Generator", location: "200 250" },
+    // { key: 7, text: "Battery", category: "Generator", location: "310 180" },
+    // { key: 8, text: "Outside Mirror", category: "Generator", location: "380 -40",
+    // },
   ];
 
   //Should also use JSON
   var linkDataArray = [
-    { from: 1, to: 0 },
-    { from: 2, to: 0 },
-    { from: 3, to: 0 },
-    { from: 4, to: 0 },
-    { from: 5, to: 0 },
-    { from: 6, to: 0 },
-    { from: 7, to: 0 },
-    { from: 8, to: 0 },
-    // { from: 1, to: 2 },
-    { from: 1, to: 2},
+    // { from: 1, to: 0 },
+    // { from: 2, to: 0 },
+    // { from: 3, to: 0 },
+    // { from: 4, to: 0 },
+    // { from: 5, to: 0 },
+    // { from: 6, to: 0 },
+    // { from: 7, to: 0 },
+    // { from: 8, to: 0 },
+    // { from: 1, to: 2, fill: "#C4C4C4" },
   ];
 
   //USES BOTH ARRAYS ABOVE TO GENERATE MAP
@@ -452,10 +448,10 @@ function MapDisplayer() {
   //Locates the elements on the page that will handle searching nodes
   document.querySelector('[id="nodeSearchButton"]').addEventListener("click", searchDiagram);
   document.querySelector('[id="nodeSearchBar"]').addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-        searchDiagram();
-      }
-    });
+    if (event.key === "Enter") {
+      searchDiagram();
+    }
+  });
 
   // TODO Discuss removal... USEFUL BUT UNNECESSARY
   // when the document is modified, add a "*" to the title and enable the "Save" button
@@ -470,7 +466,50 @@ function MapDisplayer() {
     }
   });
 
-  //-------------------------------------vvvv MOST FUNCTIONS USED FOR THE MAP ARE DEFINED BELOW vvvv --------------------------------------------
+  // ------------------------------- Dynamic Nodes --------------------------
+  let eventSource;
+  var playing = false;
+  document.querySelector('[id="playtraffic"]').addEventListener("click", createLiveNodes);
+  document.querySelector('[id="stoptraffic"]').addEventListener("click", stopLiveNodes);
+
+
+  // ------------------------------ DYNAMIC NODE FUNCTIONS --------------------------
+  function createLiveNodes() {
+    if (!playing) {
+      playing = true; // set state of live nodes
+
+      console.log('Starting live nodes');
+      const url1 = 'http://localhost:3001/packets';
+
+      eventSource = new EventSource(url1)
+      eventSource.onmessage = (e) => {
+        const parsedData = JSON.parse(e.data);
+        // Check if node exists in the map
+        const isFound = diagram.model.findNodeDataForKey(`${parsedData.id}`);
+
+        // If node not found, add to the model
+        if (isFound == null && !parsedData.ecu.includes('unpack requires')) {
+          console.log(`Adding node data`);
+          diagram.model.addNodeData(
+            { key: parsedData.id, text: `${parsedData.ecu}`, category: "Category", location: "0 0" },
+          );
+          diagram.model.addLinkData(
+            { from: parsedData.id, to: 0 }
+          );
+        }
+      }
+    }
+  }
+
+  function stopLiveNodes() {
+    if (playing) {
+      eventSource.close();
+      playing = false; // set statue for live nodes
+      console.log('Closing live nodes');
+    }
+  }
+
+  //-------------------------------------vvvv ALL FUNCTIONS USED FOR THE MAP ARE DEFINED BELOW vvvv --------------------------------------------
 
   //Original export Node Attributes
   // function save() {
@@ -513,6 +552,20 @@ function MapDisplayer() {
     var currentDate = `${day}-${month}-${year}_${hour}${mins}${seconds}`;
 
     return currentDate;
+  }
+
+  function zoomIn(){
+    if(diagram.commandHandler.canIncreaseZoom()){
+      diagram.commandHandler.increaseZoom(1.2);
+    }
+    
+  }
+  //TODO: test zoom out
+  function zoomOut(){
+    if(diagram.commandHandler.canDecreaseZoom()){
+      diagram.commandHandler.decreaseZoom(.5);
+    }
+    
   }
 
   // Generate data for Network Diagram
@@ -560,8 +613,8 @@ function MapDisplayer() {
       // don't bother with binding GraphObject.visible if there's no predicate
       visiblePredicate
         ? new go.Binding("visible", "", (o, e) =>
-            o.diagram ? visiblePredicate(o, e) : false
-          ).ofObject()
+          o.diagram ? visiblePredicate(o, e) : false
+        ).ofObject()
         : {}
     );
   }
@@ -608,6 +661,12 @@ function MapDisplayer() {
     }),
     $("ContextMenuButton", $(go.TextBlock, "Load"), {
       click: (e, obj) => load(),
+    }),
+    $("ContextMenuButton", $(go.TextBlock, "Zoom in"), {
+      click: (e, obj) => zoomIn(),
+    }),
+    $("ContextMenuButton", $(go.TextBlock, "Zoom out"), {
+      click: (e, obj) => zoomOut(),
     })
   );
 
@@ -662,18 +721,18 @@ class BarLink extends go.Link {
 
   getLinkPoint(node, port, spot, from, ortho, othernode, otherport) {
     if (!from && node.category === "HBar") {
-      var op = super.getLinkPoint( othernode, otherport, this.computeSpot(!from), !from, ortho, node, port);
+      var op = super.getLinkPoint(othernode, otherport, this.computeSpot(!from), !from, ortho, node, port);
       var r = port.getDocumentBounds();
       var y = op.y > r.centerY ? r.bottom : r.top;
       if (op.x < r.left) return new go.Point(r.left, y);
       if (op.x > r.right) return new go.Point(r.right, y);
       return new go.Point(op.x, y);
     } else {
-      return super.getLinkPoint( node, port, spot, from, ortho, othernode, otherport);
+      return super.getLinkPoint(node, port, spot, from, ortho, othernode, otherport);
     }
   }
 
-  getLinkDirection( node, port, linkpoint, spot, from, ortho, othernode, otherport
+  getLinkDirection(node, port, linkpoint, spot, from, ortho, othernode, otherport
   ) {
     if (node.category === "HBar" || othernode.category === "HBar") {
       var p = port.getDocumentPoint(go.Spot.Center);
@@ -681,7 +740,7 @@ class BarLink extends go.Link {
       var below = op.y > p.y;
       return below ? 90 : 270;
     } else {
-      return super.getLinkDirection( node, port, linkpoint, spot, from, ortho, othernode, otherport
+      return super.getLinkDirection(node, port, linkpoint, spot, from, ortho, othernode, otherport
       );
     }
   }
