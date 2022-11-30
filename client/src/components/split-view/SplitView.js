@@ -1,6 +1,5 @@
 import { ReactDiagram } from "gojs-react";
 import Button from "react-bootstrap/Button";
-import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import MapDisplayer from "./MapDisplayer";
 import MapRibbon from "./ribbons/MapRibbon/MapNav";
