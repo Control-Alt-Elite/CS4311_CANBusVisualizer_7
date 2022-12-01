@@ -341,6 +341,15 @@ function MapDisplayer() {
       d.model.set(nodedata, "color", newcolor);
     }, "changed color");
   }
+  function ChangeVisibility(e,obj){
+    diagram.commit(function (d) {
+      var contextmenu = obj.part; // retrieve context menu that has the button that triggered this method
+      var nodedata = contextmenu.data; // retrieve data of the node that the context menu was used on
+      var invisibleColor = "#262546"
+      d.model.set(nodedata, "color", invisibleColor);
+    }, "changed color");
+
+  }
 
   //********************NODE TEMPLATE GOES HERE*******************************************
    //CONTAINS PICTURE, NODE ATTRIBUTES, CONTEXT MENU, AND SEARCH
@@ -385,9 +394,16 @@ function MapDisplayer() {
          "_buttonFillOver": "skyblue"
        },
        $(go.TextBlock, "Set Off-Limits"),
-       { click: SetOffLimitsColor })
+       { click: SetOffLimitsColor }),
+       $("ContextMenuButton", {
+        "ButtonBorder.fill": "white",
+        "_buttonFillOver": "skyblue"
+      },
+      $(go.TextBlock, "Change Visibility"),
+      { click: ChangeVisibility})
      // more ContextMenuButtons would go here
    )  // end Adornment
+   
    }
   );
   //***************************************************************
