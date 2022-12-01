@@ -414,7 +414,7 @@ function MapDisplayer() {
   // GOJS MAY NOT ALLOW LOCAL IMAGES
   // CURRENTLY USING ONLINE IMAGE
   var nodeDataArray = [
-    { key: 0, text: "", category: "HBar", location: "100 100", size: "500 4", fill: "#C4C4C4", },
+    { key: 0, text: "", category: "HBar", location: "100 100", size: "1000 4", fill: "#C4C4C4", },
     // { key: 1, text: "Suspension", category: "Generator", location: "250 -50" },
     // { key: 2, text: "ABS", location: "150 10" },
     // { key: 3, text: "Engine", category: "Generator", location: "500 30" },
@@ -509,13 +509,16 @@ function MapDisplayer() {
           console.log(`Adding node data`);
 
           // Check if current message node is part of blacklist
-          var isBlacklisted = blacklistedNodes.filter(function (o) {
-            return o.hasOwnProperty(parsedData.id);
-          }).length > 0;
+          var isBlacklisted = false;
+          blacklistedNodes.forEach((node) => {
+              if(node.id == parsedData.id){
+                isBlacklisted = true;
+              }
+          });
 
           // Add node data to map and links
           diagram.model.addNodeData(
-            { key: parsedData.id, text: `${parsedData.ecu}`, location: "0 0" },
+            { key: parsedData.id, text: `${parsedData.ecu}`},
           );
           diagram.model.addLinkData(
             { from: parsedData.id, to: 0 }
@@ -526,7 +529,7 @@ function MapDisplayer() {
         if(isBlacklisted){// TODO CHANGE THIS TO ACTUALLY CHANGE THE COLOR
           const node = diagram.findNodeForKey(parsedData.id);
           const shape = node.findObject("SHAPE");
-          shape.fill = "red";
+          shape.fill = "#727476";
         }
       }
     }
