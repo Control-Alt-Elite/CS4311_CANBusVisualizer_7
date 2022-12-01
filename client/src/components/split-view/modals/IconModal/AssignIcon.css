@@ -23,24 +23,9 @@
     pointer-events: all;
   }
 
-  .modal-body{
-    height: 550px;
+  .row{
+    border: 2px;
   }
-
-  .btn-primary {
-    color: white;
-    background-color: #110fbd;
-    border-color: white;
-}
-
-/* .exampleForm.ControlInput1{
-  margin-right: 200px;
-} */
-
-.mb-3{
-  margin-right: 200px;
-}
-
-.form-label{
-  color: rgb(255, 255, 255);
-}
+  /* .modal-body{
+    overflow: scroll;
+  } */

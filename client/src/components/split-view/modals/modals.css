@@ -1,0 +1,9 @@
+.modal-body {
+    background-color: rgb(52,52,52);
+    border-color: black;
+    color: white;
+  }
+  /* Changes the color of the Footer of the Modal */
+  .modal-footer{
+    background-color:  rgb(52,52,52);
+  }

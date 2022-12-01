@@ -1,10 +1,10 @@
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
 import Modal from "react-bootstrap/Modal";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import './RenameNode.css'
+import '../modals.css';
+import './RenameNode.css';
 
 function RenameNode() {
   const [show, setShow] = useState(false);
@@ -16,31 +16,20 @@ function RenameNode() {
     <>
       <NavDropdown.Item href="#action/Rename" onClick={handleShow}> Rename Node </NavDropdown.Item>
       
-      <Modal 
-      show={show} 
-      onHide={handleClose}
-      size = "lg"
-      >
+      <Modal className ="RenameModal" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Rename Node</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Node ID :</Form.Label>
-              <Form.Control
-                type="number"
-                // placeholder="%"
-                autoFocus
-              />
+        <Modal.Body className = "RenameModalBody">
+          <Form className = "RenameInputs">
+            <Form.Group className="textInput1">
+              <Form.Label className = "IDInput">Node ID:</Form.Label>
+              <Form.Control type="input1"/>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>New Node Name:</Form.Label>
-              <Form.Control
-                type="number"
-                // placeholder="%"
-                autoFocus
-              />
+            <br></br>
+            <Form.Group className="textInput2">
+              <Form.Label className = "NameInput">New Node Name:</Form.Label>
+              <Form.Control type="input2"/>
             </Form.Group>
           </Form>
         </Modal.Body>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import './Editor.css';
 import DraggableModalDialog from "./DraggableModalDialog";
+import './Editor.css';
 
 function Editor() {
   const [show, setShow] = useState(false);

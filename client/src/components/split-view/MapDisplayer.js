@@ -4,18 +4,18 @@ import blacklist from "./blacklist.csv";
 
 //This will render the GOJS map
 function MapDisplayer() {
-  const $ = go.GraphObject.make;
-  const diagram = $(go.Diagram,
+  const $ = go.GraphObject.make; 
+  const diagram = $(go.Diagram, 
     {
       //This section effectively allows extensions to be added to the canvas
       "undoManager.isEnabled": true, // must be set to allow for model change listening
       "clickCreatingTool.archetypeNodeData": { text: "Node", color: "#CDCDCD" }, //Allows double clicking to create node
       "commandHandler.archetypeGroupData": { text: "Group", isGroup: true, color: "blue" },
 
-      model: new go.GraphLinksModel({ // IMPORTANT! Necessary otherwise nodes will not display
-        linkKeyProperty: "key",
-      }),
-    });
+    model: new go.GraphLinksModel({ // IMPORTANT! Necessary otherwise nodes will not display
+      linkKeyProperty: "key",
+    }),
+  });
 
 
   // Dont think this does anything
@@ -209,7 +209,7 @@ function MapDisplayer() {
 
   //BUS LINE
   diagram.nodeTemplateMap.add(
-    "HBar", $(go.Node, "Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
+    "HBar",$(go.Node,"Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
       {
         layerName: "Background",
         // special resizing: just at the ends
@@ -229,9 +229,7 @@ function MapDisplayer() {
           })
         ),
       },
-      $(
-        go.Shape,
-        "Rectangle",
+      $(go.Shape,"Rectangle",
         {
           name: "SHAPE",
           fill: "black",
@@ -260,6 +258,7 @@ function MapDisplayer() {
       )
     )
   );
+  
   //DEFINE CONTEXT MENU. Migrated into the working node template TODO REMOVE
   // var partContextMenu = $(
   //     "ContextMenu",
@@ -331,7 +330,7 @@ function MapDisplayer() {
 
       var contextmenu = obj.part; // retrieve context menu that has the button that triggered this method
       var nodedata = contextmenu.data; // retrieve data of the node that the context menu was used on
-      var newcolor = "#CDCDCD";
+      var newcolor = "#727476";
       switch (nodedata.color) {
         case "#CDCDCD": newcolor = "#727476"; break;
         case "#727476": newcolor = "#CDCDCD"; break;
@@ -343,52 +342,52 @@ function MapDisplayer() {
   }
 
   //********************NODE TEMPLATE GOES HERE*******************************************
-  //CONTAINS PICTURE, NODE ATTRIBUTES, CONTEXT MENU, AND SEARCH
-  diagram.nodeTemplate = $(go.Node, "Auto", // the Shape will go around the TextBlock
-    new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify), //Allows for coordinates to be used
-    $(go.Shape, "RoundedRectangle",
-      {
-        fill: "#CDCDCD", // the default fill, if there is no data bound value
-        cursor: "pointer", // the Shape is the port, not the whole Node
-        name: "SHAPE",
-      },
-      new go.Binding("fill", "color"),
-      new go.Binding("fill", "isHighlighted", (highlight) => highlight ? "#2378DA" : "#CDCDCD").ofObject(),
-      new go.Binding("visible", "visible"),
-
-    ),
-    // $(go.Picture, "https://cdn.7tv.app/emote/60aecb385174a619dbc175be/2x.webp"),
-    $(go.Picture, { maxSize: new go.Size(50, 50) },
-      new go.Binding("source", "img")),
-    $(go.TextBlock,
-      {
-        font: "bold 14px sans-serif",
-        margin: 8, // space arount text
-        isMultiline: false, //disallow newlines
-        editable: true, //edit by double clicking
-      },
-      new go.Binding("text", "text").makeTwoWay()
-    ), // the label shows the node data's text
-    {
-      // this tooltip Adornment is shared by all nodes
-      toolTip: $("ToolTip",
-        $(go.TextBlock,
-          { margin: 5 }, // the tooltip shows the result of calling nodeInfo(data)
-          new go.Binding("text", "", nodeInfo)
-        )
-      ),
-      // this context menu Adornment is shared by all nodes
-      contextMenu:
-        $("ContextMenu",  // that has one button
-          $("ContextMenuButton", {
-            "ButtonBorder.fill": "white",
-            "_buttonFillOver": "skyblue"
-          },
-            $(go.TextBlock, "Change Color"),
-            { click: SetOffLimitsColor })
-          // more ContextMenuButtons would go here
-        )  // end Adornment
-    }
+   //CONTAINS PICTURE, NODE ATTRIBUTES, CONTEXT MENU, AND SEARCH
+  diagram.nodeTemplate = $( go.Node,"Auto", // the Shape will go around the TextBlock
+   new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify), //Allows for coordinates to be used
+   $(go.Shape, "RoundedRectangle",
+     {
+       name: "SHAPE",
+       fill: "#CDCDCD", // the default fill, if there is no data bound value
+       cursor: "pointer", // the Shape is the port, not the whole Node
+     },
+     new go.Binding("fill", "color"),
+     new go.Binding("fill", "isHighlighted", (highlight) =>highlight ? "#2378DA" : "#CDCDCD").ofObject(),
+     new go.Binding("visible", "visible"),
+ 
+   ),
+   // $(go.Picture, "https://cdn.7tv.app/emote/60aecb385174a619dbc175be/2x.webp"),
+   $(go.Picture, { maxSize: new go.Size(50, 50) },
+     new go.Binding("source", "img")),
+   $(go.TextBlock,
+     {
+       font: "bold 14px sans-serif",
+       margin: 8, // space arount text
+       isMultiline: false, //disallow newlines
+       editable: true, //edit by double clicking
+     },
+     new go.Binding("text", "text").makeTwoWay()
+   ), // the label shows the node data's text
+   {
+     // this tooltip Adornment is shared by all nodes
+     toolTip: $("ToolTip",
+       $(go.TextBlock,
+         { margin: 5 }, // the tooltip shows the result of calling nodeInfo(data)
+         new go.Binding("text", "", nodeInfo)
+       )
+     ),
+     // this context menu Adornment is shared by all nodes
+     contextMenu:
+     $("ContextMenu",  // that has one button
+       $("ContextMenuButton", {
+         "ButtonBorder.fill": "white",
+         "_buttonFillOver": "skyblue"
+       },
+       $(go.TextBlock, "Change Color"),
+       { click: SetOffLimitsColor })
+     // more ContextMenuButtons would go here
+   )  // end Adornment
+   }
   );
   //***************************************************************
 
@@ -427,15 +426,15 @@ function MapDisplayer() {
 
   //Should also use JSON
   var linkDataArray = [
-    // { from: 1, to: 0 },
-    // { from: 2, to: 0 },
-    // { from: 3, to: 0 },
-    // { from: 4, to: 0 },
-    // { from: 5, to: 0 },
-    // { from: 6, to: 0 },
-    // { from: 7, to: 0 },
-    // { from: 8, to: 0 },
-    // { from: 1, to: 2, fill: "#C4C4C4" },
+    { from: 1, to: 0 },
+    { from: 2, to: 0 },
+    { from: 3, to: 0 },
+    { from: 4, to: 0 },
+    { from: 5, to: 0 },
+    { from: 6, to: 0 },
+    { from: 7, to: 0 },
+    { from: 8, to: 0 },
+    { from: 1, to: 2},
   ];
 
   //USES BOTH ARRAYS ABOVE TO GENERATE MAP
@@ -450,10 +449,10 @@ function MapDisplayer() {
   //Locates the elements on the page that will handle searching nodes
   document.querySelector('[id="nodeSearchButton"]').addEventListener("click", searchDiagram);
   document.querySelector('[id="nodeSearchBar"]').addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      searchDiagram();
-    }
-  });
+      if (event.key === "Enter") {
+        searchDiagram();
+      }
+    });
 
   // TODO Discuss removal... USEFUL BUT UNNECESSARY
   // when the document is modified, add a "*" to the title and enable the "Save" button
@@ -647,8 +646,8 @@ function MapDisplayer() {
       // don't bother with binding GraphObject.visible if there's no predicate
       visiblePredicate
         ? new go.Binding("visible", "", (o, e) =>
-          o.diagram ? visiblePredicate(o, e) : false
-        ).ofObject()
+            o.diagram ? visiblePredicate(o, e) : false
+          ).ofObject()
         : {}
     );
   }
@@ -695,12 +694,6 @@ function MapDisplayer() {
     }),
     $("ContextMenuButton", $(go.TextBlock, "Load"), {
       click: (e, obj) => load(),
-    }),
-    $("ContextMenuButton", $(go.TextBlock, "Zoom in"), {
-      click: (e, obj) => zoomIn(),
-    }),
-    $("ContextMenuButton", $(go.TextBlock, "Zoom out"), {
-      click: (e, obj) => zoomOut(),
     })
   );
 
@@ -755,18 +748,18 @@ class BarLink extends go.Link {
 
   getLinkPoint(node, port, spot, from, ortho, othernode, otherport) {
     if (!from && node.category === "HBar") {
-      var op = super.getLinkPoint(othernode, otherport, this.computeSpot(!from), !from, ortho, node, port);
+      var op = super.getLinkPoint( othernode, otherport, this.computeSpot(!from), !from, ortho, node, port);
       var r = port.getDocumentBounds();
       var y = op.y > r.centerY ? r.bottom : r.top;
       if (op.x < r.left) return new go.Point(r.left, y);
       if (op.x > r.right) return new go.Point(r.right, y);
       return new go.Point(op.x, y);
     } else {
-      return super.getLinkPoint(node, port, spot, from, ortho, othernode, otherport);
+      return super.getLinkPoint( node, port, spot, from, ortho, othernode, otherport);
     }
   }
 
-  getLinkDirection(node, port, linkpoint, spot, from, ortho, othernode, otherport
+  getLinkDirection( node, port, linkpoint, spot, from, ortho, othernode, otherport
   ) {
     if (node.category === "HBar" || othernode.category === "HBar") {
       var p = port.getDocumentPoint(go.Spot.Center);
@@ -774,7 +767,7 @@ class BarLink extends go.Link {
       var below = op.y > p.y;
       return below ? 90 : 270;
     } else {
-      return super.getLinkDirection(node, port, linkpoint, spot, from, ortho, othernode, otherport
+      return super.getLinkDirection( node, port, linkpoint, spot, from, ortho, othernode, otherport
       );
     }
   }

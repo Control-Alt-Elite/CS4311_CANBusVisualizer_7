@@ -5,9 +5,9 @@ import Form from 'react-bootstrap/Form';
 import Modal from "react-bootstrap/Modal";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-import './ChangeVisibility.css';
+// import './AddRelationship.css';
 
-function ChangeVisibility() {
+function AddRelationship() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -15,8 +15,8 @@ function ChangeVisibility() {
 
   return (
     <>
-      <NavDropdown.Item href="#action/3.3" onClick={handleShow}> Change Visibility</NavDropdown.Item>
-      {/* <NavDropdown.Item href="#action/3.4"onClick={handleShow}>Modify Off-limits</NavDropdown.Item> */}
+      {/* <NavDropdown.Item href="#action/3.3" onClick={handleShow}> Change Visibility</NavDropdown.Item> */}
+      <NavDropdown.Item href="#action/3.2" onClick={handleShow}> Add Relationship</NavDropdown.Item>
       
       <Modal 
       show={show} 
@@ -24,15 +24,23 @@ function ChangeVisibility() {
       size = "lg"
       >
         <Modal.Header class="modal-header" closeButton>
-          <Modal.Title>Change Visibility</Modal.Title>
+          <Modal.Title>Add Relationship</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Visibility Percentage:</Form.Label>
+              <Form.Label>Node A ID</Form.Label>
               <Form.Control
-                type="number"
-                placeholder="%"
+                type="string"
+                placeholder="ID"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="exampleForm.ControlInput2">
+              <Form.Label>Node B ID</Form.Label>
+              <Form.Control
+                type="string"
+                placeholder="ID"
                 autoFocus
               />
             </Form.Group>
@@ -50,5 +58,5 @@ function ChangeVisibility() {
     </>
   );
 }
-
-export default ChangeVisibility;
+// Test
+export default AddRelationship;

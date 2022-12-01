@@ -11,6 +11,14 @@ import Table from "react-bootstrap/Table";
 import ColorPicker from "./ColorPicker.js";
  
 import './Flags.css';
+
+function selectFlag(flag){
+  console.log("FlagSelected");
+  const FlagArr = [];
+  FlagArr.push('flag')
+  // let newIcon = src;
+  console.log(FlagArr);
+}
  
 function Flags() {
   const [show, setShow] = useState(false);
@@ -37,13 +45,13 @@ function Flags() {
                 {/* <select id = "framework"> */}
                     {/* <p class="text-white">Create Custom Flag</p> */}
                     <ColorPicker/>
-                    <p>Alive</p>
-                    <p >DoSed</p>
-                    <p>Enumerated</p>
-                    <p >Notes</p>
-                    <p>Off Limits</p>
-                    <p>Scanned</p>
-                    <p>Custom Flags</p>
+                    <p onClick={selectFlag}>Alive</p>
+                    <p onClick={selectFlag}>DoSed</p>
+                    <p onClick={selectFlag}>Enumerated</p>
+                    <p onClick={selectFlag}>Notes</p>
+                    <p onClick={selectFlag}>Off Limits</p>
+                    <p onClick={selectFlag}>Scanned</p>
+                    <p onClick={selectFlag}>Custom Flags</p>
             {/* </select> */}
           {/* </Form>  */}
           {/*
