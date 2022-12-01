@@ -9,6 +9,7 @@ import ProjectInfoHolder from "../components/project-handlers/create-project/Pro
 import OpenProject from "../components/project-handlers/open-project/OpenProject";
 import SplitView from "../components/split-view/SplitView";
 import Sync from "../components/synchronizer/Sync";
+import ProjectConfigurationHolder from "../components/project-handlers/create-project/ProjectConfigurationHolder"
 // import AboutUs from "../components/to-be-deleted/about-us/AboutUs";
  
 function Animated() {
@@ -18,6 +19,8 @@ function Animated() {
             <Routes location={location}
                 key={location.pathname}>
                 <Route exact path="/" element={<Home />}></Route>
+                <Route exact path="/ProjectConfigurationHolder"
+                    element={<ProjectConfigurationHolder />}></Route>
                 <Route exact path="/ProjectInfoHolder"
                     element={<ProjectInfoHolder />}></Route>
                 <Route exact path="/CreateProject"

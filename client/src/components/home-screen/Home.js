@@ -45,7 +45,6 @@ const Home = () => {
           <button className="accept-btn">Continue</button>
         </Link>
           <button href = "/" className="reject-btn" onClick={()=>deleteTemp()}>Discard</button>
-        
       </AutoRecover>
     </Transitions>
     

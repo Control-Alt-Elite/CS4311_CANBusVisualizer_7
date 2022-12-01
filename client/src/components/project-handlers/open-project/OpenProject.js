@@ -96,9 +96,12 @@ export default function OpenProject (props) {
               <br></br>
               {isShown &&(
               <div className='Buttons'>
+                <Link to="/SplitView">
                 <button className= "continue"> Confirm </button>
+                </Link>
+                
                   <Link to="/">
-                    <button className="cancel"> Cancel </button>  
+                    <button className="continue"> Cancel </button>  
                   </Link>
               </div>)}
             </div>

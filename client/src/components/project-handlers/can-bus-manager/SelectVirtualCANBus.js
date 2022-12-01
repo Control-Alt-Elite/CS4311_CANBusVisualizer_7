@@ -22,7 +22,7 @@ const SelectVirtualCAN = () => {
     }
 
      return (
-        <Form onSubmit={handleSubmit}>
+        <Form className='vcan-form' onSubmit={handleSubmit}>
             <Form.Group controlId="custom-select">
                 <Form.Label>Select Virtual CAN Bus (Testing Purposes Only)</Form.Label>
                 <Form.Control as="select" className="rounded-0 shadow" onChange={handleChange} value={CAN}>
@@ -33,7 +33,10 @@ const SelectVirtualCAN = () => {
             <br></br><br></br>
             <hr />
             <div className='Buttons'>
-                <button className= "continue" type = "submit"> Confirm </button>
+                <Link to="/ProjectConfigurationHolder">
+                    <button className= "continue" type = "submit"> Confirm </button>
+                </Link>
+                
                 <Link to="/">
                     <button className="cancel"> Cancel </button>  
                 </Link>

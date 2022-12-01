@@ -18,36 +18,25 @@ const styles = StyleSheet.create({
 });
 
 export default function ProjectInfoHolder(props) {
-  //Declare new state variables
-  const [eventName, setEventName] = useState("");
-  const [eventDate, setEventDate] = useState(null);
-  const [analystInitials, setAnalystInitials] = useState("");
-  const [canConnectorID, setCANConnectorID] = useState("");
-  const [vehicleID, setVehicleID] = useState("");
+  const [analystInitials, setAnalystInitials] = useState('');
+  const [canConnectorID, setCANConnectorID] = useState('');
+  const [vehicleID, setVehicleID] = useState('');
   const [baudRate, setBaudRate] = useState(null);
-  const [dbcFileName, setDBCFileName] = useState("");
-  const [blacklistFileName, setBlacklistFileName] = useState("");
-  // const [projectName, setProjectName] = useState("");
-  // const [storedLocation, setStoredLocation] = useState("");
+  const [eventName, setEventName] = useState('');
+  const [eventDate, setEventDate] = useState(null);
+  const [dbcFileName, setDBCFileName] = useState('');
+  const [blacklistFileName, setBlacklistFileName] = useState('');
+
 
   const handleSubmit = (event) => {
-    // prevents the submit button from refreshing the page
-    event.preventDefault();
-    const data = {
-      eventName: eventName,
-      eventDate: eventDate,
-      analystInitials: analystInitials,
-      canConnectorID: canConnectorID,
-      vehicleID: vehicleID,
-      baudRate: baudRate,
-      dbcFileName: dbcFileName,
-      blacklistFileName: blacklistFileName,
-    };
-    axios
-      .post("http://localhost:3001/project/session", data)
-      .then((response) => {
-        window.location.replace("/Sync");
-      });
+      // prevents the submit button from refreshing the page
+      event.preventDefault();
+      const data = {eventName: eventName, eventDate: eventDate, analystInitials: analystInitials, 
+          canConnectorID: canConnectorID, vehicleID: vehicleID, baudRate: baudRate, dbcFileName: dbcFileName, blacklistFileName: blacklistFileName};
+      axios.post('http://localhost:3001/project/session', data)
+          .then((response) => {
+          window.location.replace('/SplitView')
+      })
   };
 
   return (
@@ -125,17 +114,7 @@ export default function ProjectInfoHolder(props) {
             />
           </div>
 
-          {/* Baud Rate */}
-          <Text style={styles.baseText}>Baud Rate</Text>
-          <div>
-            <input
-              className="TextBox"
-              type="text"
-              value={baudRate}
-              // required
-              onChange={(event) => setBaudRate(event.target.value)}
-            />
-          </div>
+          
 
           {/* DBC File */}
           <Text style={styles.baseText}>
@@ -171,16 +150,16 @@ export default function ProjectInfoHolder(props) {
 
           <br></br>
           <div>
-            <button id="continue" value="Create" type="submit">
-              {" "}
-              Continue{" "}
-            </button>
-            {/* <Link to="/">
-              <button id="cancel" value="Cancel">
-                {" "}
-                Cancel{" "}
+            
+              <button id="continue" value="Create" type="submit">             
+                Continue
               </button>
-            </Link> */}
+                      
+            <Link to="/">
+              <button id="continue" value="Cancel">
+                Cancel
+              </button>
+            </Link>
           </div>
         </form>
       </div>

@@ -1,3 +1,10 @@
+.vcan-form {
+    font-family: 'Bold', Serif;
+    padding-top: 0px;
+    padding-left: 0px;
+    width: 605px;
+    height: 662px;
+}
 .form-control {
     width: 100% !important;
     box-shadow: 0 0 0 0 #00000000 !important;

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { Link } from 'react-router-dom';
 import "./ProjectConfigurationHolder.css";
-import Transitions from './Transitions';
+import Transitions from "../../Transitions";
 
 const styles = StyleSheet.create({
     baseText: {
@@ -22,7 +22,7 @@ export default function ProjectConfiguration (props) {
     //Declare new state variables
     const [projectName, setProjectName] = useState('');
     const [storedLocation, setStoredLocation] = useState('/home/kali');
-    
+
     const handleSubmit = (event) => {
         // prevents the submit button from refreshing the page
         event.preventDefault();
@@ -63,9 +63,9 @@ export default function ProjectConfiguration (props) {
                 </div>
                 <br></br>
                 <div>
-                    <button id = "continue" value = "Continue" type = "submit" > Continue </button> 
+                        <button id = "continue" value = "Continue" type = "submit" > Continue </button> 
                     <Link to="/">
-                        <button id = "cancel" value = "Cancel" > Cancel </button>  
+                        <button id = "continue" value = "Cancel" > Cancel </button>  
                     </Link>
                 </div>
             </form>

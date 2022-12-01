@@ -141,10 +141,11 @@ export default function CANTable() {    // The next function causes 4 renders, n
       eventSource2.close();
       console.log("canplayer connection closed");
     });
+    saveTemp()
     return () => {
       eventSource2.close();
     };
-    saveTemp()
+    
   }
 
   const data = useMemo(() => [...info], [info]);

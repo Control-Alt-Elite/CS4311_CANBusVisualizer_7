@@ -80,33 +80,33 @@ const File = require('./models/file_model');
 
 //Get all projects from database
 app.get('/projects', async (req, res) => {
-	const projects = await Project.find();
-	res.json(projects);
+    const projects = await Project.find();
+    res.json(projects);
 });
 
 //Get specific project from the database by project name (Used by OpenProject.js)
 app.get('/project/new', async (req, res) => {
-	const projectName = req.query.projectName;
-	const project = await Project.find({projectName}).populate('sessions');
-	res.json(project);
+    const projectName = req.query.projectName;
+    const project = await Project.find({projectName}).populate('sessions');
+    res.json(project);
 }); 
 
 /* Saving Project/Session to database using a global variable*/
 //Saving Project to datase (Used by ProjectConfigurationHolder.js)
 app.post('/project/new', async (req, res) => {
-	const project = new Project({ 
+    const project = new Project({ 
     _id: new mongoose.Types.ObjectId(),
     projectName: req.body.projectName,
     storedLocation: req.body.storedLocation
-	})
-  	globalProjectName = project.projectName;
-	await project.save();
-	res.json(project);
+    })
+      globalProjectName = project.projectName;
+    await project.save();
+    res.json(project);
 });
 
 //Saving Session to database (Used by ProjectInfoHolder.js)
 app.post('/project/session', async (req, res) => {
-	const session = new Session({ 
+    const session = new Session({ 
     eventName: req.body.eventName,
     eventDate: req.body.eventDate,
     analystInitials: req.body.analystInitials,
@@ -116,16 +116,17 @@ app.post('/project/session', async (req, res) => {
     dbcFileName: req.body.dbcFileName,
     blacklistFileName: req.body.blacklistFileName,
     sessions: req.body.sessions,
-	})
-	const savedSession = await session.save();
+    })
+    const savedSession = await session.save();
 
   // Adds session to project
   // Then saves project to database
   const project = await Project.findOne({ projectName: globalProjectName });
   project.sessions.push(savedSession._id);
   await project.save();
-	res.json(session);
+    res.json(session);
 });
+
 
 //end pt for archive
 app.post('/project/archive', async (req, res) => {

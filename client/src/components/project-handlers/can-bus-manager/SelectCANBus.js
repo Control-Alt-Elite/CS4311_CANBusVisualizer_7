@@ -29,7 +29,7 @@ function SelectCAN() {
         }
 
      return (
-          <Form onSubmit={handleSubmit}>
+          <Form className="can-form" onSubmit={handleSubmit}>
                <Form.Group controlId="custom-select">
                     <Form.Label>Select CAN Bus</Form.Label>
                     <Form.Control as="select" className="rounded-0 shadow" onChange={handleChange} value={CAN.CAN}>
@@ -85,7 +85,10 @@ function SelectCAN() {
                </Form.Group>
                <hr />
                <div className='Buttons'>
+                    <Link to="/ProjectInfoHolder">
                     <button className= "continue" type = "submit"> Confirm </button>
+                    </Link>
+                    
                     <Link to="/">
                          <button className="cancel"> Cancel </button>  
                     </Link>

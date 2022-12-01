@@ -10,11 +10,28 @@ GET http://localhost:3001/project/file HTTP/1.1
 GET http://localhost:3001/project/new HTTP/1.1
 
 ###
-POST http://localhost:3001/project/file
+POST http://localhost:3001/project/new
 Content-Type: application/json
 
 {
-"fileName": "test.log"
+"projectName": "project3",
+"storedLocation": "/home/kali"
+}
+
+###
+POST http://localhost:3001/project/session
+Content-Type: application/json
+
+{
+"eventName": "Inspeccion",
+"eventDate": "10/06/2022",
+"analystInitials": "GO",
+"canConnectorID": "123",
+"vehicleID": "12345",
+"baudRate": "5000",
+"dbcFileName": "honda.dbc",
+"blacklistFileName": "bl01.dbc",
+"session": "63886c7f365d84655f52c8ff"
 }
 
 ###

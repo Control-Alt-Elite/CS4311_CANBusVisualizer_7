@@ -68,7 +68,7 @@
 #fetch{
     font-family: Serif;
     color: rgb(0, 0, 0);
-    background-color: rgb(255, 253, 3);
+    background-color: #fff;
     border-radius: 5px;
     margin-left: 30px;
 }
@@ -82,7 +82,7 @@
 #clear{
     font-family: Serif;
     color: rgb(0, 0, 0);;
-    background-color: #f0ad4e;
+    background-color: #fff;
     border-radius: 5px;
     margin-left: 30px;
 }
