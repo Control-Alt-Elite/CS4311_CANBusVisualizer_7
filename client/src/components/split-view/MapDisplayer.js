@@ -208,7 +208,8 @@ function MapDisplayer() {
   //------------------------------------- ALL WORKING TEMPATES FOR THE MAP ARE DEFINED BELOW vvvv --------------------------------------------
   
   //BUS LINE
-  diagram.nodeTemplateMap.add("HBar",$(go.Node,"Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
+  diagram.nodeTemplateMap.add(
+    "HBar",$(go.Node,"Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
       {
         layerName: "Background",
         // special resizing: just at the ends
@@ -435,7 +436,6 @@ function MapDisplayer() {
     { from: 6, to: 0 },
     { from: 7, to: 0 },
     { from: 8, to: 0 },
-    // { from: 1, to: 2 },
     { from: 1, to: 2},
   ];
 
