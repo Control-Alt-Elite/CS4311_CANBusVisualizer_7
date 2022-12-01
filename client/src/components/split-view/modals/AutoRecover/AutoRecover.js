@@ -1,37 +1,16 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
+import './AutoRecovery.css';
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
-import NavDropdown from "react-bootstrap/NavDropdown";
-
-function AutoRecover() {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  return (
-    <>
-      <NavDropdown.Item href="#action/Recovery" onClick={handleShow}>
-        Drag Nodes
-      </NavDropdown.Item>
-
-      <Modal className = "RecoveryModal" show={show} onHide={handleClose} backdrop="static" keyboard={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>Auto-Recovery</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className = "RecoveryBody" >
-         Project data recovered. Would you like to continue your last session?
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            No
-          </Button>
-          <Button variant="primary">Yes</Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
+function AutoRecover(props) {
+  return (props.trigger) ? (
+    <div className="popup">
+      <div className="popup-inner">
+        <h3>Data has been found!</h3>
+        <h3>Do you wish to continue?</h3>
+        { props.children }
+      </div>
+    </div>
+  ):"";
 }
 
 export default AutoRecover;

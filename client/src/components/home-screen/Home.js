@@ -2,8 +2,21 @@ import React from "react";
 import Transitions from "../Transitions";
 import "./Home.css";
 import devcomlogo from "./images/devcomlogo.png";
+import AutoRecover from "../split-view/modals/AutoRecover/AutoRecover";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Home = () => {
+  const [dataExists, setDataExists] = useState(false)
+  useEffect(() => { 
+    const packet = localStorage.getItem("packetInfo")
+    if(packet){
+      setDataExists(true)
+    }else{
+      console.log("no info found")
+    }
+    
+  }, [])
   return (
     <Transitions>
       <section id="Title" className="contentarea">
@@ -22,7 +35,12 @@ const Home = () => {
           </div>
         </div>
       </footer>
+      <AutoRecover trigger={dataExists}>
+        <button className="accept-btn">Continue</button>
+        <button className="reject-btn">Discard</button>
+      </AutoRecover>
     </Transitions>
+    
   );
 };
 export default Home;
