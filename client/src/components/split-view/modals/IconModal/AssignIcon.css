@@ -23,6 +23,9 @@
     pointer-events: all;
   }
 
-  .modal-body{
-    overflow: scroll;
+  .row{
+    border: 2px;
   }
+  /* .modal-body{
+    overflow: scroll;
+  } */
