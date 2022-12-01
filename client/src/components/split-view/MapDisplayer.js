@@ -11,6 +11,7 @@ function MapDisplayer() {
     "undoManager.isEnabled": true, // must be set to allow for model change listening
     "clickCreatingTool.archetypeNodeData": {text: "Node", color: "#CDCDCD"}, //Allows double clicking to create node
     "commandHandler.archetypeGroupData": {text: "Group", isGroup: true, color: "blue"},
+    "linkingTool.direction": go.LinkingTool.ForwardsOnly,
 
     model: new go.GraphLinksModel({ // IMPORTANT! Necessary otherwise nodes will not display
       linkKeyProperty: "key",
@@ -383,7 +384,7 @@ function MapDisplayer() {
          "ButtonBorder.fill": "white",
          "_buttonFillOver": "skyblue"
        },
-       $(go.TextBlock, "Change Color"),
+       $(go.TextBlock, "Set Off-Limits"),
        { click: SetOffLimitsColor })
      // more ContextMenuButtons would go here
    )  // end Adornment

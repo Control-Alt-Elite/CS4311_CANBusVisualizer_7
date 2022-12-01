@@ -12,9 +12,11 @@ function AutoRecover() {
 
   return (
     <>
-      <NavDropdown.Item href="#action/Recovery" onClick={handleShow}>
-        Drag Nodes
-      </NavDropdown.Item>
+
+
+      {/* <Button variant="primary" id = "playtraffic" href="#action/Recovery" onClick={handleShow}>
+        Auto Recover
+      </Button> */}
 
       <Modal className = "RecoveryModal" show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
