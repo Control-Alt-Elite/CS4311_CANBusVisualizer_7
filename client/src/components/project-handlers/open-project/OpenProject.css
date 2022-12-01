@@ -1,4 +1,4 @@
-#app {
+.container {
     background-image: url('../../images/backgroundLogo.png');
     background-repeat: no-repeat;
     margin-top: 0%;
@@ -61,7 +61,7 @@
 }
 #select{
     background-color: rgb(109, 109, 109);
-    width: 50%;
+    width: 40%;
     height: 30px;
     border-radius: 5px;
 }
@@ -74,8 +74,9 @@
 }
 #all{
     font-family: Serif;
+    font-size: large;
     color: white;
-    background-color: #0275d8;
+    background-color: rgb(40, 77, 241);;
     border-radius: 5px;
 }
 #clear{
