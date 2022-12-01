@@ -21,9 +21,6 @@ app.use(cors());
 //Sending packets
 app.get('/packets', packets);
 
-// Syncing files via rsync
-app.get('/Sync', dataSync);
-
 //Listen for replied packets
 app.get('/logs', logfile);
 
@@ -142,6 +139,20 @@ app.post('/project/archive', async (req, res) => {
 		console.log(error);
 	}
 	
+});
+
+// Sync project files
+//Saving Session to database (Used by ProjectInfoHolder.js)
+app.post('/Sync', async (req, res) => {
+	var sync = {
+		username: await req.body.username,
+		password: await req.body.password,
+		receiverIp: await req.body.receiverIp,
+		senderFilePath: await req.body.senderFilePath,
+		receiverFilePath: await req.body.receiverFilePath
+	}
+	const dataSync = require("./modules/DataSynchronizer")(sync, req, res);
+	res.json(dataSync);
 });
 
 /* Saving file name used by canplayer in Player.js to the database */

@@ -81,7 +81,7 @@ export default function Sync() {
           <form className='SyncForm'>
           <div className="form-grouprow">
 
-            <label className=''>Root Username
+            <label className=''>Receiver Root Username
             <br/>
             
                 <span className='title-required'>(Required)</span>
@@ -97,7 +97,7 @@ export default function Sync() {
             </label>
             </div>
             <div className="form-grouprow">
-            <label className=''>Password
+            <label className=''>Receiver Password
             <br/>
                 <span className='title-required'>(Required)</span>
                 <input
@@ -115,7 +115,7 @@ export default function Sync() {
            
             </div>
             <div className="form-grouprow">
-            <label className=''> IP Address
+            <label className=''> Receiver IP Address
             <br/>
                 <span className='title-required'>(Required)</span>
                 <input
