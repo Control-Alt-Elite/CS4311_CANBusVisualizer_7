@@ -12,16 +12,7 @@
   pointer-events: none;
 }
 
-.modal-content {
-  /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
-  width: inherit;
-  max-width: inherit; /* For Bootstrap 4 - to avoid the modal window stretching 
-    full width */
-  height: inherit;
-  /* To center horizontally */
-  margin: 0;
-  pointer-events: all;
-}
+
 
 #add-entry{
   float: left;
@@ -38,15 +29,7 @@
 
 } */
 
-.modal-body {
-  background-color: rgb(52,52,52);
-  border-color: black;
-  
-}
-/* Changes the color of the Footer of the Modal */
-.modal-footer{
-  background-color:  rgb(52,52,52);
-}
+
 
 tr{
   color: white ;

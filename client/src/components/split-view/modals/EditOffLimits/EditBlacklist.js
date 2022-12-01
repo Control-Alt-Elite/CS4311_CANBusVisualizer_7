@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Table from "react-bootstrap/Table";
-
+import '../modals.css';
 import './EditBlacklist.css';
 function EditBlacklist() {
   const [show, setShow] = useState(false);
@@ -29,47 +29,7 @@ function EditBlacklist() {
         </Modal.Header>
 
         <Modal.Body className="show-grid">
-          {/* //
-        <Container>
-          <Row>
-            <Col xs={3} md={2}>
-            ID
-            </Col>
-            <Col xs={4} md={3}>
-              Name
-            </Col>
-            <Col xs={6} md={4}>
-              Description
-            </Col>
-          </Row>
 
-          <Row>
-            <Col xs={3} md={2}>
-            200
-            </Col>
-            <Col xs={4} md={3}>
-              Air Conditioner
-            </Col>
-            <Col xs={6} md={4}>
-              Description
-            </Col>
-          </Row>
-
-          <Row>
-            <Col xs={3} md={2}>
-            48
-            </Col>
-            <Col xs={4} md={3}>
-             Transmission
-            </Col>
-            <Col xs={6} md={4}>
-              Description
-            </Col>
-          </Row>
-
-          
-        </Container>
-  */}
         
         <Table>
        

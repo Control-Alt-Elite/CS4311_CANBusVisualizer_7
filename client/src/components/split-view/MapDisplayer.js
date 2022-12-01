@@ -208,8 +208,7 @@ function MapDisplayer() {
   //------------------------------------- ALL WORKING TEMPATES FOR THE MAP ARE DEFINED BELOW vvvv --------------------------------------------
   
   //BUS LINE
-  diagram.nodeTemplateMap.add(
-    "HBar",$(go.Node,"Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
+  diagram.nodeTemplateMap.add("HBar",$(go.Node,"Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
       {
         layerName: "Background",
         // special resizing: just at the ends
@@ -229,9 +228,7 @@ function MapDisplayer() {
           })
         ),
       },
-      $(
-        go.Shape,
-        "Rectangle",
+      $(go.Shape,"Rectangle",
         {
           name: "SHAPE",
           fill: "black",
@@ -260,6 +257,7 @@ function MapDisplayer() {
       )
     )
   );
+  
   //DEFINE CONTEXT MENU. Migrated into the working node template TODO REMOVE
   // var partContextMenu = $(
   //     "ContextMenu",
@@ -331,7 +329,7 @@ function MapDisplayer() {
       
       var contextmenu = obj.part; // retrieve context menu that has the button that triggered this method
       var nodedata = contextmenu.data; // retrieve data of the node that the context menu was used on
-      var newcolor = "#CDCDCD";
+      var newcolor = "#727476";
       switch (nodedata.color) {
         case "#CDCDCD": newcolor = "#727476"; break;
         case "#727476": newcolor = "#CDCDCD"; break;
@@ -348,6 +346,7 @@ function MapDisplayer() {
    new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify), //Allows for coordinates to be used
    $(go.Shape, "RoundedRectangle",
      {
+       name: "SHAPE",
        fill: "#CDCDCD", // the default fill, if there is no data bound value
        cursor: "pointer", // the Shape is the port, not the whole Node
      },
@@ -413,17 +412,17 @@ function MapDisplayer() {
   // GOJS MAY NOT ALLOW LOCAL IMAGES
   // CURRENTLY USING ONLINE IMAGE
   var nodeDataArray = [
-    { key: 0, text: "", category: "HBar", location: "100 100", size: "500 4", fill: "#C4C4C4",},
+    { key: 0, text: "", category: "HBar", location: "100 100", size: "5000 4", fill: "#C4C4C4",},
     
     { key: 4, text: ":)", location: "120 140", visible: true, img:"https://cdn.7tv.app/emote/60aecb385174a619dbc175be/2x.webp"},
-    { key: 1, text: "Suspension", location: "250 -50", visible: true, img: "../images/pc.png" },
+    { key: 1, text: "Suspension", location: "250 -50", visible: true, img: "./2x.webp" },
     { key: 2, text: "ABS", location: "150 10" },
     { key: 3, text: "Engine", location: "500 30" },
     { key: 5, text: "Air Conditioner", location: "400 260"},
     { key: 6, text: "Window", location: "200 250" },
     { key: 7, text: "Battery", location: "310 180" },
     { key: 8, text: "Outside Mirror", location: "380 -40"},
-    { key: 9, name: "Luke Warm", "pic" : "node_car-cpu.png", location: "500 -40"},
+    { key: 9, name: "King Cat", pic:"https://cdn.7tv.app/emote/60aecb385174a619dbc175be/2x.webp", location: "500 -40"},
   ];
 
   //Should also use JSON

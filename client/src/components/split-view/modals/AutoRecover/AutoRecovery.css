@@ -1,0 +1,9 @@
+/* .modal-RecoverBody{
+    color: white;
+
+} */
+
+.RecoveryModal .modal-body {
+    background-color: green;
+    color: red;
+  }

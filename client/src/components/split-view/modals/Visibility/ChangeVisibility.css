@@ -17,30 +17,17 @@
     width: inherit;
     max-width: inherit; /* For Bootstrap 4 - to avoid the modal window stretching 
       full width */
-    height: inherit;
+    height: 50px !important;
     /* To center horizontally */
     margin: 0;
     pointer-events: all;
   }
 
-  .modal-body{
-    height: 550px;
+  .modal-header{
+    background-color: #284DF1 !important;
+    color: aliceblue;
   }
 
-  .btn-primary {
-    color: white;
-    background-color: #110fbd;
-    border-color: white;
-}
-
-/* .exampleForm.ControlInput1{
-  margin-right: 200px;
-} */
-
-.mb-3{
-  margin-right: 200px;
-}
-
-.form-label{
-  color: rgb(255, 255, 255);
-}
+  .btn-close{
+    color: aliceblue !important;
+  }

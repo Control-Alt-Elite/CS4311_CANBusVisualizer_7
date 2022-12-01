@@ -21,7 +21,7 @@ function ChangeVisibility() {
       <Modal 
       show={show} 
       onHide={handleClose}
-      size = "lg"
+      size = "sm"
       >
         <Modal.Header class="modal-header" closeButton>
           <Modal.Title>Change Visibility</Modal.Title>

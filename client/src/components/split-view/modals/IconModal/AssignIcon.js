@@ -6,20 +6,20 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import laptop from '../../images/laptop.png';
-import abs from '../../images/node_abs.png';
-import battery from '../../images/node_battery.png';
-import car_cpu from '../../images/node_car-cpu.png';
-import car_frame from '../../images/node_car-frame.png';
-import door from '../../images/node_door.png';
-import engine from '../../images/node_engine.png';
-import hvac from '../../images/node_hvac.png';
-import odometer from '../../images/node_odometer.png';
-import seat from '../../images/node_seat.png';
-import side_mirror from '../../images/node_side-mirror.png';
-import suspension from '../../images/node_suspension.png';
-import transmission from '../../images/node_transmission1.png';
-
+import laptop from '../../../images/laptop.png';
+import abs from '../../../images/node_abs.png';
+import battery from '../../../images/node_battery.png';
+import car_cpu from '../../../images/node_car-cpu.png';
+import car_frame from '../../../images/node_car-frame.png';
+import door from '../../../images/node_door.png';
+import engine from '../../../images/node_engine.png';
+import hvac from '../../../images/node_hvac.png';
+import odometer from '../../../images/node_odometer.png';
+import seat from '../../../images/node_seat.png';
+import side_mirror from '../../../images/node_side-mirror.png';
+import suspension from '../../../images/node_suspension.png';
+import transmission from '../../../images/node_transmission1.png';
+import '../modals.css';
 import './AssignIcon.css';
 
 function AssignIcon() {
