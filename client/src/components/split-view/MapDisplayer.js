@@ -1,23 +1,23 @@
 import * as go from "gojs";
 import "./MapDisplayer.css";
-
+import blacklist from "./blacklist.csv";
 
 //This will render the GOJS map
 function MapDisplayer() {
   const $ = go.GraphObject.make; 
   const diagram = $(go.Diagram, 
     {
-    //This section effectively allows extensions to be added to the canvas
-    "undoManager.isEnabled": true, // must be set to allow for model change listening
-    "clickCreatingTool.archetypeNodeData": {text: "Node", color: "#CDCDCD"}, //Allows double clicking to create node
-    "commandHandler.archetypeGroupData": {text: "Group", isGroup: true, color: "blue"},
+      //This section effectively allows extensions to be added to the canvas
+      "undoManager.isEnabled": true, // must be set to allow for model change listening
+      "clickCreatingTool.archetypeNodeData": { text: "Node", color: "#CDCDCD" }, //Allows double clicking to create node
+      "commandHandler.archetypeGroupData": { text: "Group", isGroup: true, color: "blue" },
 
     model: new go.GraphLinksModel({ // IMPORTANT! Necessary otherwise nodes will not display
       linkKeyProperty: "key",
     }),
   });
 
-  
+
   // Dont think this does anything
   // diagram.linkTemplate = $(go.Link,
   //   { toShortLength: 3, relinkableFrom: true, relinkableTo: true }, // allow the user to relink existing links
@@ -72,7 +72,7 @@ function MapDisplayer() {
     diagram.commandHandler.scrollToPart(newnode);
   }
 
-//--------------------END TEST-----------------------------------------
+  //--------------------END TEST-----------------------------------------
   // NEWEST NICE LOOKING NODE TEMPLATE. MUST BE THE FINAL VERSION
   // diagram.nodeTemplate =$(go.Node, "Spot",
   //     {
@@ -202,11 +202,11 @@ function MapDisplayer() {
   //   )
   // )
   // );
-  
- 
+
+
 
   //------------------------------------- ALL WORKING TEMPATES FOR THE MAP ARE DEFINED BELOW vvvv --------------------------------------------
-  
+
   //BUS LINE
   diagram.nodeTemplateMap.add(
     "HBar",$(go.Node,"Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
@@ -326,8 +326,8 @@ function MapDisplayer() {
 
   // Changes color for off-limits nodes used in map context menu
   function SetOffLimitsColor(e, obj) {
-    diagram.commit(function(d) {
-      
+    diagram.commit(function (d) {
+
       var contextmenu = obj.part; // retrieve context menu that has the button that triggered this method
       var nodedata = contextmenu.data; // retrieve data of the node that the context menu was used on
       var newcolor = "#727476";
@@ -392,7 +392,7 @@ function MapDisplayer() {
   //***************************************************************
 
 
-  
+
   //HANDLES ALL LINKING
   diagram.linkTemplate = $(
     BarLink, // subclass defined below
@@ -413,31 +413,19 @@ function MapDisplayer() {
   // GOJS MAY NOT ALLOW LOCAL IMAGES
   // CURRENTLY USING ONLINE IMAGE
   var nodeDataArray = [
-    { key: 0, text: "", category: "HBar", location: "100 100", size: "5000 4", fill: "#C4C4C4",},
-    
-    { key: 4, text: ":)", location: "120 140", visible: true, img:"https://cdn.7tv.app/emote/60aecb385174a619dbc175be/2x.webp"},
-    { key: 1, text: "Suspension", location: "250 -50", visible: true, img: "./2x.webp" },
-    { key: 2, text: "ABS", location: "150 10" },
-    { key: 3, text: "Engine", location: "500 30" },
-    { key: 5, text: "Air Conditioner", location: "400 260"},
-    { key: 6, text: "Window", location: "200 250" },
-    { key: 7, text: "Battery", location: "310 180" },
-    { key: 8, text: "Outside Mirror", location: "380 -40"},
-    { key: 9, name: "King Cat", pic:"https://cdn.7tv.app/emote/60aecb385174a619dbc175be/2x.webp", location: "500 -40"},
+    { key: 0, text: "", category: "HBar", location: "100 100", size: "1000 4", fill: "#C4C4C4", },
+    // { key: 1, text: "Suspension", category: "Generator", location: "250 -50" },
+    // { key: 2, text: "ABS", location: "150 10" },
+    // { key: 3, text: "Engine", category: "Generator", location: "500 30" },
+    // { key: 5, text: "Air Conditioner", category: "Generator", location: "400 260"},
+    // { key: 6, text: "Window", category: "Generator", location: "200 250" },
+    // { key: 7, text: "Battery", category: "Generator", location: "310 180" },
+    // { key: 8, text: "Outside Mirror", category: "Generator", location: "380 -40",
+    // },
   ];
 
   //Should also use JSON
-  var linkDataArray = [
-    { from: 1, to: 0 },
-    { from: 2, to: 0 },
-    { from: 3, to: 0 },
-    { from: 4, to: 0 },
-    { from: 5, to: 0 },
-    { from: 6, to: 0 },
-    { from: 7, to: 0 },
-    { from: 8, to: 0 },
-    { from: 1, to: 2},
-  ];
+  var linkDataArray = [];
 
   //USES BOTH ARRAYS ABOVE TO GENERATE MAP
   diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
@@ -469,7 +457,82 @@ function MapDisplayer() {
     }
   });
 
-  //-------------------------------------vvvv MOST FUNCTIONS USED FOR THE MAP ARE DEFINED BELOW vvvv --------------------------------------------
+  // ------------------------------- Dynamic Nodes --------------------------
+  let eventSource;
+  var playing = false;
+  document.querySelector('[id="playtraffic"]').addEventListener("click", createLiveNodes);
+  document.querySelector('[id="stoptraffic"]').addEventListener("click", stopLiveNodes);
+
+  // ------------------------------ DYNAMIC NODE FUNCTIONS --------------------------
+  function readBlacklist() {
+    var blackListMap = [];
+    fetch(blacklist).then(r => r.text()).then(text => {
+      var nodes = text.split("\n");
+      nodes.shift();//remove header line
+
+      nodes.forEach((node) => {
+        var data = node.split(',');
+        blackListMap.push({ id: data[0], ecu: data[1] });
+      });
+    });
+    return blackListMap;
+  }
+
+  function createLiveNodes() {
+    var blacklistedNodes = readBlacklist();
+
+    if (!playing) {
+      playing = true; // set state of live nodes
+
+      console.log('Starting live nodes');
+      const url1 = 'http://localhost:3001/packets';
+
+      eventSource = new EventSource(url1)
+      eventSource.onmessage = (e) => {
+        const parsedData = JSON.parse(e.data);
+        // Check if node exists in the map
+        const isFound = diagram.model.findNodeDataForKey(`${parsedData.id}`);
+
+        // If node not found, add to the model
+        if (isFound == null && !parsedData.ecu.includes('unpack requires')) {
+          console.log(`Adding node data`);
+
+          // Check if current message node is part of blacklist
+          var isBlacklisted = false;
+          blacklistedNodes.forEach((node) => {
+              if(node.id == parsedData.id){
+                isBlacklisted = true;
+              }
+          });
+
+          // Add node data to map and links
+          diagram.model.addNodeData(
+            { key: parsedData.id, text: `${parsedData.ecu}`},
+          );
+          diagram.model.addLinkData(
+            { from: parsedData.id, to: 0 }
+          );
+        }
+
+        // if node is black listed, change color
+        if(isBlacklisted){// TODO CHANGE THIS TO ACTUALLY CHANGE THE COLOR
+          const node = diagram.findNodeForKey(parsedData.id);
+          const shape = node.findObject("SHAPE");
+          shape.fill = "#727476";
+        }
+      }
+    }
+  }
+
+  function stopLiveNodes() {
+    if (playing) {
+      eventSource.close();
+      playing = false; // set statue for live nodes
+      console.log('Closing live nodes');
+    }
+  }
+
+  //-------------------------------------vvvv ALL FUNCTIONS USED FOR THE MAP ARE DEFINED BELOW vvvv --------------------------------------------
 
   //Original export Node Attributes
   // function save() {
@@ -514,6 +577,20 @@ function MapDisplayer() {
     return currentDate;
   }
 
+  function zoomIn() {
+    if (diagram.commandHandler.canIncreaseZoom()) {
+      diagram.commandHandler.increaseZoom(1.2);
+    }
+
+  }
+  //TODO: test zoom out
+  function zoomOut() {
+    if (diagram.commandHandler.canDecreaseZoom()) {
+      diagram.commandHandler.decreaseZoom(.5);
+    }
+
+  }
+
   // Generate data for Network Diagram
   function imageCallback(blob) {
     var url = window.URL.createObjectURL(blob);
@@ -549,7 +626,7 @@ function MapDisplayer() {
   }
 
   //CONTEXT MENU TESTS----------------------------------------
-  
+
   //define a function for creating a context menu button:
   function makeButton(text, action, visiblePredicate) {
     return $(
