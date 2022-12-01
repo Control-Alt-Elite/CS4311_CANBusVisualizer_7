@@ -54,46 +54,47 @@ function AssignIcon() {
         <Modal.Body className="show-grid">
           <Container>
             <Row>
-              <Col>
+              <Col xs={3} s={3}>
                 <img src={abs} className="img-fluid" onClick={ChangeIcon(abs)}/>
               </Col>
-              <Col>
+              <Col xs={3} s={3}>
                 <img src={battery} className="img-fluid" onClick={ChangeIcon(battery)}/>
               </Col>
-              <Col>
+              <Col xs={3} s={3}>
                 <img src={car_cpu} className="img-fluid" onClick={ChangeIcon(car_cpu)}/>
+              </Col>
+              <Col xs={3} s={3}>
+                <img src={car_frame} className="img-fluid" onClick={ChangeIcon(car_frame)}/>
               </Col>
             </Row>
 
             <Row>
-              <Col>
-                <img src={car_frame} className="img-fluid" onClick={ChangeIcon(car_frame)}/>
-              </Col>
-              <Col>
+             
+              <Col xs={3} s={3}>
                 <img src={door} className="img-fluid" onClick={ChangeIcon(door)}/>
               </Col>
-              <Col>
+              <Col xs={3} s={3}>
                 <img src={engine} className="img-fluid" onClick={ChangeIcon(engine)}/>
               </Col>
-              <Col>
+              <Col xs={3} s={3}>
                 <img src={hvac} className="img-fluid" onClick={ChangeIcon(hvac)}/>
               </Col>
-              <Col>
+              <Col xs={3} s={3}>
                 <img src={odometer} className="img-fluid" onClick={ChangeIcon(odometer)}/>
               </Col>
             </Row>
-            <Row>
-              <Col> 
-                <img src={seat} className="img-fluid" onClick={ChangeIcon} />
+            <Row >
+              <Col xs={3} s={3}> 
+                <img src={seat} className="img-fluid" onClick={ChangeIcon(seat)} />
               </Col>
-              <Col>
-                <img src={side_mirror} className="img-fluid" onClick={ChangeIcon}/>
+              <Col xs={3} s={3}>
+                <img src={side_mirror} className="img-fluid" onClick={ChangeIcon(side_mirror)}/>
               </Col>
-              <Col>
-                <img src={suspension} className="img-fluid" onClick={ChangeIcon}/>
+              <Col xs={3} s={3}>
+                <img src={suspension} className="img-fluid" onClick={ChangeIcon(suspension)}/>
               </Col>
-              <Col>
-                <img src={transmission} className="img-fluid" onClick={ChangeIcon}/>
+              <Col xs={3} s={3}>
+                <img src={transmission} className="img-fluid" onClick={ChangeIcon(transmission)}/>
               </Col>
             </Row>
           </Container>

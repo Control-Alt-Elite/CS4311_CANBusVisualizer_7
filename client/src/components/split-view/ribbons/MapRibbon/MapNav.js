@@ -6,9 +6,6 @@ import AutoRecover from "../../modals/AutoRecover/AutoRecover";
 import EditBlacklist from "../../modals/EditOffLimits/EditBlacklist";
 import Flags from "../../modals/Flags/Flags";
 import AssignIcon from "../../modals/IconModal/AssignIcon";
-import LinkNodes from "../../modals/Relationships/LinkNodes";
-import RenameNode from "../../modals/Rename/RenameNode";
-import ChangeVisibility from "../../modals/Visibility/ChangeVisibility";
 
 import "./MapNav.css";
 
@@ -26,15 +23,15 @@ function MapNav() {
                 <NavDropdown.Item href="/">Close Session</NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title="Edit" id="edit-dropdown" menuVariant="dark">
-                <RenameNode />
+                
                 <AssignIcon />
-                <ChangeVisibility />
+                
                 <EditBlacklist />
                 <Flags />
               </NavDropdown>
               <NavDropdown title="Nodes" id="nodes-dropdown" menuVariant="dark">
                 <AutoRecover/>
-                <LinkNodes/>
+                {/* <LinkNodes/> */}
                 <NavDropdown.Item href="#action/3.3">
                   Search Node
                 </NavDropdown.Item>
