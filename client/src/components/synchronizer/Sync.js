@@ -73,10 +73,7 @@ export default function Sync() {
               }*/}>Sync</button> 
      
       </div>
-      <div className="ip">
-      <h2>Your IP Address is</h2>
-      <h4>{ip}</h4>
-    </div>
+     
 
           <form className='SyncForm'>
           <div className="form-grouprow">
