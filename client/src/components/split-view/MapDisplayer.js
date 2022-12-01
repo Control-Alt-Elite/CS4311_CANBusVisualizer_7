@@ -425,17 +425,7 @@ function MapDisplayer() {
   ];
 
   //Should also use JSON
-  var linkDataArray = [
-    { from: 1, to: 0 },
-    { from: 2, to: 0 },
-    { from: 3, to: 0 },
-    { from: 4, to: 0 },
-    { from: 5, to: 0 },
-    { from: 6, to: 0 },
-    { from: 7, to: 0 },
-    { from: 8, to: 0 },
-    { from: 1, to: 2},
-  ];
+  var linkDataArray = [];
 
   //USES BOTH ARRAYS ABOVE TO GENERATE MAP
   diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
