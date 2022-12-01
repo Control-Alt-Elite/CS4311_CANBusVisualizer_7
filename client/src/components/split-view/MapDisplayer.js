@@ -11,7 +11,6 @@ function MapDisplayer() {
     "undoManager.isEnabled": true, // must be set to allow for model change listening
     "clickCreatingTool.archetypeNodeData": {text: "Node", color: "#CDCDCD"}, //Allows double clicking to create node
     "commandHandler.archetypeGroupData": {text: "Group", isGroup: true, color: "blue"},
-    "linkingTool.direction": go.LinkingTool.ForwardsOnly,
 
     model: new go.GraphLinksModel({ // IMPORTANT! Necessary otherwise nodes will not display
       linkKeyProperty: "key",
@@ -20,28 +19,28 @@ function MapDisplayer() {
 
 
   // Dont think this does anything
-  // diagram.linkTemplate = $(go.Link,
-  //   { toShortLength: 3, relinkableFrom: true, relinkableTo: true }, // allow the user to relink existing links
-  //   $(go.Shape, { strokeWidth: 2 }, new go.Binding("stroke", "color")),
-  //   $(
-  //     go.Shape,
-  //     { toArrow: "Standard", stroke: null },
-  //     new go.Binding("fill", "color")
-  //   ),
-  //   {
-  //     // this tooltip Adornment is shared by all links
-  //     toolTip: $(
-  //       "ToolTip",
-  //       $(
-  //         go.TextBlock,
-  //         { margin: 4 }, // the tooltip shows the result of calling linkInfo(data)
-  //         new go.Binding("text", "", linkInfo)
-  //       )
-  //     ),
-  //     // the same context menu Adornment is shared by all links
-  //     contextMenu: partContextMenu,
-  //   }
-  // );
+  diagram.linkTemplate = $(go.Link,
+    { toShortLength: 3, relinkableFrom: true, relinkableTo: true }, // allow the user to relink existing links
+    $(go.Shape, { strokeWidth: 2 }, new go.Binding("stroke", "color")),
+    $(
+      go.Shape,
+      { toArrow: "Standard", stroke: null },
+      new go.Binding("fill", "color")
+    ),
+    {
+      // this tooltip Adornment is shared by all links
+      toolTip: $(
+        "ToolTip",
+        $(
+          go.TextBlock,
+          { margin: 4 }, // the tooltip shows the result of calling linkInfo(data)
+          new go.Binding("text", "", linkInfo)
+        )
+      ),
+      // the same context menu Adornment is shared by all links
+      contextMenu: partContextMenu,
+    }
+  );
 
   //-----------------TEST------------------------------
   // This function provides a common style for most of the TextBlocks.
@@ -75,105 +74,105 @@ function MapDisplayer() {
 
   //--------------------END TEST-----------------------------------------
   // NEWEST NICE LOOKING NODE TEMPLATE. MUST BE THE FINAL VERSION
-  // diagram.nodeTemplate =$(go.Node, "Spot",
-  //     {
-  //       selectionObjectName: "BODY",
-  //       mouseEnter: (e, node) => node.findObject("BUTTON").opacity = node.findObject("BUTTONX").opacity = 1,
-  //       mouseLeave: (e, node) => node.findObject("BUTTON").opacity = node.findObject("BUTTONX").opacity = 0,
-  //       // handle dragging a Node onto a Node to (maybe) change the reporting relationship
-  //       mouseDragEnter: (e, node, prev) => {
-  //         const diagram = node.diagram;
-  //         const selnode = diagram.selection.first();
-  //         if (!mayWorkFor(selnode, node)) return;
-  //         const shape = node.findObject("SHAPE");
-  //         if (shape) {
-  //           shape._prevFill = shape.fill;  // remember the original brush
-  //           shape.fill = "darkred";
-  //         }
-  //       },
-  //       mouseDragLeave: (e, node, next) => {
-  //         const shape = node.findObject("SHAPE");
-  //         if (shape && shape._prevFill) {
-  //           shape.fill = shape._prevFill;  // restore the original brush
-  //         }
-  //       },
-  //       mouseDrop: (e, node) => {
-  //         const diagram = node.diagram;
-  //         const selnode = diagram.selection.first();  // assume just one Node in selection
-  //         if (mayWorkFor(selnode, node)) {
-  //           // find any existing link into the selected node
-  //           const link = selnode.findTreeParentLink();
-  //           if (link !== null) {  // reconnect any existing link
-  //             link.fromNode = node;
-  //           } else {  // else create a new link
-  //             diagram.toolManager.linkingTool.insertLink(node, node.port, selnode, selnode.port);
-  //           }
-  //         }
-  //       }
-  //     },
-  //     // for sorting, have the Node.text be the data.name
-  //     new go.Binding("text", "name"),
-  //     // bind the Part.layerName to control the Node's layer depending on whether it isSelected
-  //     new go.Binding("layerName", "isSelected", sel => sel ? "Foreground" : "").ofObject(),
-  //     $(go.Panel, "Auto",
-  //       { name: "BODY" },
-  //       // define the node's outer shape
-  //       $(go.Shape, "Rectangle",
-  //         { name: "SHAPE", fill: "#333333", stroke: 'white', strokeWidth: 3.5, portId: "" }),
-  //       $(go.Panel, "Horizontal",
-  //         $(go.Picture,
-  //           {
-  //             name: "Picture",
-  //             desiredSize: new go.Size(70, 70),
-  //             margin: 1.5,
-  //             source: "./images/node_car-cpu.png"  // the default image
-  //           },
-  //           new go.Binding("source", "pic", findHeadShot)),
-  //         // define the panel where the text will appear
-  //         $(go.Panel, "Table",
-  //           {
-  //             minSize: new go.Size(130, NaN),
-  //             maxSize: new go.Size(150, NaN),
-  //             margin: new go.Margin(6, 10, 0, 6),
-  //             defaultAlignment: go.Spot.Left
-  //           },
-  //           $(go.RowColumnDefinition, { column: 2, width: 4 }),
-  //           $(go.TextBlock, textStyle(),  // the name
-  //             {
-  //               name: "NAMETB",
-  //               row: 0, column: 0, columnSpan: 5,
-  //               font: "12pt Segoe UI,sans-serif",
-  //               editable: true, isMultiline: false,
-  //               minSize: new go.Size(50, 16)
-  //             },
-  //             new go.Binding("text", "name").makeTwoWay()),
-  //           $(go.TextBlock, "Title: ", textStyle(),
-  //             { row: 1, column: 0 }),
-  //           $(go.TextBlock, textStyle(),
-  //             {
-  //               row: 1, column: 1, columnSpan: 4,
-  //               editable: true, isMultiline: false,
-  //               minSize: new go.Size(50, 14),
-  //               margin: new go.Margin(0, 0, 0, 3)
-  //             },
-  //             new go.Binding("text", "title").makeTwoWay()),
-  //           $(go.TextBlock, textStyle(),
-  //             { row: 2, column: 0 },
-  //             new go.Binding("text", "key", v => "ID: " + v)),
-  //           $(go.TextBlock, textStyle(),  // the comments
-  //             {
-  //               row: 3, column: 0, columnSpan: 5,
-  //               font: "italic 9pt sans-serif",
-  //               wrap: go.TextBlock.WrapFit,
-  //               editable: true,  // by default newlines are allowed
-  //               minSize: new go.Size(100, 14)
-  //             },
-  //             new go.Binding("text", "comments").makeTwoWay())
-  //         ) // end Table Panel
-  //       ) // end Horizontal Panel
-  //     ), // end Auto Panel
+  diagram.nodeTemplate =$(go.Node, "Spot",
+      {
+        selectionObjectName: "BODY",
+        mouseEnter: (e, node) => node.findObject("BUTTON").opacity = node.findObject("BUTTONX").opacity = 1,
+        mouseLeave: (e, node) => node.findObject("BUTTON").opacity = node.findObject("BUTTONX").opacity = 0,
+        // handle dragging a Node onto a Node to (maybe) change the reporting relationship
+        mouseDragEnter: (e, node, prev) => {
+          const diagram = node.diagram;
+          const selnode = diagram.selection.first();
+          if (!mayWorkFor(selnode, node)) return;
+          const shape = node.findObject("SHAPE");
+          if (shape) {
+            shape._prevFill = shape.fill;  // remember the original brush
+            shape.fill = "darkred";
+          }
+        },
+        mouseDragLeave: (e, node, next) => {
+          const shape = node.findObject("SHAPE");
+          if (shape && shape._prevFill) {
+            shape.fill = shape._prevFill;  // restore the original brush
+          }
+        },
+        mouseDrop: (e, node) => {
+          const diagram = node.diagram;
+          const selnode = diagram.selection.first();  // assume just one Node in selection
+          if (mayWorkFor(selnode, node)) {
+            // find any existing link into the selected node
+            const link = selnode.findTreeParentLink();
+            if (link !== null) {  // reconnect any existing link
+              link.fromNode = node;
+            } else {  // else create a new link
+              diagram.toolManager.linkingTool.insertLink(node, node.port, selnode, selnode.port);
+            }
+          }
+        }
+      },
+      // for sorting, have the Node.text be the data.name
+      new go.Binding("text", "name"),
+      // bind the Part.layerName to control the Node's layer depending on whether it isSelected
+      new go.Binding("layerName", "isSelected", sel => sel ? "Foreground" : "").ofObject(),
+      $(go.Panel, "Auto",
+        { name: "BODY" },
+        // define the node's outer shape
+        $(go.Shape, "Rectangle",
+          { name: "SHAPE", fill: "#333333", stroke: 'white', strokeWidth: 3.5, portId: "" }),
+        $(go.Panel, "Horizontal",
+          $(go.Picture,
+            {
+              name: "Picture",
+              desiredSize: new go.Size(70, 70),
+              margin: 1.5,
+              source: "./images/node_car-cpu.png"  // the default image
+            },
+            new go.Binding("source", "pic", findHeadShot)),
+          // define the panel where the text will appear
+          $(go.Panel, "Table",
+            {
+              minSize: new go.Size(130, NaN),
+              maxSize: new go.Size(150, NaN),
+              margin: new go.Margin(6, 10, 0, 6),
+              defaultAlignment: go.Spot.Left
+            },
+            $(go.RowColumnDefinition, { column: 2, width: 4 }),
+            $(go.TextBlock, textStyle(),  // the name
+              {
+                name: "NAMETB",
+                row: 0, column: 0, columnSpan: 5,
+                font: "12pt Segoe UI,sans-serif",
+                editable: true, isMultiline: false,
+                minSize: new go.Size(50, 16)
+              },
+              new go.Binding("text", "name").makeTwoWay()),
+            $(go.TextBlock, "Title: ", textStyle(),
+              { row: 1, column: 0 }),
+            $(go.TextBlock, textStyle(),
+              {
+                row: 1, column: 1, columnSpan: 4,
+                editable: true, isMultiline: false,
+                minSize: new go.Size(50, 14),
+                margin: new go.Margin(0, 0, 0, 3)
+              },
+              new go.Binding("text", "title").makeTwoWay()),
+            $(go.TextBlock, textStyle(),
+              { row: 2, column: 0 },
+              new go.Binding("text", "key", v => "ID: " + v)),
+            $(go.TextBlock, textStyle(),  // the comments
+              {
+                row: 3, column: 0, columnSpan: 5,
+                font: "italic 9pt sans-serif",
+                wrap: go.TextBlock.WrapFit,
+                editable: true,  // by default newlines are allowed
+                minSize: new go.Size(100, 14)
+              },
+              new go.Binding("text", "comments").makeTwoWay())
+          ) // end Table Panel
+        ) // end Horizontal Panel
+      ), // end Auto Panel
 
-  // );
+  );
 
 
   // Reference ICON TEMPLATE
@@ -261,69 +260,69 @@ function MapDisplayer() {
   );
   
   //DEFINE CONTEXT MENU. Migrated into the working node template TODO REMOVE
-  // var partContextMenu = $(
-  //     "ContextMenu",
-  //     makeButton("Properties", (e, obj) => {
-  //       // OBJ is this Button
-  //       var contextmenu = obj.part; // the Button is in the context menu Adornment
-  //       var part = contextmenu.adornedPart; // the adornedPart is the Part that the context menu adorns
-  //       // now can do something with PART, or with its data, or with the Adornment (the context menu)
-  //       if (part instanceof go.Link) alert(linkInfo(part.data));
-  //       else if (part instanceof go.Group) alert(groupInfo(contextmenu));
-  //       else alert(nodeInfo(part.data));
-  //     }),
-  //     makeButton(
-  //       "Cut",
-  //       (e, obj) => e.diagram.commandHandler.cutSelection(),
-  //       (o) => o.diagram.commandHandler.canCutSelection()
-  //     ),
-  //     makeButton(
-  //       "Copy",
-  //       (e, obj) => e.diagram.commandHandler.copySelection(),
-  //       (o) => o.diagram.commandHandler.canCopySelection()
-  //     ),
-  //     makeButton(
-  //       "Paste",
-  //       (e, obj) =>
-  //         e.diagram.commandHandler.pasteSelection(
-  //           e.diagram.toolManager.contextMenuTool.mouseDownPoint
-  //         ),
-  //       (o) =>
-  //         o.diagram.commandHandler.canPasteSelection(
-  //           o.diagram.toolManager.contextMenuTool.mouseDownPoint
-  //         )
-  //     ),
-  //     makeButton(
-  //       "Delete",
-  //       (e, obj) => e.diagram.commandHandler.deleteSelection(),
-  //       (o) => o.diagram.commandHandler.canDeleteSelection()
-  //     ),
-  //     makeButton(
-  //       "Undo",
-  //       (e, obj) => e.diagram.commandHandler.undo(),
-  //       (o) => o.diagram.commandHandler.canUndo()
-  //     ),
-  //     makeButton(
-  //       "Redo",
-  //       (e, obj) => e.diagram.commandHandler.redo(),
-  //       (o) => o.diagram.commandHandler.canRedo()
-  //     ),
-  //     makeButton(
-  //       "Group",
-  //       (e, obj) => e.diagram.commandHandler.groupSelection(),
-  //       (o) => o.diagram.commandHandler.canGroupSelection()
-  //     ),
-  //     makeButton(
-  //       "Ungroup",
-  //       (e, obj) => e.diagram.commandHandler.ungroupSelection(),
-  //       (o) => o.diagram.commandHandler.canUngroupSelection()
-  //     ),
-  //    makeButton(
-  //     "Set Off-Limits",
-  //     (e, obj) => SetOffLimitsColor(),
-  //     (o) => SetOffLimitsColor()
-  //    )
-  // );
+  var partContextMenu = $(
+      "ContextMenu",
+      makeButton("Properties", (e, obj) => {
+        // OBJ is this Button
+        var contextmenu = obj.part; // the Button is in the context menu Adornment
+        var part = contextmenu.adornedPart; // the adornedPart is the Part that the context menu adorns
+        // now can do something with PART, or with its data, or with the Adornment (the context menu)
+        if (part instanceof go.Link) alert(linkInfo(part.data));
+        else if (part instanceof go.Group) alert(groupInfo(contextmenu));
+        else alert(nodeInfo(part.data));
+      }),
+      makeButton(
+        "Cut",
+        (e, obj) => e.diagram.commandHandler.cutSelection(),
+        (o) => o.diagram.commandHandler.canCutSelection()
+      ),
+      makeButton(
+        "Copy",
+        (e, obj) => e.diagram.commandHandler.copySelection(),
+        (o) => o.diagram.commandHandler.canCopySelection()
+      ),
+      makeButton(
+        "Paste",
+        (e, obj) =>
+          e.diagram.commandHandler.pasteSelection(
+            e.diagram.toolManager.contextMenuTool.mouseDownPoint
+          ),
+        (o) =>
+          o.diagram.commandHandler.canPasteSelection(
+            o.diagram.toolManager.contextMenuTool.mouseDownPoint
+          )
+      ),
+      makeButton(
+        "Delete",
+        (e, obj) => e.diagram.commandHandler.deleteSelection(),
+        (o) => o.diagram.commandHandler.canDeleteSelection()
+      ),
+      makeButton(
+        "Undo",
+        (e, obj) => e.diagram.commandHandler.undo(),
+        (o) => o.diagram.commandHandler.canUndo()
+      ),
+      makeButton(
+        "Redo",
+        (e, obj) => e.diagram.commandHandler.redo(),
+        (o) => o.diagram.commandHandler.canRedo()
+      ),
+      makeButton(
+        "Group",
+        (e, obj) => e.diagram.commandHandler.groupSelection(),
+        (o) => o.diagram.commandHandler.canGroupSelection()
+      ),
+      makeButton(
+        "Ungroup",
+        (e, obj) => e.diagram.commandHandler.ungroupSelection(),
+        (o) => o.diagram.commandHandler.canUngroupSelection()
+      ),
+     makeButton(
+      "Set Off-Limits",
+      (e, obj) => SetOffLimitsColor(),
+      (o) => SetOffLimitsColor()
+     )
+  );
 
   // Changes color for off-limits nodes used in map context menu
   function SetOffLimitsColor(e, obj) {
@@ -342,6 +341,7 @@ function MapDisplayer() {
     }, "changed color");
   }
 
+
   //********************NODE TEMPLATE GOES HERE*******************************************
    //CONTAINS PICTURE, NODE ATTRIBUTES, CONTEXT MENU, AND SEARCH
   diagram.nodeTemplate = $( go.Node,"Auto", // the Shape will go around the TextBlock
@@ -351,6 +351,8 @@ function MapDisplayer() {
        name: "SHAPE",
        fill: "#CDCDCD", // the default fill, if there is no data bound value
        cursor: "pointer", // the Shape is the port, not the whole Node
+       fromLinkable: true, fromLinkableSelfNode: true, fromLinkableDuplicates: true,
+       toLinkable: true, toLinkableSelfNode: true, toLinkableDuplicates: true
      },
      new go.Binding("fill", "color"),
      new go.Binding("fill", "isHighlighted", (highlight) =>highlight ? "#2378DA" : "#CDCDCD").ofObject(),
@@ -385,7 +387,14 @@ function MapDisplayer() {
          "_buttonFillOver": "skyblue"
        },
        $(go.TextBlock, "Set Off-Limits"),
-       { click: SetOffLimitsColor })
+       
+       { click: SetOffLimitsColor }),
+       $("ContextMenuButton", {
+        "ButtonBorder.fill": "white",
+        "_buttonFillOver": "skyblue"
+      },
+      $(go.TextBlock, "toggle visibility"),
+      { click: SetOffLimitsColor })
      // more ContextMenuButtons would go here
    )  // end Adornment
    }
@@ -405,7 +414,7 @@ function MapDisplayer() {
         if (newport instanceof go.Shape) link.path.stroke = newport.fill;
       },
     },
-    $(go.Shape, { strokeWidth: 2 })
+    $(go.Shape, { strokeWidth: 2,})
   );
 
   //DEFINE NODES AND LINKS
@@ -436,6 +445,9 @@ function MapDisplayer() {
   // Locates the button that will handle exporting network map
   document.querySelector('[id="exportDiagram"]').addEventListener("click", makeBlob);
   //TODO Locates the button that will handle importing node attributes
+
+   //TODO Locates the button that will handle importing node attributes
+   document.querySelector('[id="LoadButton"]').addEventListener("click", openFileDialog);
 
   //Locates the elements on the page that will handle searching nodes
   document.querySelector('[id="nodeSearchButton"]').addEventListener("click", searchDiagram);
@@ -540,6 +552,33 @@ function MapDisplayer() {
   //     document.getElementById("mySavedModel").value = diagram.model.toJson();
   //     diagram.isModified = false;
   // }
+
+
+    //File browse
+    function openFileDialog () {  // this function must be called from  a user
+      var input = document.createElement('input');
+      input.type = 'file';
+  
+      input.onchange = e => { 
+  
+         // getting a hold of the file reference
+         var file = e.target.files[0]; 
+  
+         // setting up the reader
+         var reader = new FileReader();
+         reader.readAsText(file,'UTF-8');
+  
+         // here we tell the reader what to do when it's done reading...
+         reader.onload = readerEvent => {
+            var content = readerEvent.target.result; // this is the content!
+            console.log( content ); //Print the content
+            diagram.model = go.Model.fromJson(content);
+         }
+  
+      }
+  
+      input.click();
+    }
 
   //Export JSON to file
   function save() {
@@ -687,6 +726,8 @@ function MapDisplayer() {
       click: (e, obj) => load(),
     })
   );
+
+
 
   function searchDiagram() {
     var input = document.getElementById("nodeSearchBar");
