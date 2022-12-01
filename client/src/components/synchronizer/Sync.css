@@ -20,7 +20,7 @@
     font-family: Serif;
 	font-size: x-large;
     padding-bottom: 10px;
-    border-bottom: 2px solid #fffd03;
+    border-bottom: 2px solid #0d6efd ;
     position: relative; top: 4px;
 }
 
@@ -36,8 +36,8 @@
 }
 
 #cancel{
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 253, 3);
+    color: white;
+    background-color: #0d6efd ;
     border-radius: 5px;
     position: absolute;
     top:65%;
@@ -76,9 +76,9 @@
 	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
 }
 .sync-button{
-    background-color: hsl(61, 100%, 50%);
+    background-color: #0d6efd ;
     border-radius: 5px;
-    color: rgb(0, 0, 0);
+    color: white;
     padding: 5px 20px;
     position: absolute;
     top:65%;

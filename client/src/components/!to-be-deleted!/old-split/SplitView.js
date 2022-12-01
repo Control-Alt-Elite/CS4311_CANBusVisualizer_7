@@ -201,9 +201,6 @@ function SplitView() {
                       <NavDropdown.Item href="#action/3.3">
                         Save Packets
                       </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.4">
-                        Annotate Packets
-                      </NavDropdown.Item>
                     </NavDropdown>
                     
                     <NavDropdown title="Play Traffic">
