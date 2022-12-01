@@ -20,7 +20,23 @@ import side_mirror from '../../images/node_side-mirror.png';
 import suspension from '../../images/node_suspension.png';
 import transmission from '../../images/node_transmission1.png';
 
-import './AssignIcon.css';
+// import './AssignIcon.css';
+
+function ChangeIcon(src){
+  console.log("Icon");
+  let newIcon = src;
+
+
+}
+
+// upImage = new Image();
+// upImage.src = "buyit15u.jpg";
+
+// function changeImage()
+// {
+//   document.images["jsbutton"].src= upImage.src;
+//   return true;
+// }
 
 function AssignIcon() {
   const [show, setShow] = useState(false);
@@ -30,8 +46,6 @@ function AssignIcon() {
 
   return (
     <>
-      {/* <NavDropdown.Item href="#action/3.3" onClick={handleShow}> Change Visibility</NavDropdown.Item> */}
-      {/* <NavDropdown.Item href="#action/3.4"onClick={handleShow}>Modify Off-limits</NavDropdown.Item> */}
       <NavDropdown.Item href="#action/3.2" onClick={handleShow}> Assign Icon </NavDropdown.Item>
       
       <Modal 
@@ -44,56 +58,53 @@ function AssignIcon() {
         </Modal.Header>
         <Modal.Body className= "show-grid">
           
-        
-        
         <Container>
           <Row>
-            <Col xs={4} md={4}>
-              <img src={laptop} className = "img-fluid"/>
+            <Col >
+              <img src={laptop} className = "img-fluid" onClick={ChangeIcon(laptop)}/>
             </Col>
             <Col>
-              <img src={abs} className = "img-fluid"/>
+              <img src={abs} className = "img-fluid" onClick={ChangeIcon(abs)}/>
             </Col>
             <Col>
-              <img src={battery} className = "img-fluid"/>
+              <img src={battery} className = "img-fluid" onClick={ChangeIcon(battery)}/>
             </Col>
             <Col>
-              <img src={car_cpu} className = "img-fluid"/>
+              <img src={car_cpu} className = "img-fluid" onClick={ChangeIcon(car_cpu)}/>
             </Col>
           </Row>
-          <Row>   _________________________________________________________________________________________________</Row>
+           
           <Row>
           <Col>
-              <img src={car_frame} className = "img-fluid"/>
+              <img src={car_frame} className = "img-fluid" onClick={ChangeIcon(car_frame)}/>
             </Col>
             <Col>
-              <img src={door} className = "img-fluid"/>
+              <img src={door} className = "img-fluid" onClick={ChangeIcon(door)}/>
             </Col>
             <Col>
-              <img src={engine} className = "img-fluid"/>
+              <img src={engine} className = "img-fluid" onClick={ChangeIcon(engine)}/>
             </Col>
             <Col>
-              <img src={hvac} className = "img-fluid"/>
+              <img src={hvac} className = "img-fluid" onClick={ChangeIcon(hvac)}/>
             </Col>
             <Col>
-              <img src={odometer} className = "img-fluid"/>
+              <img src={odometer} className = "img-fluid" onClick={ChangeIcon(odometer)}/>
             </Col>
           </Row>
-          <Row>   _________________________________________________________________________________________________</Row>
           <Row>
           <Col>
-              <img src={seat} className = "img-fluid"/>
+              <img src={seat} className = "img-fluid"onClick={ChangeIcon}/>
             </Col>
             <Col>
             {/* <Button> */}
-              <img src={side_mirror} className = "img-fluid" />
+              <img src={side_mirror} className = "img-fluid" onClick={ChangeIcon}/>
               {/* </Button> */}
             </Col>
             <Col>
-              <img src={suspension} className = "img-fluid"/>
+              <img src={suspension} className = "img-fluid" onClick={ChangeIcon}/>
             </Col>
             <Col>
-              <img src={transmission} className = "img-fluid"/>
+              <img src={transmission} className = "img-fluid" onClick={ChangeIcon}/>
             </Col>
             
           </Row>

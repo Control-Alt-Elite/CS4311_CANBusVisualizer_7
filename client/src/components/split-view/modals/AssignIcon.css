@@ -22,3 +22,7 @@
     margin: 0;
     pointer-events: all;
   }
+
+  .modal-body{
+    overflow: scroll;
+  }

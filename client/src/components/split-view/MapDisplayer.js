@@ -196,11 +196,32 @@ function MapDisplayer() {
         (e, obj) => e.diagram.commandHandler.ungroupSelection(),
         (o) => o.diagram.commandHandler.canUngroupSelection()
       )
+      // ,
+      // makeButton(
+      //   "Add Flag",
+      //   (e, obj) => addPort("top")),
   );
+
+  
+  var portSize = new go.Size(8, 8);
+
+  var portMenu =  // context menu for each port
+  $("ContextMenu",
+    makeButton("Remove Flag",
+      // in the click event handler, the obj.part is the Adornment;
+      // its adornedObject is the port
+      (e, obj) => removePort(obj.part.adornedObject)),
+    makeButton("Change color",
+      (e, obj) => changeColor(obj.part.adornedObject)),
+    makeButton("Remove all Flags",
+      (e, obj) => removeAll(obj.part.adornedObject))
+  );
+
   //CONTAINS SEARCH
   diagram.nodeTemplate = $(
     go.Node,"Auto",
     { locationSpot: go.Spot.Center },
+    
     $(go.Shape, "RoundedRectangle",
       {
         fill: "white", // the default fill, if there is no data bound value
@@ -254,7 +275,32 @@ function MapDisplayer() {
         if (newport instanceof go.Shape) link.path.stroke = newport.fill;
       },
     },
-    $(go.Shape, { strokeWidth: 2 })
+    $(go.Shape, { strokeWidth: 2 }),
+     // the Panel holding the top port elements, which are themselves Panels,
+          // created for each item in the itemArray, bound to data.topArray
+          $(go.Panel, "Horizontal",
+            new go.Binding("itemArray", "topArray"),
+            {
+              row: 0, column: 1,
+              itemTemplate:
+                $(go.Panel,
+                  {
+                    _side: "top",
+                    fromSpot: go.Spot.Top, toSpot: go.Spot.Top,
+                    fromLinkable: true, toLinkable: true, cursor: "pointer",
+                    contextMenu: portMenu
+                  },
+                  new go.Binding("portId", "portId"),
+                  $(go.Shape, "Rectangle",
+                    {
+                      stroke: null, strokeWidth: 0,
+                      desiredSize: portSize,
+                      margin: new go.Margin(0, 1)
+                    },
+                    new go.Binding("fill", "portColor"))
+                )  // end itemTemplate
+            }
+          ),  // end Horizontal Panel
   );
 
   //DEFINE NODES AND LINKS
@@ -283,6 +329,12 @@ function MapDisplayer() {
     { from: 8, to: 0 },
     { from: 1, to: 2, fill: "#C4C4C4" },
   ];
+
+  // Define Flags
+  var flagDataArray = [
+    {"key":1, "name":"Unit One", "loc":"101 100", "topArray":[ {"portColor":"#d6effc", "portId":"top0"} ],
+  }
+  ]
 
   //USES BOTH ARRAYS ABOVE TO GENERATE MAP
   diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
@@ -501,6 +553,190 @@ function MapDisplayer() {
 
     diagram.commitTransaction("highlight search");
   }
+
+  // This custom-routing Link class tries to separate parallel links from each other.
+  // This assumes that ports are lined up in a row/column on a side of the node.
+  class CustomLink extends go.Link {
+    findSidePortIndexAndCount(node, port) {
+      const nodedata = node.data;
+      if (nodedata !== null) {
+        const portdata = port.data;
+        const side = port._side;
+        const arr = nodedata[side + "Array"];
+        var len = arr.length;
+        for (let i = 0; i < len; i++) {
+          if (arr[i] === portdata) return [i, len];
+        }
+      }
+      return [-1, len];
+    }
+
+    computeEndSegmentLength(node, port, spot, from) {
+      const esl = super.computeEndSegmentLength(node, port, spot, from);
+      const other = this.getOtherPort(port);
+      if (port !== null && other !== null) {
+        const thispt = port.getDocumentPoint(this.computeSpot(from));
+        const otherpt = other.getDocumentPoint(this.computeSpot(!from));
+        if (Math.abs(thispt.x - otherpt.x) > 20 || Math.abs(thispt.y - otherpt.y) > 20) {
+          const info = this.findSidePortIndexAndCount(node, port);
+          const idx = info[0];
+          const count = info[1];
+          if (port._side == "top" || port._side == "bottom") {
+            if (otherpt.x < thispt.x) {
+              return esl + 4 + idx * 8;
+            } else {
+              return esl + (count - idx - 1) * 8;
+            }
+          } else {  // left or right
+            if (otherpt.y < thispt.y) {
+              return esl + 4 + idx * 8;
+            } else {
+              return esl + (count - idx - 1) * 8;
+            }
+          }
+        }
+      }
+      return esl;
+    }
+
+    hasCurviness() {
+      if (isNaN(this.curviness)) return true;
+      return super.hasCurviness();
+    }
+
+    computeCurviness() {
+      if (isNaN(this.curviness)) {
+        const fromnode = this.fromNode;
+        const fromport = this.fromPort;
+        const fromspot = this.computeSpot(true);
+        const frompt = fromport.getDocumentPoint(fromspot);
+        const tonode = this.toNode;
+        const toport = this.toPort;
+        const tospot = this.computeSpot(false);
+        const topt = toport.getDocumentPoint(tospot);
+        if (Math.abs(frompt.x - topt.x) > 20 || Math.abs(frompt.y - topt.y) > 20) {
+          if ((fromspot.equals(go.Spot.Left) || fromspot.equals(go.Spot.Right)) &&
+            (tospot.equals(go.Spot.Left) || tospot.equals(go.Spot.Right))) {
+            const fromseglen = this.computeEndSegmentLength(fromnode, fromport, fromspot, true);
+            const toseglen = this.computeEndSegmentLength(tonode, toport, tospot, false);
+            const c = (fromseglen - toseglen) / 2;
+            if (frompt.x + fromseglen >= topt.x - toseglen) {
+              if (frompt.y < topt.y) return c;
+              if (frompt.y > topt.y) return -c;
+            }
+          } else if ((fromspot.equals(go.Spot.Top) || fromspot.equals(go.Spot.Bottom)) &&
+            (tospot.equals(go.Spot.Top) || tospot.equals(go.Spot.Bottom))) {
+            const fromseglen = this.computeEndSegmentLength(fromnode, fromport, fromspot, true);
+            const toseglen = this.computeEndSegmentLength(tonode, toport, tospot, false);
+            const c = (fromseglen - toseglen) / 2;
+            if (frompt.x + fromseglen >= topt.x - toseglen) {
+              if (frompt.y < topt.y) return c;
+              if (frompt.y > topt.y) return -c;
+            }
+          }
+        }
+      }
+      return super.computeCurviness();
+    }
+  }
+  // end CustomLink class
+
+
+    // Add a port to the specified side of the selected nodes.
+    function addPort(side) {
+      diagram.startTransaction("addPort");
+      diagram.selection.each(node => {
+        // skip any selected Links
+        if (!(node instanceof go.Node)) return;
+        // compute the next available index number for the side
+        let i = 0;
+        while (node.findPort(side + i.toString()) !== node) i++;
+        // now this new port name is unique within the whole Node because of the side prefix
+        const name = side + i.toString();
+        // get the Array of port data to be modified
+        const arr = node.data[side + "Array"];
+        if (arr) {
+          // create a new port data object
+          const newportdata = {
+            portId: name,
+            portColor: getPortColor()
+          };
+          // and add it to the Array of port data
+          diagram.model.insertArrayItem(arr, -1, newportdata);
+        }
+      });
+      diagram.commitTransaction("addPort");
+    }
+
+    // Remove the clicked port from the node.
+    // Links to the port will be redrawn to the node's shape.
+    function removePort(port) {
+      diagram.startTransaction("removePort");
+      const pid = port.portId;
+      const arr = port.panel.itemArray;
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].portId === pid) {
+          diagram.model.removeArrayItem(arr, i);
+          break;
+        }
+      }
+      diagram.commitTransaction("removePort");
+    }
+
+    // Remove all ports from the same side of the node as the clicked port.
+    function removeAll(port) {
+      diagram.startTransaction("removePorts");
+      const nodedata = port.part.data;
+      const side = port._side;  // there are four property names, all ending in "Array"
+      diagram.model.setDataProperty(nodedata, side + "Array", []);  // an empty Array
+      diagram.commitTransaction("removePorts");
+    }
+
+    // Change the color of the clicked port.
+    function changeColor(port) {
+      diagram.startTransaction("colorPort");
+      const data = port.data;
+      diagram.model.setDataProperty(data, "portColor", getPortColor());
+      diagram.commitTransaction("colorPort");
+    }
+
+    // Use some pastel colors for ports
+    function getPortColor() {
+      const portColors = ["#fae3d7", "#d6effc", "#ebe3fc", "#eaeef8", "#fadfe5", "#6cafdb", "#66d6d1"]
+      return portColors[Math.floor(Math.random() * portColors.length)];
+    }
+
+    // Save the model to / load it from JSON text shown on the page itself, not in a database.
+    // function save() {
+    //   document.getElementById("mySavedModel").value = diagram.model.toJson();
+    //   diagram.isModified = false;
+    // }
+     // Add a port to the specified side of the selected nodes.
+     function addPort(side) {
+      diagram.startTransaction("addPort");
+      diagram.selection.each(node => {
+        // skip any selected Links
+        if (!(node instanceof go.Node)) return;
+        // compute the next available index number for the side
+        let i = 0;
+        while (node.findPort(side + i.toString()) !== node) i++;
+        // now this new port name is unique within the whole Node because of the side prefix
+        const name = side + i.toString();
+        // get the Array of port data to be modified
+        const arr = node.data[side + "Array"];
+        if (arr) {
+          // create a new port data object
+          const newportdata = {
+            portId: name,
+            portColor: getPortColor()
+          };
+          // and add it to the Array of port data
+          diagram.model.insertArrayItem(arr, -1, newportdata);
+        }
+      });
+      diagram.commitTransaction("addPort");
+    }
+
 
   //End of MapDisplayer functionality
   window.addEventListener("DOMContentLoaded", MapDisplayer);

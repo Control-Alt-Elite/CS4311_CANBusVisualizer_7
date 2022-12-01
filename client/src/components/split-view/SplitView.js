@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import MapDisplayer from "./MapDisplayer";
+import AddRelationship from "./modals/AddRelationship";
 import AssignIcon from "./modals/AssignIcon";
 import ChangeVisibility from "./modals/ChangeVisibility";
 import EditBlacklist from "./modals/EditBlacklist";
@@ -45,9 +46,10 @@ function SplitView() {
                         Drag Nodes
                       </NavDropdown.Item>
 
-                      <NavDropdown.Item href="#action/3.2">
+                      {/* <NavDropdown.Item href="#action/3.2">
                         Add Relationship
-                      </NavDropdown.Item>
+                      </NavDropdown.Item> */}
+                      <AddRelationship/>
                       <NavDropdown.Item href="#action/3.3">
                         Search Node
                       </NavDropdown.Item>
