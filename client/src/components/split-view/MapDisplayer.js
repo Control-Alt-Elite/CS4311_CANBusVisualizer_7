@@ -102,7 +102,6 @@ function MapDisplayer() {
     new go.Binding("visible", "visible"),
 
   ),
-  // $(go.Picture, "https://cdn.7tv.app/emote/60aecb385174a619dbc175be/2x.webp"),
   $(go.Picture, { maxSize: new go.Size(50, 50) },
     new go.Binding("source", "img")),
   $(go.TextBlock,
@@ -138,8 +137,8 @@ function MapDisplayer() {
      },
      $(go.TextBlock, "toggle visibility"),
      { click: SetOffLimitsColor })
-    // more ContextMenuButtons would go here
-  )  // end Adornment
+    // more ContextMenuButtons can go here
+  ) 
   }
   );
   //HANDLES ALL LINKING
@@ -270,14 +269,14 @@ function MapDisplayer() {
   //-------------------------------------ALL FUNCTIONS USED FOR THE MAP ARE DEFINED BELOW--------------------------------------------
 
 
-  //Function for zooming in 
+  // Function for zooming in 
   function zoomIn(){
     if(diagram.commandHandler.canIncreaseZoom()){
       diagram.commandHandler.increaseZoom(1.2);
     }
 
   }
-  //Function for zoom out
+  // Function for zoom out
   function zoomOut(){
     if(diagram.commandHandler.canDecreaseZoom()){
       diagram.commandHandler.decreaseZoom(.5);
@@ -286,7 +285,7 @@ function MapDisplayer() {
   }
 
 
-    //Import node attributes
+  // Import node attributes
   function openFileDialog () {  // this function must be called from  a user
     var input = document.createElement('input');
     input.type = 'file';
@@ -312,7 +311,7 @@ function MapDisplayer() {
     input.click();
   }
 
-  //Export JSON to file
+  // Export JSON to file
   function save() {
     diagram.isModified = false;
 
@@ -377,7 +376,7 @@ function MapDisplayer() {
   }
 
 
-  //Activates on node hover. Will show node count
+  // Activates on node hover. Will show node count
   function diagramInfo(model) {
     // Tooltip info for the diagram's model
     return (
@@ -445,7 +444,7 @@ function MapDisplayer() {
     diagram.commitTransaction("highlight search");
   }
 
-  //End of MapDisplayer functionality
+  // End of MapDisplayer functionality
   window.addEventListener("DOMContentLoaded", MapDisplayer);
   return diagram;
 }
