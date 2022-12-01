@@ -16,7 +16,7 @@ function SelectCAN() {
           console.log(rate);
           const data = {params: {CAN: CAN, rate: rate}};
           axios.get('http://localhost:3001/can', data).then((response) => {
-               console.log(response.data);
+               window.location.replace('/ProjectConfigurationHolder')
            });
       };
 
@@ -85,9 +85,7 @@ function SelectCAN() {
                </Form.Group>
                <hr />
                <div className='Buttons'>
-                    <Link to="/ProjectInfoHolder">
                     <button className= "continue" type = "submit"> Confirm </button>
-                    </Link>
                     
                     <Link to="/">
                          <button className="cancel"> Cancel </button>  

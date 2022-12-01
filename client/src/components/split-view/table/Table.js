@@ -12,7 +12,6 @@ import { Button } from "react-bootstrap";
 import { useEffect } from "react";
 
 const url1 = 'http://localhost:3001/packets';
-const urlPlayPackets = 'http://localhost:3001/packets/play';
 const url2 = 'http://localhost:3001/logs';
 const url3 = 'http://localhost:3001/kill';
 let eventSource;
@@ -22,9 +21,8 @@ export default function CANTable() {    // The next function causes 4 renders, n
   const [info, setInfo] = useState([]);
   const [disable, setDisable] = useState(true);
   const [fileName, setFileName] = useState('');
-  
-  const [playTraffic, setPlayTraffic] = useState(false);
   useEffect(() => { 
+    setDisable(true)
     const packet = localStorage.getItem("packetInfo")
     if(packet){
       const savedPackets = JSON.parse(packet)
@@ -64,40 +62,38 @@ export default function CANTable() {    // The next function causes 4 renders, n
     };
   };
 
-  async function handleSavePackets() {
+  async function handleSavePackets () {
     var packet = ''
-    info.map((x, y) => (
-      packet += x.time + " " + x.can + " " + x.id + "#" + x.dt1 + x.dt2 + x.dt3 + x.dt4 + x.dt5 + x.dt6 + x.dt7 + x.dt8 + "\n"))
-    const blob = new Blob([packet], { type: "text/plain" });
+    info.map((x,y)=> (
+      packet+=x.time+" "+x.can+" "+x.id+"#"+x.dt1+x.dt2+x.dt3+x.dt4+x.dt5+x.dt6+x.dt7+x.dt8+"\n"))
+    const blob = new Blob([packet], {type:"text/plain"});
     try {
-      const options = {
-        suggestedName: 'test.log',
-        types: [
-          {
-            description: 'Log files',
-            accept: {
-              'text/plain': ['.log'],
-            },
+    const options = {
+      suggestedName:'test.log',
+      types: [
+        {
+          description: 'Log files',
+          accept: {
+            'text/plain': ['.log'],
           },
-        ],
-        excludeAcceptAllOption: true,
-      };
-      const handle = await window.showSaveFilePicker(options);
-      setFileName(handle.name);
-      setDisable(false);
-      const writable = await handle.createWritable();
-      await writable.write(blob);
-      await writable.close();
-      console.log("Packets file saved.");
-      return handle;
+        },
+      ],
+      excludeAcceptAllOption: true,
+    };
+    const handle = await window.showSaveFilePicker(options);
+    setFileName(handle.name);
+    setDisable(false);
+    const writable = await handle.createWritable();
+    await writable.write(blob);
+    await writable.close();
+    console.log("Packets file saved.");
+    return handle;
     } catch (err) {
       console.error(err.name, err.message)
     }
-    saveTemp()
   }
 
    function handlePlayTraffic() {
-    setPlayTraffic(true);
     eventSource = new EventSource(url1)
     //Reset table values
     setInfo([]);

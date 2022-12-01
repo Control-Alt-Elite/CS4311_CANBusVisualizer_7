@@ -13,7 +13,7 @@ const SelectVirtualCAN = () => {
          event.preventDefault();
          const data = {params: {CAN: CAN}};
          axios.get('http://localhost:3001/vcan', data).then((response) => {
-              console.log(JSON.stringify(response.data));
+              window.location.replace('/ProjectConfigurationHolder')
           })
      };
 
@@ -33,9 +33,7 @@ const SelectVirtualCAN = () => {
             <br></br><br></br>
             <hr />
             <div className='Buttons'>
-                <Link to="/ProjectConfigurationHolder">
                     <button className= "continue" type = "submit"> Confirm </button>
-                </Link>
                 
                 <Link to="/">
                     <button className="cancel"> Cancel </button>  
