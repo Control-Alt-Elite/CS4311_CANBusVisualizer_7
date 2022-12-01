@@ -17,116 +17,7 @@ function MapDisplayer() {
     }),
   });
 
-
-
-  //-----------------TEST------------------------------
-  // function textStyle() {
-  //   return { font: "9pt  Segoe UI,sans-serif", stroke: "white" };
-  // }
-  
-  // NEWEST NODE TEMPLATE.
-  // diagram.nodeTemplate =$(go.Node, "Spot",
-  //  {
-  //    selectionObjectName: "BODY",
-  //    mouseEnter: (e, node) => node.findObject("BUTTON").opacity = node.findObject("BUTTONX").opacity = 1,
-  //    mouseLeave: (e, node) => node.findObject("BUTTON").opacity = node.findObject("BUTTONX").opacity = 0,
-  //    // handle dragging a Node onto a Node to (maybe) change the reporting relationship
-  //    mouseDragEnter: (e, node, prev) => {
-  //      const diagram = node.diagram;
-  //      const selnode = diagram.selection.first();
-  //      if (!mayWorkFor(selnode, node)) return;
-  //      const shape = node.findObject("SHAPE");
-  //      if (shape) {
-  //        shape._prevFill = shape.fill;  // remember the original brush
-  //        shape.fill = "darkred";
-  //      }
-  //    },
-  //    mouseDragLeave: (e, node, next) => {
-  //      const shape = node.findObject("SHAPE");
-  //      if (shape && shape._prevFill) {
-  //        shape.fill = shape._prevFill;  // restore the original brush
-  //      }
-  //    },
-  //    mouseDrop: (e, node) => {
-  //      const diagram = node.diagram;
-  //      const selnode = diagram.selection.first();  // assume just one Node in selection
-  //      if (mayWorkFor(selnode, node)) {
-  //        // find any existing link into the selected node
-  //        const link = selnode.findTreeParentLink();
-  //        if (link !== null) {  // reconnect any existing link
-  //          link.fromNode = node;
-  //        } else {  // else create a new link
-  //          diagram.toolManager.linkingTool.insertLink(node, node.port, selnode, selnode.port);
-  //        }
-  //      }
-  //    }
-  //  },
-  //  // for sorting, have the Node.text be the data.name
-  //  new go.Binding("text", "name"),
-  //  // bind the Part.layerName to control the Node's layer depending on whether it isSelected
-  //  new go.Binding("layerName", "isSelected", sel => sel ? "Foreground" : "").ofObject(),
-  //  $(go.Panel, "Auto",
-  //    { name: "BODY" },
-  //    // define the node's outer shape
-  //    $(go.Shape, "Rectangle",
-  //      { name: "SHAPE", fill: "#333333", stroke: 'white', strokeWidth: 3.5, portId: "" }),
-  //    $(go.Panel, "Horizontal",
-  //      $(go.Picture,
-  //        {
-  //          name: "Picture",
-  //          desiredSize: new go.Size(70, 70),
-  //          margin: 1.5,
-  //          source: "./images/node_car-cpu.png"  // the default image
-  //        },
-  //        new go.Binding("source", "pic", findHeadShot)),
-  //      // define the panel where the text will appear
-  //      $(go.Panel, "Table",
-  //        {
-  //          minSize: new go.Size(130, NaN),
-  //          maxSize: new go.Size(150, NaN),
-  //          margin: new go.Margin(6, 10, 0, 6),
-  //          defaultAlignment: go.Spot.Left
-  //        },
-  //        $(go.RowColumnDefinition, { column: 2, width: 4 }),
-  //        $(go.TextBlock, textStyle(),  // the name
-  //          {
-  //            name: "NAMETB",
-  //            row: 0, column: 0, columnSpan: 5,
-  //            font: "12pt Segoe UI,sans-serif",
-  //            editable: true, isMultiline: false,
-  //            minSize: new go.Size(50, 16)
-  //          },
-  //          new go.Binding("text", "name").makeTwoWay()),
-  //        $(go.TextBlock, "Title: ", textStyle(),
-  //          { row: 1, column: 0 }),
-  //        $(go.TextBlock, textStyle(),
-  //          {
-  //            row: 1, column: 1, columnSpan: 4,
-  //            editable: true, isMultiline: false,
-  //            minSize: new go.Size(50, 14),
-  //            margin: new go.Margin(0, 0, 0, 3)
-  //          },
-  //          new go.Binding("text", "title").makeTwoWay()),
-  //        $(go.TextBlock, textStyle(),
-  //          { row: 2, column: 0 },
-  //          new go.Binding("text", "key", v => "ID: " + v)),
-  //        $(go.TextBlock, textStyle(),  // the comments
-  //          {
-  //            row: 3, column: 0, columnSpan: 5,
-  //            font: "italic 9pt sans-serif",
-  //            wrap: go.TextBlock.WrapFit,
-  //            editable: true,  // by default newlines are allowed
-  //            minSize: new go.Size(100, 14)
-  //          },
-  //          new go.Binding("text", "comments").makeTwoWay())
-  //      )
-  //    ) 
-  //  ),
-
-  // );
-  //--------------------END TEST-----------------------------------------
-
-  //------------------------------------- ALL WORKING TEMPATES FOR THE MAP ARE DEFINED BELOW vvvv --------------------------------------------
+  //------------------------------------- ALL TEMPATES FOR THE MAP ARE DEFINED BELOW vvvv --------------------------------------------
   //MAP BUS LINE
   diagram.nodeTemplateMap.add(
     "HBar",$(go.Node,"Spot", new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify),
@@ -196,59 +87,60 @@ function MapDisplayer() {
   }
   //CONTAINS PICTURE, NODE ATTRIBUTES, CONTEXT MENU, AND SEARCH
   diagram.nodeTemplate = $( go.Node,"Auto", // the Shape will go around the TextBlock
-   new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify), //Allows for coordinates to be used
-   $(go.Shape, "RoundedRectangle",
-     {
-       name: "SHAPE",
-       fill: "#CDCDCD", // the default fill, if there is no data bound value
-       cursor: "pointer", // the Shape is the port, not the whole Node
-       fromLinkable: true, fromLinkableSelfNode: true, fromLinkableDuplicates: true,
-       toLinkable: true, toLinkableSelfNode: true, toLinkableDuplicates: true
-     },
-     new go.Binding("fill", "color"),
-     new go.Binding("fill", "isHighlighted", (highlight) =>highlight ? "#2378DA" : "#CDCDCD").ofObject(),
-     new go.Binding("visible", "visible"),
- 
-   ),
-   // $(go.Picture, "https://cdn.7tv.app/emote/60aecb385174a619dbc175be/2x.webp"),
-   $(go.Picture, { maxSize: new go.Size(50, 50) },
-     new go.Binding("source", "img")),
-   $(go.TextBlock,
-     {
-       font: "bold 14px sans-serif",
-       margin: 8, // space arount text
-       isMultiline: false, //disallow newlines
-       editable: true, //edit by double clicking
-     },
-     new go.Binding("text", "text").makeTwoWay()
-   ), // the label shows the node data's text
-   {
-     // this tooltip Adornment is shared by all nodes
-     toolTip: $("ToolTip",
-       $(go.TextBlock,
-         { margin: 5 }, // the tooltip shows the result of calling nodeInfo(data)
-         new go.Binding("text", "", nodeInfo)
-       )
-     ),
-     // this context menu Adornment is shared by all nodes
-     contextMenu:
-     $("ContextMenu",  // that has one button
-       $("ContextMenuButton", {
-         "ButtonBorder.fill": "white",
-         "_buttonFillOver": "skyblue"
-       },
-       $(go.TextBlock, "Set Off-Limits"),
-       
-       { click: SetOffLimitsColor }),
-       $("ContextMenuButton", {
+  new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify), //Allows for coordinates to be used
+  $(go.Shape, "RoundedRectangle",
+    {
+      name: "SHAPE",
+      fill: "#CDCDCD", // the default fill, if there is no data bound value
+      cursor: "pointer", // the Shape is the port, not the whole Node
+      portId: "",
+      fromLinkable: true,
+      toLinkable: true,
+    },
+    new go.Binding("fill", "color"),
+    new go.Binding("fill", "isHighlighted", (highlight) =>highlight ? "#2378DA" : "#CDCDCD").ofObject(),
+    new go.Binding("visible", "visible"),
+
+  ),
+  // $(go.Picture, "https://cdn.7tv.app/emote/60aecb385174a619dbc175be/2x.webp"),
+  $(go.Picture, { maxSize: new go.Size(50, 50) },
+    new go.Binding("source", "img")),
+  $(go.TextBlock,
+    {
+      font: "bold 14px sans-serif",
+      margin: 8, // space arount text
+      isMultiline: false, //disallow newlines
+      editable: true, //edit by double clicking
+    },
+    new go.Binding("text", "text").makeTwoWay()
+  ), // the label shows the node data's text
+  {
+    // this tooltip Adornment is shared by all nodes
+    toolTip: $("ToolTip",
+      $(go.TextBlock,
+        { margin: 5 }, // the tooltip shows the result of calling nodeInfo(data)
+        new go.Binding("text", "", nodeInfo)
+      )
+    ),
+    // this context menu Adornment is shared by all nodes
+    contextMenu:
+    $("ContextMenu",  // that has one button
+      $("ContextMenuButton", {
         "ButtonBorder.fill": "white",
         "_buttonFillOver": "skyblue"
       },
-      $(go.TextBlock, "toggle visibility"),
-      { click: SetOffLimitsColor })
-     // more ContextMenuButtons would go here
-   )  // end Adornment
-   }
+      $(go.TextBlock, "Set Off-Limits"),
+      
+      { click: SetOffLimitsColor }),
+      $("ContextMenuButton", {
+       "ButtonBorder.fill": "white",
+       "_buttonFillOver": "skyblue"
+     },
+     $(go.TextBlock, "toggle visibility"),
+     { click: SetOffLimitsColor })
+    // more ContextMenuButtons would go here
+  )  // end Adornment
+  }
   );
   //HANDLES ALL LINKING
   diagram.linkTemplate = $(
