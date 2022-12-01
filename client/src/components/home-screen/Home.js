@@ -5,6 +5,7 @@ import devcomlogo from "./images/devcomlogo.png";
 import AutoRecover from "../split-view/modals/AutoRecover/AutoRecover";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [dataExists, setDataExists] = useState(false)
@@ -17,6 +18,10 @@ const Home = () => {
     }
     
   }, [])
+  function deleteTemp(){
+    localStorage.removeItem("packetInfo")
+    window.location.reload(false)
+  }
   return (
     <Transitions>
       <section id="Title" className="contentarea">
@@ -36,8 +41,11 @@ const Home = () => {
         </div>
       </footer>
       <AutoRecover trigger={dataExists}>
-        <button className="accept-btn">Continue</button>
-        <button className="reject-btn">Discard</button>
+        <Link to="/SplitView">
+          <button className="accept-btn">Continue</button>
+        </Link>
+          <button href = "/" className="reject-btn" onClick={()=>deleteTemp()}>Discard</button>
+        
       </AutoRecover>
     </Transitions>
     
