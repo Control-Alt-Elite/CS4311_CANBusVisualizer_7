@@ -2,8 +2,26 @@ import React from "react";
 import Transitions from "../Transitions";
 import "./Home.css";
 import devcomlogo from "./images/devcomlogo.png";
+import AutoRecover from "../split-view/modals/AutoRecover/AutoRecover";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+  const [dataExists, setDataExists] = useState(false)
+  useEffect(() => { 
+    const packet = localStorage.getItem("packetInfo")
+    if(packet){
+      setDataExists(true)
+    }else{
+      console.log("no info found")
+    }
+    
+  }, [])
+  function deleteTemp(){
+    localStorage.removeItem("packetInfo")
+    window.location.reload(false)
+  }
   return (
     <Transitions>
       <section id="Title" className="contentarea">
@@ -22,7 +40,15 @@ const Home = () => {
           </div>
         </div>
       </footer>
+      <AutoRecover trigger={dataExists}>
+        <Link to="/SplitView">
+          <button className="accept-btn">Continue</button>
+        </Link>
+          <button href = "/" className="reject-btn" onClick={()=>deleteTemp()}>Discard</button>
+        
+      </AutoRecover>
     </Transitions>
+    
   );
 };
 export default Home;

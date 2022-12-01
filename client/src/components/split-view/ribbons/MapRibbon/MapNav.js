@@ -10,6 +10,9 @@ import AssignIcon from "../../modals/IconModal/AssignIcon";
 import "./MapNav.css";
 
 function MapNav() {
+  function deleteTemp(){
+    localStorage.removeItem("packetInfo")
+  }
   return (
     <div className="MapDropdowns">
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -17,7 +20,7 @@ function MapNav() {
           <div className="MapRibbon">
             <Nav>
               <NavDropdown title="File" menuVariant="dark">
-                <NavDropdown.Item href="#action/1.1" id="item1">
+                <NavDropdown.Item href="#action/1.1" id="item1" onClick={deleteTemp}>
                   Save Project
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/">Close Session</NavDropdown.Item>

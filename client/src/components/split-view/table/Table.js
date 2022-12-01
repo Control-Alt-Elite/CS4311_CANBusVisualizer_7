@@ -9,6 +9,8 @@ import { COLUMNS } from './Columns';
 import "./Table.css"
 import { GlobalFilter } from './GlobalFilter';
 import { Button } from "react-bootstrap";
+import { useEffect } from "react";
+
 const url1 = 'http://localhost:3001/packets';
 const urlPlayPackets = 'http://localhost:3001/packets/play';
 const url2 = 'http://localhost:3001/logs';
@@ -20,9 +22,23 @@ export default function CANTable() {    // The next function causes 4 renders, n
   const [info, setInfo] = useState([]);
   const [disable, setDisable] = useState(true);
   const [fileName, setFileName] = useState('');
+  
   const [playTraffic, setPlayTraffic] = useState(false);
-
-
+  useEffect(() => { 
+    const packet = localStorage.getItem("packetInfo")
+    if(packet){
+      const savedPackets = JSON.parse(packet)
+      setInfo(savedPackets)
+    }else{
+      console.log("no info found")
+    }
+    
+  }, [])
+  function saveTemp() {
+    localStorage.removeItem("packetInfo")
+    localStorage.setItem("packetInfo",JSON.stringify(info))
+  }
+  
   const handleMessage = (ecu, values) => {
     setMessage([]);
     var signal = '';
@@ -77,6 +93,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
     } catch (err) {
       console.error(err.name, err.message)
     }
+    saveTemp()
   }
 
    function handlePlayTraffic() {
@@ -94,6 +111,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
   function handleStopTraffic() {
     eventSource.close();
     console.log("Connection closed");
+    saveTemp()
   };
 
   function handleReplayPackets() {
@@ -126,6 +144,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
     return () => {
       eventSource2.close();
     };
+    saveTemp()
   }
 
   const data = useMemo(() => [...info], [info]);
@@ -144,6 +163,7 @@ export default function CANTable() {    // The next function causes 4 renders, n
         return row
       })
     )
+    saveTemp()
   }
 
   // State and functions returned from useTable to build the UI
@@ -266,6 +286,9 @@ export default function CANTable() {    // The next function causes 4 renders, n
           ))}
         </tbody>
       </Table>
+      
     </>
+    
+    
   )
 }
