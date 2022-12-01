@@ -40,3 +40,11 @@
   max-width: 700px;
   margin: auto;
 }
+
+.continue{
+  background-color: #0d6efd !important;
+}
+
+input[type="date"]:valid {
+  color: white;
+}
