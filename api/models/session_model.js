@@ -24,7 +24,6 @@ const sessionSchema = new Schema({
     },
     baudRate: {
         type: Number,
-        required: true
     },
     dbcFileName: {
         type: String,
