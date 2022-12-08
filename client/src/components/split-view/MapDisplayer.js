@@ -339,7 +339,21 @@ function MapDisplayer() {
 
     return currentDate;
   }
-  
+  //TODO: Function for zooming in 
+  function zoomIn(){
+    if(diagram.commandHandler.canIncreaseZoom()){
+      diagram.commandHandler.increaseZoom(1.2);
+    }
+    
+  }
+  //TODO: test zoom out
+  function zoomOut(){
+    if(diagram.commandHandler.canDecreaseZoom()){
+      diagram.commandHandler.decreaseZoom(.5);
+    }
+    
+  }
+
   // Generate data for Network Diagram
   function imageCallback(blob) {
     var url = window.URL.createObjectURL(blob);
