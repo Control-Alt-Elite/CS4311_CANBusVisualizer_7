@@ -4,6 +4,7 @@ import { StyleSheet, Text } from "react-native";
 import { Link } from "react-router-dom";
 import Transitions from "../../Transitions";
 import "./ProjectInfoHolder.css";
+import Button from "react-bootstrap/Button";
 
 const styles = StyleSheet.create({
   baseText: {
@@ -150,16 +151,10 @@ export default function ProjectInfoHolder(props) {
 
           <br></br>
           <div>
-            
-              <button id="continue" value="Create" type="submit">             
-                Continue
-              </button>
-                      
-            <Link to="/">
-              <button id="continue" value="Cancel">
-                Cancel
-              </button>
-            </Link>
+            <Button id="continue" value="Create" type="submit">
+              {" "}
+              Continue{" "}
+            </Button>
           </div>
         </form>
       </div>

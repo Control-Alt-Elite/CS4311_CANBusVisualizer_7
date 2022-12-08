@@ -1,6 +1,6 @@
-import React, { useState } from "react"
-import './AutoRecovery.css';
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+import './AutoRecovery.css';
 function AutoRecover(props) {
   return (props.trigger) ? (
     <div className="popup">

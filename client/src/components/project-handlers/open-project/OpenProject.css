@@ -30,7 +30,7 @@
     font-family: Serif;
 	font-size: x-large;
     padding-bottom: 10px;
-    border-bottom: 2px solid #fffd03;
+    border-bottom: 2px solid #0d6efd ;
     position: relative; top: 0px;
 }
 .card-header{
@@ -67,8 +67,10 @@
 }
 #fetch{
     font-family: Serif;
-    color: rgb(0, 0, 0);
-    background-color: #fff;
+    /* color: rgb(0, 0, 0); */
+    /* background-color: #fff; */
+    color: white;
+    background-color: #0d6efd ;
     border-radius: 5px;
     margin-left: 30px;
 }
@@ -81,8 +83,10 @@
 }
 #clear{
     font-family: Serif;
-    color: rgb(0, 0, 0);;
-    background-color: #fff;
+    /* color: rgb(0, 0, 0); */
+    /* background-color: #fff; */
+    color: white;
+    background-color: rgb(109, 109, 109);
     border-radius: 5px;
     margin-left: 30px;
 }

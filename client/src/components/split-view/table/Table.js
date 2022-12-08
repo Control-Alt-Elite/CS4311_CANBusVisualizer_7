@@ -225,9 +225,6 @@ export default function CANTable() {    // The next function causes 4 renders, n
                   <NavDropdown.Item onClick={handleSavePackets}>
                     Save Packets
                   </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    Annotate Packets
-                  </NavDropdown.Item>
                 </NavDropdown>
                 <Button id='playtraffic' onClick={handlePlayTraffic}>Play</Button>
                 <Button id='stoptraffic' onClick={handleStopTraffic}>Stop</Button>

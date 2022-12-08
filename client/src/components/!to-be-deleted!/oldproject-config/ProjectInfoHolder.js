@@ -101,7 +101,7 @@ export default function ProjectInfoHolder (props) {
                      </div>
                     <br></br>
                     <div>
-                        <button className="continue" value = "Create" type = "submit" > Continue </button> 
+                        <Button className="continue" value = "Create" type = "submit"> Continue </Button> 
                             <Link to="/">
                                 <button className="cancel" value = "Cancel" > Cancel </button>  
                             </Link>
