@@ -85,7 +85,23 @@ function MapDisplayer() {
       d.model.set(nodedata, "color", newcolor);
     }, "changed color");
   }
-  //CONTAINS PICTURE, NODE ATTRIBUTES, CONTEXT MENU, AND SEARCH
+  
+  function ChangeVisibility(e,obj){
+    diagram.commit(function (d) {
+      var contextmenu = obj.part; // retrieve context menu that has the button that triggered this method
+      var nodedata = contextmenu.data; // retrieve data of the node that the context menu was used on
+      var invisibleColor = "#262546"
+      switch(nodedata.color) {
+        case "#CDCDCD": invisibleColor = "#262546"; break;
+        case "#262546": invisibleColor = "#CDCDCD"; break;
+      }
+      d.model.set(nodedata, "color", invisibleColor);
+    }, "changed color");
+
+  }
+
+  //********************NODE TEMPLATE GOES HERE*******************************************
+   //CONTAINS PICTURE, NODE ATTRIBUTES, CONTEXT MENU, AND SEARCH
   diagram.nodeTemplate = $( go.Node,"Auto", // the Shape will go around the TextBlock
   new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify), //Allows for coordinates to be used
   $(go.Shape, "RoundedRectangle",
@@ -124,23 +140,26 @@ function MapDisplayer() {
     // this context menu Adornment is shared by all nodes
     contextMenu:
     $("ContextMenu",  // that has one button
-      $("ContextMenuButton", {
+      
+    $("ContextMenuButton", {
         "ButtonBorder.fill": "white",
         "_buttonFillOver": "skyblue"
       },
       $(go.TextBlock, "Set Off-Limits"),
-      
       { click: SetOffLimitsColor }),
-      $("ContextMenuButton", {
-       "ButtonBorder.fill": "white",
-       "_buttonFillOver": "skyblue"
-     },
-     $(go.TextBlock, "toggle visibility"),
-     { click: SetOffLimitsColor })
+
+    $("ContextMenuButton", {
+      "ButtonBorder.fill": "white",
+      "_buttonFillOver": "skyblue"
+      },
+      $(go.TextBlock, "Change Visibility"),
+      { click: ChangeVisibility})
     // more ContextMenuButtons can go here
-  ) 
+    ) 
   }
   );
+
+
   //HANDLES ALL LINKING
   diagram.linkTemplate = $(
     BarLink, // subclass defined below
@@ -339,7 +358,7 @@ function MapDisplayer() {
 
     return currentDate;
   }
-  
+
   // Generate data for Network Diagram
   function imageCallback(blob) {
     var url = window.URL.createObjectURL(blob);
