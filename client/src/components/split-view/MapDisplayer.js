@@ -231,6 +231,7 @@ function MapDisplayer() {
     return blackListMap;
   }
 
+  // Function that generates live nodes from event source and applies blacklist filter
   function createLiveNodes() {
     var blacklistedNodes = readBlacklist();
 

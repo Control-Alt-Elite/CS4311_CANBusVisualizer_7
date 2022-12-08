@@ -1,6 +1,5 @@
-var Rsync = require('rsync');
 var fs = require('fs');
-const { exec, spawn } = require('child_process');
+const { spawn } = require('child_process');
 
 const syncPWPath = './sync/sync-data.txt';
 
@@ -10,7 +9,7 @@ function savePasswordToSecret(password) {
 }
 
 module.exports = function (sync, req, res) {
-  var syncFile = savePasswordToSecret(sync.password);
+  savePasswordToSecret(sync.password);
 
   // Rsync command spawned
   var rsyncCommand = `sshpass -p $(cat ./sync/sync-data.txt) rsync -ave ssh -o StrictHostKeyChecking=no -l root ${sync.senderFilePath} ${sync.username}@${sync.receiverIp}:${sync.receiverFilePath}`;
