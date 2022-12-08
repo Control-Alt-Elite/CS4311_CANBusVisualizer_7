@@ -67,6 +67,8 @@
 }
 #fetch{
     font-family: Serif;
+    /* color: rgb(0, 0, 0); */
+    /* background-color: #fff; */
     color: white;
     background-color: #0d6efd ;
     border-radius: 5px;
@@ -81,6 +83,8 @@
 }
 #clear{
     font-family: Serif;
+    /* color: rgb(0, 0, 0); */
+    /* background-color: #fff; */
     color: white;
     background-color: rgb(109, 109, 109);
     border-radius: 5px;

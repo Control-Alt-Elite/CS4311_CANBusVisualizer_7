@@ -15,9 +15,17 @@
     width: 100%;
     max-width: 640px;
     background-color: gray;
+    border-radius: 25px;
 }
-.popup-inner{
+.reject-btn{
     position: absolute;
     top: auto;
     right: auto;
+    background-color: red;
+}
+.accept-btn{
+    position: relative;
+    top: auto;
+    right: auto;
+    background-color: green;
 }

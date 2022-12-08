@@ -7,10 +7,10 @@ function MapDisplayer() {
   const $ = go.GraphObject.make; 
   const diagram = $(go.Diagram, 
     {
-    //This section effectively allows extensions to be added to the canvas
-    "undoManager.isEnabled": true, // must be set to allow for model change listening
-    "clickCreatingTool.archetypeNodeData": {text: "Node", color: "#CDCDCD"}, //Allows double clicking to create node
-    "commandHandler.archetypeGroupData": {text: "Group", isGroup: true, color: "blue"},
+      //This section effectively allows extensions to be added to the canvas
+      "undoManager.isEnabled": true, // must be set to allow for model change listening
+      "clickCreatingTool.archetypeNodeData": { text: "Node", color: "#CDCDCD" }, //Allows double clicking to create node
+      "commandHandler.archetypeGroupData": { text: "Group", isGroup: true, color: "blue" },
 
     model: new go.GraphLinksModel({ // IMPORTANT! Necessary otherwise nodes will not display
       linkKeyProperty: "key",
@@ -358,6 +358,20 @@ function MapDisplayer() {
     var currentDate = `${day}-${month}-${year}_${hour}${mins}${seconds}`;
 
     return currentDate;
+  }
+
+  function zoomIn() {
+    if (diagram.commandHandler.canIncreaseZoom()) {
+      diagram.commandHandler.increaseZoom(1.2);
+    }
+
+  }
+  //TODO: test zoom out
+  function zoomOut() {
+    if (diagram.commandHandler.canDecreaseZoom()) {
+      diagram.commandHandler.decreaseZoom(.5);
+    }
+
   }
 
   // Generate data for Network Diagram
