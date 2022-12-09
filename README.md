@@ -109,7 +109,16 @@ No status bar will be displayed as of now, but to check progress, you can check 
 **Something to note**: Sync works well under these conditions, but will crash after completing a sync command. Cause is unknown, but most likely due to a termination of a necessary process/thread for rendering the backend connection in `DataSynchronizer.js` file.
 ***
 ## Usage for the Map Functionality
-In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox must be used instead of google chrome.
+In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox must be used instead of google chrome. The map functionality is located on the left side of the screen.
+ * Create new node 
+    * Double click the left button on the mouse anywhere in the map container to populate a new node  
+* Set Off Limits
+    * Right click on any node for context menu to display. Then click on `Set Off-Limits`.
+    * Node will be greyed out once it is set to off-limits
+* Search Node
+    * The left navigation bar has a search input with a `search` button. Type in any character/substring on the input component. Once character/substring is typed, click on the `search` button to begin the seaching
+    * A node can be searched by a character, substring, or string. * When input typed matches a node, the node will be highlighted in blue.  
+
 
 <br></br>
 <br></br>
