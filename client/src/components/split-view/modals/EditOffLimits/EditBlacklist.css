@@ -12,29 +12,22 @@
   pointer-events: none;
 }
 
-
-
-#add-entry{
+#add-entry {
   float: left;
-  /* background-color: rgb(9, 203, 9); */
 }
 
-#remove-entry{
+#remove-entry {
   float: left;
-  background-color: rgb(187, 17, 17); 
+  background-color: rgb(187, 17, 17);
 }
-/* 
-.modal-header{
-  background-color: rgb(40, 77, 241);
 
-} */
 
-th{
+th {
   background-color: #0d6efd;
 }
 
-tr{
-  color: white ;
+tr {
+  color: white;
   display: table-row-group;
   vertical-align: middle;
   border-color: inherit;

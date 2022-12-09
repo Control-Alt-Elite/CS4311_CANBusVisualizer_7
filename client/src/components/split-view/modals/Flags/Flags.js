@@ -8,7 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Row from "react-bootstrap/Row";
 import Table from "react-bootstrap/Table";
-import '../modals.css';
+import "../modals.css";
 import ColorPicker from "./ColorPicker.js";
 import "./Flags.css";
 
@@ -20,9 +20,11 @@ function Flags() {
 
   return (
     <>
-      <NavDropdown.Item href="#action/3.3" onClick={handleShow}>Add/Remove Flags</NavDropdown.Item>
+      <NavDropdown.Item href="#action/3.3" onClick={handleShow}>
+        Add/Remove Flags
+      </NavDropdown.Item>
 
-      <Modal className = "FlagsModal" show={show} onHide={handleClose} size="sm">
+      <Modal className="FlagsModal" show={show} onHide={handleClose} size="sm">
         <Modal.Header closeButton>
           <Modal.Title>Select Flags</Modal.Title>
         </Modal.Header>
