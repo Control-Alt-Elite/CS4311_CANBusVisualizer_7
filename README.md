@@ -112,3 +112,41 @@ No status bar will be displayed as of now, but to check progress, you can check 
 <br></br>
 ---
 # Features Left To Address
+The following is a list of all of the product features specified in the SRS that our team has left to address. Each feature listed will have further specification about what is missing if they are partially implemented.
+
+3.2.3.1.6. Edit Packets
+* The popup functionality for this is not implemented
+
+3.2.3.1.7. Replay Packets
+* Popup functionality
+
+3.2.3.1.8. Rename Node ***Partially Implemented***
+* Popup is implemented but lacks functionality
+* The overall use case is achievable through other means, refer to the usage section of the readme for further information.
+
+3.2.3.1.9. Assign Icon
+* Popup is implemented
+* Icons not selectable
+* 
+
+3.2.3.1.10. Change Visibility
+
+3.2.3.1.11.Add Relationship
+
+3.2.3.1.12. Traffic File Dropdown Menu
+
+3.2.3.1.13. Traffic View Dropdown Menu with Filter Packets Sub-Dropdown
+
+3.2.3.1.14. Traffic View Dropdown Menu with Sort Packets Sub-Dropdown
+
+3.2.3.1.15. Traffic Packets Dropdown Menu
+
+3.2.3.1.16. Map File Dropdown Menu
+
+3.2.3.1.17. Map Edit Dropdown Menu
+
+3.2.3.1.18. Map Nodes Dropdown Menu
+
+3.2.3.1.19.Annotation Menu
+
+3.2.3.1.20. Color Picker
