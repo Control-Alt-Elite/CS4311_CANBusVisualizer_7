@@ -111,12 +111,12 @@ No status bar will be displayed as of now, but to check progress, you can check 
 ## Usage for the Map Functionality
 In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox must be used instead of google chrome. The map functionality is located on the left side of the screen.
  * Create new node 
-    * Double click the left button on the mouse anywhere in the map container to populate a new node  
+    * Double click the left button on the mouse anywhere in the map container to populate a new node.  
 * Set Off Limits
     * Right click on any node for context menu to display. Then click on `Set Off-Limits`.
-    * Node will be greyed out once it is set to off-limits
+    * Node will be greyed out once it is set to off-limits.
 * Search Node
-    * The left navigation bar has a search input with a `search` button. Type in any character/substring on the input component. Once character/substring is typed, click on the `search` button to begin the seaching
+    * The left navigation bar has a search input with a `search` button. Type in any character/substring on the input component. Once character/substring is typed, click on the `search` button to begin the seaching.
     * A node can be searched by a character, substring, or string. * When input typed matches a node, the node will be highlighted in blue.  
 
 
@@ -127,7 +127,7 @@ In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox
 The following is a list of all of the product features specified in the SRS that our team has left to address. Each feature listed will have further specification about what is missing if they are partially implemented.
 
 3.2.3.1.6. Edit Packets ***(Partially Implemented)***
-*  The popup for this use case is not implemented visually or functionally
+* The popup for this use case is not implemented visually or functionally
 * The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
 3.2.3.1.7. Replay Packets ***(Partially Implemented)***
@@ -168,3 +168,24 @@ The following is a list of all of the product features specified in the SRS that
 3.2.3.1.19.Annotation Menu
 
 3.2.3.1.20. Color Picker
+
+2.2.2.1.2. Open Existing Project **TODO**
+* The popup for this use case is not implemented visually or functionally
+* The overall use case is achievable through other means, refer to the usage section of the readme for further information.
+
+2.2.2.1.5. Configure Project **TODO**
+
+2.2.2.1.6. Save Project **TODO**
+
+2.2.2.1.7. Modify Black-list nodes ***(Partially Implemented)***
+* The overall use case is achievable through other means, refer to the usage section of the readme for further information.
+
+2.2.2.2.5. Add Relationship ***(Partially Implemented)***
+* The linking can be done but dragging but not through a dropdown menu
+* The overall use case is achievable through other means, refer to the usage section of the readme for further information.
+
+2.2.2.2.6. Edit Node(s) ***(Partially Implemented)***
+* Missing 
+    * Assign Icon
+    * Flagging
+    * Annotation
