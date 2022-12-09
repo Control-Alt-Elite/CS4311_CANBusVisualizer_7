@@ -1,15 +1,14 @@
+import axios from 'axios';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Button } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import React, { useState, useMemo } from 'react';
-import axios from 'axios';
-import { useTable, useGlobalFilter, useSortBy } from 'react-table';
 import Table from 'react-bootstrap/Table';
+import { useGlobalFilter, useSortBy, useTable } from 'react-table';
 import { COLUMNS } from './Columns';
-import "./Table.css"
 import { GlobalFilter } from './GlobalFilter';
-import { Button } from "react-bootstrap";
-import { useEffect } from "react";
+import "./Table.css";
 
 const url1 = 'http://localhost:3001/packets';
 const url2 = 'http://localhost:3001/logs';

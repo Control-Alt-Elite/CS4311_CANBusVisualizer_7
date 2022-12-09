@@ -22,12 +22,3 @@
     margin: 0;
     pointer-events: all;
   }
-
-  .modal-header{
-    background-color: #284DF1 !important;
-    color: aliceblue;
-  }
-
-  .btn-close{
-    color: aliceblue !important;
-  }

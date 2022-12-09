@@ -25,11 +25,10 @@
 
 #dragable_modal .modal-header {
     padding:9px 15px;
-    color: white;
     font-family: Serif;
     font-size: 18px;
     border-bottom:1px solid #eee;
-    background-color: rgb(40, 77, 241);
+    background-color: #0d6efd;;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-radius-topleft: 5px;

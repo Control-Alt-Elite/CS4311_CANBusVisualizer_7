@@ -26,7 +26,7 @@ function SplitView() {
           />
         </div>
         {/* Export Buttons */}
-        <Navbar expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <div className="diagramButton">
             <Button id="exportDiagram">Export Network Diagram</Button>
           </div>

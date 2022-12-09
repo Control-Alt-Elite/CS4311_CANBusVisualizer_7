@@ -7,3 +7,7 @@
   .modal-footer{
     background-color:  rgb(52,52,52);
   }
+  .modal-header{
+    background-color: #0d6efd;
+    color: white;
+  }

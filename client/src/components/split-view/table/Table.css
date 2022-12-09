@@ -1,156 +1,151 @@
 /* File Menu */
-.data{
-    width: 50%;
+.data {
+  width: 50%;
 }
 
-.navigationBottomBar{
-    left: 0;
-    width: 100%;
-    border: solid 2px #646464;
+.navigationBottomBar {
+  left: 0;
+  width: 100%;
+  border: solid 2px #646464;
 }
 
 /* Table Settings*/
-thead{
-    display: block
+thead {
+  display: block;
 }
-  
+
 tbody {
-    display:block;
-    max-height: 315px;
-    overflow-y:auto;
-    background-color: #212529; /*#343a40*/
+  display: block;
+  max-height: 315px;
+  overflow-y: auto;
+  background-color: #212529; /*#343a40*/
 }
 
 /* Table Header General Settings*/
-.PacketTable th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12), th:nth-child(13){
-    background-color: rgb(40, 77, 241);
-    color: whitesmoke;
-    font-size: 14px;
+.PacketTable th:nth-child(0), th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12), th:nth-child(13) {
+  background-color: #0d6efd;
+  color: whitesmoke;
+  font-size: 14px;
 }
-  
+
 /* Customized Header Settings */
-.PacketTable th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12), th:nth-child(13){
-    text-align: center;
-    width: 70px;
+.PacketTable th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10), th:nth-child(11), th:nth-child(12), th:nth-child(13) {
+  text-align: center;
+  width: 70px;
 }
-.PacketTable th:nth-child(2){
-    width: 136px;
+.PacketTable th:nth-child(1) {
+  width: 40px;
+}
+.PacketTable th:nth-child(2) {
+  width: 136px;
+}
+.PacketTable th:nth-child(3), .PacketTable th:nth-child(4) {
+  width: 76px;
 }
 
-.PacketTable th:nth-child(3) {
-    width: 76px;
-}
-.PacketTable th:nth-child(4){
-    width: 76px;
-}
-
-.PacketTable th:nth-child(1){
-    width: 40px;
-}
-  
 /* Default Row Settings */
-.PacketTable td:nth-child(5), td:nth-child(6), td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-child(11),td:nth-child(12){
-    text-align: center;
-    width: 70px;
-    color: white;
-    font-size: 12px;
+.PacketTable td:nth-child(5), td:nth-child(6), td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-child(11), td:nth-child(12) {
+  text-align: center;
+  width: 70px;
+  color: white;
+  font-size: 12px;
 }
-.PacketTable td:nth-child(2){
-    width: 136px;
-    color: white;
-    font-size: 12px;
+.PacketTable td:nth-child(2) {
+  width: 136px;
+  color: white;
+  font-size: 12px;
 }
 
 .PacketTable td:nth-child(3) {
-    text-align: center;
-    width: 76px;
-    color: white;
-    font-size: 12px;
+  text-align: center;
+  width: 76px;
+  color: white;
+  font-size: 12px;
 }
-.PacketTable td:nth-child(4){
-    width: 76px;
-    color: white;
-    font-size: 12px;
-}
-
-.PacketTable td:nth-child(1){
-    width: 40px;
-    color: white;
-    font-size: 12px;
+.PacketTable td:nth-child(4) {
+  width: 76px;
+  color: white;
+  font-size: 12px;
 }
 
-.PacketTable td:nth-child(13){
-    text-align: center;
-    width: 55px;
-    color: white;
-    font-size: 12px;
+.PacketTable td:nth-child(1) {
+  width: 40px;
+  color: white;
+  font-size: 12px;
 }
-  
+
+.PacketTable td:nth-child(13) {
+  text-align: center;
+  width: 55px;
+  color: white;
+  font-size: 12px;
+}
+
 /* Hover color. Only affects the entire header right now. */
-.table-hover,table.PacketTable tr:hover th{
+/* .table-hover, table.PacketTable tr:hover th {
   background-color: #262546;
-}
+} */
 
-.edit{
-    text-align: center;
-    width: 30px;
-    background-color: transparent;
-    color: white;
-    font-size: 12px;
-    border-color: transparent;
+.edit {
+  text-align: center;
+  width: 30px;
+  background-color: transparent;
+  color: white;
+  font-size: 12px;
+  border-color: transparent;
 }
 
 /* Decoded Message Table */
 table.decodedTable tbody {
-    display:block;
-    height: 230px;
-    max-height: 230px;
-    overflow-y:auto;
-    background-color: #212529; /*#343a40*/
+  display: block;
+  height: 230px;
+  max-height: 230px;
+  overflow-y: auto;
+  background-color: #212529; /*#343a40*/
 }
 
-table.decodedTable th:nth-child(1), th:nth-child(2), th:nth-child(3){
-    background-color: rgb(40, 77, 241);
-    color: whitesmoke;
-    font-size: 14px;
+table.decodedTable th:nth-child(1), th:nth-child(2), th:nth-child(3) {
+  background-color: #0d6efd;
+  color: whitesmoke;
+  font-size: 14px;
 }
 
-table.decodedTable th:nth-child(1){
-    text-align: center;
-    width: 230px;
+table.decodedTable th:nth-child(1) {
+  text-align: center;
+  width: 230px;
 }
 
 table.decodedTable th:nth-child(2) {
-    width: 640px;
+  width: 640px;
 }
-table.decodedTable th:nth-child(3){
-    width: 85px;
+table.decodedTable th:nth-child(3) {
+  width: 85px;
 }
 
 /* Default Row Settings */
-table.decodedTable td:nth-child(1){
-    text-align: center;
-    width: 230px;
-    color: white;
-    font-size: 12px;
+table.decodedTable td:nth-child(1) {
+  text-align: center;
+  width: 230px;
+  color: white;
+  font-size: 12px;
 }
-table.decodedTable td:nth-child(2){
-    width: 640px;
-    color: white;
-    font-size: 12px;
+table.decodedTable td:nth-child(2) {
+  width: 640px;
+  color: white;
+  font-size: 12px;
 }
 table.decodedTable td:nth-child(3) {
-    text-align: left;
-    width: 70px;
-    color: white;
-    font-size: 12px;
+  text-align: left;
+  width: 70px;
+  color: white;
+  font-size: 12px;
 }
 
 /* Hover color */
-.table-hover,table.decodedTable tr:hover th{
-    background-color: #262546;
-  }
+/* .table-hover, table.decodedTable tr:hover th {
+  background-color: #262546;
+} */
 
-body{
-    background-color: rgb(58, 58, 58);
+body {
+  background-color: rgb(58, 58, 58);
 }
