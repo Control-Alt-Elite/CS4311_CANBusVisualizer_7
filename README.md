@@ -120,6 +120,12 @@ In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox
 * Search Node
     * The left navigation bar has a search input with a `search` button. Type in any character/substring on the input component. Once character/substring is typed, click on the `search` button to begin the seaching.
     * A node can be searched by a character, substring, or string. * When input typed matches a node, the node will be highlighted in blue.  
+* Rename Node
+    * Click on the name of any node, type in the new node name and press enter or click outside of the node to apply the change.
+* Linking Nodes
+    * To link two nodes click on one node and then drag the link to the node it is going to be connected to. Releasing the mouse click will apply the link.
+* Resize Bus Line
+    * Click on the bus line to highlight it then use the edges to drag the line to make it bigger or smaller as necessary.
 
 ## Usage for the Map Functionality
 In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox must be used instead of google chrome.
