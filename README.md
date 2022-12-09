@@ -53,7 +53,7 @@ sudo service mongod start
 <br></br>
 <br></br>
 
-# Runner and installation script
+# Runner and installation Script
 1. Put runner.sh in a directory one level above this repo. For example `/home/kali/Downloads` where runner.sh is in `/home/kali/Downloads/CS4311_CANBusVisualizer_7`.
 2. Open a terminal and navigate to `/Downloads`
 3. Run it by typing the following command:
@@ -79,7 +79,7 @@ In order to use the archive functionality in the `Archive Project` tab, follow t
 2. Click `Continue`
 
 No prompt is currently given to determine the status of the archive, but upon completion, a default folder in `/home/kali/Archives/` is generated which it will store existing archived projects.
-***
+<br></br>
 
 ## Usage for the Sync Functionality
  
@@ -107,18 +107,10 @@ No status bar will be displayed as of now, but to check progress, you can check 
 
 ### Issues with Sync
 **Something to note**: Sync works well under these conditions, but will crash after completing a sync command. Cause is unknown, but most likely due to a termination of a necessary process/thread for rendering the backend connection in `DataSynchronizer.js` file.
-***
-## Usage for the Map Functionality
-In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox must be used instead of google chrome. The map functionality is located on the left side of the screen.
- * Create new node 
-    * Double click the left button on the mouse anywhere in the map container to populate a new node  
-* Set Off Limits
-    * Right click on any node for context menu to display. Then click on `Set Off-Limits`.
-    * Node will be greyed out once it is set to off-limits
-* Search Node
-    * The left navigation bar has a search input with a `search` button. Type in any character/substring on the input component. Once character/substring is typed, click on the `search` button to begin the seaching
-    * A node can be searched by a character, substring, or string. * When input typed matches a node, the node will be highlighted in blue.  
+<br></br>
 
+## Usage for the Map Functionality
+In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox must be used instead of google chrome.
 
 <br></br>
 <br></br>
@@ -127,44 +119,51 @@ In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox
 The following is a list of all of the product features specified in the SRS that our team has left to address. Each feature listed will have further specification about what is missing if they are partially implemented.
 
 3.2.3.1.6. Edit Packets ***(Partially Implemented)***
-*  The popup for this use case is not implemented visually or functionally
+*  The popup for this use case is not implemented visually or functionally.
 * The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
 3.2.3.1.7. Replay Packets ***(Partially Implemented)***
-* The popup for this use case is not implemented visually or functionally
+* The popup for this use case is not implemented visually or functionally.
 * The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
 3.2.3.1.8. Rename Node ***(Partially Implemented)***
-* Popup is implemented visually but lacks functionality
+* Popup is implemented visually but lacks functionality.
 * The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
-3.2.3.1.9. Assign Icon
-* Popup is implemented visually but lacks functionality
+3.2.3.1.9. Assign Icon ***(Partially Implemented)***
+* Popup is implemented visually but lacks functionality.
 * Map does not have ability to retrieve icons and assign them to nodes
 
 3.2.3.1.10. Change Visibility ***(Partially Implemented)***
-* Popup is implemented visually but lacks functionality
+* Popup is implemented visually but lacks functionality.
 * The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
 3.2.3.1.11.Add Relationship ***(Partially Implemented)***
-* Popup exists on the system but we opted to remove the dropwodn button that would trigger the display of it.
+* Popup exists on the system but we opted to remove the dropdown button that would trigger the display of it.
 * The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
-3.2.3.1.12. Traffic File Dropdown Menu ***(Partially Implemented)***
-* Exists on the system and is visually present but the dropdown buttons lack functionality
+3.2.3.1.13. Traffic View Dropdown Menu with Filter Packets Sub-Dropdown ***(Partially Implemented)***
+* Exists on the system and is visually present but the dropdown button lacks functionality.
+* The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
-3.2.3.1.13. Traffic View Dropdown Menu with Filter Packets Sub-Dropdown
+3.2.3.1.14. Traffic View Dropdown Menu with Sort Packets Sub-Dropdown ***(Partially Implemented)***
+* Exists on the system and is visually present but the dropdown button lacks functionality.
+* The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
-3.2.3.1.14. Traffic View Dropdown Menu with Sort Packets Sub-Dropdown
 
-3.2.3.1.15. Traffic Packets Dropdown Menu
+3.2.3.1.17. Map Edit Dropdown Menu ***(Partially Implemented)***
+* Rename Node - Lacks popup, however, it is achieved by double clicking on the node and typing in a name.
+* Assign Icon
+* Change Visibility 
 
-3.2.3.1.16. Map File Dropdown Menu
-
-3.2.3.1.17. Map Edit Dropdown Menu
-
-3.2.3.1.18. Map Nodes Dropdown Menu
+3.2.3.1.18. Map Nodes Dropdown Menu ***(Partially Implemented)***
+* Exists on the system and is visually present but the dropdown button lacks functionality.
+* Search node is achieved through the search bar located on the top right of the map view.
+* Selecting all nodes can be achieved by clicking on the map to focus on it and then pressing 'ctrl + a'.
+* Add relationship popup exists on the system without functionality however, we removed the button that brings it up due to it being achieved by dragging a link from one node to another on the map.
 
 3.2.3.1.19.Annotation Menu
 
-3.2.3.1.20. Color Picker
+3.2.3.1.20. Color Picker ***(Partially Implemented)***
+ * Exists visually within "Add/Remove Flags" popup in the button "Create Flag"
+ * Lacks functionality
