@@ -13,8 +13,7 @@
 
 - You can choose to download MongoDB Compass for viewing the database in a GUI format, otherwise 
 it can be viewed on the shell
-
-
+<br></br>
 
 ## Front-End Setup
 1. Open your command line/terminal and navigate to the "client" folder using the command line.
@@ -24,6 +23,7 @@ npm init -y
 npx create-react-app
 npm install axios react react-dom react-router-dom react-scripts web-vitals react-bootstrap bootstrap framer-motion react-native-web gojs-react styled-components
 ```
+<br></br>
 ## Back-End Setup
 1. Using the command line, navigate to the "api" folder.
 Use the following commands:
@@ -35,6 +35,8 @@ npm install body-parser cors dotenv ejs express mongoose multer nodemon socketca
 ```
 npx nodemon@latest --version
 ```
+<br></br>
+<br></br>
 # Usage Instructions
 1. Open two terminals and navigate to the "api" and "client" folders respectively.
 2. Use the following command on both terminals:
@@ -48,7 +50,10 @@ sudo service mongod start
 - Using on the "api" folder will connect to the database
 - Using on the "client" folder will open the site
 
-# Usage Instructions - runner and installation script
+<br></br>
+<br></br>
+
+# Runner and installation script
 1. Put runner.sh in a directory one level above this repo. For example `/home/kali/Downloads` where runner.sh is in `/home/kali/Downloads/CS4311_CANBusVisualizer_7`.
 2. Open a terminal and navigate to `/Downloads`
 3. Run it by typing the following command:
@@ -62,10 +67,12 @@ chmod +x runner.sh
 ```
 **Now sit back and watch it go.**
 
+**Everything is all set for normal use.**
 
-**Now everything is all set for normal use.**
+<br></br>
+<br></br>
 
-***
+# Feature Usage
 ## Usage for Archive Functionality
 In order to use the archive functionality in the `Archive Project` tab, follow these steps:
 1. Input the project path such as `/home/kali/PathToProject/`
@@ -100,3 +107,8 @@ No status bar will be displayed as of now, but to check progress, you can check 
 
 ### Issues with Sync
 **Something to note**: Sync works well under these conditions, but will crash after completing a sync command. Cause is unknown, but most likely due to a termination of a necessary process/thread for rendering the backend connection in `DataSynchronizer.js` file.
+
+<br></br>
+<br></br>
+---
+# Features Left To Address
