@@ -107,6 +107,9 @@ No status bar will be displayed as of now, but to check progress, you can check 
 
 ### Issues with Sync
 **Something to note**: Sync works well under these conditions, but will crash after completing a sync command. Cause is unknown, but most likely due to a termination of a necessary process/thread for rendering the backend connection in `DataSynchronizer.js` file.
+***
+## Usage for the Map Functionality
+In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox must be used instead of google chrome.
 
 <br></br>
 <br></br>
@@ -114,26 +117,32 @@ No status bar will be displayed as of now, but to check progress, you can check 
 # Features Left To Address
 The following is a list of all of the product features specified in the SRS that our team has left to address. Each feature listed will have further specification about what is missing if they are partially implemented.
 
-3.2.3.1.6. Edit Packets
-* The popup functionality for this is not implemented
+3.2.3.1.6. Edit Packets ***(Partially Implemented)***
+*  The popup for this use case is not implemented visually or functionally
+* The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
-3.2.3.1.7. Replay Packets
-* Popup functionality
+3.2.3.1.7. Replay Packets ***(Partially Implemented)***
+* The popup for this use case is not implemented visually or functionally
+* The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
-3.2.3.1.8. Rename Node ***Partially Implemented***
-* Popup is implemented but lacks functionality
+3.2.3.1.8. Rename Node ***(Partially Implemented)***
+* Popup is implemented visually but lacks functionality
 * The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
 3.2.3.1.9. Assign Icon
-* Popup is implemented
-* Icons not selectable
-* 
+* Popup is implemented visually but lacks functionality
+* Map does not have ability to retrieve icons and assign them to nodes
 
-3.2.3.1.10. Change Visibility
+3.2.3.1.10. Change Visibility ***(Partially Implemented)***
+* Popup is implemented visually but lacks functionality
+* The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
-3.2.3.1.11.Add Relationship
+3.2.3.1.11.Add Relationship ***(Partially Implemented)***
+* Popup exists on the system but we opted to remove the dropwodn button that would trigger the display of it.
+* The overall use case is achievable through other means, refer to the usage section of the readme for further information.
 
-3.2.3.1.12. Traffic File Dropdown Menu
+3.2.3.1.12. Traffic File Dropdown Menu ***(Partially Implemented)***
+* Exists on the system and is visually present but the dropdown buttons lack functionality
 
 3.2.3.1.13. Traffic View Dropdown Menu with Filter Packets Sub-Dropdown
 
