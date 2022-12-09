@@ -48,6 +48,20 @@ sudo service mongod start
 - Using on the "api" folder will connect to the database
 - Using on the "client" folder will open the site
 
+# Usage Instructions - runner and installation script
+1. Put runner.sh in a directory one level above this repo. For example `/home/kali/Downloads` where runner.sh is in `/home/kali/Downloads/CS4311_CANBusVisualizer_7`.
+2. Open a terminal and navigate to `/Downloads`
+3. Run it by typing the following command:
+
+```
+./runner.sh
+```
+If it doesn't start immediately or denies you due to permissions run the following in your terminal:
+```
+chmod +x runner.sh
+```
+**Now sit back and watch it go.**
+
 
 **Now everything is all set for normal use.**
 
