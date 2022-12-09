@@ -107,8 +107,12 @@ No status bar will be displayed as of now, but to check progress, you can check 
 
 ### Issues with Sync
 **Something to note**: Sync works well under these conditions, but will crash after completing a sync command. Cause is unknown, but most likely due to a termination of a necessary process/thread for rendering the backend connection in `DataSynchronizer.js` file.
+***
+## Usage for the Map Functionality
+In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox must be used instead of google chrome.
 
 <br></br>
 <br></br>
 ---
+
 # Features Left To Address
