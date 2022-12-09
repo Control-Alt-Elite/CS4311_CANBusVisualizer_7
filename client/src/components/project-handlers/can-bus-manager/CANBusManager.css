@@ -1,50 +1,51 @@
 .container {
-    background-image: url('../../images/backgroundLogo.png');
-    background-repeat: no-repeat;
-    margin-top: 0%;
-    margin-bottom: 0%;
-    width: 630px;
-    height: 662px;
-    background-color: rgb(58,58,58);
-    background-position: center;
-    background-size: 662px;
-    background-attachment: fixed;
-    background-position-y: 77px;
+  background-image: url("../../images/backgroundLogo.png");
+  background-repeat: no-repeat;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  width: 630px;
+  height: 662px;
+  background-color: rgb(58, 58, 58);
+  background-position: center;
+  background-size: 662px;
+  background-attachment: fixed;
+  background-position-y: 77px;
 }
-.header{
-    text-align: center;
+.header {
+  text-align: center;
 }
-.text{
-    color:white;
-    display: inline-block;
-    padding: 0 20px;
-    font-family: Serif;
-    font-size: x-large;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #0d6efd ;
-    position: relative; top: 0px;
+.text {
+  color: white;
+  display: inline-block;
+  padding: 0 20px;
+  font-family: Serif;
+  font-size: x-large;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #0d6efd;
+  position: relative;
+  top: 0px;
 }
-.card{
-    height: 500px;
-    color: white;
-    text-align: center;
-    align-items: center;
-    background-color: transparent;
-    border-color: rgb(58,58,58);
-    border-style: solid;
-    border-width: 0;
-    scrollbar-width: 10px;
+.card {
+  height: 500px;
+  color: white;
+  text-align: center;
+  align-items: center;
+  background-color: transparent;
+  border-color: rgb(58, 58, 58);
+  border-style: solid;
+  border-width: 0;
+  scrollbar-width: 10px;
 }
 .menu {
-    color:white;
-    border-radius: 5px;
-    padding: 5px 5px 5px 5px;
-    background-color: rgb(40, 77, 241);;
-    display: inline-block;
-    font-family: Serif;
-    font-size: large;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 5px 5px 5px;
+  background-color: rgb(40, 77, 241);
+  display: inline-block;
+  font-family: Serif;
+  font-size: large;
 }
 .tabs {
-    color: rgb(40, 77, 241);
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', Serif;
+  color: rgb(40, 77, 241);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", Serif;
 }

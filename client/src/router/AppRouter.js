@@ -5,12 +5,11 @@ import Home from "../components/home-screen/Home";
 import Navbar from "../components/nav-bar/Navbar";
 import ArchiveProject from "../components/project-handlers/archive-project/ArchiveProject";
 import CANBusManager from "../components/project-handlers/can-bus-manager/CANBusManager";
+import ProjectConfigurationHolder from "../components/project-handlers/create-project/ProjectConfigurationHolder";
 import ProjectInfoHolder from "../components/project-handlers/create-project/ProjectInfoHolder";
 import OpenProject from "../components/project-handlers/open-project/OpenProject";
 import SplitView from "../components/split-view/SplitView";
 import Sync from "../components/synchronizer/Sync";
-import ProjectConfigurationHolder from "../components/project-handlers/create-project/ProjectConfigurationHolder"
-// import AboutUs from "../components/to-be-deleted/about-us/AboutUs";
  
 function Animated() {
     const location = useLocation();
@@ -35,8 +34,7 @@ function Animated() {
                     element={<SplitView />}></Route>
                 <Route exact path="/CANBusManager"
                     element={<CANBusManager />}></Route>
-                {/* <Route exact path="/AboutUs"
-                    element={<AboutUs />}></Route> */}
+
             </Routes>
         </AnimatePresence>
     );

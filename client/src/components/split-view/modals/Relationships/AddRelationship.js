@@ -1,11 +1,9 @@
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
 import Modal from "react-bootstrap/Modal";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-// import './AddRelationship.css';
 
 function AddRelationship() {
   const [show, setShow] = useState(false);
@@ -15,7 +13,6 @@ function AddRelationship() {
 
   return (
     <>
-      {/* <NavDropdown.Item href="#action/3.3" onClick={handleShow}> Change Visibility</NavDropdown.Item> */}
       <NavDropdown.Item href="#action/3.2" onClick={handleShow}> Add Relationship</NavDropdown.Item>
       
       <Modal 

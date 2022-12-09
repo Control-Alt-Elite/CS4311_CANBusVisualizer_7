@@ -101,7 +101,7 @@ function MapDisplayer() {
   }
 
   //********************NODE TEMPLATE GOES HERE*******************************************
-   //CONTAINS PICTURE, NODE ATTRIBUTES, CONTEXT MENU, AND SEARCH
+  //CONTAINS PICTURE, NODE ATTRIBUTES, CONTEXT MENU, AND SEARCH
   diagram.nodeTemplate = $( go.Node,"Auto", // the Shape will go around the TextBlock
   new go.Binding("location", "location", go.Point.parse).makeTwoWay(go.Point.stringify), //Allows for coordinates to be used
   $(go.Shape, "RoundedRectangle",
@@ -154,7 +154,7 @@ function MapDisplayer() {
       },
       $(go.TextBlock, "Change Visibility"),
       { click: ChangeVisibility})
-    // more ContextMenuButtons can go here
+    // more context menu buttons can go here
     ) 
   }
   );
@@ -175,7 +175,7 @@ function MapDisplayer() {
   );
 
   //DEFINE NODES AND LINKS
-  // {key, ecuName, location, offlimits, isVisible, annotation, flags,iconFilePath}
+  //ideal node attributes: {key, ecuName, location, offlimits, isVisible, annotation, flags,iconFilePath}
   var nodeDataArray = [
     { key: 0, text: "", category: "HBar", location: "100 100", size: "1000 4", fill: "#C4C4C4", },
   ];
@@ -186,10 +186,13 @@ function MapDisplayer() {
 
   //Locates the button that will handle exporting node attributes
   document.querySelector('[id="SaveButton"]').addEventListener("click", save);
+
   // Locates the button that will handle exporting network map
   document.querySelector('[id="exportDiagram"]').addEventListener("click", makeBlob);
+
   // Locates the button that will handle importing node attributes
   document.querySelector('[id="LoadButton"]').addEventListener("click", openFileDialog);
+  
   //Locates the elements on the page that will handle searching nodes
   document.querySelector('[id="nodeSearchButton"]').addEventListener("click", searchDiagram);
   document.querySelector('[id="nodeSearchBar"]').addEventListener("keydown", function (event) {
@@ -198,19 +201,7 @@ function MapDisplayer() {
       }
     });
 
-  // when the document is modified, add a "*" to the title and enable the "Save" button
-  diagram.addDiagramListener("Modified", (e) => {
-    var button = document.getElementById("SaveButton");
-    if (button) button.disabled = !diagram.isModified;
-    var idx = document.title.indexOf("*");
-    if (diagram.isModified) {
-      if (idx < 0) document.title += "*";
-    } else {
-      if (idx >= 0) document.title = document.title.slice(0, idx);
-    }
-  });
-
-  // ------------------------------- Dynamic NODES --------------------------
+  // ------------------------------- Dynamic Nodes --------------------------
   let eventSource;
   var playing = false;
   document.querySelector('[id="playtraffic"]').addEventListener("click", createLiveNodes);
@@ -244,6 +235,7 @@ function MapDisplayer() {
       eventSource = new EventSource(url1)
       eventSource.onmessage = (e) => {
         const parsedData = JSON.parse(e.data);
+        
         // Check if node exists in the map
         const isFound = diagram.model.findNodeDataForKey(`${parsedData.id}`);
 
@@ -269,7 +261,7 @@ function MapDisplayer() {
         }
 
         // if node is black listed, change color
-        if(isBlacklisted){// TODO CHANGE THIS TO ACTUALLY CHANGE THE COLOR
+        if(isBlacklisted){
           const node = diagram.findNodeForKey(parsedData.id);
           const shape = node.findObject("SHAPE");
           shape.fill = "#727476";
@@ -360,13 +352,15 @@ function MapDisplayer() {
     return currentDate;
   }
 
+  //used on context menu, zooms in the page
   function zoomIn() {
     if (diagram.commandHandler.canIncreaseZoom()) {
       diagram.commandHandler.increaseZoom(1.2);
     }
 
   }
-  //TODO: test zoom out
+  
+  //used on context menu, zooms out the page
   function zoomOut() {
     if (diagram.commandHandler.canDecreaseZoom()) {
       diagram.commandHandler.decreaseZoom(.5);

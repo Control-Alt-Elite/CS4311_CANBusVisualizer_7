@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
 import { StyleSheet, Text } from "react-native";
 import { Link } from "react-router-dom";
 import Transitions from "../../Transitions";
 import "./ProjectInfoHolder.css";
-import Button from "react-bootstrap/Button";
 
 const styles = StyleSheet.create({
   baseText: {
@@ -19,25 +19,33 @@ const styles = StyleSheet.create({
 });
 
 export default function ProjectInfoHolder(props) {
-  const [analystInitials, setAnalystInitials] = useState('');
-  const [canConnectorID, setCANConnectorID] = useState('');
-  const [vehicleID, setVehicleID] = useState('');
+  const [analystInitials, setAnalystInitials] = useState("");
+  const [canConnectorID, setCANConnectorID] = useState("");
+  const [vehicleID, setVehicleID] = useState("");
   const [baudRate, setBaudRate] = useState(null);
-  const [eventName, setEventName] = useState('');
+  const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState(null);
-  const [dbcFileName, setDBCFileName] = useState('');
-  const [blacklistFileName, setBlacklistFileName] = useState('');
-
+  const [dbcFileName, setDBCFileName] = useState("");
+  const [blacklistFileName, setBlacklistFileName] = useState("");
 
   const handleSubmit = (event) => {
-      // prevents the submit button from refreshing the page
-      event.preventDefault();
-      const data = {eventName: eventName, eventDate: eventDate, analystInitials: analystInitials, 
-          canConnectorID: canConnectorID, vehicleID: vehicleID, baudRate: baudRate, dbcFileName: dbcFileName, blacklistFileName: blacklistFileName};
-      axios.post('http://localhost:3001/project/session', data)
-          .then((response) => {
-          window.location.replace('/SplitView')
-      })
+    // prevents the submit button from refreshing the page
+    event.preventDefault();
+    const data = {
+      eventName: eventName,
+      eventDate: eventDate,
+      analystInitials: analystInitials,
+      canConnectorID: canConnectorID,
+      vehicleID: vehicleID,
+      baudRate: baudRate,
+      dbcFileName: dbcFileName,
+      blacklistFileName: blacklistFileName,
+    };
+    axios
+      .post("http://localhost:3001/project/session", data)
+      .then((response) => {
+        window.location.replace("/SplitView");
+      });
   };
 
   return (
@@ -47,31 +55,20 @@ export default function ProjectInfoHolder(props) {
           <h3 className="text">Session Configuration</h3>
         </div>
 
-        <form className='ProjectForm' onSubmit={handleSubmit}>
+        <form className="ProjectForm" onSubmit={handleSubmit}>
           {/* Event Name */}
           <Text style={styles.baseText}>
             Event Name
             <Text style={styles.innerText}> ! [Required] </Text>
           </Text>
           <div>
-            <input
-              className="TextBox"
-              type="text"
-              value={eventName}
-              required
-              onChange={(event) => setEventName(event.target.value)}
-            />
+            <input className="TextBox" type="text" value={eventName} required onChange={(event) => setEventName(event.target.value)}/>
           </div>
 
           {/* Event Date */}
           <Text style={styles.baseText}>Event Date</Text>
           <div>
-            <input
-              className="TextBox"
-              type="Date"
-              value={eventDate}
-              onChange={(event) => setEventDate(event.target.value)}
-            />
+            <input className="TextBox" type="Date" value={eventDate} onChange={(event) => setEventDate(event.target.value)}/>
           </div>
 
           {/* Analyst Initials */}
@@ -94,10 +91,7 @@ export default function ProjectInfoHolder(props) {
             {/* <Text style={styles.innerText}> ! [Required] </Text> */}
           </Text>
           <div>
-            <input
-              className="TextBox"
-              type="text"
-              value={canConnectorID}
+            <input className="TextBox" type="text" value={canConnectorID}
               // required
               onChange={(event) => setCANConnectorID(event.target.value)}
             />
@@ -106,16 +100,11 @@ export default function ProjectInfoHolder(props) {
           {/* Vehicle ID Number */}
           <Text style={styles.baseText}>Vehicle ID</Text>
           <div>
-            <input
-              className="TextBox"
-              type="text"
-              value={vehicleID}
+            <input className="TextBox" type="text" value={vehicleID}
               // required
               onChange={(event) => setVehicleID(event.target.value)}
             />
           </div>
-
-          
 
           {/* DBC File */}
           <Text style={styles.baseText}>

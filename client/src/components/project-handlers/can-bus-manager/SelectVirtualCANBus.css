@@ -1,26 +1,26 @@
 .vcan-form {
-    font-family: 'Bold', Serif;
-    padding-top: 0px;
-    padding-left: 0px;
-    width: 605px;
-    height: 662px;
+  font-family: "Bold", Serif;
+  padding-top: 0px;
+  padding-left: 0px;
+  width: 605px;
+  height: 662px;
 }
 .form-control {
-    width: 100% !important;
-    box-shadow: 0 0 0 0 #00000000 !important;
-    border-color: #00000000 !important;
-    border-bottom: 1px solid #efefef !important;
+  width: 100% !important;
+  box-shadow: 0 0 0 0 #00000000 !important;
+  border-color: #00000000 !important;
+  border-bottom: 1px solid #efefef !important;
 }
 
 .form-control:focus {
-    width: 100% !important;
-    border-color: #00000000 !important;
-    border-bottom: 3px solid var(--primary) !important;
-    outline: 0;
-    transition: all 0.3s ease-in;
+  width: 100% !important;
+  border-color: #00000000 !important;
+  border-bottom: 3px solid var(--primary) !important;
+  outline: 0;
+  transition: all 0.3s ease-in;
 }
 .form-label {
-    font-size: large;
-    margin-top: 4px;
-    margin-bottom: 4px;
+  font-size: large;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
