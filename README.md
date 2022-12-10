@@ -219,6 +219,8 @@ In order to replay packets follow these steps:
 ### Issues with editing packets
 1. Only columns 00,01,02,03,04,05,06,07 are editable
 2. New values of packets will be known once packets are replayed
+## Issues with Edit Packets
+1. If the manipulated data is in an invalid format, there is `NO` window notifying the user of the wrong format.
 ***
 ## Usage to Filter Packets
 ****Packets must be captured/replayed before being filtered**
@@ -233,7 +235,18 @@ In order to replay packets follow these steps:
     * One time for `Ascending` order
     * Two times for `Descending` order
     * A third click will take the table to the way the packets were displayed before sorting
-
+***
+## Auto Save Feature
+1. If you were to close the browser or your machine crashes, load the webpage
+2. If you loaded on the main page it will provide a pop up to `Continue` your work or `Discard` it.
+3. Click on `Continue` 
+4. You will be redirected to the `Can Bus Visualizer` page
+### Issues with auto save
+1. It currently keeps track of packets
+2. Project related information is not fetched
+3. Table is not saved
+4. There is about a 5mb limit to be stored in local storage
+5. If your machine crashed, you will need to set up the canbus connection before restarting current session. 
 ---
 # Features Left To Address
 The following is a list of all of the product features specified in the SRS that our team has left to address. Each feature listed will have further specification about what is missing if they are partially implemented.
