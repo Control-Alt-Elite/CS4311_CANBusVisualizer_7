@@ -1,3 +1,5 @@
+# Project demo recording
+https://drive.google.com/file/d/1wV9yxXN7cuztagg3SZaMSYCPx7QRRvJl/view?usp=sharing
 # Installation instructions
 
 1. Clone the repo or download the zip to a directory of your choosing
@@ -73,6 +75,43 @@ chmod +x runner.sh
 <br></br>
 
 # Feature Usage
+## Usage for Create Project.
+In order to create a project follow these steps:
+1. Go to `Can Bus Manager` tab.
+2. Select desired can bus along with baud rate
+3. click `Confirm`:
+    * If using virtual can bus, go to virtual can bus tab and select desired can bus and click `Confirm`.
+    * If the system does not redirect you inmediately, open the terminal with the api open and write the password for your machine since it will run a sudo command.
+    * If there is an existing process running, it will be killed.
+4. This would take you to the create a project site, were you can type in the project name and location to save it to. 
+5. Click `Continue`. (There is a default storage session for testing purposes)
+6. You will be redirected to the session configuration page where you will fill in the following information:
+    * Event Name
+    * Event Date
+    * Analyst Initials
+    * CAN Connector ID **(Only integers for the moment!)**
+    * Vehicle ID **(Only integers for the moment!)**
+    * Dbc File **(Select a file though `File Selection Screen`)**
+    * Blacklist File **(Select a file though `File Selection Screen`)**
+7. Click `Confirm`
+### Issues with Create Project
+1. Can Connector id, and Vehicle Id only take in Numbers due to the schema built in for thosevalues. Any letter would cause the api to fail and app rebbot will be required. 
+## Usage for Open Project **(Work on progress)**
+In order open a project follow these steps:
+1. Go to `Can Bus Manager` tab.
+2. Select desired can bus along with baud rate
+3. click `Confirm`:
+    * If using virtual can bus, go to virtual can bus tab and select desired can bus and click `Confirm`.
+    * If the system does not redirect you inmediately, open the terminal with the api open and write the password for your machine since it will run a sudo command.
+4. Go to `Open Project` tab
+5. Fill in the project name
+    * If program does not find it or you dont remember how thwe project is named you can click on `List All Projects`
+6. Click 'Fetch'
+7. The system will display the information associated to the project.
+8. Click `Confirm`
+### Issues with using Open projects:
+1. Since system has not linked the associated captured packets or maps, it will **NOT** fetch packets or maps.
+
 ## Usage for Archive Functionality
 In order to use the archive functionality in the `Archive Project` tab, follow these steps:
 1. Input the project path such as `/home/kali/PathToProject/`
@@ -131,7 +170,70 @@ In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox
 In order to use the map functionality in the `CAN MAP Visualizer`  tab,  firefox must be used instead of google chrome.
 
 <br></br>
+***
+## Usage for Start/Stop Capturing Packets
+In order open Capture packets follow these steps:
+1. Open or create project **(Refer to the usage for creating and opening projects)**
+2. To start capturing packets click on `Start`
+    * Packets will take about a minute to be displayed. 
+3. To stop capturing packets click on `stop`
 <br></br>
+***
+## Usage for Saving Packets
+**Packets must be captured before being saved**
+
+In order to save packets follow these steps:
+1. Select on the `Packet` Tab
+2. Select `Save Packets`
+3. A `Save File` window will appear, select destination
+    * The default destination would be `/api/log-files/
+4. Click `Confirm`
+### Issues with Save Packets
+1. This **ONLY** works in `Chrome`
+
+***
+## Usage for Replaying Packets
+**Packets must be saved before being replayed**
+
+**In current version packets must be saved during the session for the option to be enabled**
+
+In order to replay packets follow these steps:
+1. Select on the `Packet` Tab
+2. Select `Replay Packets`
+3. A `Select File` window will appear, select desired log file
+4. Click `Confirm`
+    *It will take a minute for replayed packets to be shown
+### Issues replaying packets
+1. If you captured packets and decided to replay packets this will cause those unsaved packets to be lost.
+2. If log file has packets that are not in the correct format, it will crash the server.
+3. The location of where the system looks for the file and the name of file it replays are hardcoded under `/api/modules/Player.js`, line `7`
+
+4. This **ONLY** works in `Chrome`
+***
+
+## Usage for Edit Packets
+****Packets must be captured/replayed before being edited**
+1. Double click on the desired cell of the target packet
+2. Write desired value.
+3. Continue with as many packet values
+### Issues with editing packets
+1. Only columns 00,01,02,03,04,05,06,07 are editable
+2. New values of packets will be known once packets are replayed
+***
+## Usage to Filter Packets
+****Packets must be captured/replayed before being filtered**
+1. Click on the `Search` box above the packets
+2. Type in the ECU value you want to fileter by.
+### Issues for Filtering Packets
+1. Only filters through ECU
+***
+## Usage to Sort Packets
+****Packets must be captured/replayed before being filtered**
+1. Click on the header cells, `Time`, `ID`, `ECU`
+    * One time for `Ascending` order
+    * Two times for `Descending` order
+    * A third click will take the table to the way the packets were displayed before sorting
+
 ---
 # Features Left To Address
 The following is a list of all of the product features specified in the SRS that our team has left to address. Each feature listed will have further specification about what is missing if they are partially implemented.
