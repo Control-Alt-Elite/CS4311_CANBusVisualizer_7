@@ -34,7 +34,8 @@ function Animated() {
                     element={<SplitView />}></Route>
                 <Route exact path="/CANBusManager"
                     element={<CANBusManager />}></Route>
-
+                <Route exact path="/Playground"
+                    element={<Playground />}></Route>
             </Routes>
         </AnimatePresence>
     );
