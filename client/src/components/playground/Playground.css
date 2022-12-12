@@ -1,0 +1,15 @@
+/* Entire available screen */
+.Playground{
+    display: flex;
+    height: 740px;
+}
+
+/* Dashboard */
+.dashboard{
+    width: 50%;
+}
+
+/* File Menu / Table */
+.data{
+    width: 50%;
+}
